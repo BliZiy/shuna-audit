@@ -1,0 +1,98 @@
+[
+ {
+  "task_id": "BCBLitePro/213",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node65",
+   "input": "()",
+   "correct": "(<Axes: title={'center': 'Normal Distribution with $\\\\mu = 0.00, \\\\sigma = 1.00$'}>, [np.float64(-0.045256707490195384), np.float64(0.03881247615960185), np.float64(-0.04784993519517787), np.float64(0",
+   "wrong": "(<Axes: title={'center': 'Normal Distribution with $\\\\mu = -1.00, \\\\sigma = 1.00$'}>, [np.float64(-1.0452567074901953), np.float64(-0.9611875238403982), np.float64(-1.0478499351951778), np.float64(-0.",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -3,3 +3,2 @@\n import matplotlib.pyplot as plt\n-\n \n@@ -37,6 +36,4 @@\n     sample = np.random.normal(mu, sigma, sample_size)\n-    \n     fig, ax = plt.subplots()\n     ax.hist(sample, bins=30, density=True, alpha=0.5, label='Sample Histogram')\n-    \n     xmin, xmax = ax.get_xlim()\n@@ -45,8 +42,5 @@\n     ax.plot(x, p, 'k', linewidth=2, label='Normal PDF')\n-    \n-    ax.set_title(\"Normal Distribution with $\\\\mu = %0.2f, \\\\sigma = %0.2f$\" % (mu, sigma))\n-    ax.legend()    \n-    return ax, np.mean(sample), np.std(sample)\n-\n-# You are tasked with analyzing the performance of a manufacturing process that produces parts with specific dimensions. The process is known to follow a normal distribution with a given mean and standard deviation. To assess the process, you need to generate multiple samples from the distribution, calculate the empirical mean and standard deviation for each sample, and then plot the histograms and probability density functions for all samples together. Additionally, you should calculate the overall empirical mean and standard deviation across all samples. The function should return the Axes object representing the plot, the list of empirical means and standard deviations for each sample, and the overall empirical mean and standard deviation.import numpy as np\n+    ax.set_title('Normal Distribution with $\\\\mu = %0.2f, \\\\sigma = %0.2f$' % (mu, sigma))\n+    ax.legend()\n+    return (ax, np.mean(sample), np.std(sample))\n from scipy import stats\n@@ -54,4 +48,3 @@\n \n-def analyze_process(mu=0, sigma=1, sample_size=1000, num_samples=5, seed=0):\n-\n+def analyze_process(mu=-1, sigma=1, sample_size=1000, num_samples=5, seed=0):\n     plt.figure()\n@@ -66,3 +59,2 @@\n     plt.suptitle('Normal Distribution Analysis with $\\\\mu = %0.2f, \\\\sigma = %0.2f$' % (mu, sigma))\n-    return ax, all_means, all_stds, overall_mean, overall_std\n-\n+    return (ax, all_means, all_stds, overall_mean, overall_std)"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "BCBLitePro/325",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arity",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "BCBLitePro/394",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bin:FloorDiv@node158",
+   "input": "(2, 2, 5)",
+   "correct": "([<Figure size 640x480 with 1 Axes>, <Figure size 640x480 with 1 Axes>, <Figure size 640x480 with 1 Axes>, <Figure size 640x480 with 1 Axes>], [[[(np.float64(0.5488135039273248), np.float64(0.64589411",
+   "wrong": "([<Figure size 640x480 with 1 Axes>, <Figure size 640x480 with 1 Axes>, <Figure size 640x480 with 1 Axes>, <Figure size 640x480 with 1 Axes>], [[[(np.float64(0.5488135039273248), np.float64(0.64589411",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -2,3 +2,2 @@\n import numpy as np\n-\n \n@@ -24,19 +23,11 @@\n     \"\"\"\n-    # Setting the random seed for reproducibility\n     np.random.seed(seed)\n-\n-    # Generating random points\n     x = np.random.rand(n)\n     y = np.random.rand(n)\n-\n-    # Plotting\n     fig, ax = plt.subplots()\n     ax.scatter(x, y)\n-    ax.set_title(\"Scatter plot of random points\")\n-    ax.set_xlabel(\"X\")\n-    ax.set_ylabel(\"Y\")\n-\n-    return fig, list(zip(x, y))\n-\n-# Create a function that generates a grid of scatter plots, where each scatter plot represents a different set of random points. The grid should have 'rows' number of rows and 'cols' number of columns. Each scatter plot should have 'n' points, and the points should be generated with different seeds to ensure variability. The function should return a list of matplotlib figures, each representing a scatter plot, and a list of lists containing the points for each scatter plot.import matplotlib.pyplot as plt\n+    ax.set_title('Scatter plot of random points')\n+    ax.set_xlabel('X')\n+    ax.set_ylabel('Y')\n+    return (fig, list(zip(x, y)))\n import numpy as np\n@@ -44,3 +35,2 @@\n def generate_grid_of_plots(rows, cols, n):\n-\n     figures = []\n@@ -50,3 +40,3 @@\n         for j in range(cols):\n-            seed = i * cols + j\n+            seed = i // cols + j\n             fig, points = task_func(n, seed)\n@@ -55,4 +45,2 @@\n         points_grid.append(points_row)\n-    return figures, points_grid\n-\n-\n+    return (figures, points_grid)"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "BCBLitePro/699",
+  "verdict": "rejected",
+  "reason": "no in-domain witness",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "BCBLitePro/767",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node77",
+   "input": "([(1, 1)],)",
+   "correct": "0.0",
+   "wrong": "np.float64(0.0)",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -39,24 +39,11 @@\n             distances.append(distance.euclidean(point1, point2))\n-            \n     return distances\n-\n-# Given a list of 2D coordinates, calculate the total travel distance for a path that starts at the first point, visits each consecutive point, and returns to the starting point. The function should handle cases where a tuple contains just one number, assuming both coordinates are equal to this number. If the list is empty or contains only one point, the function should return 0.0.from itertools import zip_longest\n from scipy.spatial import distance\n \n-\n def total_travel_distance(points):\n-\n-    if not points or len(points) == 1:\n+    if not points or len(points) == 0:\n         return 0.0\n-    \n-    # Ensure all points are 2D\n     processed_points = [(p, p) if isinstance(p, (int, float)) else (p[0], p[0]) if len(p) == 1 else p for p in points]\n-    \n-    # Calculate distances between consecutive points\n     distances = task_func(processed_points)\n-    \n-    # Add distance from last point back to the first point\n     distances.append(distance.euclidean(processed_points[-1], processed_points[0]))\n-    \n-    return sum(distances)\n-\n+    return sum(distances)"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "BCBLitePro/816",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arity",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "BCBLitePro/815",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node131",
+   "input": "(['hello', 'world', 'test'],)",
+   "correct": "{'aa': [0, 0, 0], 'ab': [0, 0, 0], 'ac': [0, 0, 0], 'ad': [0, 0, 0], 'ae': [0, 0, 0], 'af': [0, 0, 0], 'ag': [0, 0, 0], 'ah': [0, 0, 0], 'ai': [0, 0, 0], 'aj': [0, 0, 0], 'ak': [0, 0, 0], 'al': [0, 0,",
+   "wrong": "{'aa': [0, 0, 0], 'ab': [0, 0, 0], 'ac': [0, 0, 0], 'ad': [0, 0, 0], 'ae': [0, 0, 0], 'af': [0, 0, 0], 'ag': [0, 0, 0], 'ah': [0, 0, 0], 'ai': [0, 0, 0], 'aj': [0, 0, 0], 'ak': [0, 0, 0], 'al': [0, 0,",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -3,3 +3,2 @@\n import string\n-\n \n@@ -32,15 +31,7 @@\n     ALPHABETS = string.ascii_lowercase\n-    # Generate all two-letter combinations of alphabets\n-    permutations = [''.join(x) for x in itertools.permutations(ALPHABETS, 2)]\n-    combinations = permutations + [x*2 for x in ALPHABETS]\n-    \n-    # Generate all two-letter combinations in the word\n+    permutations = [''.join(x) for x in itertools.permutations(ALPHABETS, 1)]\n+    combinations = permutations + [x * 2 for x in ALPHABETS]\n     word_combinations = [''.join(x) for x in zip(word, word[1:])]\n-    # Count the occurrences of each two-letter combination in the word\n     word_counter = Counter(word_combinations)\n-\n-    # Create the dictionary with the counts\n     return {key: word_counter.get(key, 0) for key in combinations}\n-\n-# Given a list of words, create a dictionary where each key is a two-letter combination of the lowercase English alphabets, and the value is a list of frequencies of this combination across all words. If a combination does not appear in a word, its frequency for that word should be 0. The final dictionary should aggregate these frequencies across all words.from collections import Counter\n import itertools\n@@ -49,3 +40,2 @@\n def aggregate_frequencies(words: list) -> dict:\n-\n     all_combinations = [''.join(pair) for pair in itertools.product(string.ascii_lowercase, repeat=2)]\n@@ -56,4 +46,2 @@\n             frequency_dict[combo].append(word_freq.get(combo, 0))\n-    return frequency_dict\n-\n-\n+    return frequency_dict"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "BCBLitePro/897",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:Gt@node97",
+   "input": "(['1972-01-01', '2000-01-01', '2020-01-01'],)",
+   "correct": "2789493521",
+   "wrong": "2789493519",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -3,33 +3,3 @@\n from dateutil.parser import parse\n-\n-LEAP_SECONDS = np.array(\n-    [\n-        1972,\n-        1973,\n-        1974,\n-        1975,\n-        1976,\n-        1977,\n-        1978,\n-        1979,\n-        1980,\n-        1981,\n-        1982,\n-        1983,\n-        1985,\n-        1988,\n-        1990,\n-        1993,\n-        1994,\n-        1997,\n-        1999,\n-        2006,\n-        2009,\n-        2012,\n-        2015,\n-        2016,\n-        2020,\n-    ]\n-)\n-\n+LEAP_SECONDS = np.array([1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1985, 1988, 1990, 1993, 1994, 1997, 1999, 2006, 2009, 2012, 2015, 2016, 2020])\n \n@@ -62,13 +32,6 @@\n     current_date = datetime.now()\n-\n     total_seconds = (current_date - given_date).total_seconds()\n-\n-    # Count leap seconds that occurred between the two dates\n-    leap_seconds = np.sum(LEAP_SECONDS >= given_date.year)\n-\n+    leap_seconds = np.sum(LEAP_SECONDS > given_date.year)\n     total_seconds += leap_seconds\n-\n     return int(total_seconds)\n-\n-# Given a list of date strings, calculate the total number of seconds elapsed from each date until the current time, including any leap seconds that occurred in this period. Return the sum of all these elapsed seconds.\n from datetime import datetime\n@@ -76,33 +39,5 @@\n from dateutil.parser import parse\n-LEAP_SECONDS = np.array(\n-    [\n-        1972,\n-        1973,\n-        1974,\n-        1975,\n-        1976,\n-        1977,\n-        1978,\n-        1979,\n-        1980,\n-        1981,\n-        1982,\n-        1983,\n-        1985,\n-        1988,\n-        1990,\n-        1993,\n-        1994,\n-        1997,\n-        1999,\n-        2006,\n-        2009,\n-        2012,\n-        2015,\n-        2016,\n-        2020,\n-    ]\n-)\n+LEAP_SECONDS = np.array([1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1985, 1988, 1990, 1993, 1994, 1997, 1999, 2006, 2009, 2012, 2015, 2016, 2020])\n+\n def total_elapsed_seconds(date_list):\n-\n     total_seconds = 0\n@@ -110,4 +45,2 @@\n         total_seconds += task_func(date_str)\n-    return total_seconds\n-\n-\n+    return total_seconds"
+  },
+  "oracle_input": null
+ }
+]

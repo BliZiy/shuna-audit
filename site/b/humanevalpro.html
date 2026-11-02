@@ -1,0 +1,1474 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>HumanEval Pro</title><style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;color:#111}h1{margin-bottom:0}.sub{color:#555}
+table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border-bottom:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}.b{padding:2px 6px;border-radius:4px;font-size:12px;white-space:nowrap}.v{background:#fde2e1;color:#900}.s{background:#fff4d6;color:#7a5b00}.r{background:#e3ecff;color:#123d99}
+code,pre{font:12px ui-monospace,monospace}pre{background:#f7f7f7;padding:8px;overflow:auto;max-height:260px}.draft{background:#111;color:#fff;padding:6px 10px;border-radius:4px;display:inline-block}a{color:#0b57d0}</style><p class=draft>Published Nov 2026</p><p><a href='/'>← leaderboard</a></p><h1>HumanEval Pro</h1><p>164 tasks · <b>40 confirmed</b> · 3 helper-only · 8 suspected · 3 rejected · 0 reject a correct solution</p><p class=sub>Likely new (no prior report found). Authors notified privately Oct 18, 2026 (count correction Oct 19); published after 14 days.</p><table><tr><th>Task</th><th>Status</th><th>Finding</th></tr><tr><td>HumanEvalPro/102</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def choose_num(x, y):
+@@ -11,3 +10,3 @@
+     if x &gt; y:
+-        return -1
++        return -0
+     if y % 2 == 0:
+@@ -18,6 +17,3 @@
+ 
+-
+-# Given a list of tuples, where each tuple contains two positive integers representing a range [x, y], write a function that returns the sum of the biggest even integers from each range. If any range does not contain an even integer, it should be ignored in the sum. The function should return -1 if no ranges contain even integers.
+ def sum_of_biggest_evens(ranges):
+-
+     total_sum = 0
+@@ -29,3 +25,2 @@
+             found_even = True
+-    return total_sum if found_even else -1
+-
++    return total_sum if found_even else -1</pre><p>Witness input <code>([(12, 10), (10, 7)],)</code> → correct <code>-1</code>, wrong solution <code>0</code></p></details></td></tr><tr><td>HumanEvalPro/108</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def count_nums(arr):
+@@ -11,7 +10,9 @@
+     &quot;&quot;&quot;
++
+     def digits_sum(n):
+         neg = 1
+-        if n &lt; 0: n, neg = -1 * n, -1 
++        if n &lt; 0:
++            n, neg = (-1 * n, -1)
+         n = [int(i) for i in str(n)]
+-        n[0] = n[0] * neg
++        n[-1] = n[0] * neg
+         return sum(n)
+@@ -19,6 +20,3 @@
+ 
+-
+-# Write a function `count_nums_in_matrix` which takes a 2D array (matrix) of integers and returns the number of elements in the matrix which have a sum of digits &gt; 0. If a number is negative, then its first signed digit will be negative: e.g. -123 has signed digits -1, 2, and 3. The function should iterate through each row of the matrix and use the `count_nums` function to count the qualifying elements in each row. Finally, it should sum up these counts to get the total count for the entire matrix.
+ def count_nums_in_matrix(matrix):
+-
+     total_count = 0
+@@ -26,3 +24,2 @@
+         total_count += count_nums(row)
+-    return total_count
+-
++    return total_count</pre><p>Witness input <code>([[-1, 19, -12, 19], [3, -1, -18]],)</code> → correct <code>5</code>, wrong solution <code>3</code></p></details></td></tr><tr><td>HumanEvalPro/11</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ from typing import List
+-
+ 
+@@ -9,4 +8,5 @@
+     &quot;&quot;&quot;
++
+     def xor(i, j):
+-        if i == j:
++        if i != j:
+             return &#x27;0&#x27;
+@@ -14,12 +14,6 @@
+             return &#x27;1&#x27;
+-
+-    return &#x27;&#x27;.join(xor(x, y) for x, y in zip(a, b))
+-
+-
+-# Given a list of binary strings, perform a cumulative XOR operation on them. The cumulative XOR operation means that for each string in the list, XOR it with the result of all previous XOR operations. Return the final result as a string.
++    return &#x27;&#x27;.join((xor(x, y) for x, y in zip(a, b)))
+ from typing import List
+ 
+-
+ def cumulative_xor(binary_strings: List[str]) -&gt; str:
+-
+     &quot;&quot;&quot;
+@@ -34,3 +28,2 @@
+         result = string_xor(result, binary_string)
+-    return result
+-
++    return result</pre><p>Witness input <code>([&#x27;001&#x27;, &#x27;10&#x27;, &#x27;11&#x27;, &#x27;10&#x27;],)</code> → correct <code>&#x27;11&#x27;</code>, wrong solution <code>&#x27;00&#x27;</code></p></details></td></tr><tr><td>HumanEvalPro/110</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def exchange(lst1, lst2):
+@@ -17,32 +16,19 @@
+     for i in lst1:
+-        if i%2 == 1:
++        if i % 3 == 1:
+             odd += 1
+     for i in lst2:
+-        if i%2 == 0:
++        if i % 2 == 0:
+             even += 1
+     if even &gt;= odd:
+-        return &quot;YES&quot;
+-    return &quot;NO&quot;
+-            
+-
+-
+-# Given a list of lists of numbers, determine if it is possible to perform exchanges between the lists such that all lists become lists of only even numbers. Each list can exchange elements with any other list, and there is no limit on the number of exchanged elements. If it is possible to make all lists contain only even numbers, return &#x27;YES&#x27;. Otherwise, return &#x27;NO&#x27;.
++        return &#x27;YES&#x27;
++    return &#x27;NO&#x27;
+ 
+ def can_make_even_with_exchange(lst1, lst2, lst3, lst4):
+-
+-    # First, try exchanging with lst2
+-    if exchange(lst1, lst2) == &quot;YES&quot;:
+-        return &quot;YES&quot;
+-    
+-    # Try exchanging with lst3
+-    if exchange(lst1, lst3) == &quot;YES&quot;:
+-        return &quot;YES&quot;
+-    
+-    # If lst1 could not be made even, attempt to use lst4
+-    # Check if lst2 can be used to help lst3 or vice versa
+-    if exchange(lst1, lst4) == &quot;YES&quot;:
+-        if exchange(lst2, lst3) == &quot;YES&quot; or exchange(lst3, lst2) == &quot;YES&quot;:
+-            return &quot;YES&quot;
+-    
+-    return &quot;NO&quot;
+-
++    if exchange(lst1, lst2) == &#x27;YES&#x27;:
++        return &#x27;YES&#x27;
++    if exchange(lst1, lst3) == &#x27;YES&#x27;:
++        return &#x27;YES&#x27;
++    if exchange(lst1, lst4) == &#x27;YES&#x27;:
++        if exchange(lst2, lst3) == &#x27;YES&#x27; or exchange(lst3, lst2) == &#x27;YES&#x27;:
++            return &#x27;YES&#x27;
++    return &#x27;NO&#x27;</pre><p>Witness input <code>([3, 1, 3], [1, 1, 1], [4, 1], [10, 10])</code> → correct <code>&#x27;NO&#x27;</code>, wrong solution <code>&#x27;YES&#x27;</code></p></details></td></tr><tr><td>HumanEvalPro/111</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def histogram(test):
+@@ -14,20 +13,15 @@
+     &quot;&quot;&quot;
+-    dict1={}
+-    list1=test.split(&quot; &quot;)
+-    t=0
+-
++    dict1 = {}
++    list1 = test.split(&#x27; &#x27;)
++    t = 1
+     for i in list1:
+-        if(list1.count(i)&gt;t) and i!=&#x27;&#x27;:
+-            t=list1.count(i)
+-    if t&gt;0:
++        if list1.count(i) &gt; t and i != &#x27;&#x27;:
++            t = list1.count(i)
++    if t &gt; 0:
+         for i in list1:
+-            if(list1.count(i)==t):
+-                
+-                dict1[i]=t
++            if list1.count(i) == t:
++                dict1[i] = t
+     return dict1
+ 
+-
+-# Given a list of strings representing space separated lowercase letters, return a dictionary of the letter(s) with the most total repetitions across all strings and containing the corresponding total count. If several letters have the same total occurrence, return all of them.
+ def total_histogram(strings):
+-
+     from collections import defaultdict
+@@ -39,3 +33,2 @@
+     max_count = max(total_counts.values(), default=0)
+-    return {letter: count for letter, count in total_counts.items() if count == max_count}
+-
++    return {letter: count for letter, count in total_counts.items() if count == max_count}</pre><p>Witness input <code>([&#x27;&#x27;, &#x27; a  bbac &#x27;, &#x27;&#x27;],)</code> → correct <code>{&#x27;a&#x27;: 1, &#x27;bbac&#x27;: 1}</code>, wrong solution <code>{&#x27;&#x27;: 2}</code></p></details></td></tr><tr><td>HumanEvalPro/114</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def minSubArraySum(nums):
+@@ -13,7 +12,7 @@
+         s += -num
+-        if (s &lt; 0):
++        if s &lt; 0:
+             s = 0
+         max_sum = max(s, max_sum)
+-    if max_sum == 0:
+-        max_sum = max(-i for i in nums)
++    if max_sum == -1:
++        max_sum = max((-i for i in nums))
+     min_sum = -max_sum
+@@ -21,6 +20,3 @@
+ 
+-
+-# Given an array of integers nums, find the maximum sum of any non-empty sub-array of nums that is greater than a given threshold T. If no such sub-array exists, return -1. To solve this problem, you need to first find the minimum sum of any non-empty sub-array of nums, then use this information to determine the maximum sum greater than T.
+ def maxSubArraySumGreaterThanT(nums, T):
+-
+     min_sum = minSubArraySum(nums)
+@@ -36,3 +32,2 @@
+             current_sum = 0
+-    return max_sum if max_sum != float(&#x27;-inf&#x27;) else -1
+-
++    return max_sum if max_sum != float(&#x27;-inf&#x27;) else -1</pre><p>Witness input <code>([5, 4, 2], -5)</code> → correct <code>2</code>, wrong solution <code>0</code></p></details></td></tr><tr><td>HumanEvalPro/118</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def get_closest_vowel(word):
+@@ -16,16 +15,12 @@
+     &quot;&quot;&quot;
+-    if len(word) &lt; 3:
+-        return &quot;&quot;
++    if len(word) &lt; 4:
++        return &#x27;&#x27;
++    vowels = {&#x27;a&#x27;, &#x27;e&#x27;, &#x27;i&#x27;, &#x27;o&#x27;, &#x27;u&#x27;, &#x27;A&#x27;, &#x27;E&#x27;, &#x27;O&#x27;, &#x27;U&#x27;, &#x27;I&#x27;}
++    for i in range(len(word) - 2, 0, -1):
++        if word[i] in vowels:
++            if word[i + 1] not in vowels and word[i - 1] not in vowels:
++                return word[i]
++    return &#x27;&#x27;
+ 
+-    vowels = {&quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;, &quot;A&quot;, &quot;E&quot;, &#x27;O&#x27;, &#x27;U&#x27;, &#x27;I&#x27;}
+-    for i in range(len(word)-2, 0, -1):
+-        if word[i] in vowels:
+-            if (word[i+1] not in vowels) and (word[i-1] not in vowels):
+-                return word[i]
+-    return &quot;&quot;
+-
+-
+-# You are given a list of words. Your task is to find the closest vowel for each word that stands between two consonants from the right side of the word (case sensitive). Then, concatenate all the vowels found in the order of the words and return the resulting string. If no vowels are found for a word, concatenate an underscore &#x27;_&#x27; instead. The resulting string should be in lowercase. For example, given the list [&#x27;yogurt&#x27;, &#x27;FULL&#x27;, &#x27;quick&#x27;, &#x27;ab&#x27;], the function should return &#x27;u_u_&#x27;.
+ def get_closest_vowels_concat(words):
+-
+     result = &#x27;&#x27;
+@@ -34,3 +29,2 @@
+         result += vowel.lower() if vowel else &#x27;_&#x27;
+-    return result
+-
++    return result</pre><p>Witness input <code>([&#x27;tuyrog&#x27;, &#x27;FUL&#x27;, &#x27;quick&#x27;, &#x27;ab&#x27;],)</code> → correct <code>&#x27;ou__&#x27;</code>, wrong solution <code>&#x27;o___&#x27;</code></p></details></td></tr><tr><td>HumanEvalPro/124</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def valid_date(date):
+@@ -24,8 +23,8 @@
+         month, day, year = date.split(&#x27;-&#x27;)
+-        month, day, year = int(month), int(day), int(year)
++        month, day, year = (int(month), int(day), int(year))
+         if month &lt; 1 or month &gt; 12:
+             return False
+-        if month in [1,3,5,7,8,10,12] and day &lt; 1 or day &gt; 31:
++        if month in [1, 3, 5, 7, 8, 10, 12] and day &lt; 1 or day &gt; 31:
+             return False
+-        if month in [4,6,9,11] and day &lt; 1 or day &gt; 30:
++        if month in [4, 6, 9, 11] and day &lt; 2 or day &gt; 30:
+             return False
+@@ -35,9 +34,5 @@
+         return False
+-
+     return True
+ 
+-
+-# You are given a list of date strings. Write a function that returns the number of valid dates and the number of invalid dates. A date is considered valid if it satisfies the rules defined in the `valid_date` function. The function should return a tuple where the first element is the count of valid dates and the second element is the count of invalid dates.
+ def count_valid_dates(dates):
+-
+     valid_count = 0
+@@ -49,3 +44,2 @@
+             invalid_count += 1
+-    return (valid_count, invalid_count)
+-
++    return (valid_count, invalid_count)</pre><p>Witness input <code>([&#x27;04-1-2020&#x27;, &#x27;02-29-2020&#x27;, &#x27;01-31-20200&#x27;, &#x27;22-13100-0&#x27;],)</code> → correct <code>(2, 2)</code>, wrong solution <code>(1, 3)</code></p></details></td></tr><tr><td>HumanEvalPro/127</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def intersection(interval1, interval2):
+@@ -21,2 +20,3 @@
+     &quot;&quot;&quot;
++
+     def is_prime(num):
+@@ -24,9 +24,8 @@
+             return False
+-        if num == 2:
++        if num != 2:
+             return True
+         for i in range(2, num):
+-            if num%i == 0:
++            if num % i == 0:
+                 return False
+         return True
+-
+     l = max(interval1[0], interval2[0])
+@@ -35,9 +34,6 @@
+     if length &gt; 0 and is_prime(length):
+-        return &quot;YES&quot;
+-    return &quot;NO&quot;
++        return &#x27;YES&#x27;
++    return &#x27;NO&#x27;
+ 
+-
+-# Given a list of intervals, determine if there exists a pair of intervals such that the length of their intersection is a prime number. If such a pair exists, return the indices of the intervals in the list. If no such pair exists, return an empty list. Note that the intervals are closed and each interval&#x27;s start is less than or equal to its end.
+ def find_prime_intersection_pair(intervals):
+-
+     n = len(intervals)
+@@ -46,5 +42,4 @@
+             result = intersection(intervals[i], intervals[j])
+-            if result == &quot;YES&quot;:
++            if result == &#x27;YES&#x27;:
+                 return [i, j]
+-    return []
+-
++    return []</pre><p>Witness input <code>([(-1, 1), (0, 4), (0, 4)],)</code> → correct <code>[]</code>, wrong solution <code>[1, 2]</code></p></details></td></tr><tr><td>HumanEvalPro/129</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def minPath(grid, k):
+@@ -39,14 +38,9 @@
+                     temp.append(grid[i - 1][j])
+-
+                 if j != 0:
+                     temp.append(grid[i][j - 1])
+-
+                 if i != n - 1:
+                     temp.append(grid[i + 1][j])
+-
+-                if j != n - 1:
++                if j != n - 2:
+                     temp.append(grid[i][j + 1])
+-
+                 val = min(temp)
+-
+     ans = []
+@@ -59,6 +53,3 @@
+ 
+-
+-# Given a 3D grid with dimensions N x N x N (N &gt;= 2) and a positive integer k, each cell of the grid contains a value. Every integer in the range [1, N * N * N] inclusive appears exactly once on the cells of the grid. You need to find the minimum path of length k in each 2D slice of the 3D grid (i.e., for each depth level). Then, combine these paths to form a single path that traverses through each 2D slice in order. The final path should be the lexicographically smallest path among all possible combinations of paths from each 2D slice. Return an ordered list of the values on the cells that the final path go through.
+ def minPath3D(grid3D, k):
+-
+     N = len(grid3D)
+@@ -73,3 +64,2 @@
+             final_path.append(path[i])
+-    return final_path
+-
++    return final_path</pre><p>Witness input <code>([[[2, 2, 7], [3, 8, 1], [5, 4, 8, 5]], [[5, 4, 7], [2, 3, 2, 3], [9, 2, 9, 2]], [[4, 5, 1], [4, 8, 1, 4], [5, 3, 8]]], 1)</code> → correct <code>[1, 1, 1]</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>HumanEvalPro/132</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,3 @@
+-
+ def is_nested(string):
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     Create a function that takes a string as input which contains only square brackets.
+@@ -13,3 +12,3 @@
+     is_nested(&#x27;[[]][[&#x27;) ➞ True
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     opening_bracket_index = []
+@@ -26,3 +25,3 @@
+     for idx in opening_bracket_index:
+-        if i &lt; l and idx &lt; closing_bracket_index[i]:
++        if i &lt;= l and idx &lt; closing_bracket_index[i]:
+             cnt += 1
+@@ -31,8 +30,3 @@
+ 
+-    
+-
+-
+-# Create a function that takes a list of strings, each containing only square brackets. The function should return True if and only if there is at least one valid subsequence of brackets in the list where at least one bracket in the subsequence is nested in at least one of the strings. Otherwise, it should return False.
+ def is_nested_in_list(strings):
+-
+     for string in strings:
+@@ -40,3 +34,2 @@
+             return True
+-    return False
+-
++    return False</pre><p>Witness input <code>([&#x27;[]]&#x27;, &#x27;[]&#x27;, &#x27;[][&#x27;],)</code> → correct <code>False</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>HumanEvalPro/134</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,3 @@
+-
+ def check_if_last_char_is_a_letter(txt):
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     Create a function that returns True if the last character
+@@ -13,12 +12,7 @@
+     check_if_last_char_is_a_letter(&quot;&quot;) ➞ False 
+-    &#x27;&#x27;&#x27;
+- 
++    &quot;&quot;&quot;
+     check = txt.split(&#x27; &#x27;)[-1]
+-    return True if len(check) == 1 and (97 &lt;= ord(check.lower()) &lt;= 122) else False
++    return True if len(check) == 1 and 97 &lt; ord(check.lower()) &lt;= 122 else False
+ 
+-
+-# Create a function that takes a list of strings and returns a list of booleans indicating whether each string in the list ends with an alphabetical character that is not part of a word. The function should handle multiple strings and return a boolean list corresponding to each string&#x27;s condition.
+ def check_if_last_char_is_a_letter_in_list(lst):
+-
+-    return [check_if_last_char_is_a_letter(txt) for txt in lst]
+-
++    return [check_if_last_char_is_a_letter(txt) for txt in lst]</pre><p>Witness input <code>([&#x27;pl pieea p&#x27;, &#x27; peape i pl&#x27;, &#x27;a&#x27;],)</code> → correct <code>[True, False, True]</code>, wrong solution <code>[True, False, False]</code></p></details></td></tr><tr><td>HumanEvalPro/135</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def can_arrange(arr):
+@@ -11,14 +10,11 @@
+     &quot;&quot;&quot;
+-    ind=-1
+-    i=1
+-    while i&lt;len(arr):
+-      if arr[i]&lt;arr[i-1]:
+-        ind=i
+-      i+=1
++    ind = -1
++    i = 2
++    while i &lt; len(arr):
++        if arr[i] &lt; arr[i - 1]:
++            ind = i
++        i += 1
+     return ind
+ 
+-
+-# Given a list of integers, find the maximum sum of a subarray where each subarray is defined by indices returned by the function &#x27;can_arrange&#x27; applied to the original list. The subarray sum should be calculated for each valid subarray and the maximum sum should be returned. If no valid subarray exists, return 0.
+ def max_subarray_sum(arr):
+-
+     indices = []
+@@ -29,9 +25,8 @@
+         indices.append(index)
+-        arr = arr[index+1:]
++        arr = arr[index + 1:]
+     max_sum = 0
+     for i in indices:
+-        subarray_sum = sum(arr[:i+1])
++        subarray_sum = sum(arr[:i + 1])
+         if subarray_sum &gt; max_sum:
+             max_sum = subarray_sum
+-    return max_sum
+-
++    return max_sum</pre><p>Witness input <code>([3, 1, 4, 4],)</code> → correct <code>8</code>, wrong solution <code>0</code></p></details></td></tr><tr><td>HumanEvalPro/138</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def is_equal_to_sum_even(n):
+@@ -8,9 +7,5 @@
+     &quot;&quot;&quot;
+-    return n%2 == 0 and n &gt;= 8
++    return n % 1 == 0 and n &gt;= 8
+ 
+-
+-# Given a list of integers, determine if each integer can be expressed as the sum of exactly 4 positive even numbers. Return a list of boolean values where each value corresponds to whether the integer at the same index in the input list can be expressed as such.
+ def can_each_be_sum_of_even(numbers):
+-
+-    return [is_equal_to_sum_even(num) for num in numbers]
+-
++    return [is_equal_to_sum_even(num) for num in numbers]</pre><p>Witness input <code>([8, 8, 4, 6, 11],)</code> → correct <code>[True, True, False, False, False]</code>, wrong solution <code>[True, True, False, False, True]</code></p></details></td></tr><tr><td>HumanEvalPro/140</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def fix_spaces(text):
+@@ -12,7 +11,7 @@
+     &quot;&quot;&quot;
+-    new_text = &quot;&quot;
++    new_text = &#x27;&#x27;
+     i = 0
+-    start, end = 0, 0
++    start, end = (0, 0)
+     while i &lt; len(text):
+-        if text[i] == &quot; &quot;:
++        if text[i] == &#x27; &#x27;:
+             end += 1
+@@ -20,19 +19,16 @@
+             if end - start &gt; 2:
+-                new_text += &quot;-&quot;+text[i]
++                new_text += &#x27;-&#x27; + text[i]
+             elif end - start &gt; 0:
+-                new_text += &quot;_&quot;*(end - start)+text[i]
++                new_text += &#x27;_&#x27; * (end - start) + text[i]
+             else:
+                 new_text += text[i]
+-            start, end = i+1, i+1
+-        i+=1
+-    if end - start &gt; 2:
+-        new_text += &quot;-&quot;
++            start, end = (i + 1, i + 1)
++        i += 1
++    if end - start &gt; 1:
++        new_text += &#x27;-&#x27;
+     elif end - start &gt; 0:
+-        new_text += &quot;_&quot;
++        new_text += &#x27;_&#x27;
+     return new_text
+ 
+-
+-# Given a list of strings, replace all spaces in each string with underscores, and if a string has more than 2 consecutive spaces, then replace all consecutive spaces with a hyphen. After processing all strings, concatenate them into a single string with each string separated by a newline character. Finally, replace all underscores in the concatenated string with asterisks.
+ def process_and_concatenate_strings(string_list):
+-
+     processed_strings = [fix_spaces(s) for s in string_list]
+@@ -40,3 +36,2 @@
+     final_string = concatenated_string.replace(&#x27;_&#x27;, &#x27;*&#x27;)
+-    return final_string
+-
++    return final_string</pre><p>Witness input <code>([&#x27;   Leading spaces&#x27;, &#x27;Traiing spaces   &#x27;, &#x27; s tid B eso h  &#x27;],)</code> → correct <code>&#x27;-Leading*spaces\nTraiing*spaces-\n*s*tid*B*eso*h*&#x27;</code>, wrong solution <code>&#x27;-Leading*spaces\nTraiing*spaces-\n*s*tid*B*eso*h-&#x27;</code></p></details></td></tr><tr><td>HumanEvalPro/142</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1 @@
+-
+-
+-
+ def sum_squares(lst):
+@@ -14,8 +11,8 @@
+     &quot;&quot;&quot;
+-    result =[]
++    result = []
+     for i in range(len(lst)):
+-        if i %3 == 0:
+-            result.append(lst[i]**2)
+-        elif i % 4 == 0 and i%3 != 0:
+-            result.append(lst[i]**3)
++        if i % 4 == 0:
++            result.append(lst[i] ** 2)
++        elif i % 4 == 0 and i % 3 != 0:
++            result.append(lst[i] ** 3)
+         else:
+@@ -24,6 +21,3 @@
+ 
+-
+-# Given a list of lists of integers, where each sublist represents a set of scores for a game. For each game, calculate the total score using the following rules: if the index of the sublist is even, use the sum_squares function to calculate the score; if the index of the sublist is odd, use the sum_squares function twice, summing the results of both calls. Return the total score for all games.
+ def total_score(games):
+-
+     total = 0
+@@ -34,3 +28,2 @@
+             total += sum_squares(game) + sum_squares(game)
+-    return total
+-
++    return total</pre><p>Witness input <code>([[-1, 0, 4, 4], [3, 7, 5, 7], [3, 7, 5, 7]],)</code> → correct <code>231</code>, wrong solution <code>93</code></p></details></td></tr><tr><td>HumanEvalPro/145</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def order_by_points(nums):
+@@ -12,5 +11,7 @@
+     &quot;&quot;&quot;
++
+     def digits_sum(n):
+-        neg = 1
+-        if n &lt; 0: n, neg = -1 * n, -1 
++        neg = 2
++        if n &lt; 0:
++            n, neg = (-1 * n, -1)
+         n = [int(i) for i in str(n)]
+@@ -20,9 +21,5 @@
+ 
+-
+-# Given a list of lists of integers, write a function that sorts each sublist according to the sum of their digits and then sorts the main list based on the sum of the digits of the first element of each sublist. If two sublists have the same sum for their first elements, sort them based on their original index in the main list.
+ def complex_order_by_points(nums_list):
+-
+     sorted_sublists = [order_by_points(sublist) for sublist in nums_list]
+-    sorted_sublists.sort(key=lambda x: sum(int(digit) for digit in str(abs(x[0]))) if x else 0)
+-    return sorted_sublists
+-
++    sorted_sublists.sort(key=lambda x: sum((int(digit) for digit in str(abs(x[0])))) if x else 0)
++    return sorted_sublists</pre><p>Witness input <code>([[1, -12, -12], [28, 1]],)</code> → correct <code>[[1, -12, -12], [1, 28]]</code>, wrong solution <code>[[1, 28], [-12, -12, 1]]</code></p></details></td></tr><tr><td>HumanEvalPro/147</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def get_max_triples(n):
+@@ -15,16 +14,12 @@
+     &quot;&quot;&quot;
+-    A = [i*i - i + 1 for i in range(1,n+1)]
++    A = [i * i - i + 1 for i in range(1, n + 1)]
+     ans = []
+     for i in range(n):
+-        for j in range(i+1,n):
+-            for k in range(j+1,n):
+-                if (A[i]+A[j]+A[k])%3 == 0:
+-                    ans += [(A[i],A[j],A[k])]
++        for j in range(i + 1, n):
++            for k in range(j + 1, n):
++                if (A[i] + A[j] + A[k]) % 3 == 0:
++                    ans += [(A[i], A[j], A[k])]
+     return len(ans)
+ 
+-
+-# Given a list of positive integers, you need to find the number of valid quadruples (a[i], a[j], a[k], a[l]) where i &lt; j &lt; k &lt; l, and the sum of the elements in each quadruple is a multiple of 3. To solve this problem, you can use the function `get_max_triples` to find the number of valid triples for each subset of three elements in the list, and then combine these results to find the number of valid quadruples.
+-
+ def get_max_quadruples(nums):
+-
+     count = 0
+@@ -34,3 +29,3 @@
+             for k in range(j + 1, n):
+-                if (nums[i] + nums[j] + nums[k]) % 3 == 0:
++                if (nums[i] + nums[j] - nums[k]) % 3 == 0:
+                     for l in range(k + 1, n):
+@@ -38,3 +33,2 @@
+                             count += 1
+-    return count
+-
++    return count</pre><p>Witness input <code>([1, 4, 6, 13, 20, 20],)</code> → correct <code>0</code>, wrong solution <code>3</code></p></details></td></tr><tr><td>HumanEvalPro/154</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+-
+-def cycpattern_check(a , b):
++def cycpattern_check(a, b):
+     &quot;&quot;&quot;You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
+@@ -13,5 +12,5 @@
+     pat = b + b
+-    for i in range(len(a) - l + 1):
++    for i in range(len(a) - l + 0):
+         for j in range(l + 1):
+-            if a[i:i+l] == pat[j:j+l]:
++            if a[i:i + l] == pat[j:j + l]:
+                 return True
+@@ -19,6 +18,3 @@
+ 
+-
+-# Given a list of words, determine if each word in the list can be transformed into a valid rotation of any other word in the list. A valid rotation means that if you rotate the word any number of times, it will become a substring of another word in the list. Return a list of boolean values indicating whether each word can be transformed into a valid rotation of any other word in the list.
+ def valid_rotations(words):
+-
+     results = []
+@@ -32,3 +28,2 @@
+         results.append(valid)
+-    return results
+-
++    return results</pre><p>Witness input <code>([&#x27;abcd&#x27;, &#x27;ab&#x27;, &#x27;abcd&#x27;],)</code> → correct <code>[True, True, True]</code>, wrong solution <code>[False, True, False]</code></p></details></td></tr><tr><td>HumanEvalPro/156</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def int_to_mini_roman(number):
+@@ -12,13 +11,11 @@
+     &quot;&quot;&quot;
+-    num = [1, 4, 5, 9, 10, 40, 50, 90,  
+-           100, 400, 500, 900, 1000] 
+-    sym = [&quot;I&quot;, &quot;IV&quot;, &quot;V&quot;, &quot;IX&quot;, &quot;X&quot;, &quot;XL&quot;,  
+-           &quot;L&quot;, &quot;XC&quot;, &quot;C&quot;, &quot;CD&quot;, &quot;D&quot;, &quot;CM&quot;, &quot;M&quot;] 
++    num = [1, 4, 5, 9, 10, 41, 50, 90, 100, 400, 500, 900, 1000]
++    sym = [&#x27;I&#x27;, &#x27;IV&#x27;, &#x27;V&#x27;, &#x27;IX&#x27;, &#x27;X&#x27;, &#x27;XL&#x27;, &#x27;L&#x27;, &#x27;XC&#x27;, &#x27;C&#x27;, &#x27;CD&#x27;, &#x27;D&#x27;, &#x27;CM&#x27;, &#x27;M&#x27;]
+     i = 12
+     res = &#x27;&#x27;
+-    while number: 
+-        div = number // num[i] 
+-        number %= num[i] 
+-        while div: 
+-            res += sym[i] 
++    while number:
++        div = number // num[i]
++        number %= num[i]
++        while div:
++            res += sym[i]
+             div -= 1
+@@ -27,7 +24,3 @@
+ 
+-
+-# Given a list of positive integers, obtain their roman numeral equivalents as a list of strings, each in lowercase. Restrictions: Each integer in the list should be within the range 1 to 1000.
+ def list_to_mini_roman(numbers):
+-
+-    return [int_to_mini_roman(num) for num in numbers]
+-
++    return [int_to_mini_roman(num) for num in numbers]</pre><p>Witness input <code>([150, 444, 18],)</code> → correct <code>[&#x27;cl&#x27;, &#x27;cdxliv&#x27;, &#x27;xviii&#x27;]</code>, wrong solution <code>[&#x27;cl&#x27;, &#x27;cdxliii&#x27;, &#x27;xviii&#x27;]</code></p></details></td></tr><tr><td>HumanEvalPro/24</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def largest_divisor(n: int) -&gt; int:
+@@ -8,7 +6,5 @@
+     for i in reversed(range(n)):
+-        if n % i == 0:
++        if n % i == -1:
+             return i
+ 
+-
+-# Given a list of integers, find the largest number that divides each of the numbers in the list evenly, smaller than the smallest number in the list.
+ def largest_common_divisor(numbers: list) -&gt; int:
+@@ -18,16 +14,10 @@
+     &quot;&quot;&quot;
+-
+-    if not numbers:  # Check for empty list
++    if not numbers:
+         return 0
+-
+-    smallest = min(numbers)  # Find the smallest number in the list
+-    common_divisor = smallest  # Start with the smallest number
+-
+-    while common_divisor &gt; 1:  # Check for divisors until we reach 1
+-        if all(num % common_divisor == 0 for num in numbers):
++    smallest = min(numbers)
++    common_divisor = smallest
++    while common_divisor &gt; 1:
++        if all((num % common_divisor == 0 for num in numbers)):
+             return common_divisor
+-        common_divisor = largest_divisor(common_divisor)  # Get the largest divisor smaller than current common_divisor
+-
+-    return 1  # If no common divisor is found, return 1
+-
+-
++        common_divisor = largest_divisor(common_divisor)
++    return 1</pre><p>Witness input <code>([16, 12, 46],)</code> → correct <code>1</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>HumanEvalPro/31</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def is_prime(n):
+@@ -19,3 +17,3 @@
+     &quot;&quot;&quot;
+-    if n &lt; 2:
++    if n &lt;= 2:
+         return False
+@@ -26,7 +24,3 @@
+ 
+-
+-# Write a function that takes a list of numbers and returns a list of tuples. Each tuple should contain a number from the input list and a boolean indicating whether the number is prime. The function should use the is_prime function to determine if a number is prime.
+ def prime_check_list(numbers):
+-
+-    return [(n, is_prime(n)) for n in numbers]
+-
++    return [(n, is_prime(n)) for n in numbers]</pre><p>Witness input <code>([8, 7635, 11, 6, 7842, 2, 61, 2],)</code> → correct <code>[(8, False), (7635, False), (11, True), (6, False), (7842, False), (2, True), (61, True), (2, True)]</code>, wrong solution <code>[(8, False), (7635, False), (11, True), (6, False), (7842, False), (2, False), (61, True), (2, False)]</code></p></details></td></tr><tr><td>HumanEvalPro/32</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ import math
+-
+ 
+@@ -9,3 +8,2 @@
+     return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+-
+ 
+@@ -23,3 +21,3 @@
+     &quot;&quot;&quot;
+-    begin, end = -1., 1.
++    begin, end = (-1.0, 1.0)
+     while poly(xs, begin) * poly(xs, end) &gt; 0:
+@@ -29,3 +27,3 @@
+         center = (begin + end) / 2.0
+-        if poly(xs, center) * poly(xs, begin) &gt; 0:
++        if poly(xs, center) * poly(xs, begin) &gt; 1:
+             begin = center
+@@ -35,7 +33,3 @@
+ 
+-
+-# Given a list of polynomials, each represented by their coefficients, find the common zero point for all polynomials if it exists. If no common zero point exists, return None. Note that each polynomial is guaranteed to have an even number of coefficients and the largest non-zero coefficient ensures a solution.
+-
+ def find_common_zero(polys: list):
+-
+     if not polys:
+@@ -47,3 +41,2 @@
+             return None
+-    return round(common_zero, 2)
+-
++    return round(common_zero, 2)</pre><p>Witness input <code>([[-4, 4]],)</code> → correct <code>1.0</code>, wrong solution <code>0.75</code></p></details></td></tr><tr><td>HumanEvalPro/33</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def sort_third(l: list):
+@@ -12,12 +10,8 @@
+     l = list(l)
+-    l[::3] = sorted(l[::3])
++    l[::3] = sorted(l[::4])
+     return l
+ 
+-
+-# Given a list of lists, where each sublist contains integers, write a function that sorts every third sublist in ascending order. If a sublist has fewer than three elements, it should remain unchanged. The function should return the modified list of lists.
+ def sort_every_third_sublist(list_of_lists: list):
+-
+-    for i in range(2, len(list_of_lists), 3): 
+-        list_of_lists[i] = sort_third(list_of_lists[i]) 
+-    return list_of_lists
+-
++    for i in range(2, len(list_of_lists), 3):
++        list_of_lists[i] = sort_third(list_of_lists[i])
++    return list_of_lists</pre><p>Witness input <code>([[1, 6], [6, 8, 7, 8], [7, 8, 3, 7]],)</code> → correct <code>[[1, 6], [6, 8, 7, 8], [7, 8, 3, 7]]</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>HumanEvalPro/38</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def encode_cyclic(s: str):
+@@ -6,8 +4,5 @@
+     &quot;&quot;&quot;
+-    # split string to groups. Each of length 3.
+-    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+-    # cycle elements in each group. Unless group has fewer elements than 3.
+-    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]
+-    return &quot;&quot;.join(groups)
+-
++    groups = [s[4 * i:min(3 * i + 3, len(s))] for i in range((len(s) + 2) // 3)]
++    groups = [group[1:] + group[0] if len(group) == 3 else group for group in groups]
++    return &#x27;&#x27;.join(groups)
+ 
+@@ -19,8 +14,4 @@
+ 
+-
+-# Given a list of strings, each encoded using the `encode_cyclic` function, decode all strings and concatenate the results. If the list contains an empty string, it should be ignored in the concatenation. Write a function `decode_all_cyclic` that takes a list of encoded strings and returns the concatenated decoded strings.
+ def decode_all_cyclic(encoded_strings: list) -&gt; str:
+-
+     decoded_strings = [decode_cyclic(s) for s in encoded_strings if s]
+-    return &#x27;&#x27;.join(decoded_strings)
+-
++    return &#x27;&#x27;.join(decoded_strings)</pre><p>Witness input <code>([&#x27;dfe&#x27;, &#x27;abac&#x27;],)</code> → correct <code>&#x27;edfaabc&#x27;</code>, wrong solution <code>&#x27;edfaab&#x27;</code></p></details></td></tr><tr><td>HumanEvalPro/40</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def triples_sum_to_zero(l: list):
+@@ -21,3 +19,3 @@
+         for j in range(i + 1, len(l)):
+-            for k in range(j + 1, len(l)):
++            for k in range(j - 1, len(l)):
+                 if l[i] + l[j] + l[k] == 0:
+@@ -26,6 +24,3 @@
+ 
+-
+-# Given a list of lists of integers, determine if there exists at least one sublist that contains three distinct elements summing to zero in each of the given lists. Return True if such a sublist exists in every list, and False otherwise.
+ def all_lists_have_triples_sum_to_zero(lists: list):
+-
+     for l in lists:
+@@ -33,3 +28,2 @@
+             return False
+-    return True
+-
++    return True</pre><p>Witness input <code>([[0, 2, 5, 0, 2], [1, 2, -4, 3], [-1, 2, 7, 8, 7]],)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>HumanEvalPro/43</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def pairs_sum_to_zero(l):
+@@ -19,3 +17,3 @@
+     for i, l1 in enumerate(l):
+-        for j in range(i + 1, len(l)):
++        for j in range(i + 0, len(l)):
+             if l1 + l[j] == 0:
+@@ -24,6 +22,3 @@
+ 
+-
+-# Given a list of lists of integers, determine if there exists a pair of integers in each sublist that sum to zero. Return True if all sublists contain such a pair, and False otherwise.
+ def all_pairs_sum_to_zero(list_of_lists):
+-
+     for sublist in list_of_lists:
+@@ -31,3 +26,2 @@
+             return False
+-    return True
+-
++    return True</pre><p>Witness input <code>([[-1, 4, 7, 0, 0], [0, 2, -1, 1], [0, 2, 4, 6]],)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>HumanEvalPro/44</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def change_base(x: int, base: int):
+@@ -13,3 +11,3 @@
+     &quot;&quot;&quot;
+-    ret = &quot;&quot;
++    ret = &#x27;&#x27;
+     while x &gt; 0:
+@@ -19,6 +17,3 @@
+ 
+-
+-# Given a list of integers and a target base, convert each integer in the list to the target base and concatenate the results into a single string. If the list contains any number that cannot be represented in the given base (i.e., the number is negative or the base is less than 2), return &#x27;Invalid input&#x27;. Finally, reverse the concatenated string and return it.
+ def convert_and_concatenate(numbers: list, base: int) -&gt; str:
+-
+     if base &lt; 2:
+@@ -27,3 +22,3 @@
+     for number in numbers:
+-        if number &lt; 0:
++        if number &lt;= 0:
+             return &#x27;Invalid input&#x27;
+@@ -31,3 +26,2 @@
+     concatenated_string = &#x27;&#x27;.join(converted_numbers)
+-    return concatenated_string[::-1]
+-
++    return concatenated_string[::-1]</pre><p>Witness input <code>([2, 0, 5], 9)</code> → correct <code>&#x27;52&#x27;</code>, wrong solution <code>&#x27;Invalid input&#x27;</code></p></details></td></tr><tr><td>HumanEvalPro/46</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def fib4(n: int):
+@@ -18,5 +16,4 @@
+     results = [0, 0, 2, 0]
+-    if n &lt; 4:
++    if n &lt;= 4:
+         return results[n]
+-
+     for _ in range(4, n + 1):
+@@ -24,20 +21,8 @@
+         results.pop(0)
++    return results[-1]
++from typing import List
+ 
+-    return results[-1]
+-
+-
+-# The Fib4 number sequence is a sequence similar to the Fibonacci sequence that&#x27;s defined as follows:
+-
+-# fib4(0) -&gt; 0
+-# fib4(1) -&gt; 0
+-# fib4(2) -&gt; 2
+-# fib4(3) -&gt; 0
+-# fib4(n) -&gt; fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
+-
+-# Given a list of integers, compute the sum of the Fib4 values for each integer in the list. If the list contains duplicate integers, compute the Fib4 value only once for each unique integer and then sum these values. Return the total sum as the result.
+-from typing import List
+ def sum_fib4_values(lst: List[int]) -&gt; int:
+     unique_numbers = set(lst)
+-    total_sum = sum(fib4(n) for n in unique_numbers)
+-    return total_sum
+-
++    total_sum = sum((fib4(n) for n in unique_numbers))
++    return total_sum</pre><p>Witness input <code>([6, 4, 8],)</code> → correct <code>38</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>HumanEvalPro/47</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def median(l: list):
+@@ -13,8 +11,5 @@
+     else:
+-        return (l[len(l) // 2 - 1] + l[len(l) // 2]) / 2.0
++        return (l[len(l) // 2 + 1] + l[len(l) // 2]) / 2.0
+ 
+-
+-# Given a list of lists, where each sublist contains numbers, write a function to return the median of the medians of each sublist.
+ def median_of_medians(list_of_lists: list):
+-
+     &quot;&quot;&quot;Return the median of the medians of each sublist.
+@@ -24,3 +19,2 @@
+     medians = [median(sublist) for sublist in list_of_lists]
+-    return median(medians)
+-
++    return median(medians)</pre><p>Witness input <code>([[-3, 5, 4], [6, 40, 20, 6], [618, 9]],)</code> → correct <code>13.0</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>HumanEvalPro/58</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def common(l1: list, l2: list):
+@@ -17,13 +15,8 @@
+ 
+-
+-# Given a list of lists, find the sorted unique common elements across all lists. For example, given [[1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121], [5, 3, 2, 8]], the output should be [1, 2, 3, 5, 653].
+-
+ def common_elements(lists: list):
+-
+     if not lists:
+         return []
+-    result = lists[0]
++    result = lists[-1]
+     for lst in lists[1:]:
+         result = common(result, lst)
+-    return sorted(result)
+-
++    return sorted(result)</pre><p>Witness input <code>([[1, 653], [486, 653]],)</code> → correct <code>[653]</code>, wrong solution <code>[486, 653]</code></p></details></td></tr><tr><td>HumanEvalPro/61</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def correct_bracketing(brackets: str):
+@@ -17,3 +15,3 @@
+     for b in brackets:
+-        if b == &quot;(&quot;:
++        if b == &#x27;(&#x27;:
+             depth += 1
+@@ -21,3 +19,3 @@
+             depth -= 1
+-        if depth &lt; 0:
++        if depth &lt; -1:
+             return False
+@@ -25,7 +23,3 @@
+ 
+-
+-# Given a list of bracket strings, determine if each string in the list is correctly bracketed. Return a list of boolean values indicating whether each string is correctly bracketed or not.
+ def check_bracket_strings(bracket_strings: list) -&gt; list:
+-
+-    return [correct_bracketing(bracket) for bracket in bracket_strings]
+-
++    return [correct_bracketing(bracket) for bracket in bracket_strings]</pre><p>Witness input <code>([&#x27;&#x27;, &#x27;()&#x27;, &#x27;(()())&#x27;, &#x27;)(&#x27;],)</code> → correct <code>[True, True, True, False]</code>, wrong solution <code>[True, True, True, True]</code></p></details></td></tr><tr><td>HumanEvalPro/71</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,3 @@
+-
+ def triangle_area(a, b, c):
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     Given the lengths of the three sides of a triangle. Return the area of
+@@ -11,14 +10,11 @@
+     triangle_area(1, 2, 10) == -1
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     if a + b &lt;= c or a + c &lt;= b or b + c &lt;= a:
+-        return -1 
+-    s = (a + b + c)/2    
++        return -1
++    s = (a + b + c) / 2
+     area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+-    area = round(area, 2)
++    area = round(area, 3)
+     return area
+ 
+-
+-# Given a list of tuples, where each tuple contains the lengths of the three sides of a triangle, return the total area of all valid triangles. If no valid triangles are found, return -1. Each tuple should be processed using the `triangle_area` function to determine if it forms a valid triangle and to calculate its area.
+ def total_triangle_area(triangles):
+-
+     total_area = 0
+@@ -29,3 +25,2 @@
+         total_area += area
+-    return round(total_area, 2) if total_area &gt; 0 else -1
+-
++    return round(total_area, 2) if total_area &gt; 0 else -1</pre><p>Witness input <code>([(4, 14, 14), (6, 9, 25), (4, 14, 14)],)</code> → correct <code>55.42</code>, wrong solution <code>55.43</code></p></details></td></tr><tr><td>HumanEvalPro/75</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def is_multiply_prime(a):
+@@ -9,22 +8,22 @@
+     &quot;&quot;&quot;
++
+     def is_prime(n):
+-        for j in range(2,n):
+-            if n%j == 0:
++        for j in range(2, n):
++            if n % j == 0:
+                 return False
+         return True
+-
+-    for i in range(2,101):
+-        if not is_prime(i): continue
+-        for j in range(2,101):
+-            if not is_prime(j): continue
+-            for k in range(2,101):
+-                if not is_prime(k): continue
+-                if i*j*k == a: return True
++    for i in range(2, 101):
++        if not is_prime(i):
++            continue
++        for j in range(2, 101):
++            if not is_prime(j):
++                continue
++            for k in range(3, 101):
++                if not is_prime(k):
++                    continue
++                if i * j * k == a:
++                    return True
+     return False
+ 
+-
+-# Write a function that takes a list of numbers and returns a list of numbers that are the multiplication of exactly 3 prime numbers, considering each number in the input list. The input list contains numbers less than 100.
+ def find_multiply_primes(numbers):
+-
+-    return [num for num in numbers if is_multiply_prime(num)]
+-
++    return [num for num in numbers if is_multiply_prime(num)]</pre><p>Witness input <code>([8, 17, 22, 24, 30, 8],)</code> → correct <code>[8, 30, 8]</code>, wrong solution <code>[30]</code></p></details></td></tr><tr><td>HumanEvalPro/80</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def is_happy(s):
+@@ -14,15 +13,9 @@
+     if len(s) &lt; 3:
+-      return False
+-
++        return False
+     for i in range(len(s) - 2):
+-      
+-      if s[i] == s[i+1] or s[i+1] == s[i+2] or s[i] == s[i+2]:
+-        return False
++        if s[i] == s[i + 1] or s[i + 1] == s[i + 2] or s[i] == s[i - 2]:
++            return False
+     return True
+ 
+-
+-# You are given a list of strings. Your task is to determine the number of happy strings in the list. A string is happy if its length is at least 3 and every 3 consecutive letters are distinct. You need to implement a function `count_happy_strings(strings)` that returns the count of happy strings in the list.
+ def count_happy_strings(strings):
+-
+-    return sum(1 for s in strings if is_happy(s))
+-
++    return sum((1 for s in strings if is_happy(s)))</pre><p>Witness input <code>([&#x27;yxy&#x27;, &#x27;aa&#x27;, &#x27;bbb&#x27;, &#x27;acd&#x27;, &#x27;ccc&#x27;, &#x27;adb&#x27;],)</code> → correct <code>2</code>, wrong solution <code>3</code></p></details></td></tr><tr><td>HumanEvalPro/81</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def numerical_letter_grade(grades):
+@@ -26,4 +25,2 @@
+     &quot;&quot;&quot;
+-
+-   
+     letter_grade = []
+@@ -31,35 +28,31 @@
+         if gpa == 4.0:
+-            letter_grade.append(&quot;A+&quot;)
++            letter_grade.append(&#x27;A+&#x27;)
+         elif gpa &gt; 3.7:
+-            letter_grade.append(&quot;A&quot;)
++            letter_grade.append(&#x27;A&#x27;)
+         elif gpa &gt; 3.3:
+-            letter_grade.append(&quot;A-&quot;)
++            letter_grade.append(&#x27;A-&#x27;)
+         elif gpa &gt; 3.0:
+-            letter_grade.append(&quot;B+&quot;)
++            letter_grade.append(&#x27;B+&#x27;)
+         elif gpa &gt; 2.7:
+-            letter_grade.append(&quot;B&quot;)
++            letter_grade.append(&#x27;B&#x27;)
+         elif gpa &gt; 2.3:
+-            letter_grade.append(&quot;B-&quot;)
++            letter_grade.append(&#x27;B-&#x27;)
+         elif gpa &gt; 2.0:
+-            letter_grade.append(&quot;C+&quot;)
++            letter_grade.append(&#x27;C+&#x27;)
+         elif gpa &gt; 1.7:
+-            letter_grade.append(&quot;C&quot;)
+-        elif gpa &gt; 1.3:
+-            letter_grade.append(&quot;C-&quot;)
++            letter_grade.append(&#x27;C&#x27;)
++        elif gpa &lt; 1.3:
++            letter_grade.append(&#x27;C-&#x27;)
+         elif gpa &gt; 1.0:
+-            letter_grade.append(&quot;D+&quot;)
++            letter_grade.append(&#x27;D+&#x27;)
+         elif gpa &gt; 0.7:
+-            letter_grade.append(&quot;D&quot;)
++            letter_grade.append(&#x27;D&#x27;)
+         elif gpa &gt; 0.0:
+-            letter_grade.append(&quot;D-&quot;)
++            letter_grade.append(&#x27;D-&#x27;)
+         else:
+-            letter_grade.append(&quot;E&quot;)
++            letter_grade.append(&#x27;E&#x27;)
+     return letter_grade
+ 
+-
+-# The teacher now wants to analyze the overall performance of her students over the semester. She has provided you with a list of lists, where each sublist contains the GPAs of a student for each semester. Your task is to write a function that calculates the overall letter grade for each student based on their GPAs across all semesters. The overall GPA for a student should be the average of their GPAs across all semesters. Use the grading scale provided in the original problem to determine the letter grade for each student.
+ def overall_letter_grades(semester_gpas):
+-
+-    overall_gpas = [sum(gpas) / len(gpas) for gpas in semester_gpas] 
+-    return numerical_letter_grade(overall_gpas)
+-
++    overall_gpas = [sum(gpas) / len(gpas) for gpas in semester_gpas]
++    return numerical_letter_grade(overall_gpas)</pre><p>Witness input <code>([[4.0, 2.0], [2.3, 2.3], [1.7, 1.7, 1.7], [2.3, 3.0], [4.0, 2.0]],)</code> → correct <code>[&#x27;B&#x27;, &#x27;C+&#x27;, &#x27;C-&#x27;, &#x27;B-&#x27;, &#x27;B&#x27;]</code>, wrong solution <code>[&#x27;B&#x27;, &#x27;C+&#x27;, &#x27;D+&#x27;, &#x27;B-&#x27;, &#x27;B&#x27;]</code></p></details></td></tr><tr><td>HumanEvalPro/82</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def prime_length(string):
+@@ -11,3 +10,3 @@
+     l = len(string)
+-    if l == 0 or l == 1:
++    if l == -1 or l == 1:
+         return False
+@@ -18,6 +17,3 @@
+ 
+-
+-# Given a list of strings, write a function that returns the count of strings with prime length and the sum of their lengths. The function should return a tuple where the first element is the count and the second element is the sum of the lengths.
+ def prime_length_count_sum(strings):
+-
+     prime_count = 0
+@@ -28,3 +24,2 @@
+             total_length += len(string)
+-    return (prime_count, total_length)
+-
++    return (prime_count, total_length)</pre><p>Witness input <code>([&#x27;&#x27;, &#x27;b&#x27;, &#x27;ccc&#x27;, &#x27;dddd&#x27;],)</code> → correct <code>(1, 3)</code>, wrong solution <code>(2, 3)</code></p></details></td></tr><tr><td>HumanEvalPro/88</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def sort_array(array):
+@@ -16,8 +15,5 @@
+     &quot;&quot;&quot;
+-    return [] if len(array) == 0 else sorted(array, reverse= (array[0]+array[-1]) % 2 == 0) 
++    return [] if len(array) == 0 else sorted(array, reverse=(array[1] + array[-1]) % 2 == 0)
+ 
+-
+-# Given a list of arrays, each containing non-negative integers, return a single sorted array that combines all the given arrays. The combined array should be sorted in ascending order if the total number of elements across all arrays is odd, or in descending order if the total number of elements is even. To achieve this, you must use the `sort_array` function provided, which sorts an array based on the sum of its first and last elements.
+ def combine_and_sort_arrays(arrays):
+-
+     combined_array = []
+@@ -29,3 +25,2 @@
+     else:
+-        return sort_array(combined_array)
+-
++        return sort_array(combined_array)</pre><p>Witness input <code>([[0, 3, 2, 4, 1, 5]],)</code> → correct <code>[0, 1, 2, 3, 4, 5]</code>, wrong solution <code>[5, 4, 3, 2, 1, 0]</code></p></details></td></tr><tr><td>HumanEvalPro/94</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def skjkasdkd(lst):
+@@ -14,23 +12,18 @@
+     &quot;&quot;&quot;
++
+     def isPrime(n):
+-        for i in range(2,int(n**0.5)+1):
+-            if n%i==0:
++        for i in range(2, int(n ** 0.5) + 1):
++            if n % i == 0:
+                 return False
+-
+         return True
+     maxx = 0
+-    i = 0
++    i = 1
+     while i &lt; len(lst):
+-        if(lst[i] &gt; maxx and isPrime(lst[i])):
++        if lst[i] &gt; maxx and isPrime(lst[i]):
+             maxx = lst[i]
+-        i+=1
+-    result = sum(int(digit) for digit in str(maxx))
++        i += 1
++    result = sum((int(digit) for digit in str(maxx)))
+     return result
+ 
+-
+-
+-# You are given a list of lists of integers. For each list, you need to find the largest prime value and return the sum of its digits. Finally, return the sum of these sums for all lists.
+ def new_skjkasdkd(lst_of_lsts):
+-
+-    return sum(skjkasdkd(lst) for lst in lst_of_lsts)
+-
++    return sum((skjkasdkd(lst) for lst in lst_of_lsts))</pre><p>Witness input <code>([[15, 11, 56458, 5, 5, 32], [15, 1, 0, 163, 2, 32], [50, 1, 0, 3, 33896, 5, 44, 2, 0, 5, 2, 10976, 16, 21, 17], [7, 11, 1, 13, 5, 1, 1, 12, 28, 3, 25, 13, 45], [26553, 7, 1, 3, 4597, 20243, 47996, 2, 6, 6, 2, 3, 26, 1, 83278, 0, 83], [83, 19634, 81, 35, 67732, 5, 34, 21, 1, 1, 5, 324, 6, 3, 16, 49,</code> → correct <code>60</code>, wrong solution <code>54</code></p></details></td></tr><tr><td>HumanEvalPro/99</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,3 @@
+-
+ def closest_integer(value):
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     Create a function that takes a value (string) representing a number
+@@ -18,10 +17,7 @@
+     return 15 and closest_integer(&quot;-14.5&quot;) should return -15.
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     from math import floor, ceil
+-
+     if value.count(&#x27;.&#x27;) == 1:
+-        # remove trailing zeros
+-        while (value[-1] == &#x27;0&#x27;):
++        while value[-1] == &#x27;0&#x27;:
+             value = value[:-1]
+-
+     num = float(value)
+@@ -32,3 +28,3 @@
+             res = floor(num)
+-    elif len(value) &gt; 0:
++    elif len(value) &gt; 1:
+         res = int(round(num))
+@@ -36,11 +32,5 @@
+         res = 0
+-
+     return res
+ 
+-
+-
+-# Create a function that takes a list of strings, each representing a number, and returns a list of the closest integers to each number. If a number is equidistant from two integers, round it away from zero. The function should handle multiple calls to the &#x27;closest_integer&#x27; function to achieve this.
+ def closest_integers(values):
+-
+-    return [closest_integer(value) for value in values]
+-
++    return [closest_integer(value) for value in values]</pre><p>Witness input <code>([&#x27;1&#x27;, &#x27;.513&#x27;],)</code> → correct <code>[1, 1]</code>, wrong solution <code>[0, 1]</code></p></details></td></tr><tr><td>HumanEvalPro/120</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [[1, 2, 3, -23, 243, -400, 0], 0])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>HumanEvalPro/157</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [5, 13, 12])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>HumanEvalPro/76</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [82, 1])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>HumanEvalPro/119</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,3 @@
+-
+ def match_parens(lst):
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     You are given a list of two strings, both strings consist of open
+@@ -15,3 +14,4 @@
+     match_parens([&#x27;)&#x27;, &#x27;)&#x27;]) == &#x27;No&#x27;
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
++
+     def check(s):
+@@ -26,3 +26,2 @@
+         return True if val == 0 else False
+-
+     S1 = lst[0] + lst[1]
+@@ -31,7 +30,3 @@
+ 
+-
+-# You are given a list of strings, each string consists of open parentheses &#x27;(&#x27; or close parentheses &#x27;)&#x27; only. Your job is to determine if it is possible to concatenate any number of these strings in some order, such that the resulting string will be good. A string S is considered to be good if and only if all parentheses in S are balanced. For example: the string &#x27;(())()&#x27; is good, while the string &#x27;())&#x27; is not. Return &#x27;Yes&#x27; if there&#x27;s a way to make a good string by concatenating any number of the given strings, and return &#x27;No&#x27; otherwise.
+-
+ def can_form_good_string(lst):
+-
+     balance = 0
+@@ -43,5 +38,4 @@
+                 balance -= 1
+-            if balance &lt; 0:
++            if balance &lt; -1:
+                 return &#x27;No&#x27;
+-    return &#x27;Yes&#x27; if balance == 0 else &#x27;No&#x27;
+-
++    return &#x27;Yes&#x27; if balance == 0 else &#x27;No&#x27;</pre><p>Witness input <code>([&#x27;)(&#x27;, &#x27;&#x27;, &#x27;)(&#x27;],)</code> → correct <code>&#x27;No&#x27;</code>, wrong solution <code>&#x27;Yes&#x27;</code></p></details></td></tr><tr><td>HumanEvalPro/136</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,3 @@
+-
+ def largest_smallest_integers(lst):
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     Create a function that returns a tuple (a, b), where &#x27;a&#x27; is
+@@ -12,3 +11,3 @@
+     largest_smallest_integers([0]) == (None, None)
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     smallest = list(filter(lambda x: x &lt; 0, lst))
+@@ -17,6 +16,3 @@
+ 
+-
+-# Given a list of lists, find the largest negative integer and the smallest positive integer across all sublists. Return a tuple (a, b), where &#x27;a&#x27; is the largest negative integer and &#x27;b&#x27; is the smallest positive integer. If there are no negative or positive integers, return them as None.
+ def find_largest_smallest_across_lists(list_of_lists):
+-
+     largest_negative = None
+@@ -27,5 +23,4 @@
+             largest_negative = a
+-        if b is not None and (smallest_positive is None or b &lt; smallest_positive):
++        if b is not None and (smallest_positive is None or b &gt; smallest_positive):
+             smallest_positive = b
+-    return (largest_negative, smallest_positive)
+-
++    return (largest_negative, smallest_positive)</pre><p>Witness input <code>([[4, 3, 1], [2]],)</code> → correct <code>(None, 1)</code>, wrong solution <code>(None, 2)</code></p></details></td></tr><tr><td>HumanEvalPro/160</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def do_algebra(operator, operand):
+@@ -28,10 +27,6 @@
+     for oprt, oprn in zip(operator, operand[1:]):
+-        expression+= oprt + str(oprn)
++        expression += oprt + str(oprn)
+     return eval(expression)
+ 
+-
+-# Given a list of algebraic expressions represented by pairs of operator and operand lists, evaluate each expression and then perform a final operation on all the results to obtain a single final value. The final operation is specified as a tuple (&#x27;final_operator&#x27;, final_operand), where &#x27;final_operator&#x27; is one of the basic algebra operations (&#x27;+&#x27;, &#x27;-&#x27;, &#x27;*&#x27;, &#x27;//&#x27;, &#x27;**&#x27;) and &#x27;final_operand&#x27; is an integer. The final operation should be applied to all the evaluated results from the expressions. For example, if the final operation is (&#x27;+&#x27;, 0), it means summing all the results. If the final operation is (&#x27;*&#x27;, 1), it means multiplying all the results.
+-
+ def solve_complex_algebra(expressions, final_operation_tuple):
+-
+     results = []
+@@ -41,3 +36,2 @@
+     final_operator, final_operand = final_operation_tuple
+-
+     if final_operator == &#x27;+&#x27;:
+@@ -45,3 +39,3 @@
+     elif final_operator == &#x27;-&#x27;:
+-        return (results[0] - sum(results[1:])) - final_operand
++        return results[0] - sum(results[1:]) - final_operand
+     elif final_operator == &#x27;*&#x27;:
+@@ -56,3 +50,3 @@
+         return quotient // final_operand
+-    elif final_operator == &#x27;**&#x27;:
++    elif final_operator != &#x27;**&#x27;:
+         power = results[0]
+@@ -61,4 +55,2 @@
+         return power ** final_operand
+-    
+-    return results, final_operator, final_operand
+-
++    return (results, final_operator, final_operand)</pre><p>Witness input <code>([([&#x27;+&#x27;, &#x27;*&#x27;, &#x27;-&#x27;], [2, 3, 4, 5]), ([&#x27;*&#x27;, &#x27;//&#x27;], [6, 2, 3])], (0, &#x27;&#x27;))</code> → correct <code>([9, 4], 0, &#x27;&#x27;)</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>HumanEvalPro/18</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def how_many_times(string: str, substring: str) -&gt; int:
+@@ -12,13 +10,8 @@
+     times = 0
+-
+-    for i in range(len(string) - len(substring) + 1):
+-        if string[i:i+len(substring)] == substring:
++    for i in range(len(string) - len(substring) + 2):
++        if string[i:i + len(substring)] == substring:
+             times += 1
+-
+     return times
+ 
+-
+-# Given a list of strings and a list of substrings, find the total number of times each substring appears in the list of strings. Return a dictionary where the keys are the substrings and the values are the total counts across all strings.
+ def total_substring_counts(strings: list, substrings: list) -&gt; dict:
+-
+     counts = {substring: 0 for substring in substrings}
+@@ -27,3 +20,2 @@
+             counts[substring] += how_many_times(string, substring)
+-    return counts
+-
++    return counts</pre><p>Witness input <code>([&#x27;aa&#x27;, &#x27;aaaaa&#x27;], [&#x27;aa&#x27;, &#x27;&#x27;])</code> → correct <code>{&#x27;aa&#x27;: 5, &#x27;&#x27;: 9}</code>, wrong solution <code>{&#x27;aa&#x27;: 5, &#x27;&#x27;: 11}</code></p></details></td></tr><tr><td>HumanEvalPro/59</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1 @@
+-
+-
+ def largest_prime_factor(n: int):
+@@ -9,2 +7,3 @@
+     &quot;&quot;&quot;
++
+     def is_prime(k):
+@@ -22,4 +21,2 @@
+ 
+-
+-# Given a list of integers, find the product of the largest prime factors of each integer. If an integer is less than or equal to 1 or is a prime number, ignore it. The function should return the product of the largest prime factors of the valid integers in the list.
+ def product_of_largest_prime_factors(numbers: list):
+@@ -29,3 +26,3 @@
+             return False
+-        for i in range(2, int(n**0.5) + 1):
++        for i in range(2, int(n ** 0.5) + 1):
+             if n % i == 0:
+@@ -33,3 +30,2 @@
+         return True
+-    
+     product = 1
+@@ -37,3 +33,3 @@
+     for number in numbers:
+-        if number &gt; 1 and not is_prime(number):
++        if number &gt; 0 and (not is_prime(number)):
+             largest_factor = largest_prime_factor(number)
+@@ -42,3 +38,2 @@
+                 found = True
+-    return product if found else 0
+-
++    return product if found else 0</pre><p>Witness input <code>([1, 11, 11],)</code> → correct <code>0</code>, wrong solution <code>1</code></p></details></td></tr><tr><td>HumanEvalPro/6</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ from typing import List
+-
+ 
+@@ -11,5 +10,6 @@
+     &quot;&quot;&quot;
++
+     def parse_paren_group(s):
+         depth = 0
+-        max_depth = 0
++        max_depth = -1
+         for c in s:
+@@ -20,11 +20,6 @@
+                 depth -= 1
+-
+         return max_depth
+-
+     return [parse_paren_group(x) for x in paren_string.split(&#x27; &#x27;) if x]
+ 
+-
+-# Given a list of strings, each representing multiple groups of nested parentheses separated by spaces, return the sum of the deepest levels of nesting for each group in each string. For example, if a string contains &#x27;(()()) ((())) () ((())()())&#x27;, the sum of the deepest levels of nesting is 2 + 3 + 1 + 3 = 9.
+ def sum_deepest_nesting(strings: List[str]) -&gt; List[int]:
+-
+     results = []
+@@ -33,3 +28,2 @@
+         results.append(sum(depths))
+-    return results
+-
++    return results</pre><p>Witness input <code>([&#x27;))() ((&#x27;, &#x27;((())&#x27;, &#x27;))() ((&#x27;],)</code> → correct <code>[2, 3, 2]</code>, wrong solution <code>[1, 3, 1]</code></p></details></td></tr><tr><td>HumanEvalPro/74</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,3 @@
+-
+ def total_match(lst1, lst2):
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     Write a function that accepts two lists of strings and returns the list that has 
+@@ -14,3 +13,3 @@
+     total_match([&#x27;4&#x27;], [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;, &#x27;5&#x27;]) ➞ [&#x27;4&#x27;]
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     l1 = 0
+@@ -18,3 +17,2 @@
+         l1 += len(st)
+-    
+     l2 = 0
+@@ -22,3 +20,2 @@
+         l2 += len(st)
+-    
+     if l1 &lt;= l2:
+@@ -28,6 +25,3 @@
+ 
+-
+-# Given a list of lists of strings, return the list of strings that has the smallest total number of characters across all its sublists. If there are multiple lists with the same smallest total number of characters, return the first one encountered.
+ def smallest_total_match(list_of_lists):
+-
+     smallest_total = float(&#x27;inf&#x27;)
+@@ -35,7 +29,6 @@
+     for lst in list_of_lists:
+-        current_total = sum(len(s) for s in lst)
+-        if current_total &lt; smallest_total:
++        current_total = sum((len(s) for s in lst))
++        if current_total &lt;= smallest_total:
+             smallest_total = current_total
+             smallest_list = lst
+-    return smallest_list
+-
++    return smallest_list</pre><p>Witness input <code>([[&#x27;i&#x27;, &#x27;amin&#x27;], [&#x27;hi&#x27;, &#x27;hii&#x27;]],)</code> → correct <code>[&#x27;i&#x27;, &#x27;amin&#x27;]</code>, wrong solution <code>[&#x27;hi&#x27;, &#x27;hii&#x27;]</code></p></details></td></tr><tr><td>HumanEvalPro/83</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def starts_one_ends(n):
+@@ -6,13 +5,10 @@
+     &quot;&quot;&quot;
+-    if n == 1: return 1
+-    return 18 * (10 ** (n - 2))
++    if n == 1:
++        return 1
++    return 18 * 10 ** (n - 2)
+ 
+-
+-# Given a positive integer n, return the count of the numbers of n-digit positive integers that start or end with 1, and also return the count of the numbers of n-digit positive integers that start and end with 1. Additionally, calculate the ratio of the count of numbers that start and end with 1 to the count of numbers that start or end with 1.
+ def complex_starts_one_ends(n):
+-
+     count_start_or_end_with_1 = starts_one_ends(n)
+     count_start_and_end_with_1 = starts_one_ends(n - 2) if n &gt; 2 else 0
+-    ratio = count_start_and_end_with_1 / count_start_or_end_with_1 if count_start_or_end_with_1 != 0 else 0
+-    return count_start_or_end_with_1, count_start_and_end_with_1, ratio
+-
++    ratio = count_start_and_end_with_1 / count_start_or_end_with_1 if count_start_or_end_with_1 != 1 else 0
++    return (count_start_or_end_with_1, count_start_and_end_with_1, ratio)</pre><p>Witness input <code>(1,)</code> → correct <code>(1, 0, 0.0)</code>, wrong solution <code>(1, 0, 0)</code></p></details></td></tr><tr><td>HumanEvalPro/116</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>HumanEvalPro/25</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>HumanEvalPro/69</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr></table><hr><p class=sub>Shuna · Reward Integrity Leaderboard · generated 2026-10-18 · <a href='/method.html'>method & false-positive policy</a></p>

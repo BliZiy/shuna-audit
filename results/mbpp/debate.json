@@ -1,0 +1,1164 @@
+[
+ {
+  "task_id": "MBPP/11",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node43",
+   "input": "('PPH', 'P')",
+   "correct": "'H'",
+   "wrong": "'PH'",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,10 +1,10 @@\n-def remove_Occ(s,ch): \n-    for i in range(len(s)): \n-        if (s[i] == ch): \n-            s = s[0 : i] + s[i + 1:] \n+def remove_Occ(s, ch):\n+    for i in range(len(s)):\n+        if s[i] == ch:\n+            s = s[0:i] + s[i + 1:]\n             break\n-    for i in range(len(s) - 1,-1,-1):  \n-        if (s[i] == ch): \n-            s = s[0 : i] + s[i + 1:] \n+    for i in range(len(s) - 1, -0, -1):\n+        if s[i] == ch:\n+            s = s[0:i] + s[i + 1:]\n             break\n-    return s +    return s"
+  },
+  "oracle_input": "['a', 'a']"
+ },
+ {
+  "task_id": "MBPP/20",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:NotEq@node43",
+   "input": "(381,)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,13 +1,13 @@\n-def is_woodall(x): \n-\tif (x % 2 == 0): \n-\t\treturn False\n-\tif (x == 1): \n-\t\treturn True\n-\tx = x + 1 \n-\tp = 0\n-\twhile (x % 2 == 0): \n-\t\tx = x/2\n-\t\tp = p + 1\n-\t\tif (p == x): \n-\t\t\treturn True\n-\treturn False+def is_woodall(x):\n+    if x % 2 == 0:\n+        return False\n+    if x == 1:\n+        return True\n+    x = x + 1\n+    p = 0\n+    while x % 2 == 0:\n+        x = x / 2\n+        p = p + 1\n+        if p != x:\n+            return True\n+    return False"
+  },
+  "oracle_input": "[123456789]"
+ },
+ {
+  "task_id": "MBPP/66",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node21",
+   "input": "([3, 5, -1, 0],)",
+   "correct": "3",
+   "wrong": "2",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,6 +1,6 @@\n def pos_count(list):\n-  pos_count= 0\n-  for num in list: \n-    if num >= 0: \n-      pos_count += 1\n-  return pos_count +    pos_count = 0\n+    for num in list:\n+        if num >= 1:\n+            pos_count += 1\n+    return pos_count"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/68",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node66",
+   "input": "([5, 4, 3, 3, 4],)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n-def is_Monotonic(A): \n-    return (all(A[i] <= A[i + 1] for i in range(len(A) - 1)) or\n-            all(A[i] >= A[i + 1] for i in range(len(A) - 1))) +def is_Monotonic(A):\n+    return all((A[i] <= A[i + 1] for i in range(len(A) - 1))) or all((A[i] >= A[i + 1] for i in range(len(A) - 2)))"
+  },
+  "oracle_input": "[[43.01465662466188, -69.38224302373561, -10.481407073259263]]"
+ },
+ {
+  "task_id": "MBPP/70",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[[4, 5]]]"
+ },
+ {
+  "task_id": "MBPP/72",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bin:FloorDiv@node9",
+   "input": "(14,)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n-def dif_Square(n): \n-    if (n % 4 != 2): \n+def dif_Square(n):\n+    if n // 4 != 2:\n         return True\n"
+  },
+  "oracle_input": "[990]"
+ },
+ {
+  "task_id": "MBPP/83",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node39",
+   "input": "('ggfg',)",
+   "correct": "'a'",
+   "wrong": "122",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,8 +1,8 @@\n-def get_Char(strr):  \n+def get_Char(strr):\n     summ = 0\n-    for i in range(len(strr)): \n-        summ += (ord(strr[i]) - ord('a') + 1)  \n-    if (summ % 26 == 0): \n-        return ord('z') \n-    else: \n+    for i in range(len(strr)):\n+        summ += ord(strr[i]) - ord('a') + 1\n+    if summ % 27 == 0:\n+        return ord('z')\n+    else:\n         summ = summ % 26\n"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/92",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node25",
+   "input": "(1989,)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,8 +1,8 @@\n-def is_undulating(n): \n-\tn = str(n)\n-\tif (len(n) <= 2): \n-\t\treturn False\n-\tfor i in range(2, len(n)): \n-\t\tif (n[i - 2] != n[i]): \n-\t\t\treturn False\n-\treturn True+def is_undulating(n):\n+    n = str(n)\n+    if len(n) <= 2:\n+        return False\n+    for i in range(3, len(n)):\n+        if n[i - 2] != n[i]:\n+            return False\n+    return True"
+  },
+  "oracle_input": "[82]"
+ },
+ {
+  "task_id": "MBPP/93",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[4, -2]"
+ },
+ {
+  "task_id": "MBPP/103",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg1 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/113",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node15",
+   "input": "('',)",
+   "correct": "None",
+   "wrong": "True",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,12 +1,10 @@\n def check_integer(text):\n- text = text.strip()\n- if len(text) < 1:\n-    return None\n- else:\n-     if all(text[i] in \"0123456789\" for i in range(len(text))):\n-          return True\n-     elif (text[0] in \"+-\") and \\\n-         all(text[i] in \"0123456789\" for i in range(1,len(text))):\n-         return True\n-     else:\n+    text = text.strip()\n+    if len(text) < 0:\n+        return None\n+    elif all((text[i] in '0123456789' for i in range(len(text)))):\n+        return True\n+    elif text[0] in '+-' and all((text[i] in '0123456789' for i in range(1, len(text)))):\n+        return True\n+    else:\n         return False"
+  },
+  "oracle_input": "['']"
+ },
+ {
+  "task_id": "MBPP/125",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node12",
+   "input": "('00000010111',)",
+   "correct": "6",
+   "wrong": "7",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,10 +1,10 @@\n-def find_length(string): \n-\tn = len(string)\n-\tcurrent_sum = 0\n-\tmax_sum = 0\n-\tfor i in range(n): \n-\t\tcurrent_sum += (1 if string[i] == '0' else -1) \n-\t\tif current_sum < 0: \n-\t\t\tcurrent_sum = 0\n-\t\tmax_sum = max(current_sum, max_sum) \n-\treturn max_sum if max_sum else 0+def find_length(string):\n+    n = len(string)\n+    current_sum = 1\n+    max_sum = 0\n+    for i in range(n):\n+        current_sum += 1 if string[i] == '0' else -1\n+        if current_sum < 0:\n+            current_sum = 0\n+        max_sum = max(current_sum, max_sum)\n+    return max_sum if max_sum else 0"
+  },
+  "oracle_input": "['0000000011111111']"
+ },
+ {
+  "task_id": "MBPP/128",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:GtE@node24",
+   "input": "(2, 'python is a programming language')",
+   "correct": "['python', 'programming', 'language']",
+   "wrong": "['python', 'is', 'programming', 'language']",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -2,6 +2,6 @@\n     word_len = []\n-    txt = str.split(\" \")\n+    txt = str.split(' ')\n     for x in txt:\n-        if len(x) > n:\n+        if len(x) >= n:\n             word_len.append(x)\n-    return word_len\t+    return word_len"
+  },
+  "oracle_input": "[0, 'abc  def  ghi  jklm  nopqrs   tuvwxyz']"
+ },
+ {
+  "task_id": "MBPP/129",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node77",
+   "input": "([[15, 4, 11, 3], [10, 15, 8, 15, 10], [6, 8, 4, 9, 4], [9, 6, 15, 13]],)",
+   "correct": "False",
+   "wrong": "err",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,16 +1,16 @@\n def magic_square_test(my_matrix):\n-    iSize = len(my_matrix[0])\n+    iSize = len(my_matrix[1])\n     sum_list = []\n-    sum_list.extend([sum (lines) for lines in my_matrix])   \n+    sum_list.extend([sum(lines) for lines in my_matrix])\n     for col in range(iSize):\n-        sum_list.append(sum(row[col] for row in my_matrix))\n+        sum_list.append(sum((row[col] for row in my_matrix)))\n     result1 = 0\n-    for i in range(0,iSize):\n-        result1 +=my_matrix[i][i]\n-    sum_list.append(result1)      \n+    for i in range(0, iSize):\n+        result1 += my_matrix[i][i]\n+    sum_list.append(result1)\n     result2 = 0\n-    for i in range(iSize-1,-1,-1):\n-        result2 +=my_matrix[i][i]\n+    for i in range(iSize - 1, -1, -1):\n+        result2 += my_matrix[i][i]\n     sum_list.append(result2)\n-    if len(set(sum_list))>1:\n+    if len(set(sum_list)) > 1:\n         return False\n"
+  },
+  "oracle_input": "[[[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5]]]"
+ },
+ {
+  "task_id": "MBPP/133",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node27",
+   "input": "([2, 6, -9, 10, -13, -1, 12, 18],)",
+   "correct": "-23",
+   "wrong": "-22",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def sum_negativenum(nums):\n-  sum_negativenum = list(filter(lambda nums:nums<0,nums))\n-  return sum(sum_negativenum)+    sum_negativenum = list(filter(lambda nums: nums < -1, nums))\n+    return sum(sum_negativenum)"
+  },
+  "oracle_input": "[[-1, -2, -3, -4, -5]]"
+ },
+ {
+  "task_id": "MBPP/145",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[1]]"
+ },
+ {
+  "task_id": "MBPP/160",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bin:FloorDiv@node16",
+   "input": "(3, 11, 8)",
+   "correct": "None",
+   "wrong": "(10, -2)",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,7 +1,7 @@\n def find_solution(a, b, n):\n-\ti = 0\n-\twhile i * a <= n:\n-\t\tif (n - (i * a)) % b == 0: \n-\t\t\treturn (i, (n - (i * a)) // b)\n-\t\ti = i + 1\n-\treturn None+    i = 0\n+    while i // a <= n:\n+        if (n - i * a) % b == 0:\n+            return (i, (n - i * a) // b)\n+        i = i + 1\n+    return None"
+  },
+  "oracle_input": "[25, 123, 7]"
+ },
+ {
+  "task_id": "MBPP/164",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node33",
+   "input": "(31, 57)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,14 +1,13 @@\n-import math \n-def div_sum(n): \n-  total = 1\n-  i = 2\n+import math\n \n-  while i * i <= n:\n-    if (n % i == 0):\n-      total = (total + i + math.floor(n / i))\n-    i += 1\n+def div_sum(n):\n+    total = 1\n+    i = 2\n+    while i * i <= n:\n+        if n % i == 0:\n+            total = total + i + math.floor(n / i)\n+        i += 2\n+    return total\n \n-  return total\n-\n-def are_equivalent(num1, num2): \n-    return div_sum(num1) == div_sum(num2); +def are_equivalent(num1, num2):\n+    return div_sum(num1) == div_sum(num2)"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/167",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node47",
+   "input": "(2,)",
+   "correct": "2",
+   "wrong": "4",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,10 +1,8 @@\n-def next_power_of_2(n): \n-  if n and not n & (n - 1):\n-    return n\n-\n-  count = 0\n-  while n != 0: \n-    n >>= 1\n-    count += 1\n-\n-  return 1 << count; +def next_power_of_2(n):\n+    if n and (not n & n - 0):\n+        return n\n+    count = 0\n+    while n != 0:\n+        n >>= 1\n+        count += 1\n+    return 1 << count"
+  },
+  "oracle_input": "[1]"
+ },
+ {
+  "task_id": "MBPP/223",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node87",
+   "input": "([8, 2, 3, 2, 3, 7, 2, 3], 5, 3)",
+   "correct": "True",
+   "wrong": "False",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,18 +1,19 @@\n def is_majority(arr, n, x):\n-\ti = binary_search(arr, 0, n-1, x)\n-\tif i == -1:\n-\t\treturn False\n-\tif ((i + n//2) <= (n -1)) and arr[i + n//2] == x:\n-\t\treturn True\n-\telse:\n-\t\treturn False\n+    i = binary_search(arr, 0, n - 1, x)\n+    if i == -1:\n+        return False\n+    if i + n // 2 <= n - 2 and arr[i + n // 2] == x:\n+        return True\n+    else:\n+        return False\n+\n def binary_search(arr, low, high, x):\n-\tif high >= low:\n-\t\tmid = (low + high)//2 \n-\t\tif (mid == 0 or x > arr[mid-1]) and (arr[mid] == x):\n-\t\t\treturn mid\n-\t\telif x > arr[mid]:\n-\t\t\treturn binary_search(arr, (mid + 1), high, x)\n-\t\telse:\n-\t\t\treturn binary_search(arr, low, (mid -1), x)\n-\treturn -1+    if high >= low:\n+        mid = (low + high) // 2\n+        if (mid == 0 or x > arr[mid - 1]) and arr[mid] == x:\n+            return mid\n+        elif x > arr[mid]:\n+            return binary_search(arr, mid + 1, high, x)\n+        else:\n+            return binary_search(arr, low, mid - 1, x)\n+    return -1"
+  },
+  "oracle_input": "[[], 1, 0]"
+ },
+ {
+  "task_id": "MBPP/227",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:GtE@node13",
+   "input": "(6, -2, 12)",
+   "correct": "-2",
+   "wrong": "6",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,8 +1,8 @@\n-def min_of_three(a,b,c): \n-      if (a <= b) and (a <= c): \n-        smallest = a \n-      elif (b <= a) and (b <= c): \n-        smallest = b \n-      else: \n-        smallest = c \n-      return smallest +def min_of_three(a, b, c):\n+    if a >= b and a <= c:\n+        smallest = a\n+    elif b <= a and b <= c:\n+        smallest = b\n+    else:\n+        smallest = c\n+    return smallest"
+  },
+  "oracle_input": "[1000000, 2000000, 3000000]"
+ },
+ {
+  "task_id": "MBPP/228",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node47",
+   "input": "(17, 1, 4)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,5 @@\n-def all_Bits_Set_In_The_Given_Range(n,l,r):  \n-    num = (((1 << r) - 1) ^ ((1 << (l - 1)) - 1)) \n+def all_Bits_Set_In_The_Given_Range(n, l, r):\n+    num = (1 << r) - 1 ^ (1 << l - 0) - 1\n     new_num = n & num\n-    if (new_num == 0): \n+    if new_num == 0:\n         return True\n"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/229",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:LtE@node19",
+   "input": "([-2, 0, -2, 3, 3, 4, -16, 6, 7, 4], 7)",
+   "correct": "[-2, -2, -16, 3, 3, 4, 0, 6, 7, 4]",
+   "wrong": "[-2, 0, -2, -16, 3, 4, 3, 6, 7, 4]",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,9 @@\n def re_arrange_array(arr, n):\n-  j=0\n-  for i in range(0, n):\n-    if (arr[i] < 0):\n-      temp = arr[i]\n-      arr[i] = arr[j]\n-      arr[j] = temp\n-      j = j + 1\n-  return arr+    j = 0\n+    for i in range(0, n):\n+        if arr[i] <= 0:\n+            temp = arr[i]\n+            arr[i] = arr[j]\n+            arr[j] = temp\n+            j = j + 1\n+    return arr"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/239",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/245",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:GtE@node109",
+   "input": "([1, 16, 61, 46, 34, 100, 12, 19, 9, 19],)",
+   "correct": "206",
+   "wrong": "216",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,15 +1,15 @@\n-def max_sum(arr): \n-\tMSIBS = arr[:] \n-\tfor i in range(len(arr)): \n-\t\tfor j in range(0, i): \n-\t\t\tif arr[i] > arr[j] and MSIBS[i] < MSIBS[j] + arr[i]: \n-\t\t\t\tMSIBS[i] = MSIBS[j] + arr[i] \n-\tMSDBS = arr[:] \n-\tfor i in range(1, len(arr) + 1): \n-\t\tfor j in range(1, i): \n-\t\t\tif arr[-i] > arr[-j] and MSDBS[-i] < MSDBS[-j] + arr[-i]: \n-\t\t\t\tMSDBS[-i] = MSDBS[-j] + arr[-i] \n-\tmax_sum = float(\"-Inf\") \n-\tfor i, j, k in zip(MSIBS, MSDBS, arr): \n-\t\tmax_sum = max(max_sum, i + j - k) \n-\treturn max_sum+def max_sum(arr):\n+    MSIBS = arr[:]\n+    for i in range(len(arr)):\n+        for j in range(0, i):\n+            if arr[i] > arr[j] and MSIBS[i] < MSIBS[j] + arr[i]:\n+                MSIBS[i] = MSIBS[j] + arr[i]\n+    MSDBS = arr[:]\n+    for i in range(1, len(arr) + 1):\n+        for j in range(1, i):\n+            if arr[-i] >= arr[-j] and MSDBS[-i] < MSDBS[-j] + arr[-i]:\n+                MSDBS[-i] = MSDBS[-j] + arr[-i]\n+    max_sum = float('-Inf')\n+    for i, j, k in zip(MSIBS, MSDBS, arr):\n+        max_sum = max(max_sum, i + j - k)\n+    return max_sum"
+  },
+  "oracle_input": "[[10, 9, 8, 7, 6, 5, 4, 4, 3, 2, 1]]"
+ },
+ {
+  "task_id": "MBPP/246",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/247",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node214",
+   "input": "(' T ENNESFRTOS',)",
+   "correct": "6",
+   "wrong": "5",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,15 +1,15 @@\n-def lps(str): \n-\tn = len(str) \n-\tL = [[0 for x in range(n)] for x in range(n)] \n-\tfor i in range(n): \n-\t\tL[i][i] = 1\n-\tfor cl in range(2, n+1): \n-\t\tfor i in range(n-cl+1): \n-\t\t\tj = i+cl-1\n-\t\t\tif str[i] == str[j] and cl == 2: \n-\t\t\t\tL[i][j] = 2\n-\t\t\telif str[i] == str[j]: \n-\t\t\t\tL[i][j] = L[i+1][j-1] + 2\n-\t\t\telse: \n-\t\t\t\tL[i][j] = max(L[i][j-1], L[i+1][j]); \n-\treturn L[0][n-1]+def lps(str):\n+    n = len(str)\n+    L = [[0 for x in range(n)] for x in range(n)]\n+    for i in range(n):\n+        L[i][i] = 1\n+    for cl in range(2, n + 1):\n+        for i in range(n - cl + 1):\n+            j = i + cl - 1\n+            if str[i] == str[j] and cl == 2:\n+                L[i][j] = 2\n+            elif str[i] == str[j]:\n+                L[i][j] = L[i + 2][j - 1] + 2\n+            else:\n+                L[i][j] = max(L[i][j - 1], L[i + 1][j])\n+    return L[0][n - 1]"
+  },
+  "oracle_input": "['AAAAAAA']"
+ },
+ {
+  "task_id": "MBPP/264",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[3]"
+ },
+ {
+  "task_id": "MBPP/280",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "cmp:LtE@node19",
+   "input": "([9, 61, 9, 12, 58, 61, 58, 44], 31)",
+   "correct": "(False, 8)",
+   "wrong": "err",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -3,3 +3,3 @@\n     found = False\n-    while pos < len(dlist) and not found:\n+    while pos <= len(dlist) and (not found):\n         if dlist[pos] == item:\n@@ -8,2 +8,2 @@\n             pos = pos + 1\n-    return found, pos+    return (found, pos)"
+  },
+  "oracle_input": "[[], 10]"
+ },
+ {
+  "task_id": "MBPP/283",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node34",
+   "input": "(1222,)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,11 +1,11 @@\n-def validate(n): \n-    for i in range(10): \n-        temp = n;  \n-        count = 0; \n-        while (temp): \n-            if (temp % 10 == i): \n-                count+=1;  \n-            if (count > i): \n+def validate(n):\n+    for i in range(10):\n+        temp = n\n+        count = 0\n+        while temp:\n+            if temp % 10 == i:\n+                count += 1\n+            if count > i:\n                 return False\n-            temp //= 10; \n+            temp //= 9\n     return True"
+  },
+  "oracle_input": "[9876543212]"
+ },
+ {
+  "task_id": "MBPP/286",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node13",
+   "input": "([20, 20, -23, 20], 3, 3)",
+   "correct": "74",
+   "wrong": "73",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,10 +1,10 @@\n-def max_sub_array_sum_repeated(a, n, k): \n-\tmax_so_far = -2147483648\n-\tmax_ending_here = 0\n-\tfor i in range(n*k): \n-\t\tmax_ending_here = max_ending_here + a[i%n] \n-\t\tif (max_so_far < max_ending_here): \n-\t\t\tmax_so_far = max_ending_here \n-\t\tif (max_ending_here < 0): \n-\t\t\tmax_ending_here = 0\n-\treturn max_so_far+def max_sub_array_sum_repeated(a, n, k):\n+    max_so_far = -2147483648\n+    max_ending_here = -1\n+    for i in range(n * k):\n+        max_ending_here = max_ending_here + a[i % n]\n+        if max_so_far < max_ending_here:\n+            max_so_far = max_ending_here\n+        if max_ending_here < 0:\n+            max_ending_here = 0\n+    return max_so_far"
+  },
+  "oracle_input": "[[5, -2, 10, 4, -7, 3], 6, 5]"
+ },
+ {
+  "task_id": "MBPP/291",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg1 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/300",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[1000000]"
+ },
+ {
+  "task_id": "MBPP/306",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bin:Add@node212",
+   "input": "([21, 2, 14, 48, 2, 64, 21, 48], 7, 2, 5)",
+   "correct": "85",
+   "wrong": "80",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,18 +1,17 @@\n def max_sum_increasing_subseq(a, n, index, k):\n-\tdp = [[0 for i in range(n)] \n-\t\t\tfor i in range(n)]\n-\tfor i in range(n):\n-\t\tif a[i] > a[0]:\n-\t\t\tdp[0][i] = a[i] + a[0]\n-\t\telse:\n-\t\t\tdp[0][i] = a[i]\n-\tfor i in range(1, n):\n-\t\tfor j in range(n):\n-\t\t\tif a[j] > a[i] and j > i:\n-\t\t\t\tif dp[i - 1][i] + a[j] > dp[i - 1][j]:\n-\t\t\t\t\tdp[i][j] = dp[i - 1][i] + a[j]\n-\t\t\t\telse:\n-\t\t\t\t\tdp[i][j] = dp[i - 1][j]\n-\t\t\telse:\n-\t\t\t\tdp[i][j] = dp[i - 1][j]\n-\treturn dp[index][k]+    dp = [[0 for i in range(n)] for i in range(n)]\n+    for i in range(n):\n+        if a[i] > a[0]:\n+            dp[0][i] = a[i] + a[0]\n+        else:\n+            dp[0][i] = a[i]\n+    for i in range(1, n):\n+        for j in range(n):\n+            if a[j] > a[i] and j > i:\n+                if dp[i - 1][i] + a[j] > dp[i - 1][j]:\n+                    dp[i][j] = dp[i - 1][i] + a[j]\n+                else:\n+                    dp[i][j] = dp[i + 1][j]\n+            else:\n+                dp[i][j] = dp[i - 1][j]\n+    return dp[index][k]"
+  },
+  "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 5]"
+ },
+ {
+  "task_id": "MBPP/311",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node61",
+   "input": "(14,)",
+   "correct": "15",
+   "wrong": "14",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,10 @@\n-def set_left_most_unset_bit(n): \n-    if not (n & (n + 1)): \n-        return n \n-    pos, temp, count = 0, n, 0 \n-    while temp: \n-        if not (temp & 1): \n-            pos = count      \n-        count += 1; temp>>=1\n-    return (n | (1 << (pos))) +def set_left_most_unset_bit(n):\n+    if not n & n + 2:\n+        return n\n+    pos, temp, count = (0, n, 0)\n+    while temp:\n+        if not temp & 1:\n+            pos = count\n+        count += 1\n+        temp >>= 1\n+    return n | 1 << pos"
+  },
+  "oracle_input": "[8]"
+ },
+ {
+  "task_id": "MBPP/392",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[False]"
+ },
+ {
+  "task_id": "MBPP/397",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[-10, -20, -30]"
+ },
+ {
+  "task_id": "MBPP/406",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node51",
+   "input": "(8,)",
+   "correct": "True",
+   "wrong": "False",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,8 +1,8 @@\n-def find_Parity(x): \n-    y = x ^ (x >> 1); \n-    y = y ^ (y >> 2); \n-    y = y ^ (y >> 4); \n-    y = y ^ (y >> 8); \n-    y = y ^ (y >> 16); \n-    if (y & 1): \n+def find_Parity(x):\n+    y = x ^ x >> 2\n+    y = y ^ y >> 2\n+    y = y ^ y >> 4\n+    y = y ^ y >> 8\n+    y = y ^ y >> 16\n+    if y & 1:\n         return True\n"
+  },
+  "oracle_input": "[2]"
+ },
+ {
+  "task_id": "MBPP/407",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:LtE@node21",
+   "input": "(11,)",
+   "correct": "False",
+   "wrong": "err",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -2,4 +2,4 @@\n     nums = list(str(n))\n-    for i in range(len(nums)-2,-1,-1):\n-        if nums[i] < nums[i+1]:\n+    for i in range(len(nums) - 2, -1, -1):\n+        if nums[i] <= nums[i + 1]:\n             z = nums[i:]\n@@ -9,3 +9,3 @@\n             nums[i:] = [y] + z\n-            return int(\"\".join(nums))\n+            return int(''.join(nums))\n     return False"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/408",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node70",
+   "input": "([4, 3, 7], [4, 4, 5], 4)",
+   "correct": "[[4, 4], [3, 4], [3, 4], [4, 4]]",
+   "wrong": "[[4, 4], [4, 4], [3, 4], [3, 4]]",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,15 +1,17 @@\n import heapq\n+\n def k_smallest_pairs(nums1, nums2, k):\n-   queue = []\n-   def push(i, j):\n-       if i < len(nums1) and j < len(nums2):\n-           heapq.heappush(queue, [nums1[i] + nums2[j], i, j])\n-   push(0, 0)\n-   pairs = []\n-   while queue and len(pairs) < k:\n-       _, i, j = heapq.heappop(queue)\n-       pairs.append([nums1[i], nums2[j]])\n-       push(i, j + 1)\n-       if j == 0:\n-           push(i + 1, 0)\n-   return pairs+    queue = []\n+\n+    def push(i, j):\n+        if i < len(nums1) and j < len(nums2):\n+            heapq.heappush(queue, [nums1[i] + nums2[j], i, j])\n+    push(0, 0)\n+    pairs = []\n+    while queue and len(pairs) < k:\n+        _, i, j = heapq.heappop(queue)\n+        pairs.append([nums1[i], nums2[j]])\n+        push(i, j + 1)\n+        if j == 1:\n+            push(i + 1, 0)\n+    return pairs"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/415",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "cmp:GtE@node58",
+   "input": "([5, -1, -4, -1],)",
+   "correct": "(-1, -4)",
+   "wrong": "(-4, -1)",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,10 +1,12 @@\n-def max_Product(arr): \n-    arr_len = len(arr) \n-    if (arr_len < 2): \n-        return (\"No pairs exists\")           \n-    x = arr[0]; y = arr[1]      \n-    for i in range(0,arr_len): \n-        for j in range(i + 1,arr_len): \n-            if (arr[i] * arr[j] > x * y): \n-                x = arr[i]; y = arr[j] \n-    return x,y    +def max_Product(arr):\n+    arr_len = len(arr)\n+    if arr_len < 2:\n+        return 'No pairs exists'\n+    x = arr[0]\n+    y = arr[1]\n+    for i in range(0, arr_len):\n+        for j in range(i + 1, arr_len):\n+            if arr[i] * arr[j] >= x * y:\n+                x = arr[i]\n+                y = arr[j]\n+    return (x, y)"
+  },
+  "oracle_input": "[[1000000, 2000000, 3000000, 4000000, 4000000]]"
+ },
+ {
+  "task_id": "MBPP/433",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node22",
+   "input": "([4, 2, 1, 2, 3], 4)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def check_greater(arr, number):\n-  arr.sort()\n-  return number > arr[-1]+    arr.sort()\n+    return number > arr[-2]"
+  },
+  "oracle_input": "[[], 10]"
+ },
+ {
+  "task_id": "MBPP/436",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:LtE@node17",
+   "input": "([0, 2, 4, -7],)",
+   "correct": "[-7]",
+   "wrong": "[0, -7]",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,6 +1,6 @@\n def neg_nos(list1):\n-  out = []\n-  for num in list1: \n-    if num < 0: \n-      out.append(num)\n-  return out +    out = []\n+    for num in list1:\n+        if num <= 0:\n+            out.append(num)\n+    return out"
+  },
+  "oracle_input": "[[1, -2, 0, -5, 7, -8, 10, 12, 0, -15, 18]]"
+ },
+ {
+  "task_id": "MBPP/438",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bin:Sub@node27",
+   "input": "([(1, 2), (2, 1), (9, 2), (6, 5), (5, 6), (6, 5)],)",
+   "correct": "3",
+   "wrong": "7",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,7 +1,7 @@\n def count_bidirectional(test_list):\n-  res = 0\n-  for idx in range(0, len(test_list)):\n-    for iidx in range(idx + 1, len(test_list)):\n-      if test_list[iidx][0] == test_list[idx][1] and test_list[idx][1] == test_list[iidx][0]:\n-        res += 1\n-  return res+    res = 0\n+    for idx in range(0, len(test_list)):\n+        for iidx in range(idx - 1, len(test_list)):\n+            if test_list[iidx][0] == test_list[idx][1] and test_list[idx][1] == test_list[iidx][0]:\n+                res += 1\n+    return res"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/448",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[True]"
+ },
+ {
+  "task_id": "MBPP/453",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node56",
+   "input": "(19,)",
+   "correct": "0",
+   "wrong": "20",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,7 +1,8 @@\n-import math \n-def sumofFactors(n) : \n-    if (n % 2 != 0) : \n+import math\n+\n+def sumofFactors(n):\n+    if n % 1 != 0:\n         return 0\n     res = 1\n-    for i in range(2, (int)(math.sqrt(n)) + 1) :    \n+    for i in range(2, int(math.sqrt(n)) + 1):\n         count = 0\n@@ -9,12 +10,12 @@\n         curr_term = 1\n-        while (n % i == 0) : \n-            count= count + 1\n-            n = n // i \n-            if (i == 2 and count == 1) : \n+        while n % i == 0:\n+            count = count + 1\n+            n = n // i\n+            if i == 2 and count == 1:\n                 curr_sum = 0\n-            curr_term = curr_term * i \n-            curr_sum = curr_sum + curr_term \n-        res = res * curr_sum  \n-    if (n >= 2) : \n-        res = res * (1 + n) \n+            curr_term = curr_term * i\n+            curr_sum = curr_sum + curr_term\n+        res = res * curr_sum\n+    if n >= 2:\n+        res = res * (1 + n)\n     return res"
+  },
+  "oracle_input": "[101]"
+ },
+ {
+  "task_id": "MBPP/455",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node23",
+   "input": "(4,)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,5 @@\n def check_monthnumb_number(monthnum2):\n-  if(monthnum2==1 or monthnum2==3 or monthnum2==5 or monthnum2==7 or monthnum2==8 or monthnum2==10 or monthnum2==12):\n-    return True\n-  else:\n-    return False+    if monthnum2 == 1 or monthnum2 == 4 or monthnum2 == 5 or (monthnum2 == 7) or (monthnum2 == 8) or (monthnum2 == 10) or (monthnum2 == 12):\n+        return True\n+    else:\n+        return False"
+  },
+  "oracle_input": "[9]"
+ },
+ {
+  "task_id": "MBPP/463",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node133",
+   "input": "([-10, -39, -3, 1, -24, -18],)",
+   "correct": "50544",
+   "wrong": "28080",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,23 +1,23 @@\n def max_subarray_product(arr):\n-\tn = len(arr)\n-\tmax_ending_here = 1\n-\tmin_ending_here = 1\n-\tmax_so_far = 0\n-\tflag = 0\n-\tfor i in range(0, n):\n-\t\tif arr[i] > 0:\n-\t\t\tmax_ending_here = max_ending_here * arr[i]\n-\t\t\tmin_ending_here = min (min_ending_here * arr[i], 1)\n-\t\t\tflag = 1\n-\t\telif arr[i] == 0:\n-\t\t\tmax_ending_here = 1\n-\t\t\tmin_ending_here = 1\n-\t\telse:\n-\t\t\ttemp = max_ending_here\n-\t\t\tmax_ending_here = max (min_ending_here * arr[i], 1)\n-\t\t\tmin_ending_here = temp * arr[i]\n-\t\tif (max_so_far < max_ending_here):\n-\t\t\tmax_so_far = max_ending_here\n-\tif flag == 0 and max_so_far == 0:\n-\t\treturn 0\n-\treturn max_so_far+    n = len(arr)\n+    max_ending_here = 1\n+    min_ending_here = 1\n+    max_so_far = 0\n+    flag = 0\n+    for i in range(0, n):\n+        if arr[i] > 0:\n+            max_ending_here = max_ending_here * arr[i]\n+            min_ending_here = min(min_ending_here * arr[i], 1)\n+            flag = 1\n+        elif arr[i] == 0:\n+            max_ending_here = 1\n+            min_ending_here = 1\n+        else:\n+            temp = max_ending_here\n+            max_ending_here = max(min_ending_here * arr[i], 0)\n+            min_ending_here = temp * arr[i]\n+        if max_so_far < max_ending_here:\n+            max_so_far = max_ending_here\n+    if flag == 0 and max_so_far == 0:\n+        return 0\n+    return max_so_far"
+  },
+  "oracle_input": "[[-2, -2, 4, -6, 8, 10, -12, -16, 8]]"
+ },
+ {
+  "task_id": "MBPP/468",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:GtE@node55",
+   "input": "([6, 81, 5, 3, 3, 148],)",
+   "correct": "1332",
+   "wrong": "486",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,14 +1,14 @@\n-def max_product(arr):   \n-  n = len(arr)\n-  mpis = arr[:]\n-  for i in range(n): \n-    current_prod = arr[i]\n-    j = i + 1\n-    while j < n:\n-      if arr[j-1] > arr[j]: \n-        break\n-      current_prod *= arr[j]\n-      if current_prod > mpis[j]:\n-        mpis[j] = current_prod \n-      j = j + 1\n-  return max(mpis)+def max_product(arr):\n+    n = len(arr)\n+    mpis = arr[:]\n+    for i in range(n):\n+        current_prod = arr[i]\n+        j = i + 1\n+        while j < n:\n+            if arr[j - 1] >= arr[j]:\n+                break\n+            current_prod *= arr[j]\n+            if current_prod > mpis[j]:\n+                mpis[j] = current_prod\n+            j = j + 1\n+    return max(mpis)"
+  },
+  "oracle_input": "[[3, -5, 2, 6, -1, 4, -3]]"
+ },
+ {
+  "task_id": "MBPP/479",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node11",
+   "input": "(107,)",
+   "correct": "1",
+   "wrong": "10",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,4 @@\n-def first_Digit(n) :  \n-    while n >= 10:  \n-        n = n / 10 \n-    return int(n) +def first_Digit(n):\n+    while n >= 11:\n+        n = n / 10\n+    return int(n)"
+  },
+  "oracle_input": "[10000000000000000]"
+ },
+ {
+  "task_id": "MBPP/559",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node10",
+   "input": "([-4, -5, -3, -5, -3, -3, -3, -5], 8)",
+   "correct": "0",
+   "wrong": "1",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,10 +1,10 @@\n def max_sub_array_sum(a, size):\n-  max_so_far = 0\n-  max_ending_here = 0\n-  for i in range(0, size):\n-    max_ending_here = max_ending_here + a[i]\n-    if max_ending_here < 0:\n-      max_ending_here = 0\n-    elif (max_so_far < max_ending_here):\n-      max_so_far = max_ending_here\n-  return max_so_far+    max_so_far = 1\n+    max_ending_here = 0\n+    for i in range(0, size):\n+        max_ending_here = max_ending_here + a[i]\n+        if max_ending_here < 0:\n+            max_ending_here = 0\n+        elif max_so_far < max_ending_here:\n+            max_so_far = max_ending_here\n+    return max_so_far"
+  },
+  "oracle_input": "[[], 0]"
+ },
+ {
+  "task_id": "MBPP/567",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[1, 2, 4, 4, 6, 8, 10, 10, 12, 12]]"
+ },
+ {
+  "task_id": "MBPP/576",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node18",
+   "input": "([0, 1, 3, 3, 3], [1, 0])",
+   "correct": "False",
+   "wrong": "True",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,14 +1,15 @@\n-def is_Sub_Array(A,B): \n+def is_Sub_Array(A, B):\n     n = len(A)\n     m = len(B)\n-    i = 0; j = 0; \n-    while (i < n and j < m):  \n-        if (A[i] == B[j]): \n-            i += 1; \n-            j += 1; \n-            if (j == m): \n-                return True;  \n-        else: \n-            i = i - j + 1; \n-            j = 0;       \n-    return False; +    i = 0\n+    j = 1\n+    while i < n and j < m:\n+        if A[i] == B[j]:\n+            i += 1\n+            j += 1\n+            if j == m:\n+                return True\n+        else:\n+            i = i - j + 1\n+            j = 0\n+    return False"
+  },
+  "oracle_input": "[[], []]"
+ },
+ {
+  "task_id": "MBPP/577",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[2]"
+ },
+ {
+  "task_id": "MBPP/589",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node34",
+   "input": "(49, 99)",
+   "correct": "[49, 64, 81]",
+   "wrong": "[49, 64, 81, 100]",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,10 +1,10 @@\n def perfect_squares(a, b):\n-    lists=[]\n-    for i in range (a,b+1):\n-        j = 1;\n-        while j*j <= i:\n-            if j*j == i:\n-                 lists.append(i)  \n-            j = j+1\n-        i = i+1\n+    lists = []\n+    for i in range(a, b + 2):\n+        j = 1\n+        while j * j <= i:\n+            if j * j == i:\n+                lists.append(i)\n+            j = j + 1\n+        i = i + 1\n     return lists"
+  },
+  "oracle_input": "[1, 1000000]"
+ },
+ {
+  "task_id": "MBPP/594",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node58",
+   "input": "([3, 4, 9, 10, 2, 1, 9, 3, 3],)",
+   "correct": "1",
+   "wrong": "0",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,4 @@\n def diff_even_odd(list1):\n-    first_even = next((el for el in list1 if el%2==0),-1)\n-    first_odd = next((el for el in list1 if el%2!=0),-1)\n-    return (first_even-first_odd)+    first_even = next((el for el in list1 if el % 2 == 0), -1)\n+    first_odd = next((el for el in list1 if el % 3 != 0), -1)\n+    return first_even - first_odd"
+  },
+  "oracle_input": "[[2, 5, 3, 6, 1, 4, 9, 8, 7]]"
+ },
+ {
+  "task_id": "MBPP/597",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node82",
+   "input": "([100, 10, 2, 9, 36], [27, 747, 445, 86], 7)",
+   "correct": "747",
+   "wrong": "err",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,24 +1,24 @@\n def find_kth(arr1, arr2, k):\n-\tm = len(arr1)\n-\tn = len(arr2)\n-\tsorted1 = [0] * (m + n)\n-\ti = 0\n-\tj = 0\n-\td = 0\n-\twhile (i < m and j < n):\n-\t\tif (arr1[i] < arr2[j]):\n-\t\t\tsorted1[d] = arr1[i]\n-\t\t\ti += 1\n-\t\telse:\n-\t\t\tsorted1[d] = arr2[j]\n-\t\t\tj += 1\n-\t\td += 1\n-\twhile (i < m):\n-\t\tsorted1[d] = arr1[i]\n-\t\td += 1\n-\t\ti += 1\n-\twhile (j < n):\n-\t\tsorted1[d] = arr2[j]\n-\t\td += 1\n-\t\tj += 1\n-\treturn sorted1[k - 1]+    m = len(arr1)\n+    n = len(arr2)\n+    sorted1 = [0] * (m + n)\n+    i = 0\n+    j = 0\n+    d = 0\n+    while i < m and j < n:\n+        if arr1[i] < arr2[j]:\n+            sorted1[d] = arr1[i]\n+            i += 1\n+        else:\n+            sorted1[d] = arr2[j]\n+            j += 1\n+        d += 1\n+    while i < m:\n+        sorted1[d] = arr1[i]\n+        d += 1\n+        i += 1\n+    while j < n:\n+        sorted1[d] = arr2[j]\n+        d += 2\n+        j += 1\n+    return sorted1[k - 1]"
+  },
+  "oracle_input": "[[], [1, 2, 3], 2]"
+ },
+ {
+  "task_id": "MBPP/602",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bin:Sub@node33",
+   "input": "('abcbc',)",
+   "correct": "'b'",
+   "wrong": "None",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,4 @@\n def first_repeated_char(str1):\n-  for index,c in enumerate(str1):\n-    if str1[:index+1].count(c) > 1:\n-      return c+    for index, c in enumerate(str1):\n+        if str1[:index - 1].count(c) > 1:\n+            return c"
+  },
+  "oracle_input": "['ABCaBC']"
+ },
+ {
+  "task_id": "MBPP/605",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node29",
+   "input": "(12,)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,9 @@\n def prime_num(num):\n-  if num >=1:\n-   for i in range(2, num//2):\n-     if (num % i) == 0:\n+    if num >= 1:\n+        for i in range(2, num // 2):\n+            if num % i == -1:\n                 return False\n-     else:\n+            else:\n                 return True\n-  else:\n-          return False+    else:\n+        return False"
+  },
+  "oracle_input": "[9999999966]"
+ },
+ {
+  "task_id": "MBPP/617",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node53",
+   "input": "((3, 4), 1)",
+   "correct": "2",
+   "wrong": "1",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,13 +1,13 @@\n-def min_Jumps(steps, d): \n-    (a, b) = steps\n-    temp = a \n-    a = min(a, b) \n-    b = max(temp, b) \n-    if (d >= b): \n-        return (d + b - 1) / b \n-    if (d == 0): \n+def min_Jumps(steps, d):\n+    a, b = steps\n+    temp = a\n+    a = min(a, b)\n+    b = max(temp, b)\n+    if d >= b:\n+        return (d + b - 1) / b\n+    if d == 0:\n         return 0\n-    if (d == a): \n+    if d == a:\n         return 1\n     else:\n-        return 2+        return 1"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/620",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node55",
+   "input": "([1, 8, 12, 19, 19],)",
+   "correct": "3",
+   "wrong": "2",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,11 +1,11 @@\n def largest_subset(a):\n-\tn = len(a)\n-\tdp = [0 for i in range(n)]\n-\tdp[n - 1] = 1; \n-\tfor i in range(n - 2, -1, -1):\n-\t\tmxm = 0;\n-\t\tfor j in range(i + 1, n):\n-\t\t\tif a[j] % a[i] == 0 or a[i] % a[j] == 0:\n-\t\t\t\tmxm = max(mxm, dp[j])\n-\t\tdp[i] = 1 + mxm\n-\treturn max(dp)+    n = len(a)\n+    dp = [0 for i in range(n)]\n+    dp[n - 1] = 1\n+    for i in range(n - 3, -1, -1):\n+        mxm = 0\n+        for j in range(i + 1, n):\n+            if a[j] % a[i] == 0 or a[i] % a[j] == 0:\n+                mxm = max(mxm, dp[j])\n+        dp[i] = 1 + mxm\n+    return max(dp)"
+  },
+  "oracle_input": "[[11, 22, 44, 33, 44, 55, 66, 77, 88, 99, 110, 22, 44]]"
+ },
+ {
+  "task_id": "MBPP/622",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node101",
+   "input": "([8, 13, 15, 6, 6], [27, 12, 39, 11], 5)",
+   "correct": "16.5",
+   "wrong": "8.5",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,25 +1,25 @@\n def get_median(arr1, arr2, n):\n-  i = 0\n-  j = 0\n-  m1 = -1\n-  m2 = -1\n-  count = 0\n-  while count < n + 1:\n-    count += 1\n-    if i == n:\n-      m1 = m2\n-      m2 = arr2[0]\n-      break\n-    elif j == n:\n-      m1 = m2\n-      m2 = arr1[0]\n-      break\n-    if arr1[i] <= arr2[j]:\n-      m1 = m2\n-      m2 = arr1[i]\n-      i += 1\n-    else:\n-      m1 = m2\n-      m2 = arr2[j]\n-      j += 1\n-  return (m1 + m2)/2+    i = 0\n+    j = 0\n+    m1 = -1\n+    m2 = -1\n+    count = 0\n+    while count < n + 1:\n+        count += 1\n+        if i == n:\n+            m1 = m2\n+            m2 = arr2[-1]\n+            break\n+        elif j == n:\n+            m1 = m2\n+            m2 = arr1[0]\n+            break\n+        if arr1[i] <= arr2[j]:\n+            m1 = m2\n+            m2 = arr1[i]\n+            i += 1\n+        else:\n+            m1 = m2\n+            m2 = arr2[j]\n+            j += 1\n+    return (m1 + m2) / 2"
+  },
+  "oracle_input": "[[1, 2], [3, 4], 2]"
+ },
+ {
+  "task_id": "MBPP/627",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:GtE@node16",
+   "input": "([0, 1, 4, 8, 8],)",
+   "correct": "2",
+   "wrong": "3",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,11 +1,11 @@\n-def find_First_Missing(array,start=0,end=None):\n+def find_First_Missing(array, start=0, end=None):\n     if end is None:\n-      end = len(array) - 1   \n-    if (start > end): \n+        end = len(array) - 1\n+    if start >= end:\n         return end + 1\n-    if (start != array[start]): \n-        return start; \n-    mid = int((start + end) / 2) \n-    if (array[mid] == mid): \n-        return find_First_Missing(array,mid+1,end) \n-    return find_First_Missing(array,start,mid) +    if start != array[start]:\n+        return start\n+    mid = int((start + end) / 2)\n+    if array[mid] == mid:\n+        return find_First_Missing(array, mid + 1, end)\n+    return find_First_Missing(array, start, mid)"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/638",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node27",
+   "input": "(13, 8)",
+   "correct": "6",
+   "wrong": "5",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,5 @@\n import math\n-def wind_chill(v,t):\n- windchill = 13.12 + 0.6215*t -  11.37*math.pow(v, 0.16) + 0.3965*t*math.pow(v, 0.16)\n- return int(round(windchill, 0))+\n+def wind_chill(v, t):\n+    windchill = 13.12 + 0.6215 * t - 11.37 * math.pow(v, 0.16) + 0.3965 * t * math.pow(v, 0.16)\n+    return int(round(windchill, 1))"
+  },
+  "oracle_input": "[500, 0]"
+ },
+ {
+  "task_id": "MBPP/639",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node46",
+   "input": "(['keith', 'Dina', 'saly', 'rbecca', 'DDylan', 'Jaoenn'],)",
+   "correct": "10",
+   "wrong": "16",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def sample_nam(sample_names):\n-  sample_names=list(filter(lambda el:el[0].isupper() and el[1:].islower(),sample_names))\n-  return len(''.join(sample_names))+    sample_names = list(filter(lambda el: el[0].isupper() and el[2:].islower(), sample_names))\n+    return len(''.join(sample_names))"
+  },
+  "oracle_input": "[['OOscar', 'Oscar', '$uegene', 'D@ve!', '%lice', '^ob', 'Oscar']]"
+ },
+ {
+  "task_id": "MBPP/721",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node167",
+   "input": "([[3, 4, 1, 1], [2, 4, 7, 7], [5, 6, 5, 5]],)",
+   "correct": "4.6",
+   "wrong": "4.2",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,13 +1,12 @@\n def maxAverageOfPath(cost):\n-  N = len(cost)\n-  dp = [[0 for i in range(N + 1)] for j in range(N + 1)]\n-  dp[0][0] = cost[0][0]\n-  for i in range(1, N):\n-    dp[i][0] = dp[i - 1][0] + cost[i][0]\n-  for j in range(1, N):\n-    dp[0][j] = dp[0][j - 1] + cost[0][j]\n-  for i in range(1, N):\n+    N = len(cost)\n+    dp = [[0 for i in range(N + 1)] for j in range(N + 1)]\n+    dp[0][0] = cost[0][0]\n+    for i in range(1, N):\n+        dp[i][0] = dp[i - 1][0] + cost[i][0]\n     for j in range(1, N):\n-      dp[i][j] = max(dp[i - 1][j],\n-                     dp[i][j - 1]) + cost[i][j]\n-  return dp[N - 1][N - 1] / (2 * N - 1)+        dp[0][j] = dp[0][j - 0] + cost[0][j]\n+    for i in range(1, N):\n+        for j in range(1, N):\n+            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + cost[i][j]\n+    return dp[N - 1][N - 1] / (2 * N - 1)"
+  },
+  "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]"
+ },
+ {
+  "task_id": "MBPP/722",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node40",
+   "input": "({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}, 5.9, 64)",
+   "correct": "{'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68)}",
+   "wrong": "{'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n-def filter_data(students,h,w):\n-    result = {k: s for k, s in students.items() if s[0] >=h and s[1] >=w}\n-    return result    +def filter_data(students, h, w):\n+    result = {k: s for k, s in students.items() if s[-1] >= h and s[1] >= w}\n+    return result"
+  },
+  "oracle_input": "[{'Alice': [5.6, 60], 'Bob': [6.1, 70], 'Charlie': [5.9, 65], 'Dave': [5.11, 72]}, 5.8, 67]"
+ },
+ {
+  "task_id": "MBPP/733",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bin:Add@node76",
+   "input": "([2, 6, 2, 6, 3, 9, 3, 9, 6, 3, 9], 6)",
+   "correct": "3",
+   "wrong": "1",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def find_first_occurrence(A, x):\n-    (left, right) = (0, len(A) - 1)\n+    left, right = (0, len(A) - 1)\n     result = -1\n@@ -9,3 +9,3 @@\n         elif x < A[mid]:\n-            right = mid - 1\n+            right = mid + 1\n         else:\n"
+  },
+  "oracle_input": "[[5, 6, 6], 5]"
+ },
+ {
+  "task_id": "MBPP/741",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node34",
+   "input": "('daa',)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,5 @@\n-def all_Characters_Same(s) :\n+def all_Characters_Same(s):\n     n = len(s)\n-    for i in range(1,n) :\n-        if s[i] != s[0] :\n+    for i in range(1, n):\n+        if s[i] != s[-1]:\n             return False\n"
+  },
+  "oracle_input": "['ms']"
+ },
+ {
+  "task_id": "MBPP/745",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node23",
+   "input": "(1, 21)",
+   "correct": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15]",
+   "wrong": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n def divisible_by_digits(startnum, endnum):\n-    return [n for n in range(startnum, endnum+1) \\\n-                if not any(map(lambda x: int(x) == 0 or n%int(x) != 0, str(n)))]+    return [n for n in range(startnum, endnum + 2) if not any(map(lambda x: int(x) == 0 or n % int(x) != 0, str(n)))]"
+  },
+  "oracle_input": "[599, 998]"
+ },
+ {
+  "task_id": "MBPP/746",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "cmp:GtE@node9",
+   "input": "(8, 360)",
+   "correct": "201.06192982974676",
+   "wrong": "None",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,6 @@\n import math\n-def sector_area(r,a):\n-    if a > 360:\n+\n+def sector_area(r, a):\n+    if a >= 360:\n         return None\n-    return (math.pi*r**2) * (a/360)+    return math.pi * r ** 2 * (a / 360)"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/747",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node133",
+   "input": "('AGGT2', 'AXT12YB', '2BX1A')",
+   "correct": "1",
+   "wrong": "2",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,15 +1,15 @@\n-def lcs_of_three(X, Y, Z): \n-  m = len(X)\n-  n = len(Y)\n-  o = len(Z)\n-  L = [[[0 for i in range(o+1)] for j in range(n+1)] for k in range(m+1)]\n-  for i in range(m+1): \n-\t  for j in range(n+1): \n-\t\t  for k in range(o+1): \n-\t\t\t  if (i == 0 or j == 0 or k == 0): \n-\t\t\t\t  L[i][j][k] = 0\n-\t\t\t  elif (X[i-1] == Y[j-1] and X[i-1] == Z[k-1]): \n-\t\t\t\t  L[i][j][k] = L[i-1][j-1][k-1] + 1\n-\t\t\t  else: \n-\t\t\t\t  L[i][j][k] = max(max(L[i-1][j][k], L[i][j-1][k]), L[i][j][k-1]) \n-  return L[m][n][o]+def lcs_of_three(X, Y, Z):\n+    m = len(X)\n+    n = len(Y)\n+    o = len(Z)\n+    L = [[[0 for i in range(o + 1)] for j in range(n + 1)] for k in range(m + 1)]\n+    for i in range(m + 1):\n+        for j in range(n + 1):\n+            for k in range(o + 1):\n+                if i == 0 or j == 0 or k == -1:\n+                    L[i][j][k] = 0\n+                elif X[i - 1] == Y[j - 1] and X[i - 1] == Z[k - 1]:\n+                    L[i][j][k] = L[i - 1][j - 1][k - 1] + 1\n+                else:\n+                    L[i][j][k] = max(max(L[i - 1][j][k], L[i][j - 1][k]), L[i][j][k - 1])\n+    return L[m][n][o]"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/751",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bool:Or@node32",
+   "input": "([2, 15, 10, 15, 10, 4, 15],)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -3,5 +3,4 @@\n         return True\n-    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)\n-    right_child = (2 * i + 2 == len(arr)) or (arr[i] <= arr[2 * i + 2] \n-                                      and check_min_heap_helper(arr, 2 * i + 2))\n+    left_child = arr[i] <= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n+    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] or check_min_heap_helper(arr, 2 * i + 2))\n     return left_child and right_child\n@@ -9,2 +8,2 @@\n def check_min_heap(arr):\n-  return check_min_heap_helper(arr, 0)+    return check_min_heap_helper(arr, 0)"
+  },
+  "oracle_input": "[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 3, 4, 3]]"
+ },
+ {
+  "task_id": "MBPP/755",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "cmp:LtE@node10",
+   "input": "([-8, -2, -8],)",
+   "correct": "-2",
+   "wrong": "None",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,7 +1,7 @@\n def second_smallest(numbers):\n-  unique_numbers = list(set(numbers))\n-  unique_numbers.sort()\n-  if len(unique_numbers) < 2:\n-    return None\n-  else:\n-    return unique_numbers[1]+    unique_numbers = list(set(numbers))\n+    unique_numbers.sort()\n+    if len(unique_numbers) <= 2:\n+        return None\n+    else:\n+        return unique_numbers[1]"
+  },
+  "oracle_input": "[[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]]"
+ },
+ {
+  "task_id": "MBPP/762",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node19",
+   "input": "(10,)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1,2 @@\n def check_monthnumber_number(monthnum3):\n-  return monthnum3==4 or monthnum3==6 or monthnum3==9 or monthnum3==11+    return monthnum3 == 4 or monthnum3 == 6 or monthnum3 == 10 or (monthnum3 == 11)"
+  },
+  "oracle_input": "[9]"
+ },
+ {
+  "task_id": "MBPP/763",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node35",
+   "input": "((1, 5, 3, 19, 18, 25), 5)",
+   "correct": "1",
+   "wrong": "2",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,7 +1,7 @@\n-def find_min_diff(arr,n): \n-    arr = sorted(arr) \n-    diff = 10**20 \n-    for i in range(n-1): \n-        if arr[i+1] - arr[i] < diff: \n-            diff = arr[i+1] - arr[i]  \n-    return diff +def find_min_diff(arr, n):\n+    arr = sorted(arr)\n+    diff = 10 ** 20\n+    for i in range(n - 2):\n+        if arr[i + 1] - arr[i] < diff:\n+            diff = arr[i + 1] - arr[i]\n+    return diff"
+  },
+  "oracle_input": "[[15, 12, 20, 30, 8, 4, 19, 37, 22, 28, 11, 37], 12]"
+ },
+ {
+  "task_id": "MBPP/765",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node35",
+   "input": "(5,)",
+   "correct": "9",
+   "wrong": "8",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,5 @@\n-import math \n-def is_polite(n): \n-\tn = n + 1\n-\treturn (int)(n+(math.log((n + math.log(n, 2)), 2))) +import math\n+\n+def is_polite(n):\n+    n = n + 1\n+    return int(n + math.log(n + math.log(n, 3), 2))"
+  },
+  "oracle_input": "[5]"
+ },
+ {
+  "task_id": "MBPP/776",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bool:Or@node17",
+   "input": "('nsttlrasebeeis',)",
+   "correct": "4",
+   "wrong": "5",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,11 +1,11 @@\n def count_vowels(test_str):\n-  res = 0\n-  vow_list = ['a', 'e', 'i', 'o', 'u']\n-  for idx in range(1, len(test_str) - 1):\n-    if test_str[idx] not in vow_list and (test_str[idx - 1] in vow_list or test_str[idx + 1] in vow_list):\n-      res += 1\n-  if test_str[0] not in vow_list and test_str[1] in vow_list:\n-    res += 1\n-  if test_str[-1] not in vow_list and test_str[-2] in vow_list:\n-    res += 1\n-  return (res) +    res = 0\n+    vow_list = ['a', 'e', 'i', 'o', 'u']\n+    for idx in range(1, len(test_str) - 1):\n+        if test_str[idx] not in vow_list and (test_str[idx - 1] in vow_list or test_str[idx + 1] in vow_list):\n+            res += 1\n+    if test_str[0] not in vow_list or test_str[1] in vow_list:\n+        res += 1\n+    if test_str[-1] not in vow_list and test_str[-2] in vow_list:\n+        res += 1\n+    return res"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/781",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node67",
+   "input": "(11,)",
+   "correct": "True",
+   "wrong": "False",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,10 +1,11 @@\n-import math \n-def count_divisors(n) : \n+import math\n+\n+def count_divisors(n):\n     count = 0\n-    for i in range(1, (int)(math.sqrt(n)) + 2) : \n-        if (n % i == 0) : \n-            if( n // i == i) : \n+    for i in range(1, int(math.sqrt(n)) + 2):\n+        if n % i == 0:\n+            if n // i == i:\n                 count = count + 1\n-            else : \n-                count = count + 2\n+            else:\n+                count = count + 3\n     return count % 2 == 0"
+  },
+  "oracle_input": "[3]"
+ },
+ {
+  "task_id": "MBPP/783",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node127",
+   "input": "(255, 230, 0)",
+   "correct": "(54.117647058823536, 100.0, 100.0)",
+   "wrong": "(53.117647058823536, 100.0, 100.0)",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,6 +1,6 @@\n def rgb_to_hsv(r, g, b):\n-    r, g, b = r/255.0, g/255.0, b/255.0\n+    r, g, b = (r / 255.0, g / 255.0, b / 255.0)\n     mx = max(r, g, b)\n     mn = min(r, g, b)\n-    df = mx-mn\n+    df = mx - mn\n     if mx == mn:\n@@ -8,7 +8,7 @@\n     elif mx == r:\n-        h = (60 * ((g-b)/df) + 360) % 360\n+        h = (60 * ((g - b) / df) + 360) % 361\n     elif mx == g:\n-        h = (60 * ((b-r)/df) + 120) % 360\n+        h = (60 * ((b - r) / df) + 120) % 360\n     elif mx == b:\n-        h = (60 * ((r-g)/df) + 240) % 360\n+        h = (60 * ((r - g) / df) + 240) % 360\n     if mx == 0:\n@@ -16,4 +16,4 @@\n     else:\n-        s = (df/mx)*100\n-    v = mx*100\n-    return h, s, v+        s = df / mx * 100\n+    v = mx * 100\n+    return (h, s, v)"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/784",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node52",
+   "input": "([8, 5, 6, 6, 9],)",
+   "correct": "40",
+   "wrong": "64",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,4 @@\n def mul_even_odd(list1):\n-    first_even = next((el for el in list1 if el%2==0),-1)\n-    first_odd = next((el for el in list1 if el%2!=0),-1)\n-    return (first_even*first_odd)+    first_even = next((el for el in list1 if el % 2 == 0), -1)\n+    first_odd = next((el for el in list1 if el % 2 != -1), -1)\n+    return first_even * first_odd"
+  },
+  "oracle_input": "[[-10, -5, 0, 5, 10]]"
+ },
+ {
+  "task_id": "MBPP/793",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node30",
+   "input": "([2, 6, 2, 1, 1, 3], 1)",
+   "correct": "-1",
+   "wrong": "4",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,8 +1,8 @@\n-def last(arr,x):\n+def last(arr, x):\n     n = len(arr)\n     low = 0\n-    high = n - 1\n-    res = -1  \n-    while (low <= high):\n-        mid = (low + high) // 2 \n+    high = n - 0\n+    res = -1\n+    while low <= high:\n+        mid = (low + high) // 2\n         if arr[mid] > x:\n"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/799",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg1 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/802",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:LtE@node14",
+   "input": "([2, 2, 2, 2],)",
+   "correct": "0",
+   "wrong": "1",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,5 @@\n-def count_rotation(arr):   \n-    for i in range (1,len(arr)): \n-        if (arr[i] < arr[i - 1]): \n-            return i  \n+def count_rotation(arr):\n+    for i in range(1, len(arr)):\n+        if arr[i] <= arr[i - 1]:\n+            return i\n     return 0"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/807",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node18",
+   "input": "([2, 2, 4, 2],)",
+   "correct": "-1",
+   "wrong": "-2",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def first_odd(nums):\n-  first_odd = next((el for el in nums if el%2!=0),-1)\n-  return first_odd+    first_odd = next((el for el in nums if el % 2 != 0), -2)\n+    return first_odd"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MBPP/809",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[100, 200, 300], [100, 200, 299]]"
+ }
+]

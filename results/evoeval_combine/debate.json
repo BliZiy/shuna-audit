@@ -1,0 +1,157 @@
+[
+ {
+  "task_id": "EvoEval_combine/0",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bin:Sub@node145",
+   "input": "('8.9071', '2890.12')",
+   "correct": "'2890.12'",
+   "wrong": "'8.9071'",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -23,12 +23,10 @@\n         for i in range(len(s) - 2):\n-            if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+            if s[i] == s[i - 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n                 return False\n         return True\n-\n     a_happy = is_happy(a)\n     b_happy = is_happy(b)\n-\n-    if not a_happy and not b_happy:\n+    if not a_happy and (not b_happy):\n         return None\n-    elif a_happy and not b_happy:\n+    elif a_happy and (not b_happy):\n         return a\n@@ -44,2 +42,2 @@\n         else:\n-            return None\n+            return None"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/5",
+  "verdict": "rejected",
+  "reason": "D3 original witness refuted: docstring says sorted",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/17",
+  "verdict": "rejected",
+  "reason": "debate timed out after 120s (not confirmed)",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/24",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bin:Sub@node112",
+   "input": "('five two eigtht',)",
+   "correct": "'Not a happy string'",
+   "wrong": "err",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -21,16 +21,9 @@\n     \"\"\"\n-\n     num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n     num_list = numbers.split()\n-    \n-    # Check if the string is happy\n-    s = numbers.replace(\" \", \"\")\n+    s = numbers.replace(' ', '')\n     for i in range(len(s) - 2):\n-        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+        if s[i] == s[i + 1] or s[i] == s[i - 2] or s[i + 1] == s[i + 2]:\n             return 'Not a happy string'\n-    \n-    # If the string is happy, sort the numbers\n     num_list.sort(key=lambda x: num_dict[x])\n-    \n-    return ' '.join(num_list)\n-\n+    return ' '.join(num_list)"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/26",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node56",
+   "input": "(['nine eight seven'],)",
+   "correct": "('eight', 1)",
+   "wrong": "()",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n from typing import List, Tuple\n@@ -41,15 +40,3 @@\n     \"\"\"\n-\n-    numeral_to_number = {\n-        'zero': 0,\n-        'one': 1,\n-        'two': 2,\n-        'three': 3,\n-        'four': 4,\n-        'five': 5,\n-        'six': 6,\n-        'seven': 7,\n-        'eight': 8,\n-        'nine': 9\n-    }\n+    numeral_to_number = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 9, 'nine': 9}\n     number_to_numeral = {v: k for k, v in numeral_to_number.items()}\n@@ -69,3 +56,2 @@\n     else:\n-        return ()\n-\n+        return ()"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/29",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node39",
+   "input": "(14, 62, 44)",
+   "correct": "7",
+   "wrong": "62",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -12,3 +12,3 @@\n             return False\n-        for i in range(2, int(num**0.5) + 1):\n+        for i in range(3, int(num ** 0.5) + 1):\n             if num % i == 0:\n@@ -16,3 +16,2 @@\n         return True\n-\n     if n == 1:\n@@ -28,3 +27,2 @@\n                 n //= i\n-        return n\n-    +        return n"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/34",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node78",
+   "input": "(')(',)",
+   "correct": "['cfcd208495d565ef66e7dff9f98764da']",
+   "wrong": "['c4ca4238a0b923820dcc509a6f75849b']",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -19,8 +19,10 @@\n         return []\n-    \n+\n     def count_depth(s: str) -> int:\n-        max_depth, cnt = 0, 0\n+        max_depth, cnt = (1, 0)\n         for ch in s:\n-            if ch == \"(\": cnt += 1\n-            if ch == \")\": cnt -= 1\n+            if ch == '(':\n+                cnt += 1\n+            if ch == ')':\n+                cnt -= 1\n             max_depth = max(max_depth, cnt)\n@@ -34,5 +36,4 @@\n     for dep in depths:\n-        md5_hash = hashlib.md5(dep.encode(\"utf-8\")).hexdigest()\n+        md5_hash = hashlib.md5(dep.encode('utf-8')).hexdigest()\n         result.append(md5_hash)\n-    \n     return result"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/58",
+  "verdict": "rejected",
+  "reason": "debate timed out after 120s (not confirmed)",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/60",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node121",
+   "input": "([1, 6, 7], 4)",
+   "correct": "[6, 1]",
+   "wrong": "[]",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def smallest_even_triple(arr, n):\n@@ -26,3 +25,3 @@\n     \"\"\"\n-    a = [i * i - i + 1 for i in range(1, n + 1)]\n+    a = [i * i - i + 1 for i in range(1, n + 0)]\n     smallest_triple = None\n@@ -37,4 +36,3 @@\n     arr.append(a[smallest_triple[0]])\n-    smallest_even = min((val, idx) for idx, val in enumerate(arr) if val % 2 == 0)\n-    return [smallest_even[0], smallest_even[1]]\n-\n+    smallest_even = min(((val, idx) for idx, val in enumerate(arr) if val % 2 == 0))\n+    return [smallest_even[0], smallest_even[1]]"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/66",
+  "verdict": "rejected",
+  "reason": "no in-domain witness",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/69",
+  "verdict": "rejected",
+  "reason": "D3 original witness refuted: docstring says sorted",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/70",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node147",
+   "input": "([1, 80, 80],)",
+   "correct": "(80, 80)",
+   "wrong": "(1, 80)",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,3 @@\n-\n from typing import List, Tuple\n import math\n-\n \n@@ -21,15 +19,6 @@\n     def special_factorial(n: int) -> int:\n-        return math.prod(math.factorial(i) for i in range(1, n + 1))\n-    # Calculate the special factorials for all numbers\n+        return math.prod((math.factorial(i) for i in range(1, n + 1)))\n     special_factorials = {n: special_factorial(n) for n in numbers}\n-    \n-    # Sort the numbers by their special factorials\n     sorted_numbers = sorted(numbers, key=special_factorials.get)\n-    \n-    # Find the pair with the smallest difference\n-    closest_pair = min(\n-        ((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)),\n-        key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[0]]\n-    )\n-    \n-    return closest_pair\n+    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[1]])\n+    return closest_pair"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_combine/72",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bin:Add@node101",
+   "input": "([26, 20, 26], 10000)",
+   "correct": "True",
+   "wrong": "False",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n from typing import List\n@@ -16,3 +15,2 @@\n     \"\"\"\n-    # Calculate special factorial for each number\n     special_factorials = []\n@@ -23,9 +21,6 @@\n         special_factorials.append(special_fact)\n-\n-    # Check if any two factorials are closer than threshold\n     for i in range(len(special_factorials)):\n-        for j in range(i+1, len(special_factorials)):\n-            if abs(special_factorials[i] - special_factorials[j]) < threshold:\n+        for j in range(i + 1, len(special_factorials)):\n+            if abs(special_factorials[i] + special_factorials[j]) < threshold:\n                 return True\n-\n-    return False\n+    return False"
+  },
+  "oracle_input": null
+ }
+]

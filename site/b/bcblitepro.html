@@ -1,0 +1,237 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>BigCodeBench-Lite Pro</title><style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;color:#111}h1{margin-bottom:0}.sub{color:#555}
+table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border-bottom:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}.b{padding:2px 6px;border-radius:4px;font-size:12px;white-space:nowrap}.v{background:#fde2e1;color:#900}.s{background:#fff4d6;color:#7a5b00}.r{background:#e3ecff;color:#123d99}
+code,pre{font:12px ui-monospace,monospace}pre{background:#f7f7f7;padding:8px;overflow:auto;max-height:260px}.draft{background:#111;color:#fff;padding:6px 10px;border-radius:4px;display:inline-block}a{color:#0b57d0}</style><p class=draft>Published Nov 2026</p><p><a href='/'>← leaderboard</a></p><h1>BigCodeBench-Lite Pro</h1><p>57 tasks · <b>2 confirmed</b> · 0 helper-only · 0 suspected · 6 rejected · 1 reject a correct solution</p><p class=sub>Likely new; same authors as HumanEval Pro; included in the same disclosure.</p><table><tr><th>Task</th><th>Status</th><th>Finding</th></tr><tr><td>BCBLitePro/213</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: default mu changed from 0 to -1 and tests do not notice<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -3,3 +3,2 @@
+ import matplotlib.pyplot as plt
+-
+ 
+@@ -37,6 +36,4 @@
+     sample = np.random.normal(mu, sigma, sample_size)
+-    
+     fig, ax = plt.subplots()
+     ax.hist(sample, bins=30, density=True, alpha=0.5, label=&#x27;Sample Histogram&#x27;)
+-    
+     xmin, xmax = ax.get_xlim()
+@@ -45,8 +42,5 @@
+     ax.plot(x, p, &#x27;k&#x27;, linewidth=2, label=&#x27;Normal PDF&#x27;)
+-    
+-    ax.set_title(&quot;Normal Distribution with $\\mu = %0.2f, \\sigma = %0.2f$&quot; % (mu, sigma))
+-    ax.legend()    
+-    return ax, np.mean(sample), np.std(sample)
+-
+-# You are tasked with analyzing the performance of a manufacturing process that produces parts with specific dimensions. The process is known to follow a normal distribution with a given mean and standard deviation. To assess the process, you need to generate multiple samples from the distribution, calculate the empirical mean and standard deviation for each sample, and then plot the histograms and probability density functions for all samples together. Additionally, you should calculate the overall empirical mean and standard deviation across all samples. The function should return the Axes object representing the plot, the list of empirical means and standard deviations for each sample, and the overall empirical mean and standard deviation.import numpy as np
++    ax.set_title(&#x27;Normal Distribution with $\\mu = %0.2f, \\sigma = %0.2f$&#x27; % (mu, sigma))
++    ax.legend()
++    return (ax, np.mean(sample), np.std(sample))
+ from scipy import stats
+@@ -54,4 +48,3 @@
+ 
+-def analyze_process(mu=0, sigma=1, sample_size=1000, num_samples=5, seed=0):
+-
++def analyze_process(mu=-1, sigma=1, sample_size=1000, num_samples=5, seed=0):
+     plt.figure()
+@@ -66,3 +59,2 @@
+     plt.suptitle(&#x27;Normal Distribution Analysis with $\\mu = %0.2f, \\sigma = %0.2f$&#x27; % (mu, sigma))
+-    return ax, all_means, all_stds, overall_mean, overall_std
+-
++    return (ax, all_means, all_stds, overall_mean, overall_std)</pre><p>Witness input <code>()</code> → correct <code>(&lt;Axes: title={&#x27;center&#x27;: &#x27;Normal Distribution with $\\mu = 0.00, \\sigma = 1.00$&#x27;}&gt;, [np.float64(-0.045256707490195384), np.float64(0.03881247615960185), np.float64(-0.04784993519517787), np.float64(0</code>, wrong solution <code>(&lt;Axes: title={&#x27;center&#x27;: &#x27;Normal Distribution with $\\mu = -1.00, \\sigma = 1.00$&#x27;}&gt;, [np.float64(-1.0452567074901953), np.float64(-0.9611875238403982), np.float64(-1.0478499351951778), np.float64(-0.</code></p></details></td></tr><tr><td>BCBLitePro/897</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: leap-second year list altered, total off by 2 s<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -3,33 +3,3 @@
+ from dateutil.parser import parse
+-
+-LEAP_SECONDS = np.array(
+-    [
+-        1972,
+-        1973,
+-        1974,
+-        1975,
+-        1976,
+-        1977,
+-        1978,
+-        1979,
+-        1980,
+-        1981,
+-        1982,
+-        1983,
+-        1985,
+-        1988,
+-        1990,
+-        1993,
+-        1994,
+-        1997,
+-        1999,
+-        2006,
+-        2009,
+-        2012,
+-        2015,
+-        2016,
+-        2020,
+-    ]
+-)
+-
++LEAP_SECONDS = np.array([1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1985, 1988, 1990, 1993, 1994, 1997, 1999, 2006, 2009, 2012, 2015, 2016, 2020])
+ 
+@@ -62,13 +32,6 @@
+     current_date = datetime.now()
+-
+     total_seconds = (current_date - given_date).total_seconds()
+-
+-    # Count leap seconds that occurred between the two dates
+-    leap_seconds = np.sum(LEAP_SECONDS &gt;= given_date.year)
+-
++    leap_seconds = np.sum(LEAP_SECONDS &gt; given_date.year)
+     total_seconds += leap_seconds
+-
+     return int(total_seconds)
+-
+-# Given a list of date strings, calculate the total number of seconds elapsed from each date until the current time, including any leap seconds that occurred in this period. Return the sum of all these elapsed seconds.
+ from datetime import datetime
+@@ -76,33 +39,5 @@
+ from dateutil.parser import parse
+-LEAP_SECONDS = np.array(
+-    [
+-        1972,
+-        1973,
+-        1974,
+-        1975,
+-        1976,
+-        1977,
+-        1978,
+-        1979,
+-        1980,
+-        1981,
+-        1982,
+-        1983,
+-        1985,
+-        1988,
+-        1990,
+-        1993,
+-        1994,
+-        1997,
+-        1999,
+-        2006,
+-        2009,
+-        2012,
+-        2015,
+-        2016,
+-        2020,
+-    ]
+-)
++LEAP_SECONDS = np.array([1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1985, 1988, 1990, 1993, 1994, 1997, 1999, 2006, 2009, 2012, 2015, 2016, 2020])
++
+ def total_elapsed_seconds(date_list):
+-
+     total_seconds = 0
+@@ -110,4 +45,2 @@
+         total_seconds += task_func(date_str)
+-    return total_seconds
+-
+-
++    return total_seconds</pre><p>Witness input <code>([&#x27;1972-01-01&#x27;, &#x27;2000-01-01&#x27;, &#x27;2020-01-01&#x27;],)</code> → correct <code>2789493521</code>, wrong solution <code>2789493519</code></p></details></td></tr><tr><td>BCBLitePro/551</td><td><span class='b r'>rejects correct</span></td><td>expected values only hold when the machine&#x27;s timezone is UTC+8 (reference returns 1 in UTC, 28801 in Asia/Shanghai)<details><summary>evidence</summary><pre>null</pre></details></td></tr><tr><td>BCBLitePro/325</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arity<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>BCBLitePro/394</td><td><span class='b r'>rejected</span></td><td>internal seeding detail<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -2,3 +2,2 @@
+ import numpy as np
+-
+ 
+@@ -24,19 +23,11 @@
+     &quot;&quot;&quot;
+-    # Setting the random seed for reproducibility
+     np.random.seed(seed)
+-
+-    # Generating random points
+     x = np.random.rand(n)
+     y = np.random.rand(n)
+-
+-    # Plotting
+     fig, ax = plt.subplots()
+     ax.scatter(x, y)
+-    ax.set_title(&quot;Scatter plot of random points&quot;)
+-    ax.set_xlabel(&quot;X&quot;)
+-    ax.set_ylabel(&quot;Y&quot;)
+-
+-    return fig, list(zip(x, y))
+-
+-# Create a function that generates a grid of scatter plots, where each scatter plot represents a different set of random points. The grid should have &#x27;rows&#x27; number of rows and &#x27;cols&#x27; number of columns. Each scatter plot should have &#x27;n&#x27; points, and the points should be generated with different seeds to ensure variability. The function should return a list of matplotlib figures, each representing a scatter plot, and a list of lists containing the points for each scatter plot.import matplotlib.pyplot as plt
++    ax.set_title(&#x27;Scatter plot of random points&#x27;)
++    ax.set_xlabel(&#x27;X&#x27;)
++    ax.set_ylabel(&#x27;Y&#x27;)
++    return (fig, list(zip(x, y)))
+ import numpy as np
+@@ -44,3 +35,2 @@
+ def generate_grid_of_plots(rows, cols, n):
+-
+     figures = []
+@@ -50,3 +40,3 @@
+         for j in range(cols):
+-            seed = i * cols + j
++            seed = i // cols + j
+             fig, points = task_func(n, seed)
+@@ -55,4 +45,2 @@
+         points_grid.append(points_row)
+-    return figures, points_grid
+-
+-
++    return (figures, points_grid)</pre><p>Witness input <code>(2, 2, 5)</code> → correct <code>([&lt;Figure size 640x480 with 1 Axes&gt;, &lt;Figure size 640x480 with 1 Axes&gt;, &lt;Figure size 640x480 with 1 Axes&gt;, &lt;Figure size 640x480 with 1 Axes&gt;], [[[(np.float64(0.5488135039273248), np.float64(0.64589411</code>, wrong solution <code>([&lt;Figure size 640x480 with 1 Axes&gt;, &lt;Figure size 640x480 with 1 Axes&gt;, &lt;Figure size 640x480 with 1 Axes&gt;, &lt;Figure size 640x480 with 1 Axes&gt;], [[[(np.float64(0.5488135039273248), np.float64(0.64589411</code></p></details></td></tr><tr><td>BCBLitePro/699</td><td><span class='b r'>rejected</span></td><td>no in-domain witness<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>BCBLitePro/767</td><td><span class='b r'>rejected</span></td><td>np.float64(0.0) vs 0.0 is harmless<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -39,24 +39,11 @@
+             distances.append(distance.euclidean(point1, point2))
+-            
+     return distances
+-
+-# Given a list of 2D coordinates, calculate the total travel distance for a path that starts at the first point, visits each consecutive point, and returns to the starting point. The function should handle cases where a tuple contains just one number, assuming both coordinates are equal to this number. If the list is empty or contains only one point, the function should return 0.0.from itertools import zip_longest
+ from scipy.spatial import distance
+ 
+-
+ def total_travel_distance(points):
+-
+-    if not points or len(points) == 1:
++    if not points or len(points) == 0:
+         return 0.0
+-    
+-    # Ensure all points are 2D
+     processed_points = [(p, p) if isinstance(p, (int, float)) else (p[0], p[0]) if len(p) == 1 else p for p in points]
+-    
+-    # Calculate distances between consecutive points
+     distances = task_func(processed_points)
+-    
+-    # Add distance from last point back to the first point
+     distances.append(distance.euclidean(processed_points[-1], processed_points[0]))
+-    
+-    return sum(distances)
+-
++    return sum(distances)</pre><p>Witness input <code>([(1, 1)],)</code> → correct <code>0.0</code>, wrong solution <code>np.float64(0.0)</code></p></details></td></tr><tr><td>BCBLitePro/815</td><td><span class='b r'>rejected</span></td><td>output difference not reviewable<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -3,3 +3,2 @@
+ import string
+-
+ 
+@@ -32,15 +31,7 @@
+     ALPHABETS = string.ascii_lowercase
+-    # Generate all two-letter combinations of alphabets
+-    permutations = [&#x27;&#x27;.join(x) for x in itertools.permutations(ALPHABETS, 2)]
+-    combinations = permutations + [x*2 for x in ALPHABETS]
+-    
+-    # Generate all two-letter combinations in the word
++    permutations = [&#x27;&#x27;.join(x) for x in itertools.permutations(ALPHABETS, 1)]
++    combinations = permutations + [x * 2 for x in ALPHABETS]
+     word_combinations = [&#x27;&#x27;.join(x) for x in zip(word, word[1:])]
+-    # Count the occurrences of each two-letter combination in the word
+     word_counter = Counter(word_combinations)
+-
+-    # Create the dictionary with the counts
+     return {key: word_counter.get(key, 0) for key in combinations}
+-
+-# Given a list of words, create a dictionary where each key is a two-letter combination of the lowercase English alphabets, and the value is a list of frequencies of this combination across all words. If a combination does not appear in a word, its frequency for that word should be 0. The final dictionary should aggregate these frequencies across all words.from collections import Counter
+ import itertools
+@@ -49,3 +40,2 @@
+ def aggregate_frequencies(words: list) -&gt; dict:
+-
+     all_combinations = [&#x27;&#x27;.join(pair) for pair in itertools.product(string.ascii_lowercase, repeat=2)]
+@@ -56,4 +46,2 @@
+             frequency_dict[combo].append(word_freq.get(combo, 0))
+-    return frequency_dict
+-
+-
++    return frequency_dict</pre><p>Witness input <code>([&#x27;hello&#x27;, &#x27;world&#x27;, &#x27;test&#x27;],)</code> → correct <code>{&#x27;aa&#x27;: [0, 0, 0], &#x27;ab&#x27;: [0, 0, 0], &#x27;ac&#x27;: [0, 0, 0], &#x27;ad&#x27;: [0, 0, 0], &#x27;ae&#x27;: [0, 0, 0], &#x27;af&#x27;: [0, 0, 0], &#x27;ag&#x27;: [0, 0, 0], &#x27;ah&#x27;: [0, 0, 0], &#x27;ai&#x27;: [0, 0, 0], &#x27;aj&#x27;: [0, 0, 0], &#x27;ak&#x27;: [0, 0, 0], &#x27;al&#x27;: [0, 0,</code>, wrong solution <code>{&#x27;aa&#x27;: [0, 0, 0], &#x27;ab&#x27;: [0, 0, 0], &#x27;ac&#x27;: [0, 0, 0], &#x27;ad&#x27;: [0, 0, 0], &#x27;ae&#x27;: [0, 0, 0], &#x27;af&#x27;: [0, 0, 0], &#x27;ag&#x27;: [0, 0, 0], &#x27;ah&#x27;: [0, 0, 0], &#x27;ai&#x27;: [0, 0, 0], &#x27;aj&#x27;: [0, 0, 0], &#x27;ak&#x27;: [0, 0, 0], &#x27;al&#x27;: [0, 0,</code></p></details></td></tr><tr><td>BCBLitePro/816</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arity<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr></table><hr><p class=sub>Shuna · Reward Integrity Leaderboard · generated 2026-10-18 · <a href='/method.html'>method & false-positive policy</a></p>

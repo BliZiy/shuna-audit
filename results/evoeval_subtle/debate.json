@@ -1,0 +1,53 @@
+[
+ {
+  "task_id": "EvoEval_subtle/6",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node41",
+   "input": "('))() ))(() ()(((())))(()(( ',)",
+   "correct": "[4, 0, 0]",
+   "wrong": "[4, 0, -1]",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,2 @@\n-\n from typing import List\n-\n \n@@ -13,13 +11,11 @@\n \n-\n-    \n     def count_depth(s: str) -> int:\n-        max_depth, cnt = 0, 0\n+        max_depth, cnt = (-1, 0)\n         for ch in s:\n-            if ch == \"(\": cnt += 1\n-            if ch == \")\": cnt -= 1\n+            if ch == '(':\n+                cnt += 1\n+            if ch == ')':\n+                cnt -= 1\n             max_depth = max(max_depth, cnt)\n         return max_depth\n-    \n-    return sorted([count_depth(s) for s in paren_string.split(\" \") if s != \"\"], reverse=True)\n-\n+    return sorted([count_depth(s) for s in paren_string.split(' ') if s != ''], reverse=True)"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_subtle/24",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_subtle/25",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_subtle/60",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arity",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "EvoEval_subtle/90",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node18",
+   "input": "([5, 26],)",
+   "correct": "5",
+   "wrong": "None",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def next_largest(lst):\n@@ -12,5 +11,4 @@\n     \"\"\"\n-\n-\n-    if len(lst) <= 1: return None\n+    if len(lst) <= 2:\n+        return None\n     sorted_list = sorted(lst, reverse=True)\n@@ -18,3 +16,2 @@\n         if x != sorted_list[0]:\n-            return x \n-\n+            return x"
+  },
+  "oracle_input": null
+ }
+]

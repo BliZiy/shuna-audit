@@ -1,0 +1,47 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>EvoEval Subtle</title><style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;color:#111}h1{margin-bottom:0}.sub{color:#555}
+table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border-bottom:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}.b{padding:2px 6px;border-radius:4px;font-size:12px;white-space:nowrap}.v{background:#fde2e1;color:#900}.s{background:#fff4d6;color:#7a5b00}.r{background:#e3ecff;color:#123d99}
+code,pre{font:12px ui-monospace,monospace}pre{background:#f7f7f7;padding:8px;overflow:auto;max-height:260px}.draft{background:#111;color:#fff;padding:6px 10px;border-radius:4px;display:inline-block}a{color:#0b57d0}</style><p class=draft>Published Nov 2026</p><p><a href='/'>← leaderboard</a></p><h1>EvoEval Subtle</h1><p>100 tasks · <b>1 confirmed</b> · 0 helper-only · 0 suspected · 4 rejected · 0 reject a correct solution</p><p class=sub>Spec/reference bugs already reported (issue #2, 2025); weak-test findings likely new.</p><table><tr><th>Task</th><th>Status</th><th>Finding</th></tr><tr><td>EvoEval_subtle/90</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: 2nd largest of a 2-element list exists; mutant returns None<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def next_largest(lst):
+@@ -12,5 +11,4 @@
+     &quot;&quot;&quot;
+-
+-
+-    if len(lst) &lt;= 1: return None
++    if len(lst) &lt;= 2:
++        return None
+     sorted_list = sorted(lst, reverse=True)
+@@ -18,3 +16,2 @@
+         if x != sorted_list[0]:
+-            return x 
+-
++            return x</pre><p>Witness input <code>([5, 26],)</code> → correct <code>5</code>, wrong solution <code>None</code></p></details></td></tr><tr><td>EvoEval_subtle/24</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_subtle/25</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_subtle/6</td><td><span class='b r'>rejected</span></td><td>unbalanced parentheses input<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,2 @@
+-
+ from typing import List
+-
+ 
+@@ -13,13 +11,11 @@
+ 
+-
+-    
+     def count_depth(s: str) -&gt; int:
+-        max_depth, cnt = 0, 0
++        max_depth, cnt = (-1, 0)
+         for ch in s:
+-            if ch == &quot;(&quot;: cnt += 1
+-            if ch == &quot;)&quot;: cnt -= 1
++            if ch == &#x27;(&#x27;:
++                cnt += 1
++            if ch == &#x27;)&#x27;:
++                cnt -= 1
+             max_depth = max(max_depth, cnt)
+         return max_depth
+-    
+-    return sorted([count_depth(s) for s in paren_string.split(&quot; &quot;) if s != &quot;&quot;], reverse=True)
+-
++    return sorted([count_depth(s) for s in paren_string.split(&#x27; &#x27;) if s != &#x27;&#x27;], reverse=True)</pre><p>Witness input <code>(&#x27;))() ))(() ()(((())))(()(( &#x27;,)</code> → correct <code>[4, 0, 0]</code>, wrong solution <code>[4, 0, -1]</code></p></details></td></tr><tr><td>EvoEval_subtle/60</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arity<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr></table><hr><p class=sub>Shuna · Reward Integrity Leaderboard · generated 2026-10-18 · <a href='/method.html'>method & false-positive policy</a></p>

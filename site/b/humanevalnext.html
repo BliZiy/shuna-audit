@@ -1,0 +1,310 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>HumanEvalNext (public 82)</title><style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;color:#111}h1{margin-bottom:0}.sub{color:#555}
+table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border-bottom:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}.b{padding:2px 6px;border-radius:4px;font-size:12px;white-space:nowrap}.v{background:#fde2e1;color:#900}.s{background:#fff4d6;color:#7a5b00}.r{background:#e3ecff;color:#123d99}
+code,pre{font:12px ui-monospace,monospace}pre{background:#f7f7f7;padding:8px;overflow:auto;max-height:260px}.draft{background:#111;color:#fff;padding:6px 10px;border-radius:4px;display:inline-block}a{color:#0b57d0}</style><p class=draft>Published Nov 2026</p><p><a href='/'>← leaderboard</a></p><h1>HumanEvalNext (public 82)</h1><p>82 tasks · <b>7 confirmed</b> · 0 helper-only · 0 suspected · 7 rejected · 0 reject a correct solution</p><p class=sub>Likely new (2025 TSE benchmark; only 82 tasks public).</p><table><tr><th>Task</th><th>Status</th><th>Finding</th></tr><tr><td>HumanEvalNext/11</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: string_xor(&#x27;11100&#x27;,&#x27;1010010&#x27;) must be &#x27;1001110&#x27;<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ from typing import List
+-
+ 
+@@ -13,3 +12,3 @@
+     if len(a) &lt; len(b):
+-        a = &#x27;0&#x27; * (len(b) - len(a)) + a
++        a = &#x27;0&#x27; * (len(b) + len(a)) + a
+     elif len(b) &lt; len(a):
+@@ -22,3 +21,2 @@
+             return &#x27;1&#x27;
+-
+-    return &#x27;&#x27;.join(xor(x, y) for x, y in zip(a, b))
++    return &#x27;&#x27;.join((xor(x, y) for x, y in zip(a, b)))</pre><p>Witness input <code>(&#x27;11100&#x27;, &#x27;1010010&#x27;)</code> → correct <code>&#x27;1001110&#x27;</code>, wrong solution <code>&#x27;1010010&#x27;</code></p></details></td></tr><tr><td>HumanEvalNext/46</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: fib4(4)=2<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -20,8 +20,6 @@
+     assert n &gt;= 0
+-
+     results = [0, 0, 2, 0]
+-    if n &lt; 4:
++    if n &lt; 5:
+         assert n &gt;= 0
+         return results[n]
+-
+     for _ in range(4, n + 1):
+@@ -29,3 +27,2 @@
+         results.pop(0)
+-
+-    return results[-1]
++    return results[-1]</pre><p>Witness input <code>(4,)</code> → correct <code>2</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>HumanEvalNext/49</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: 2^3 mod 2 = 0<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -14,5 +14,5 @@
+     for _ in range(n):
+-        ret = (2 * ret) % p
+-    while ret &lt; 0:
++        ret = 2 * ret % p
++    while ret &lt;= 0:
+         ret += abs(p)
+-    return ret
++    return ret</pre><p>Witness input <code>(3, 2)</code> → correct <code>0</code>, wrong solution <code>2</code></p></details></td></tr><tr><td>HumanEvalNext/71</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: (7,3,4) is degenerate -&gt; -1<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -14,9 +14,7 @@
+         return -1
+-
+-    if a + b &lt;= c or a + c &lt;= b or b + c &lt;= a:
++    if a + b &lt;= c or a + c &lt;= b or b + c &lt; a:
+         return -1
+-
+-    s = (a + b + c)/2
++    s = (a + b + c) / 2
+     area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+     area = round(area, 2)
+-    return area
++    return area</pre><p>Witness input <code>(7, 3, 4)</code> → correct <code>-1</code>, wrong solution <code>0.0</code></p></details></td></tr><tr><td>HumanEvalNext/72</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: [1] with w=2 flies<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ from typing import List
+-
+ 
+@@ -28,18 +27,9 @@
+     if w &lt; 0:
+-        # Invalid weight
+         return False
+-
+     if sum(q) &gt; w:
+-        # Too heavy
+         return False
+-    
+-    if len(q) == 0 or sum(q) &lt;= 0:
+-        # Nothing to fly
++    if len(q) == 0 or sum(q) &lt;= 1:
+         return False
+-    
+     if any([x &lt; 0 for x in q]):
+-        # Negative elements
+         return False
+-    
+-    # Remove leading and trailing zeros
+     while q and q[0] == 0:
+@@ -49,9 +39,6 @@
+     if len(q) == 0 or 0 in q:
+-        # Invalid object
+         return False
+-
+-    i, j = 0, len(q) - 1
++    i, j = (0, len(q) - 1)
+     while i &lt; j:
+         if q[i] != q[j]:
+-            # Unbalanced
+             return False
+@@ -59,2 +46,2 @@
+         j -= 1
+-    return True
++    return True</pre><p>Witness input <code>([1], 2)</code> → correct <code>True</code>, wrong solution <code>False</code></p></details></td></tr><tr><td>HumanEvalNext/75</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: 404 = 2*2*101 and 101 &gt; 100<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -19,3 +19,2 @@
+         return True
+-
+     for i in range(2, 101):
+@@ -26,7 +25,7 @@
+                 continue
+-            for k in range(2, 101):
++            for k in range(2, 102):
+                 if not is_prime(k):
+                     continue
+-                if i*j*k == a:
++                if i * j * k == a:
+                     return True
+-    return False
++    return False</pre><p>Witness input <code>(404,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>HumanEvalNext/80</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: &#x27;lleho&#x27; has repeated adjacent letters<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -13,6 +13,5 @@
+         return False
+-
+     for i in range(len(s) - 2):
+-        if s[i] == s[i+1] or s[i+1] == s[i+2] or s[i] == s[i+2]:
++        if s[i] == s[i + 2] or s[i + 1] == s[i + 2] or s[i] == s[i + 2]:
+             return False
+-    return True
++    return True</pre><p>Witness input <code>(&#x27;lleho&#x27;,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>HumanEvalNext/1</td><td><span class='b r'>rejected</span></td><td>unbalanced input, ambiguous<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ from typing import List
+-
+ 
+@@ -17,10 +16,9 @@
+     &quot;&quot;&quot;
+-    input = &quot;&quot;.join([x for x in paren_string if x in &#x27;()&#x27;])
++    input = &#x27;&#x27;.join([x for x in paren_string if x in &#x27;()&#x27;])
+     breakpoints = input.split(&#x27;()&#x27;)
+     groups = []
+-
+     for i in range(len(breakpoints) - 1):
+         group = &#x27;()&#x27;
+-        while breakpoints[i] != &quot;&quot; and breakpoints[i].endswith(&#x27;(&#x27;) and breakpoints[i + 1] != &quot;&quot; and breakpoints[i + 1].startswith(&#x27;)&#x27;):
+-            group = f&quot;({group})&quot;
++        while breakpoints[i] != &#x27;&#x27; and breakpoints[i].endswith(&#x27;(&#x27;) and (breakpoints[i + 1] != &#x27;&#x27;) and breakpoints[i + 1].startswith(&#x27;)&#x27;):
++            group = f&#x27;({group})&#x27;
+             breakpoints[i] = breakpoints[i][:-1]
+@@ -28,3 +26,2 @@
+         groups.append(group)
+-
+     while &#x27;&#x27; in breakpoints:
+@@ -33,3 +30,2 @@
+         end = None
+-
+         for i in range(len(breakpoints)):
+@@ -39,3 +35,3 @@
+                 end = None
+-            elif breakpoints[i] == &quot;&quot; and start is not None:
++            elif breakpoints[i] == &#x27;&#x27; and start is not None:
+                 middle = True
+@@ -44,10 +40,8 @@
+                 break
+-
+         if start is not None and end is not None:
+-            chained = &quot;&quot;.join(groups[start:end])
+-            while breakpoints[start] != &quot;&quot; and breakpoints[start].endswith(&#x27;(&#x27;) and breakpoints[end] != &quot;&quot; and breakpoints[end].startswith(&#x27;)&#x27;):
+-                chained = f&quot;({chained})&quot;
++            chained = &#x27;&#x27;.join(groups[start:end])
++            while breakpoints[start] != &#x27;&#x27; and breakpoints[start].endswith(&#x27;(&#x27;) and (breakpoints[end] != &#x27;&#x27;) and breakpoints[end].startswith(&#x27;)&#x27;):
++                chained = f&#x27;({chained})&#x27;
+                 breakpoints[start] = breakpoints[start][:-1]
+-                breakpoints[end] = breakpoints[end][1:]
+-
++                breakpoints[end] = breakpoints[end][0:]
+             groups = groups[:start] + [chained] + groups[end:]
+@@ -56,3 +50,2 @@
+             break
+-
+-    return groups
++    return groups</pre><p>Witness input <code>(&#x27;(((())(()))&#x27;,)</code> → correct <code>[&#x27;((())(()))&#x27;]</code>, wrong solution <code>[&#x27;(((())(())))&#x27;]</code></p></details></td></tr><tr><td>HumanEvalNext/19</td><td><span class='b r'>rejected</span></td><td>garbage words<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -10,14 +10,3 @@
+     &quot;&quot;&quot;
+-    value_map = {
+-        &#x27;zero&#x27;: 0,
+-        &#x27;one&#x27;: 1,
+-        &#x27;two&#x27;: 2,
+-        &#x27;three&#x27;: 3,
+-        &#x27;four&#x27;: 4,
+-        &#x27;five&#x27;: 5,
+-        &#x27;six&#x27;: 6,
+-        &#x27;seven&#x27;: 7,
+-        &#x27;eight&#x27;: 8,
+-        &#x27;nine&#x27;: 9
+-    }
+-    return &#x27; &#x27;.join(sorted([x for x in numbers.split(&#x27; &#x27;) if x and x in value_map], key=lambda x: value_map[x]))
++    value_map = {&#x27;zero&#x27;: 0, &#x27;one&#x27;: 1, &#x27;two&#x27;: 2, &#x27;three&#x27;: 3, &#x27;four&#x27;: 4, &#x27;five&#x27;: 5, &#x27;six&#x27;: 6, &#x27;seven&#x27;: 7, &#x27;eight&#x27;: 8, &#x27;nine&#x27;: 9}
++    return &#x27; &#x27;.join(sorted([x for x in numbers.split(&#x27; &#x27;) if x or x in value_map], key=lambda x: value_map[x]))</pre><p>Witness input <code>(&#x27; efzhion ugi sfntrn rv eeieoeve&#x27;,)</code> → correct <code>&#x27;&#x27;</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>HumanEvalNext/20</td><td><span class='b r'>rejected</span></td><td>tie-breaking wording ambiguous<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ from typing import List, Tuple
+-
+ 
+@@ -16,6 +15,4 @@
+     assert len(numbers) &gt;= 2
+-
+     closest_pair = None
+     distance = None
+-
+     for idx, elem in enumerate(numbers):
+@@ -28,6 +25,5 @@
+                     new_distance = abs(elem - elem2)
+-                    if new_distance &lt; distance:
++                    if new_distance &lt;= distance:
+                         distance = new_distance
+                         closest_pair = tuple(sorted([elem, elem2]))
+-
+-    return closest_pair
++    return closest_pair</pre><p>Witness input <code>([1.0, 1.0, 1.0, 4.0, 4.0],)</code> → correct <code>(1.0, 1.0)</code>, wrong solution <code>(4.0, 4.0)</code></p></details></td></tr><tr><td>HumanEvalNext/32</td><td><span class='b r'>rejected</span></td><td>violates the stated coefficient constraint<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -2,3 +2,2 @@
+ from typing import List
+-
+ 
+@@ -10,3 +9,2 @@
+     return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+-
+ 
+@@ -27,4 +25,4 @@
+     &quot;&quot;&quot;
+-    begin, end = -1., 1.
+-    while poly(xs, begin) * poly(xs, end) &gt; 0:
++    begin, end = (-1.0, 1.0)
++    while poly(xs, begin) * poly(xs, end) &gt; 1:
+         begin *= 2.0
+@@ -37,2 +35,2 @@
+             end = center
+-    return begin
++    return begin</pre><p>Witness input <code>([-1, 0],)</code> → correct <code>-inf</code>, wrong solution <code>0.9999999999417923</code></p></details></td></tr><tr><td>HumanEvalNext/59</td><td><span class='b r'>rejected</span></td><td>n=7 is prime (spec says not prime)<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -21,5 +21,5 @@
+     largest = 1
+-    for j in range(2, n + 1):
++    for j in range(2, n - 1):
+         if n % j == 0 and is_prime(j):
+             largest = max(largest, j)
+-    return largest
++    return largest</pre><p>Witness input <code>(7,)</code> → correct <code>7</code>, wrong solution <code>1</code></p></details></td></tr><tr><td>HumanEvalNext/6</td><td><span class='b r'>rejected</span></td><td>complex unbalanced input, ambiguous<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ from typing import List
+-
+ 
+@@ -11,13 +10,12 @@
+     Example:
+-        &gt;&gt;&gt; parse_nested_parens(&#x27;{\&quot;example\&quot;: \&quot;(()[]()) ((()))()((())()() )\&quot;}&#x27;)
++        &gt;&gt;&gt; parse_nested_parens(&#x27;{&quot;example&quot;: &quot;(()[]()) ((()))()((())()() )&quot;}&#x27;)
+         [2, 3, 1, 3]
+     &quot;&quot;&quot;
+-    input = &quot;&quot;.join([x for x in paren_string if x in &#x27;()&#x27;])
++    input = &#x27;&#x27;.join([x for x in paren_string if x in &#x27;()&#x27;])
+     breakpoints = input.split(&#x27;()&#x27;)
+     groups = []
+-
+     for i in range(len(breakpoints) - 1):
+         group = &#x27;()&#x27;
+-        while breakpoints[i] != &quot;&quot; and breakpoints[i].endswith(&#x27;(&#x27;) and breakpoints[i + 1] != &quot;&quot; and breakpoints[i + 1].startswith(&#x27;)&#x27;):
+-            group = f&quot;({group})&quot;
++        while breakpoints[i] != &#x27;&#x27; and breakpoints[i].endswith(&#x27;(&#x27;) and (breakpoints[i + 1] != &#x27;&#x27;) and breakpoints[i + 1].startswith(&#x27;)&#x27;):
++            group = f&#x27;({group})&#x27;
+             breakpoints[i] = breakpoints[i][:-1]
+@@ -25,3 +23,2 @@
+         groups.append(group)
+-
+     while &#x27;&#x27; in breakpoints:
+@@ -30,3 +27,2 @@
+         end = None
+-
+         for i in range(len(breakpoints)):
+@@ -36,21 +32,18 @@
+                 end = None
+-            elif breakpoints[i] == &quot;&quot; and start is not None:
++            elif breakpoints[i] == &#x27;&#x27; and start is not None:
+                 middle = True
+-            elif breakpoints[i].startswith(&#x27;)&#x27;) and middle:
++            elif breakpoints[i].startswith(&#x27;)&#x27;) or middle:
+                 end = i
+                 break
+-
+         if start is not None and end is not None:
+-            chained = &quot;&quot;.join(groups[start:end])
+-            while breakpoints[start] != &quot;&quot; and breakpoints[start].endswith(&#x27;(&#x27;) and breakpoints[end] != &quot;&quot; and breakpoints[end].startswith(&#x27;)&#x27;):
+-                chained = f&quot;({chained})&quot;
++            chained = &#x27;&#x27;.join(groups[start:end])
++            while breakpoints[start] != &#x27;&#x27; and breakpoints[start].endswith(&#x27;(&#x27;) and (breakpoints[end] != &#x27;&#x27;) and breakpoints[end].startswith(&#x27;)&#x27;):
++                chained = f&#x27;({chained})&#x27;
+                 breakpoints[start] = breakpoints[start][:-1]
+                 breakpoints[end] = breakpoints[end][1:]
+-
+             groups = groups[:start] + [chained] + groups[end:]
+-            breakpoints = breakpoints[:start] + \
+-                [breakpoints[start]] + breakpoints[end:]
++            breakpoints = breakpoints[:start] + [breakpoints[start]] + breakpoints[end:]
+         else:
+             break
+-    
++
+     def depth(s):
+@@ -65,3 +58,2 @@
+         return max_depth
+-
+-    return [depth(group) for group in groups]
++    return [depth(group) for group in groups]</pre><p>Witness input <code>(&#x27;)()))()((()()((( ())() )() &#x27;,)</code> → correct <code>[1, 1, 1, 1, 3, 1]</code>, wrong solution <code>[1, 1, 1, 1, 2, 1, 1]</code></p></details></td></tr><tr><td>HumanEvalNext/76</td><td><span class='b r'>rejected</span></td><td>no in-domain witness<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr></table><hr><p class=sub>Shuna · Reward Integrity Leaderboard · generated 2026-10-18 · <a href='/method.html'>method & false-positive policy</a></p>

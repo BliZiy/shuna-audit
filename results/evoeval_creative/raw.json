@@ -1,0 +1,1266 @@
+{
+ "benchmark": "evoeval_creative",
+ "n_tasks": 100,
+ "seed": 1337,
+ "results": [
+  {
+   "task_id": "EvoEval_creative/0",
+   "entry": "calculate_shipping_cost",
+   "mutants_tried": 2,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/1",
+   "entry": "calculate_shipping_cost",
+   "mutants_tried": 4,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/2",
+   "entry": "encrypt_message",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/3",
+   "entry": "magical_alphabet",
+   "mutants_tried": 31,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/4",
+   "entry": "candles_relight",
+   "mutants_tried": 13,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/5",
+   "entry": "zigzag_traversal",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/6",
+   "entry": "minesweeper_clicked",
+   "mutants_tried": 42,
+   "survivors": 19,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node154",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n-    for i in range(max(0, x - 1), min(rows, x + 2)):\n+    for i in range(max(0, x - 2), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 2), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[-2, -1, -1], [0, 7, -7], [-2, 0, 0, -2], [0, 7, -7]], (3, 1))",
+     "expected_canonical": "[[-2, -1, -1], [0, 7, -7], [0, 0, 0, -2], [0, 0, 0]]",
+     "mutant_output": "[[-2, -1, -1], [0, 0, 0], [0, 0, 0, -2], [0, 0, 0]]"
+    },
+    {
+     "mutation": "const:1@node193",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n-        for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+        for j in range(max(0, y - 1), min(cols, y + 3)):\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 3)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[2, 2, 0, 2], [3, -2, 15, 15], [1, 2, 7]], (0, 0))",
+     "expected_canonical": "[[0, 0, 0, 2], [0, 0, 15, 15], [1, 2, 7]]",
+     "mutant_output": "[[0, 0, 0, 2], [0, 0, 0, 15], [1, 2, 7]]"
+    },
+    {
+     "mutation": "cmp:LtE@node50",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x <= 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x <= 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[0, -2, 1, -2], [-1, -1, 0, 0]], (0, 3))",
+     "expected_canonical": "[[0, -2, 1, 0], [-1, -1, 0, 0]]",
+     "mutant_output": "[[0, -2, 1, -2], [-1, -1, 0, 0]]"
+    },
+    {
+     "mutation": "const:1@node188",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n-        for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+        for j in range(max(0, y - 2), min(cols, y + 2)):\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 2), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[0, -2, 1, -2], [-1, -1, 0, 0]], (0, 3))",
+     "expected_canonical": "[[0, -2, 1, 0], [-1, -1, 0, 0]]",
+     "mutant_output": "[[0, 0, 1, 0], [-1, 0, 0, 0]]"
+    },
+    {
+     "mutation": "const:-1@node162",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n-        for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+        for j in range(max(-1, y - 1), min(cols, y + 2)):\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(-1, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[2, 2, 0, 2], [3, -2, 15, 15], [1, 2, 7]], (0, 0))",
+     "expected_canonical": "[[0, 0, 0, 2], [0, 0, 15, 15], [1, 2, 7]]",
+     "mutant_output": "[[0, 0, 0, 0], [0, 0, 15, 0], [1, 2, 7]]"
+    },
+    {
+     "mutation": "cmp:Gt@node53",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y > cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y > cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[-1, -1], [1, -1, -1], [1, 1, -2], [1, 1, -2]], (1, 2))",
+     "expected_canonical": "[[-1, -1], [1, -1, -1], [1, 1, -2], [1, 1, -2]]",
+     "mutant_output": "[[-1, 0], [1, 0, -1], [1, 1, -2], [1, 1, -2]]"
+    },
+    {
+     "mutation": "const:1@node162",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n-        for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+        for j in range(max(1, y - 1), min(cols, y + 2)):\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(1, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[-2, -1, -1], [0, 7, -7], [-2, 0, 0, -2], [0, 7, -7]], (3, 1))",
+     "expected_canonical": "[[-2, -1, -1], [0, 7, -7], [0, 0, 0, -2], [0, 0, 0]]",
+     "mutant_output": "[[-2, -1, -1], [0, 7, -7], [-2, 0, 0, -2], [0, 0, 0]]"
+    },
+    {
+     "mutation": "const:1@node135",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[1]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[1]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[-1, -1], [1, -1, -1], [1, 1, -2], [1, 1, -2]], (1, 2))",
+     "expected_canonical": "[[-1, -1], [1, -1, -1], [1, 1, -2], [1, 1, -2]]",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node159",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n-    for i in range(max(0, x - 1), min(rows, x + 2)):\n+    for i in range(max(0, x - 1), min(rows, x + 1)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 1)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[0, 3, -1], [0, 0, -1], [0, -1, -1], [0, 3, -1]], (1, 2))",
+     "expected_canonical": "[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 3, -1]]",
+     "mutant_output": "[[0, 0, 0], [0, 0, 0], [0, -1, -1], [0, 3, -1]]"
+    },
+    {
+     "mutation": "const:1@node159",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n-    for i in range(max(0, x - 1), min(rows, x + 2)):\n+    for i in range(max(0, x - 1), min(rows, x + 3)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 3)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[0, 3, -1], [0, 0, -1], [0, -1, -1], [0, 3, -1]], (1, 2))",
+     "expected_canonical": "[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 3, -1]]",
+     "mutant_output": "[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]"
+    },
+    {
+     "mutation": "const:-1@node90",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < -1 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < -1 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[-2, -1], [2, -1], [-2, 14, 1]], (-1, 1))",
+     "expected_canonical": "[[-2, -1], [2, -1], [-2, 14, 1]]",
+     "mutant_output": "[[0, 0], [2, -1], [-2, 14, 1]]"
+    },
+    {
+     "mutation": "cmp:Gt@node51",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x > rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x > rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[1, 0, 1], [0, 2, 2]], (2, 0))",
+     "expected_canonical": "[[1, 0, 1], [0, 2, 2]]",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node110",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n-    for i in range(max(0, x - 1), min(rows, x + 2)):\n+    for i in range(max(-1, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(-1, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[2, 2, 0, 2], [3, -2, 15, 15], [1, 2, 7]], (0, 0))",
+     "expected_canonical": "[[0, 0, 0, 2], [0, 0, 15, 15], [1, 2, 7]]",
+     "mutant_output": "[[0, 0, 0, 2], [0, 0, 15, 15], [1, 0, 7]]"
+    },
+    {
+     "mutation": "const:1@node96",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 1 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 1 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[2, 2, 0, 2], [3, -2, 15, 15], [1, 2, 7]], (0, 0))",
+     "expected_canonical": "[[0, 0, 0, 2], [0, 0, 15, 15], [1, 2, 7]]",
+     "mutant_output": "[[2, 2, 0, 2], [3, -2, 15, 15], [1, 2, 7]]"
+    },
+    {
+     "mutation": "const:1@node90",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 1 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 1 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[0, -2, 1, -2], [-1, -1, 0, 0]], (0, 3))",
+     "expected_canonical": "[[0, -2, 1, 0], [-1, -1, 0, 0]]",
+     "mutant_output": "[[0, -2, 1, -2], [-1, -1, 0, 0]]"
+    },
+    {
+     "mutation": "const:-1@node188",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n-        for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+        for j in range(max(0, y - 0), min(cols, y + 2)):\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 0), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[-2, -1, -1], [0, 7, -7], [-2, 0, 0, -2], [0, 7, -7]], (3, 1))",
+     "expected_canonical": "[[-2, -1, -1], [0, 7, -7], [0, 0, 0, -2], [0, 0, 0]]",
+     "mutant_output": "[[-2, -1, -1], [0, 7, -7], [-2, 0, 0, -2], [0, 0, 0]]"
+    },
+    {
+     "mutation": "cmp:LtE@node52",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[0]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y <= 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[0]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y <= 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[2, 2, 0, 2], [3, -2, 15, 15], [1, 2, 7]], (0, 0))",
+     "expected_canonical": "[[0, 0, 0, 2], [0, 0, 15, 15], [1, 2, 7]]",
+     "mutant_output": "[[2, 2, 0, 2], [3, -2, 15, 15], [1, 2, 7]]"
+    },
+    {
+     "mutation": "const:-1@node135",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,5 +2,3 @@\n \n-def minesweeper_clicked(\n-    grid: List[List[int]], position: Tuple[int, int]\n-) -> List[List[int]]:\n+def minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n     \"\"\"\n@@ -34,19 +32,12 @@\n     x, y = position\n-    rows, cols = len(grid), len(grid[0])\n-\n+    rows, cols = (len(grid), len(grid[-1]))\n     grid_ = grid.copy()\n-    # Check if the clicked cell is out of the grid or already revealed\n-    if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == 0:\n+    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n         return grid_\n-\n-    # If the clicked cell is a mine, return the initial grid\n     if grid[x][y] == 1:\n         return grid_\n-\n-    # If the clicked cell is empty, convert all the adjacent cells to 0\n     for i in range(max(0, x - 1), min(rows, x + 2)):\n         for j in range(max(0, y - 1), min(cols, y + 2)):\n-            if grid[i][j] != 1:  # Don't change the cell if it's a mine\n+            if grid[i][j] != 1:\n                 grid_[i][j] = 0\n-\n     return grid_",
+     "mutant_src": "from typing import List, Tuple\n\ndef minesweeper_clicked(grid: List[List[int]], position: Tuple[int, int]) -> List[List[int]]:\n    \"\"\"\n    The grid is a representation of a Minesweeper game.\n    The position represents the coordinates (x, y) that the player clicked.\n\n    Here, 0 means an empty cell, 1 means a mine, and -1 represents an unknown cell (which has not been clicked yet).\n    If the player clicks on a cell, and it is a mine, return the initial grid.\n    If the cell is empty, convert all the adjacent cells (horizontal, vertical, and diagonal cells) to a 0 too (don't change cell if its a mine).\n\n    If the cell clicked is already revealed (i.e., is a 0), return the initial grid.\n    If the cell clicked is out of the grid, return the initial grid.\n\n    Parameters:\n    grid (List[List[int]]): The game grid represented as a 2D list.\n    position (Tuple[int, int]): A tuple representing the coordinates the player clicked.\n\n    Returns:\n    List[List[int]]: The updated game grid.\n\n    Examples:\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (2, 2))\n    [[0, 1, -1], [1, -1, 0], [0, 1, 1]]\n\n    >>> minesweeper_clicked([[0, 1, -1], [1, -1, 0], [0, 1, 1]], (1, 1))\n    [[0, 1, 0], [1, 0, 0], [0, 1, 1]]\n    \"\"\"\n    x, y = position\n    rows, cols = (len(grid), len(grid[-1]))\n    grid_ = grid.copy()\n    if x < 0 or x >= rows or y < 0 or (y >= cols) or (grid[x][y] == 0):\n        return grid_\n    if grid[x][y] == 1:\n        return grid_\n    for i in range(max(0, x - 1), min(rows, x + 2)):\n        for j in range(max(0, y - 1), min(cols, y + 2)):\n            if grid[i][j] != 1:\n                grid_[i][j] = 0\n    return grid_",
+     "input": "([[-1, -1], [1, -1, -1], [1, 1, -2], [1, 1, -2]], (1, 2))",
+     "expected_canonical": "[[-1, -1], [1, -1, -1], [1, 1, -2], [1, 1, -2]]",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/7",
+   "entry": "find_shangri_la",
+   "mutants_tried": 34,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/8",
+   "entry": "transform_canvas",
+   "mutants_tried": 33,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/9",
+   "entry": "calculate_word_frequency",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/10",
+   "entry": "count_animals",
+   "mutants_tried": 29,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node33",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,25 +1,25 @@\n-from typing import List\r\n-\r\n-def count_animals(animal_string: str) -> List[int]:\r\n-    \"\"\" \r\n-    Input to this function is a string representing animals and their sounds in a special ASCII format. \r\n-    Your task is to parse this string and return a list of integers corresponding to how many times each \r\n-    animal made a sound.\r\n-\r\n-    Here is a legend:\r\n-    'C' - Cat, makes sound 'meow'\r\n-    'D' - Dog, makes sound 'woof'\r\n-    'B' - Bird, makes sound 'chirp'\r\n-\r\n-    Each sound is represented by a '|', and each animal-sound pair is separated by a space.\r\n-\r\n-    For example, a 'Cat' making sound 3 times will be represented as 'C|||'.\r\n-\r\n-    The function should return a list of integers representing how many sounds each animal made, in the order \r\n-    they appear in the string. Skip invalid animals and also skip animals that has already appeared twice before. Furthermore, skip any animals after total animals (invalid and valid) has reached 5\r\n-\r\n-    >>> count_animals('C||| D|| B| C| B||| D|||')\r\n-    [3, 2, 1, 1, 3]\r\n+from typing import List\n+\n+def count_animals(animal_string: str) -> List[int]:\n+    \"\"\" \n+    Input to this function is a string representing animals and their sounds in a special ASCII format. \n+    Your task is to parse this string and return a list of integers corresponding to how many times each \n+    animal made a sound.\n+\n+    Here is a legend:\n+    'C' - Cat, makes sound 'meow'\n+    'D' - Dog, makes sound 'woof'\n+    'B' - Bird, makes sound 'chirp'\n+\n+    Each sound is represented by a '|', and each animal-sound pair is separated by a space.\n+\n+    For example, a 'Cat' making sound 3 times will be represented as 'C|||'.\n+\n+    The function should return a list of integers representing how many sounds each animal made, in the order \n+    they appear in the string. Skip invalid animals and also skip animals that has already appeared twice before. Furthermore, skip any animals after total animals (invalid and valid) has reached 5\n+\n+    >>> count_animals('C||| D|| B| C| B||| D|||')\n+    [3, 2, 1, 1, 3]\n     \"\"\"\n-    animal_counts = {'C': 0, 'D': 0, 'B': 0}\n+    animal_counts = {'C': -1, 'D': 0, 'B': 0}\n     total_animals = 0\n",
+     "mutant_src": "from typing import List\n\ndef count_animals(animal_string: str) -> List[int]:\n    \"\"\" \n    Input to this function is a string representing animals and their sounds in a special ASCII format. \n    Your task is to parse this string and return a list of integers corresponding to how many times each \n    animal made a sound.\n\n    Here is a legend:\n    'C' - Cat, makes sound 'meow'\n    'D' - Dog, makes sound 'woof'\n    'B' - Bird, makes sound 'chirp'\n\n    Each sound is represented by a '|', and each animal-sound pair is separated by a space.\n\n    For example, a 'Cat' making sound 3 times will be represented as 'C|||'.\n\n    The function should return a list of integers representing how many sounds each animal made, in the order \n    they appear in the string. Skip invalid animals and also skip animals that has already appeared twice before. Furthermore, skip any animals after total animals (invalid and valid) has reached 5\n\n    >>> count_animals('C||| D|| B| C| B||| D|||')\n    [3, 2, 1, 1, 3]\n    \"\"\"\n    animal_counts = {'C': -1, 'D': 0, 'B': 0}\n    total_animals = 0\n    result = []\n    for animal_sound in animal_string.split():\n        if total_animals >= 5:\n            break\n        if animal_sound[0] in animal_counts and animal_counts[animal_sound[0]] < 2:\n            animal_counts[animal_sound[0]] += 1\n            total_animals += 1\n            result.append(animal_sound.count('|'))\n        else:\n            total_animals += 1\n    return result",
+     "input": "('CB| C| D| B| C| D| B| C|',)",
+     "expected_canonical": "[1, 1, 1, 1]",
+     "mutant_output": "[1, 1, 1, 1, 1]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/11",
+   "entry": "fruity_messages",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/12",
+   "entry": "teleporter_energy_signature",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/13",
+   "entry": "find_rarest_element",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/14",
+   "entry": "create_alias",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/15",
+   "entry": "evaluate_poker_hand",
+   "mutants_tried": 43,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/16",
+   "entry": "fibonacci_sum",
+   "mutants_tried": 29,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/17",
+   "entry": "wizard_battle",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/18",
+   "entry": "magical_seven",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/19",
+   "entry": "vampires_in_matrix",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/20",
+   "entry": "generate_pattern",
+   "mutants_tried": 23,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/21",
+   "entry": "crossword_validator",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/22",
+   "entry": "galactic_travel",
+   "mutants_tried": 21,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/23",
+   "entry": "prime_cipher",
+   "mutants_tried": 24,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/24",
+   "entry": "alien_language_translator",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/25",
+   "entry": "word_frequency_analysis",
+   "mutants_tried": 8,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/26",
+   "entry": "pathfinder",
+   "mutants_tried": 40,
+   "survivors": 2,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node205",
+     "diff": "--- canonical\n+++ mutant\n@@ -20,6 +20,5 @@\n     directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n-    direction_names = [\"right\", \"left\", \"down\", \"up\"]\n+    direction_names = ['right', 'left', 'down', 'up']\n     queue = [(start, [])]\n     visited = set()\n-    \n     while queue:\n@@ -33,4 +32,4 @@\n             dx, dy = direction\n-            nx, ny = x + dx, y + dy\n-            if 0 <= nx < len(maze) and 0 <= ny < len(maze[0]) and maze[nx][ny] == 0:\n+            nx, ny = (x + dx, y + dy)\n+            if 0 <= nx < len(maze) and 0 <= ny < len(maze[1]) and (maze[nx][ny] == 0):\n                 queue.append(((nx, ny), path + [direction_name]))\n",
+     "mutant_src": "def pathfinder(maze, start, end):\n    \"\"\"\n    pathfinder is a function that takes a 2D list (maze), a tuple (start) and a tuple (end).\n    The function should return a list of directions (\"up\", \"down\", \"left\", \"right\") that leads from start to end.\n    The maze is represented as a 2D list where 0 represents an open path and 1 represents a wall.\n    The start and end are represented as tuples where the first element is the row index and the second element is the column index.\n    If the path does not exist, the function should return an empty list.\n    If the start and end are the same, the function should return an empty list.\n    \n    Examples:\n    >>> pathfinder([[0, 0, 0], [1, 1, 0], [1, 1, 0]], (0, 0), (2, 2))\n    ['right', 'right', 'down', 'down']\n    >>> pathfinder([[0, 1, 0], [0, 1, 0], [0, 1, 0]], (0, 0), (0, 2))\n    []\n    >>> pathfinder([[0, 0, 0]], (0, 0), (0, 0))\n    []\n    >>> pathfinder([[0, 0, 0], [0, 1, 0], [0, 0, 0]], (0, 0), (2, 0))\n    ['down', 'down']\n    \"\"\"\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    direction_names = ['right', 'left', 'down', 'up']\n    queue = [(start, [])]\n    visited = set()\n    while queue:\n        (x, y), path = queue.pop(0)\n        if (x, y) == end:\n            return path\n        if (x, y) in visited:\n            continue\n        visited.add((x, y))\n        for direction, direction_name in zip(directions, direction_names):\n            dx, dy = direction\n            nx, ny = (x + dx, y + dy)\n            if 0 <= nx < len(maze) and 0 <= ny < len(maze[1]) and (maze[nx][ny] == 0):\n                queue.append(((nx, ny), path + [direction_name]))\n    return []",
+     "input": "([[6, -1, 0]], (-1, 1), (2, -12, 2))",
+     "expected_canonical": "[]",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node205",
+     "diff": "--- canonical\n+++ mutant\n@@ -20,6 +20,5 @@\n     directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n-    direction_names = [\"right\", \"left\", \"down\", \"up\"]\n+    direction_names = ['right', 'left', 'down', 'up']\n     queue = [(start, [])]\n     visited = set()\n-    \n     while queue:\n@@ -33,4 +32,4 @@\n             dx, dy = direction\n-            nx, ny = x + dx, y + dy\n-            if 0 <= nx < len(maze) and 0 <= ny < len(maze[0]) and maze[nx][ny] == 0:\n+            nx, ny = (x + dx, y + dy)\n+            if 0 <= nx < len(maze) and 0 <= ny < len(maze[-1]) and (maze[nx][ny] == 0):\n                 queue.append(((nx, ny), path + [direction_name]))\n",
+     "mutant_src": "def pathfinder(maze, start, end):\n    \"\"\"\n    pathfinder is a function that takes a 2D list (maze), a tuple (start) and a tuple (end).\n    The function should return a list of directions (\"up\", \"down\", \"left\", \"right\") that leads from start to end.\n    The maze is represented as a 2D list where 0 represents an open path and 1 represents a wall.\n    The start and end are represented as tuples where the first element is the row index and the second element is the column index.\n    If the path does not exist, the function should return an empty list.\n    If the start and end are the same, the function should return an empty list.\n    \n    Examples:\n    >>> pathfinder([[0, 0, 0], [1, 1, 0], [1, 1, 0]], (0, 0), (2, 2))\n    ['right', 'right', 'down', 'down']\n    >>> pathfinder([[0, 1, 0], [0, 1, 0], [0, 1, 0]], (0, 0), (0, 2))\n    []\n    >>> pathfinder([[0, 0, 0]], (0, 0), (0, 0))\n    []\n    >>> pathfinder([[0, 0, 0], [0, 1, 0], [0, 0, 0]], (0, 0), (2, 0))\n    ['down', 'down']\n    \"\"\"\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    direction_names = ['right', 'left', 'down', 'up']\n    queue = [(start, [])]\n    visited = set()\n    while queue:\n        (x, y), path = queue.pop(0)\n        if (x, y) == end:\n            return path\n        if (x, y) in visited:\n            continue\n        visited.add((x, y))\n        for direction, direction_name in zip(directions, direction_names):\n            dx, dy = direction\n            nx, ny = (x + dx, y + dy)\n            if 0 <= nx < len(maze) and 0 <= ny < len(maze[-1]) and (maze[nx][ny] == 0):\n                queue.append(((nx, ny), path + [direction_name]))\n    return []",
+     "input": "([[12, 0, 2, 1], [3, 2, 1, -5, 0, 2], [1, -1, 1, 0, 0, 0]], (0, 3), (2, 1))",
+     "expected_canonical": "[]",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/27",
+   "entry": "split_strings",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/28",
+   "entry": "calculate_progressive_tax",
+   "mutants_tried": 74,
+   "survivors": 12,
+   "equivalent_or_unknown": 9,
+   "witnesses": [
+    {
+     "mutation": "const:1@node23",
+     "diff": "--- canonical\n+++ mutant\n@@ -24,4 +24,3 @@\n     \"\"\"\n-    # Calculate deductions\n-    if deductions <= 1000:\n+    if deductions <= 1001:\n         income -= deductions\n@@ -31,4 +30,2 @@\n         income -= 1000 + 2000 * 2 + (deductions - 3000) * 3\n-\n-    # Calculate tax\n     if income <= 10000:\n@@ -40,4 +37,3 @@\n     else:\n-        tax = 25000 * 0.15 + 45000 * 0.25 + (income - 80000) * 0.30\n-\n+        tax = 25000 * 0.15 + 45000 * 0.25 + (income - 80000) * 0.3\n     return round(tax, 2)",
+     "mutant_src": "def calculate_progressive_tax(income: float, deductions=0) -> float:\n    \"\"\"\n    Calculate the tax for a given income and deductions according to a set of progressive tax rates:\n\n    - Up to $10,000 of income is tax-free\n    - The next $25,000 is taxed at 15%\n    - The next $45,000 is taxed at 25%\n    - Any income over $130,000 is taxed at 30%\n\n    The function also considers tax reductions due to deductions:\n        - The first $1000 of deductions are subtracted at a 1:1 ratio from the taxable income\n        - The next $2000 of deductions are subtracted at a 2:1 ratio from the taxable income\n        - Any deduction over $3000 is subtracted at a 3:1 ratio from the taxable income\n\n    It should return a float representing the amount of tax.\n\n    Examples:\n    >>> calculate_progressive_tax(12000, 500)\n    225.0\n    >>> calculate_progressive_tax(55000, 2500)\n    7750.0\n    >>> calculate_progressive_tax(120000, 5000)\n    23700.0\n    \"\"\"\n    if deductions <= 1001:\n        income -= deductions\n    elif deductions <= 3000:\n        income -= 1000 + (deductions - 1000) * 2\n    else:\n        income -= 1000 + 2000 * 2 + (deductions - 3000) * 3\n    if income <= 10000:\n        tax = 0\n    elif income <= 35000:\n        tax = (income - 10000) * 0.15\n    elif income <= 80000:\n        tax = 25000 * 0.15 + (income - 35000) * 0.25\n    else:\n        tax = 25000 * 0.15 + 45000 * 0.25 + (income - 80000) * 0.3\n    return round(tax, 2)",
+     "input": "(34992, 1001)",
+     "expected_canonical": "3598.5",
+     "mutant_output": "3598.65"
+    },
+    {
+     "mutation": "const:-1@node10",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1,2 @@\n-def calculate_progressive_tax(income: float, deductions=0) -> float:\n+def calculate_progressive_tax(income: float, deductions=-1) -> float:\n     \"\"\"\n@@ -24,3 +24,2 @@\n     \"\"\"\n-    # Calculate deductions\n     if deductions <= 1000:\n@@ -31,4 +30,2 @@\n         income -= 1000 + 2000 * 2 + (deductions - 3000) * 3\n-\n-    # Calculate tax\n     if income <= 10000:\n@@ -40,4 +37,3 @@\n     else:\n-        tax = 25000 * 0.15 + 45000 * 0.25 + (income - 80000) * 0.30\n-\n+        tax = 25000 * 0.15 + 45000 * 0.25 + (income - 80000) * 0.3\n     return round(tax, 2)",
+     "mutant_src": "def calculate_progressive_tax(income: float, deductions=-1) -> float:\n    \"\"\"\n    Calculate the tax for a given income and deductions according to a set of progressive tax rates:\n\n    - Up to $10,000 of income is tax-free\n    - The next $25,000 is taxed at 15%\n    - The next $45,000 is taxed at 25%\n    - Any income over $130,000 is taxed at 30%\n\n    The function also considers tax reductions due to deductions:\n        - The first $1000 of deductions are subtracted at a 1:1 ratio from the taxable income\n        - The next $2000 of deductions are subtracted at a 2:1 ratio from the taxable income\n        - Any deduction over $3000 is subtracted at a 3:1 ratio from the taxable income\n\n    It should return a float representing the amount of tax.\n\n    Examples:\n    >>> calculate_progressive_tax(12000, 500)\n    225.0\n    >>> calculate_progressive_tax(55000, 2500)\n    7750.0\n    >>> calculate_progressive_tax(120000, 5000)\n    23700.0\n    \"\"\"\n    if deductions <= 1000:\n        income -= deductions\n    elif deductions <= 3000:\n        income -= 1000 + (deductions - 1000) * 2\n    else:\n        income -= 1000 + 2000 * 2 + (deductions - 3000) * 3\n    if income <= 10000:\n        tax = 0\n    elif income <= 35000:\n        tax = (income - 10000) * 0.15\n    elif income <= 80000:\n        tax = 25000 * 0.15 + (income - 35000) * 0.25\n    else:\n        tax = 25000 * 0.15 + 45000 * 0.25 + (income - 80000) * 0.3\n    return round(tax, 2)",
+     "input": "(12012,)",
+     "expected_canonical": "301.8",
+     "mutant_output": "301.95"
+    },
+    {
+     "mutation": "const:1@node10",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1,2 @@\n-def calculate_progressive_tax(income: float, deductions=0) -> float:\n+def calculate_progressive_tax(income: float, deductions=1) -> float:\n     \"\"\"\n@@ -24,3 +24,2 @@\n     \"\"\"\n-    # Calculate deductions\n     if deductions <= 1000:\n@@ -31,4 +30,2 @@\n         income -= 1000 + 2000 * 2 + (deductions - 3000) * 3\n-\n-    # Calculate tax\n     if income <= 10000:\n@@ -40,4 +37,3 @@\n     else:\n-        tax = 25000 * 0.15 + 45000 * 0.25 + (income - 80000) * 0.30\n-\n+        tax = 25000 * 0.15 + 45000 * 0.25 + (income - 80000) * 0.3\n     return round(tax, 2)",
+     "mutant_src": "def calculate_progressive_tax(income: float, deductions=1) -> float:\n    \"\"\"\n    Calculate the tax for a given income and deductions according to a set of progressive tax rates:\n\n    - Up to $10,000 of income is tax-free\n    - The next $25,000 is taxed at 15%\n    - The next $45,000 is taxed at 25%\n    - Any income over $130,000 is taxed at 30%\n\n    The function also considers tax reductions due to deductions:\n        - The first $1000 of deductions are subtracted at a 1:1 ratio from the taxable income\n        - The next $2000 of deductions are subtracted at a 2:1 ratio from the taxable income\n        - Any deduction over $3000 is subtracted at a 3:1 ratio from the taxable income\n\n    It should return a float representing the amount of tax.\n\n    Examples:\n    >>> calculate_progressive_tax(12000, 500)\n    225.0\n    >>> calculate_progressive_tax(55000, 2500)\n    7750.0\n    >>> calculate_progressive_tax(120000, 5000)\n    23700.0\n    \"\"\"\n    if deductions <= 1000:\n        income -= deductions\n    elif deductions <= 3000:\n        income -= 1000 + (deductions - 1000) * 2\n    else:\n        income -= 1000 + 2000 * 2 + (deductions - 3000) * 3\n    if income <= 10000:\n        tax = 0\n    elif income <= 35000:\n        tax = (income - 10000) * 0.15\n    elif income <= 80000:\n        tax = 25000 * 0.15 + (income - 35000) * 0.25\n    else:\n        tax = 25000 * 0.15 + 45000 * 0.25 + (income - 80000) * 0.3\n    return round(tax, 2)",
+     "input": "(12012,)",
+     "expected_canonical": "301.8",
+     "mutant_output": "301.65"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/29",
+   "entry": "find_palindrome_substrings",
+   "mutants_tried": 9,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/30",
+   "entry": "find_path",
+   "mutants_tried": 40,
+   "survivors": 7,
+   "equivalent_or_unknown": 7,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/31",
+   "entry": "unique_paths",
+   "mutants_tried": 18,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/32",
+   "entry": "playlist_shuffle",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/33",
+   "entry": "magical_staircase",
+   "mutants_tried": 20,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node40",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,37 +1,37 @@\n-def magical_staircase(n: int, magic_stones: list):\r\n-    \"\"\"\r\n-    Imagine a magical staircase with 'n' steps, and a collection of magic stones. Each magic stone has a unique power\r\n-    that allows the user to jump a certain number of steps in a single bound.\r\n-    For example, if there's a magic stone that has a power of 2, you can jump 2 steps at once instead of 1 step.\r\n-\r\n-    Provided with the number of steps 'n' and a list of the powers of magic stones available, \r\n-    return the number of distinct ways you can reach the top of the staircase. Assume you start from the bottom of the staircase.\r\n-\r\n-    The magic_stones list contains positive integers, and n is a positive integer.\r\n-\r\n-    Example:\r\n-    >>> magical_staircase(4, [1, 2])\r\n-    5\r\n-    Explanation: There are 5 distinct ways to reach the top of the staircase:\r\n-    - Jump 1 step, jump 1 step, jump 1 step, jump 1 step\r\n-    - Jump 1 step, jump 1 step, jump 2 steps\r\n-    - Jump 1 step, jump 2 steps, jump 1 step\r\n-    - Jump 2 steps, jump 1 step, jump 1 step\r\n-    - Jump 2 steps, jump 2 steps\r\n-\r\n-    >>> magical_staircase(10, [1, 2, 5])\r\n-    128\r\n-    Explanation: There are 128 distinct ways to reach the top of the staircase.\r\n+def magical_staircase(n: int, magic_stones: list):\n     \"\"\"\n-    def dp(n):\r\n-        if n < 0:\r\n-            return 0\r\n-        if n == 0:\r\n-            return 1\r\n-        if memo[n] != -1:\r\n-            return memo[n]\r\n-        memo[n] = sum([dp(n - stone) for stone in magic_stones]) \r\n-        return memo[n]\r\n-\r\n-    memo = [-1 for _ in range(n+1)]\r\n+    Imagine a magical staircase with 'n' steps, and a collection of magic stones. Each magic stone has a unique power\n+    that allows the user to jump a certain number of steps in a single bound.\n+    For example, if there's a magic stone that has a power of 2, you can jump 2 steps at once instead of 1 step.\n+\n+    Provided with the number of steps 'n' and a list of the powers of magic stones available, \n+    return the number of distinct ways you can reach the top of the staircase. Assume you start from the bottom of the staircase.\n+\n+    The magic_stones list contains positive integers, and n is a positive integer.\n+\n+    Example:\n+    >>> magical_staircase(4, [1, 2])\n+    5\n+    Explanation: There are 5 distinct ways to reach the top of the staircase:\n+    - Jump 1 step, jump 1 step, jump 1 step, jump 1 step\n+    - Jump 1 step, jump 1 step, jump 2 steps\n+    - Jump 1 step, jump 2 steps, jump 1 step\n+    - Jump 2 steps, jump 1 step, jump 1 step\n+    - Jump 2 steps, jump 2 steps\n+\n+    >>> magical_staircase(10, [1, 2, 5])\n+    128\n+    Explanation: There are 128 distinct ways to reach the top of the staircase.\n+    \"\"\"\n+\n+    def dp(n):\n+        if n < -1:\n+            return 0\n+        if n == 0:\n+            return 1\n+        if memo[n] != -1:\n+            return memo[n]\n+        memo[n] = sum([dp(n - stone) for stone in magic_stones])\n+        return memo[n",
+     "mutant_src": "def magical_staircase(n: int, magic_stones: list):\n    \"\"\"\n    Imagine a magical staircase with 'n' steps, and a collection of magic stones. Each magic stone has a unique power\n    that allows the user to jump a certain number of steps in a single bound.\n    For example, if there's a magic stone that has a power of 2, you can jump 2 steps at once instead of 1 step.\n\n    Provided with the number of steps 'n' and a list of the powers of magic stones available, \n    return the number of distinct ways you can reach the top of the staircase. Assume you start from the bottom of the staircase.\n\n    The magic_stones list contains positive integers, and n is a positive integer.\n\n    Example:\n    >>> magical_staircase(4, [1, 2])\n    5\n    Explanation: There are 5 distinct ways to reach the top of the staircase:\n    - Jump 1 step, jump 1 step, jump 1 step, jump 1 step\n    - Jump 1 step, jump 1 step, jump 2 steps\n    - Jump 1 step, jump 2 steps, jump 1 step\n    - Jump 2 steps, jump 1 step, jump 1 step\n    - Jump 2 steps, jump 2 steps\n\n    >>> magical_staircase(10, [1, 2, 5])\n    128\n    Explanation: There are 128 distinct ways to reach the top of the staircase.\n    \"\"\"\n\n    def dp(n):\n        if n < -1:\n            return 0\n        if n == 0:\n            return 1\n        if memo[n] != -1:\n            return memo[n]\n        memo[n] = sum([dp(n - stone) for stone in magic_stones])\n        return memo[n]\n    memo = [-1 for _ in range(n + 1)]\n    return dp(n)",
+     "input": "(-1, [-15, 2])",
+     "expected_canonical": "0",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/34",
+   "entry": "werewolf_transformation",
+   "mutants_tried": 33,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/35",
+   "entry": "validate_email_structure",
+   "mutants_tried": 13,
+   "survivors": 3,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "bin:Sub@node56",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,22 +1,21 @@\n-def validate_email_structure(email: str):\r\n-    \"\"\" email is a string.\r\n-    return True if the email has a valid format (i.e., there is exactly one \"@\" character that is not the first or last character \r\n-    and there is at least one \".\" character after the \"@\" character).\r\n-\r\n-    >>> validate_email_structure(\"myemail@\")\r\n-    False\r\n-    >>> validate_email_structure(\"myemail@domain\")\r\n-    False\r\n-    >>> validate_email_structure(\"myemail@domain.com\")\r\n-    True\r\n-    >>> validate_email_structure(\"myemail.domain.com\")\r\n-    False\r\n-    >>> validate_email_structure(\"myemail@domain@domain.com\")\r\n-    False\r\n+def validate_email_structure(email: str):\n+    \"\"\" email is a string.\n+    return True if the email has a valid format (i.e., there is exactly one \"@\" character that is not the first or last character \n+    and there is at least one \".\" character after the \"@\" character).\n+\n+    >>> validate_email_structure(\"myemail@\")\n+    False\n+    >>> validate_email_structure(\"myemail@domain\")\n+    False\n+    >>> validate_email_structure(\"myemail@domain.com\")\n+    True\n+    >>> validate_email_structure(\"myemail.domain.com\")\n+    False\n+    >>> validate_email_structure(\"myemail@domain@domain.com\")\n+    False\n     \"\"\"\n-\n-    if email.count(\"@\") == 1 and email[0] != \"@\" and email[-1] != \"@\":\n-        at_index = email.index(\"@\")\n-        after_at = email[at_index+1:]\n-        if \".\" in after_at:\n+    if email.count('@') == 1 and email[0] != '@' and (email[-1] != '@'):\n+        at_index = email.index('@')\n+        after_at = email[at_index - 1:]\n+        if '.' in after_at:\n             return True\n",
+     "mutant_src": "def validate_email_structure(email: str):\n    \"\"\" email is a string.\n    return True if the email has a valid format (i.e., there is exactly one \"@\" character that is not the first or last character \n    and there is at least one \".\" character after the \"@\" character).\n\n    >>> validate_email_structure(\"myemail@\")\n    False\n    >>> validate_email_structure(\"myemail@domain\")\n    False\n    >>> validate_email_structure(\"myemail@domain.com\")\n    True\n    >>> validate_email_structure(\"myemail.domain.com\")\n    False\n    >>> validate_email_structure(\"myemail@domain@domain.com\")\n    False\n    \"\"\"\n    if email.count('@') == 1 and email[0] != '@' and (email[-1] != '@'):\n        at_index = email.index('@')\n        after_at = email[at_index - 1:]\n        if '.' in after_at:\n            return True\n    return False",
+     "input": "('.@dmolcyiommamniea',)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/36",
+   "entry": "calculate_integral_coefficients",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/37",
+   "entry": "string_transform",
+   "mutants_tried": 24,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/38",
+   "entry": "translate_emoticons",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/39",
+   "entry": "asciiArt",
+   "mutants_tried": 7,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/40",
+   "entry": "potion_mixing",
+   "mutants_tried": 14,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node44",
+     "diff": "--- canonical\n+++ mutant\n@@ -20,4 +20,5 @@\n     \"\"\"\n+\n     def helper(potions, target, path, result):\n-        if target < 0:\n+        if target < -1:\n             return\n@@ -27,7 +28,6 @@\n         for i in range(len(potions)):\n-            potion, power = potions[i].rsplit(\" \", 1)\n-            helper(potions[i + 1 :], target - int(power), path + [potions[i]], result)\n-\n+            potion, power = potions[i].rsplit(' ', 1)\n+            helper(potions[i + 1:], target - int(power), path + [potions[i]], result)\n     result = []\n     helper(potions, target, [], result)\n-    return min(result, key=lambda path: (len(path), \"\".join(path))) if result else []+    return min(result, key=lambda path: (len(path), ''.join(path))) if result else []",
+     "mutant_src": "def potion_mixing(potions, target):\n    \"\"\"\n    In this task, you are a wizard who is trying to create a magic potion. You have a list of\n    potions, each represented by a string. Each string represents the potion's name, followed by\n    the potion's power level (an integer). You are given a target power level that you need to reach\n    by mixing potions. Your task is to return a list of potions that you need to mix to reach the\n    target power level. If it is not possible to reach the target power level with the given potions,\n    return an empty list. You can use each potion only once.\n    If there are multiple ways to reach the target power level, return the one with the smallest number\n    of potions. If there's still a tie, return the one with smallest alphebetical order sorted by the\n    concatenation of the string representations of the potions.\n    The potion's power levels will always be positive integers.\n    Return the potions in ascending order.\n\n    Example:\n    potion_mixing([\"Healing Potion 10\", \"Strength Potion 5\", \"Invisibility Potion 7\"], 15) -> [\"Healing Potion 10\", \"Strength Potion 5\"]\n    potion_mixing([\"Luck Potion 3\", \"Wisdom Potion 8\", \"Fire Resistance Potion 12\"], 20) -> ['Fire Resistance Potion 12', 'Wisdom Potion 8']\n    potion_mixing([\"Poison Potion 2\", \"Water Breathing Potion 6\", \"Night Vision Potion 5\"], 10) -> []\n    potion_mixing([\"Potion of Swiftness 3\", \"Potion of Leaping 2\", \"Potion of Harming 10\"], 1) -> []\n    \"\"\"\n\n    def helper(potions, target, path, result):\n        if target < -1:\n            return\n        if target == 0:\n            result.append(sorted(path))\n            return\n        for i in range(len(potions)):\n            potion, power = potions[i].rsplit(' ', 1)\n            helper(potions[i + 1:], target - int(power), path + [potions[i]], result)\n    result = []\n    helper(potions, target, [], result)\n    return min(result, key=lambda path: (len(path), ''.join(path))) if result else []",
+     "input": "(['se tns oio3nffto PwSi', 'Potion ofLeaping 2', 'm0g  1nf taioHnioPor'], -1)",
+     "expected_canonical": "[]",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/41",
+   "entry": "spider_web_jump",
+   "mutants_tried": 53,
+   "survivors": 11,
+   "equivalent_or_unknown": 4,
+   "witnesses": [
+    {
+     "mutation": "const:1@node167",
+     "diff": "--- canonical\n+++ mutant\n@@ -34,12 +34,10 @@\n     from collections import deque\n-\n-    rows, cols = len(arr), len(arr[0])\n-    dp = [[float(\"inf\")] * cols for _ in range(rows)]\n+    rows, cols = (len(arr), len(arr[0]))\n+    dp = [[float('inf')] * cols for _ in range(rows)]\n     dp[0][0] = arr[0][0]\n     queue = deque([(0, 0)])\n-\n     while queue:\n         x, y = queue.popleft()\n-        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:\n-            nx, ny = x + dx, y + dy\n+        for dx, dy in [(0, 1), (1, 0), (0, -2), (-1, 0)]:\n+            nx, ny = (x + dx, y + dy)\n             if 0 <= nx < rows and 0 <= ny < cols:\n@@ -48,3 +46,2 @@\n                     queue.append((nx, ny))\n-\n     for i in range(rows):\n@@ -53,2 +50,2 @@\n                 return dp[i][j]\n-    raise ValueError(\"Invalid input: No safy cell\")+    raise ValueError('Invalid input: No safy cell')",
+     "mutant_src": "def spider_web_jump(arr):\n    \"\"\"\n    In a two-dimensional array representing a spider's web, each cell represents a connection to neighboring cells.\n    Each cell has a value, which indicates the energy required for a spider to jump to that cell from an adjacent cell.\n    Your task is to find the optimal path for the spider to reach the 'safe cell', using the minimum energy possible.\n    Return the minimum energy required.\n\n    The array is guaranteed to have exactly 1 safe cell, which is represented by 0.\n    The spider always starts from the top-left cell (0,0).\n    \n    Here's an example web:\n    [[1, 2, 1, 99],\n     [1, 3, 2, 0],\n     [99, 1, 1, 99],\n     [99, 99, 99, 99]]\n    The optimal path would be (0,0) -> (0,1) -> (0,2) -> (1,2) -> (1,3), with an energy requirement of 1 + 2 + 1 + 2 = 6.\n\n    Example 1:\n        Input: [[2, 3], [1, 0]]\n        Output: 3\n        Explanation: The spider jumps from (0,0) to (1,0) to (1,1) using 2 + 1 = 3 energy.\n\n    Example 2:\n        Input: [[0]]\n        Output: 0\n        Explanation: The spider starts at the safe cell, so no energy is required.\n\n    Constraints:\n        * 1 <= arr.length <= 100\n        * 1 <= arr[i].length <= 100\n        * 0 <= cell.value <= 100\n        * The array is guaranteed to contain exactly 1 safe cell.\n    \"\"\"\n    from collections import deque\n    rows, cols = (len(arr), len(arr[0]))\n    dp = [[float('inf')] * cols for _ in range(rows)]\n    dp[0][0] = arr[0][0]\n    queue = deque([(0, 0)])\n    while queue:\n        x, y = queue.popleft()\n        for dx, dy in [(0, 1), (1, 0), (0, -2), (-1, 0)]:\n            nx, ny = (x + dx, y + dy)\n            if 0 <= nx < rows and 0 <= ny < cols:\n                if dp[nx][ny] > dp[x][y] + arr[nx][ny]:\n                    dp[nx][ny] = dp[x][y] + arr[nx][ny]\n                    queue.append((nx, ny))\n    for i in range(rows):\n        for j in range(cols):\n            if arr[i][j] == 0:\n                return dp[i][j]\n    raise ValueError('Invalid input: No safy cell')",
+     "input": "([[2, 3], [21, 4, 0, 0], [0, 0], [0, 0]],)",
+     "expected_canonical": "9",
+     "mutant_output": "23"
+    },
+    {
+     "mutation": "const:-1@node140",
+     "diff": "--- canonical\n+++ mutant\n@@ -34,12 +34,10 @@\n     from collections import deque\n-\n-    rows, cols = len(arr), len(arr[0])\n-    dp = [[float(\"inf\")] * cols for _ in range(rows)]\n+    rows, cols = (len(arr), len(arr[0]))\n+    dp = [[float('inf')] * cols for _ in range(rows)]\n     dp[0][0] = arr[0][0]\n     queue = deque([(0, 0)])\n-\n     while queue:\n         x, y = queue.popleft()\n-        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:\n-            nx, ny = x + dx, y + dy\n+        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, -1)]:\n+            nx, ny = (x + dx, y + dy)\n             if 0 <= nx < rows and 0 <= ny < cols:\n@@ -48,3 +46,2 @@\n                     queue.append((nx, ny))\n-\n     for i in range(rows):\n@@ -53,2 +50,2 @@\n                 return dp[i][j]\n-    raise ValueError(\"Invalid input: No safy cell\")+    raise ValueError('Invalid input: No safy cell')",
+     "mutant_src": "def spider_web_jump(arr):\n    \"\"\"\n    In a two-dimensional array representing a spider's web, each cell represents a connection to neighboring cells.\n    Each cell has a value, which indicates the energy required for a spider to jump to that cell from an adjacent cell.\n    Your task is to find the optimal path for the spider to reach the 'safe cell', using the minimum energy possible.\n    Return the minimum energy required.\n\n    The array is guaranteed to have exactly 1 safe cell, which is represented by 0.\n    The spider always starts from the top-left cell (0,0).\n    \n    Here's an example web:\n    [[1, 2, 1, 99],\n     [1, 3, 2, 0],\n     [99, 1, 1, 99],\n     [99, 99, 99, 99]]\n    The optimal path would be (0,0) -> (0,1) -> (0,2) -> (1,2) -> (1,3), with an energy requirement of 1 + 2 + 1 + 2 = 6.\n\n    Example 1:\n        Input: [[2, 3], [1, 0]]\n        Output: 3\n        Explanation: The spider jumps from (0,0) to (1,0) to (1,1) using 2 + 1 = 3 energy.\n\n    Example 2:\n        Input: [[0]]\n        Output: 0\n        Explanation: The spider starts at the safe cell, so no energy is required.\n\n    Constraints:\n        * 1 <= arr.length <= 100\n        * 1 <= arr[i].length <= 100\n        * 0 <= cell.value <= 100\n        * The array is guaranteed to contain exactly 1 safe cell.\n    \"\"\"\n    from collections import deque\n    rows, cols = (len(arr), len(arr[0]))\n    dp = [[float('inf')] * cols for _ in range(rows)]\n    dp[0][0] = arr[0][0]\n    queue = deque([(0, 0)])\n    while queue:\n        x, y = queue.popleft()\n        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, -1)]:\n            nx, ny = (x + dx, y + dy)\n            if 0 <= nx < rows and 0 <= ny < cols:\n                if dp[nx][ny] > dp[x][y] + arr[nx][ny]:\n                    dp[nx][ny] = dp[x][y] + arr[nx][ny]\n                    queue.append((nx, ny))\n    for i in range(rows):\n        for j in range(cols):\n            if arr[i][j] == 0:\n                return dp[i][j]\n    raise ValueError('Invalid input: No safy cell')",
+     "input": "([[7, 6, 9, 7, 12], [4, 19, 0, 3, 2], [0, 4, 2, 6, 4], [0, 4, 3, 3, -1, 3]],)",
+     "expected_canonical": "17",
+     "mutant_output": "22"
+    },
+    {
+     "mutation": "const:1@node169",
+     "diff": "--- canonical\n+++ mutant\n@@ -34,12 +34,10 @@\n     from collections import deque\n-\n-    rows, cols = len(arr), len(arr[0])\n-    dp = [[float(\"inf\")] * cols for _ in range(rows)]\n+    rows, cols = (len(arr), len(arr[0]))\n+    dp = [[float('inf')] * cols for _ in range(rows)]\n     dp[0][0] = arr[0][0]\n     queue = deque([(0, 0)])\n-\n     while queue:\n         x, y = queue.popleft()\n-        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:\n-            nx, ny = x + dx, y + dy\n+        for dx, dy in [(0, 1), (1, 0), (0, -1), (-2, 0)]:\n+            nx, ny = (x + dx, y + dy)\n             if 0 <= nx < rows and 0 <= ny < cols:\n@@ -48,3 +46,2 @@\n                     queue.append((nx, ny))\n-\n     for i in range(rows):\n@@ -53,2 +50,2 @@\n                 return dp[i][j]\n-    raise ValueError(\"Invalid input: No safy cell\")+    raise ValueError('Invalid input: No safy cell')",
+     "mutant_src": "def spider_web_jump(arr):\n    \"\"\"\n    In a two-dimensional array representing a spider's web, each cell represents a connection to neighboring cells.\n    Each cell has a value, which indicates the energy required for a spider to jump to that cell from an adjacent cell.\n    Your task is to find the optimal path for the spider to reach the 'safe cell', using the minimum energy possible.\n    Return the minimum energy required.\n\n    The array is guaranteed to have exactly 1 safe cell, which is represented by 0.\n    The spider always starts from the top-left cell (0,0).\n    \n    Here's an example web:\n    [[1, 2, 1, 99],\n     [1, 3, 2, 0],\n     [99, 1, 1, 99],\n     [99, 99, 99, 99]]\n    The optimal path would be (0,0) -> (0,1) -> (0,2) -> (1,2) -> (1,3), with an energy requirement of 1 + 2 + 1 + 2 = 6.\n\n    Example 1:\n        Input: [[2, 3], [1, 0]]\n        Output: 3\n        Explanation: The spider jumps from (0,0) to (1,0) to (1,1) using 2 + 1 = 3 energy.\n\n    Example 2:\n        Input: [[0]]\n        Output: 0\n        Explanation: The spider starts at the safe cell, so no energy is required.\n\n    Constraints:\n        * 1 <= arr.length <= 100\n        * 1 <= arr[i].length <= 100\n        * 0 <= cell.value <= 100\n        * The array is guaranteed to contain exactly 1 safe cell.\n    \"\"\"\n    from collections import deque\n    rows, cols = (len(arr), len(arr[0]))\n    dp = [[float('inf')] * cols for _ in range(rows)]\n    dp[0][0] = arr[0][0]\n    queue = deque([(0, 0)])\n    while queue:\n        x, y = queue.popleft()\n        for dx, dy in [(0, 1), (1, 0), (0, -1), (-2, 0)]:\n            nx, ny = (x + dx, y + dy)\n            if 0 <= nx < rows and 0 <= ny < cols:\n                if dp[nx][ny] > dp[x][y] + arr[nx][ny]:\n                    dp[nx][ny] = dp[x][y] + arr[nx][ny]\n                    queue.append((nx, ny))\n    for i in range(rows):\n        for j in range(cols):\n            if arr[i][j] == 0:\n                return dp[i][j]\n    raise ValueError('Invalid input: No safy cell')",
+     "input": "([[7, 6, 9, 7, 12], [4, 19, 0, 3, 2], [0, 4, 2, 6, 4], [0, 4, 3, 3, -1, 3]],)",
+     "expected_canonical": "17",
+     "mutant_output": "18"
+    },
+    {
+     "mutation": "const:-1@node167",
+     "diff": "--- canonical\n+++ mutant\n@@ -34,12 +34,10 @@\n     from collections import deque\n-\n-    rows, cols = len(arr), len(arr[0])\n-    dp = [[float(\"inf\")] * cols for _ in range(rows)]\n+    rows, cols = (len(arr), len(arr[0]))\n+    dp = [[float('inf')] * cols for _ in range(rows)]\n     dp[0][0] = arr[0][0]\n     queue = deque([(0, 0)])\n-\n     while queue:\n         x, y = queue.popleft()\n-        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:\n-            nx, ny = x + dx, y + dy\n+        for dx, dy in [(0, 1), (1, 0), (0, -0), (-1, 0)]:\n+            nx, ny = (x + dx, y + dy)\n             if 0 <= nx < rows and 0 <= ny < cols:\n@@ -48,3 +46,2 @@\n                     queue.append((nx, ny))\n-\n     for i in range(rows):\n@@ -53,2 +50,2 @@\n                 return dp[i][j]\n-    raise ValueError(\"Invalid input: No safy cell\")+    raise ValueError('Invalid input: No safy cell')",
+     "mutant_src": "def spider_web_jump(arr):\n    \"\"\"\n    In a two-dimensional array representing a spider's web, each cell represents a connection to neighboring cells.\n    Each cell has a value, which indicates the energy required for a spider to jump to that cell from an adjacent cell.\n    Your task is to find the optimal path for the spider to reach the 'safe cell', using the minimum energy possible.\n    Return the minimum energy required.\n\n    The array is guaranteed to have exactly 1 safe cell, which is represented by 0.\n    The spider always starts from the top-left cell (0,0).\n    \n    Here's an example web:\n    [[1, 2, 1, 99],\n     [1, 3, 2, 0],\n     [99, 1, 1, 99],\n     [99, 99, 99, 99]]\n    The optimal path would be (0,0) -> (0,1) -> (0,2) -> (1,2) -> (1,3), with an energy requirement of 1 + 2 + 1 + 2 = 6.\n\n    Example 1:\n        Input: [[2, 3], [1, 0]]\n        Output: 3\n        Explanation: The spider jumps from (0,0) to (1,0) to (1,1) using 2 + 1 = 3 energy.\n\n    Example 2:\n        Input: [[0]]\n        Output: 0\n        Explanation: The spider starts at the safe cell, so no energy is required.\n\n    Constraints:\n        * 1 <= arr.length <= 100\n        * 1 <= arr[i].length <= 100\n        * 0 <= cell.value <= 100\n        * The array is guaranteed to contain exactly 1 safe cell.\n    \"\"\"\n    from collections import deque\n    rows, cols = (len(arr), len(arr[0]))\n    dp = [[float('inf')] * cols for _ in range(rows)]\n    dp[0][0] = arr[0][0]\n    queue = deque([(0, 0)])\n    while queue:\n        x, y = queue.popleft()\n        for dx, dy in [(0, 1), (1, 0), (0, -0), (-1, 0)]:\n            nx, ny = (x + dx, y + dy)\n            if 0 <= nx < rows and 0 <= ny < cols:\n                if dp[nx][ny] > dp[x][y] + arr[nx][ny]:\n                    dp[nx][ny] = dp[x][y] + arr[nx][ny]\n                    queue.append((nx, ny))\n    for i in range(rows):\n        for j in range(cols):\n            if arr[i][j] == 0:\n                return dp[i][j]\n    raise ValueError('Invalid input: No safy cell')",
+     "input": "([[2, -1, 2, 0]],)",
+     "expected_canonical": "3",
+     "mutant_output": "timeout"
+    },
+    {
+     "mutation": "const:-1@node169",
+     "diff": "--- canonical\n+++ mutant\n@@ -34,12 +34,10 @@\n     from collections import deque\n-\n-    rows, cols = len(arr), len(arr[0])\n-    dp = [[float(\"inf\")] * cols for _ in range(rows)]\n+    rows, cols = (len(arr), len(arr[0]))\n+    dp = [[float('inf')] * cols for _ in range(rows)]\n     dp[0][0] = arr[0][0]\n     queue = deque([(0, 0)])\n-\n     while queue:\n         x, y = queue.popleft()\n-        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:\n-            nx, ny = x + dx, y + dy\n+        for dx, dy in [(0, 1), (1, 0), (0, -1), (-0, 0)]:\n+            nx, ny = (x + dx, y + dy)\n             if 0 <= nx < rows and 0 <= ny < cols:\n@@ -48,3 +46,2 @@\n                     queue.append((nx, ny))\n-\n     for i in range(rows):\n@@ -53,2 +50,2 @@\n                 return dp[i][j]\n-    raise ValueError(\"Invalid input: No safy cell\")+    raise ValueError('Invalid input: No safy cell')",
+     "mutant_src": "def spider_web_jump(arr):\n    \"\"\"\n    In a two-dimensional array representing a spider's web, each cell represents a connection to neighboring cells.\n    Each cell has a value, which indicates the energy required for a spider to jump to that cell from an adjacent cell.\n    Your task is to find the optimal path for the spider to reach the 'safe cell', using the minimum energy possible.\n    Return the minimum energy required.\n\n    The array is guaranteed to have exactly 1 safe cell, which is represented by 0.\n    The spider always starts from the top-left cell (0,0).\n    \n    Here's an example web:\n    [[1, 2, 1, 99],\n     [1, 3, 2, 0],\n     [99, 1, 1, 99],\n     [99, 99, 99, 99]]\n    The optimal path would be (0,0) -> (0,1) -> (0,2) -> (1,2) -> (1,3), with an energy requirement of 1 + 2 + 1 + 2 = 6.\n\n    Example 1:\n        Input: [[2, 3], [1, 0]]\n        Output: 3\n        Explanation: The spider jumps from (0,0) to (1,0) to (1,1) using 2 + 1 = 3 energy.\n\n    Example 2:\n        Input: [[0]]\n        Output: 0\n        Explanation: The spider starts at the safe cell, so no energy is required.\n\n    Constraints:\n        * 1 <= arr.length <= 100\n        * 1 <= arr[i].length <= 100\n        * 0 <= cell.value <= 100\n        * The array is guaranteed to contain exactly 1 safe cell.\n    \"\"\"\n    from collections import deque\n    rows, cols = (len(arr), len(arr[0]))\n    dp = [[float('inf')] * cols for _ in range(rows)]\n    dp[0][0] = arr[0][0]\n    queue = deque([(0, 0)])\n    while queue:\n        x, y = queue.popleft()\n        for dx, dy in [(0, 1), (1, 0), (0, -1), (-0, 0)]:\n            nx, ny = (x + dx, y + dy)\n            if 0 <= nx < rows and 0 <= ny < cols:\n                if dp[nx][ny] > dp[x][y] + arr[nx][ny]:\n                    dp[nx][ny] = dp[x][y] + arr[nx][ny]\n                    queue.append((nx, ny))\n    for i in range(rows):\n        for j in range(cols):\n            if arr[i][j] == 0:\n                return dp[i][j]\n    raise ValueError('Invalid input: No safy cell')",
+     "input": "([[2, -1, 2, 0]],)",
+     "expected_canonical": "3",
+     "mutant_output": "timeout"
+    },
+    {
+     "mutation": "const:-1@node111",
+     "diff": "--- canonical\n+++ mutant\n@@ -34,8 +34,6 @@\n     from collections import deque\n-\n-    rows, cols = len(arr), len(arr[0])\n-    dp = [[float(\"inf\")] * cols for _ in range(rows)]\n+    rows, cols = (len(arr), len(arr[-1]))\n+    dp = [[float('inf')] * cols for _ in range(rows)]\n     dp[0][0] = arr[0][0]\n     queue = deque([(0, 0)])\n-\n     while queue:\n@@ -43,3 +41,3 @@\n         for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:\n-            nx, ny = x + dx, y + dy\n+            nx, ny = (x + dx, y + dy)\n             if 0 <= nx < rows and 0 <= ny < cols:\n@@ -48,3 +46,2 @@\n                     queue.append((nx, ny))\n-\n     for i in range(rows):\n@@ -53,2 +50,2 @@\n                 return dp[i][j]\n-    raise ValueError(\"Invalid input: No safy cell\")+    raise ValueError('Invalid input: No safy cell')",
+     "mutant_src": "def spider_web_jump(arr):\n    \"\"\"\n    In a two-dimensional array representing a spider's web, each cell represents a connection to neighboring cells.\n    Each cell has a value, which indicates the energy required for a spider to jump to that cell from an adjacent cell.\n    Your task is to find the optimal path for the spider to reach the 'safe cell', using the minimum energy possible.\n    Return the minimum energy required.\n\n    The array is guaranteed to have exactly 1 safe cell, which is represented by 0.\n    The spider always starts from the top-left cell (0,0).\n    \n    Here's an example web:\n    [[1, 2, 1, 99],\n     [1, 3, 2, 0],\n     [99, 1, 1, 99],\n     [99, 99, 99, 99]]\n    The optimal path would be (0,0) -> (0,1) -> (0,2) -> (1,2) -> (1,3), with an energy requirement of 1 + 2 + 1 + 2 = 6.\n\n    Example 1:\n        Input: [[2, 3], [1, 0]]\n        Output: 3\n        Explanation: The spider jumps from (0,0) to (1,0) to (1,1) using 2 + 1 = 3 energy.\n\n    Example 2:\n        Input: [[0]]\n        Output: 0\n        Explanation: The spider starts at the safe cell, so no energy is required.\n\n    Constraints:\n        * 1 <= arr.length <= 100\n        * 1 <= arr[i].length <= 100\n        * 0 <= cell.value <= 100\n        * The array is guaranteed to contain exactly 1 safe cell.\n    \"\"\"\n    from collections import deque\n    rows, cols = (len(arr), len(arr[-1]))\n    dp = [[float('inf')] * cols for _ in range(rows)]\n    dp[0][0] = arr[0][0]\n    queue = deque([(0, 0)])\n    while queue:\n        x, y = queue.popleft()\n        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:\n            nx, ny = (x + dx, y + dy)\n            if 0 <= nx < rows and 0 <= ny < cols:\n                if dp[nx][ny] > dp[x][y] + arr[nx][ny]:\n                    dp[nx][ny] = dp[x][y] + arr[nx][ny]\n                    queue.append((nx, ny))\n    for i in range(rows):\n        for j in range(cols):\n            if arr[i][j] == 0:\n                return dp[i][j]\n    raise ValueError('Invalid input: No safy cell')",
+     "input": "([[4, 2], [1, 0, 5, 0]],)",
+     "expected_canonical": "5",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:1@node140",
+     "diff": "--- canonical\n+++ mutant\n@@ -34,12 +34,10 @@\n     from collections import deque\n-\n-    rows, cols = len(arr), len(arr[0])\n-    dp = [[float(\"inf\")] * cols for _ in range(rows)]\n+    rows, cols = (len(arr), len(arr[0]))\n+    dp = [[float('inf')] * cols for _ in range(rows)]\n     dp[0][0] = arr[0][0]\n     queue = deque([(0, 0)])\n-\n     while queue:\n         x, y = queue.popleft()\n-        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:\n-            nx, ny = x + dx, y + dy\n+        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 1)]:\n+            nx, ny = (x + dx, y + dy)\n             if 0 <= nx < rows and 0 <= ny < cols:\n@@ -48,3 +46,2 @@\n                     queue.append((nx, ny))\n-\n     for i in range(rows):\n@@ -53,2 +50,2 @@\n                 return dp[i][j]\n-    raise ValueError(\"Invalid input: No safy cell\")+    raise ValueError('Invalid input: No safy cell')",
+     "mutant_src": "def spider_web_jump(arr):\n    \"\"\"\n    In a two-dimensional array representing a spider's web, each cell represents a connection to neighboring cells.\n    Each cell has a value, which indicates the energy required for a spider to jump to that cell from an adjacent cell.\n    Your task is to find the optimal path for the spider to reach the 'safe cell', using the minimum energy possible.\n    Return the minimum energy required.\n\n    The array is guaranteed to have exactly 1 safe cell, which is represented by 0.\n    The spider always starts from the top-left cell (0,0).\n    \n    Here's an example web:\n    [[1, 2, 1, 99],\n     [1, 3, 2, 0],\n     [99, 1, 1, 99],\n     [99, 99, 99, 99]]\n    The optimal path would be (0,0) -> (0,1) -> (0,2) -> (1,2) -> (1,3), with an energy requirement of 1 + 2 + 1 + 2 = 6.\n\n    Example 1:\n        Input: [[2, 3], [1, 0]]\n        Output: 3\n        Explanation: The spider jumps from (0,0) to (1,0) to (1,1) using 2 + 1 = 3 energy.\n\n    Example 2:\n        Input: [[0]]\n        Output: 0\n        Explanation: The spider starts at the safe cell, so no energy is required.\n\n    Constraints:\n        * 1 <= arr.length <= 100\n        * 1 <= arr[i].length <= 100\n        * 0 <= cell.value <= 100\n        * The array is guaranteed to contain exactly 1 safe cell.\n    \"\"\"\n    from collections import deque\n    rows, cols = (len(arr), len(arr[0]))\n    dp = [[float('inf')] * cols for _ in range(rows)]\n    dp[0][0] = arr[0][0]\n    queue = deque([(0, 0)])\n    while queue:\n        x, y = queue.popleft()\n        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 1)]:\n            nx, ny = (x + dx, y + dy)\n            if 0 <= nx < rows and 0 <= ny < cols:\n                if dp[nx][ny] > dp[x][y] + arr[nx][ny]:\n                    dp[nx][ny] = dp[x][y] + arr[nx][ny]\n                    queue.append((nx, ny))\n    for i in range(rows):\n        for j in range(cols):\n            if arr[i][j] == 0:\n                return dp[i][j]\n    raise ValueError('Invalid input: No safy cell')",
+     "input": "([[7, 6, 9, 7, 12], [4, 19, 0, 3, 2], [0, 4, 2, 6, 4], [0, 4, 3, 3, -1, 3]],)",
+     "expected_canonical": "17",
+     "mutant_output": "15"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/42",
+   "entry": "find_legendary_item",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/43",
+   "entry": "space_travel",
+   "mutants_tried": 8,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/44",
+   "entry": "fairy_tale_transport",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/45",
+   "entry": "find_castle",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/46",
+   "entry": "hidden_message",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/47",
+   "entry": "recipe_ingredients",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/48",
+   "entry": "wizard_inventory",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/49",
+   "entry": "morse_decoder",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/50",
+   "entry": "text_to_morse",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/51",
+   "entry": "alien_encoding",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/52",
+   "error": "timeout/crash",
+   "witnesses": []
+  },
+  {
+   "task_id": "EvoEval_creative/53",
+   "entry": "magical_transformation",
+   "mutants_tried": 30,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/54",
+   "entry": "find_star_map",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/55",
+   "entry": "treasure_map",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/56",
+   "entry": "str_to_morse_code",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/57",
+   "entry": "magical_cafe",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/58",
+   "entry": "interstellar_translator",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/59",
+   "entry": "cooking_challenge",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/60",
+   "entry": "happy_ants",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/61",
+   "entry": "transform_string",
+   "mutants_tried": 19,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/62",
+   "entry": "recipe_converter",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/63",
+   "entry": "create_pyramid",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/64",
+   "entry": "magical_sequence",
+   "mutants_tried": 48,
+   "survivors": 2,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "bin:Sub@node78",
+     "diff": "--- canonical\n+++ mutant\n@@ -10,2 +10,3 @@\n     \"\"\"\n+\n     def is_prime(n):\n@@ -23,4 +24,2 @@\n         return True\n-\n-    # Create a list of all numbers in the range that are divisible by divisor and are prime\n-    return [i for i in range(start, end + 1) if i % divisor == 0 and is_prime(i)]+    return [i for i in range(start, end - 1) if i % divisor == 0 and is_prime(i)]",
+     "mutant_src": "def magical_sequence(start, end, divisor):\n    \"\"\"This function takes three positive integers: 'start', 'end', and 'divisor'. It returns a list of all \n    the numbers in the range ['start', 'end'] inclusive, that are divisible by 'divisor' and are prime numbers. \n    If no such number exists, the function should return an empty list.\n\n    For example:\n    magical_sequence(10, 20, 2) returns an empty list because there are no prime numbers in the range [10, 20] that are divisible by 2.\n    magical_sequence(1, 5, 3) returns [3] because 3 is the only prime number in the range [1, 5] that is divisible by 3.\n    magical_sequence(10, 15, 6) returns an empty list because there are no prime numbers in the range [10, 15] that are divisible by 6.\n    \"\"\"\n\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n    return [i for i in range(start, end - 1) if i % divisor == 0 and is_prime(i)]",
+     "input": "(1, 4, 1)",
+     "expected_canonical": "[2, 3]",
+     "mutant_output": "[2]"
+    },
+    {
+     "mutation": "const:-1@node100",
+     "diff": "--- canonical\n+++ mutant\n@@ -10,2 +10,3 @@\n     \"\"\"\n+\n     def is_prime(n):\n@@ -23,4 +24,2 @@\n         return True\n-\n-    # Create a list of all numbers in the range that are divisible by divisor and are prime\n-    return [i for i in range(start, end + 1) if i % divisor == 0 and is_prime(i)]+    return [i for i in range(start, end + 0) if i % divisor == 0 and is_prime(i)]",
+     "mutant_src": "def magical_sequence(start, end, divisor):\n    \"\"\"This function takes three positive integers: 'start', 'end', and 'divisor'. It returns a list of all \n    the numbers in the range ['start', 'end'] inclusive, that are divisible by 'divisor' and are prime numbers. \n    If no such number exists, the function should return an empty list.\n\n    For example:\n    magical_sequence(10, 20, 2) returns an empty list because there are no prime numbers in the range [10, 20] that are divisible by 2.\n    magical_sequence(1, 5, 3) returns [3] because 3 is the only prime number in the range [1, 5] that is divisible by 3.\n    magical_sequence(10, 15, 6) returns an empty list because there are no prime numbers in the range [10, 15] that are divisible by 6.\n    \"\"\"\n\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n    return [i for i in range(start, end + 0) if i % divisor == 0 and is_prime(i)]",
+     "input": "(301, 1999, -1)",
+     "expected_canonical": "[307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673,",
+     "mutant_output": "[307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673,"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/65",
+   "entry": "food_order",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/66",
+   "error": "timeout/crash",
+   "witnesses": []
+  },
+  {
+   "task_id": "EvoEval_creative/67",
+   "entry": "meal_calculator",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/68",
+   "entry": "magical_sorting",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/69",
+   "entry": "magicTrick",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/70",
+   "entry": "planet_path",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/71",
+   "entry": "letter_shift_cipher",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/72",
+   "entry": "string_fairy_tale",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/73",
+   "entry": "treasure_hunt",
+   "mutants_tried": 9,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/74",
+   "entry": "cipher_mapping",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/75",
+   "entry": "magical_string_transformer",
+   "mutants_tried": 28,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/76",
+   "entry": "create_pyramid",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/77",
+   "entry": "magical_sequence",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/78",
+   "entry": "find_pattern",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/79",
+   "entry": "find_fruitful_days",
+   "mutants_tried": 9,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node35",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,30 +1,29 @@\n-def find_fruitful_days(prices, days):\r\n-    \"\"\"\r\n-    Given a list of prices of a certain fruit and the number of days a vendor has stayed in the market, \r\n-    find the maximum profit that could be made by the vendor if he could buy and sell the fruit only once during his stay.\r\n-\r\n-    The vendor has the ability to know the prices of the fruit in the future. \r\n-    He wants to buy the fruit on one day and sell it on another day that comes after the day he bought the fruit.\r\n-    If he cannot make any profit, return 0.\r\n-\r\n-    Args:\r\n-        prices (list): A list of integers representing the prices of the fruit for each day.\r\n-        days (int): The latest of day the vendor can buy fruits.\r\n-\r\n-    Returns:\r\n-        int: The maximum profit that could be made by the vendor.\r\n-\r\n-    Example:\r\n-\r\n-        Input: prices = [1, 5, 2, 8, 7, 3], days = 5\r\n-        Output: 7 # The vendor buys the fruit on the first day at price 1 and sells it on the fourth day at price 8.\r\n-\r\n-    Constraints:\r\n-        1. 1 <= len(prices) <= 100\r\n-        2. 1 <= days <= len(prices)\r\n+def find_fruitful_days(prices, days):\n     \"\"\"\n+    Given a list of prices of a certain fruit and the number of days a vendor has stayed in the market, \n+    find the maximum profit that could be made by the vendor if he could buy and sell the fruit only once during his stay.\n \n+    The vendor has the ability to know the prices of the fruit in the future. \n+    He wants to buy the fruit on one day and sell it on another day that comes after the day he bought the fruit.\n+    If he cannot make any profit, return 0.\n+\n+    Args:\n+        prices (list): A list of integers representing the prices of the fruit for each day.\n+        days (int): The latest of day the vendor can buy fruits.\n+\n+    Returns:\n+        int: The maximum profit that could be made by the vendor.\n+\n+    Example:\n+\n+        Input: prices = [1, 5, 2, 8, 7, 3], days = 5\n+        Output: 7 # The vendor buys the fruit on the first day at price 1 and sells it on the fourth day at price 8.\n+\n+    Constraints:\n+        1. 1 <= len(prices) <= 100\n+        2. 1 <= days <= len(prices)\n+    \"\"\"\n     max_profit = 0\n     for i in range(days):\n-        for j in range(i+1, days):\n+        for j in range(i + 0, days):\n             if prices[j] - prices[i] > max_profit:\n",
+     "mutant_src": "def find_fruitful_days(prices, days):\n    \"\"\"\n    Given a list of prices of a certain fruit and the number of days a vendor has stayed in the market, \n    find the maximum profit that could be made by the vendor if he could buy and sell the fruit only once during his stay.\n\n    The vendor has the ability to know the prices of the fruit in the future. \n    He wants to buy the fruit on one day and sell it on another day that comes after the day he bought the fruit.\n    If he cannot make any profit, return 0.\n\n    Args:\n        prices (list): A list of integers representing the prices of the fruit for each day.\n        days (int): The latest of day the vendor can buy fruits.\n\n    Returns:\n        int: The maximum profit that could be made by the vendor.\n\n    Example:\n\n        Input: prices = [1, 5, 2, 8, 7, 3], days = 5\n        Output: 7 # The vendor buys the fruit on the first day at price 1 and sells it on the fourth day at price 8.\n\n    Constraints:\n        1. 1 <= len(prices) <= 100\n        2. 1 <= days <= len(prices)\n    \"\"\"\n    max_profit = 0\n    for i in range(days):\n        for j in range(i + 0, days):\n            if prices[j] - prices[i] > max_profit:\n                max_profit = prices[j] - prices[i]\n    return max_profit",
+     "input": "([], 1)",
+     "expected_canonical": "0",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/80",
+   "entry": "adventure_game",
+   "mutants_tried": 67,
+   "survivors": 12,
+   "equivalent_or_unknown": 12,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/81",
+   "entry": "alien_language",
+   "mutants_tried": 12,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/82",
+   "entry": "zodiac_element",
+   "mutants_tried": 33,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/83",
+   "entry": "reverse_vowels",
+   "mutants_tried": 15,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/84",
+   "entry": "tree_traversal",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/85",
+   "entry": "princess_rescue",
+   "mutants_tried": 42,
+   "survivors": 3,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node97",
+     "diff": "--- canonical\n+++ mutant\n@@ -21,7 +21,6 @@\n     from collections import deque\n-    rows, cols = len(grid), len(grid[0])\n-    visited = [[False]*cols for _ in range(rows)]\n-    queue = deque([(0, 0, 0)])  # (row, col, steps)\n-    directions = [(0, 1), (1, 0)]  # right, down\n-\n+    rows, cols = (len(grid), len(grid[-1]))\n+    visited = [[False] * cols for _ in range(rows)]\n+    queue = deque([(0, 0, 0)])\n+    directions = [(0, 1), (1, 0)]\n     while queue:\n@@ -31,7 +30,6 @@\n         for dr, dc in directions:\n-            nr, nc = r + dr, c + dc\n-            if 0 <= nr < rows and 0 <= nc < cols and not visited[nr][nc] and grid[nr][nc] == 0:\n+            nr, nc = (r + dr, c + dc)\n+            if 0 <= nr < rows and 0 <= nc < cols and (not visited[nr][nc]) and (grid[nr][nc] == 0):\n                 visited[nr][nc] = True\n                 queue.append((nr, nc, steps + 1))\n-\n     return -1",
+     "mutant_src": "def princess_rescue(coord, grid):\n    \"\"\"\n    A princess is trapped in a 2D grid filled with monsters. You are a brave warrior tasked with saving the princess.\n    Your starting point is at the top-left corner of the grid and you need to reach the princess who is at a certain coordinate in the grid.\n    However, there are monsters in some parts of the grid. You can move either to the right or down.\n    You need to find out the minimum number of moves to reach the princess without encountering a monster. \n    If it's impossible to reach the princess without encountering a monster, return -1.\n    \n    The grid is represented as a 2D list. Each element in the list is either 0 or 1. \n    0 represents an open space where you can move, and 1 represents a monster. \n    The princess's coordinate is represented as a tuple (row, column).\n    \n    Examples:\n    \n    For coord = (2,2) and grid = [[0,0,0],[0,1,0],[0,0,0]], the output should be 4.\n    For coord = (3,3) and grid = [[0,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,0]], the output should be 6.\n    For coord = (3,3) and grid = [[0,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]], the output should be -1.\n    For coord = (1,1) and grid = [[0,0],[1,0]], the output should be 2.\n    For coord = (2,2) and grid = [[0,1,0],[0,1,0],[0,0,0]], the output should be 4.\n    \"\"\"\n    from collections import deque\n    rows, cols = (len(grid), len(grid[-1]))\n    visited = [[False] * cols for _ in range(rows)]\n    queue = deque([(0, 0, 0)])\n    directions = [(0, 1), (1, 0)]\n    while queue:\n        r, c, steps = queue.popleft()\n        if (r, c) == coord:\n            return steps\n        for dr, dc in directions:\n            nr, nc = (r + dr, c + dc)\n            if 0 <= nr < rows and 0 <= nc < cols and (not visited[nr][nc]) and (grid[nr][nc] == 0):\n                visited[nr][nc] = True\n                queue.append((nr, nc, steps + 1))\n    return -1",
+     "input": "((3, -5), [[2, 0, 0], [2, -1, 0, -17], [-20, 1, 3, 1]])",
+     "expected_canonical": "-1",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/86",
+   "entry": "sort_movies_by_ratings_and_release_date",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/87",
+   "entry": "word_spiral",
+   "mutants_tried": 18,
+   "survivors": 3,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node81",
+     "diff": "--- canonical\n+++ mutant\n@@ -11,3 +11,3 @@\n     if not arr:\n-        return \"\"\n+        return ''\n     result = []\n@@ -20,5 +20,5 @@\n             result += arr.pop()[::-1]\n-        if arr and arr[0]:\n+        if arr and arr[-1]:\n             for row in arr[::-1]:\n                 result.append(row.pop(0))\n-    return \"\".join(result)+    return ''.join(result)",
+     "mutant_src": "def word_spiral(arr):\n    \"\"\"Create a function which takes in a 2D array of characters and returns a \n    string which represents the words in the array read in a clockwise spiral starting\n    from the top left corner. If the array is empty, return an empty string. \n\n    Examples:\n    assert word_spiral([['h','i','!'],['b','y','e']]) == 'hi!eyb'\n    assert word_spiral([['l','o','v','e'],['i','s','i','n'],['t','h','e','a'],['i','r', '!','!!']]) == 'lovena!!!ritisieh'\n    assert word_spiral([]) == ''\n    \"\"\"\n    if not arr:\n        return ''\n    result = []\n    while arr:\n        result += arr.pop(0)\n        if arr and arr[0]:\n            for row in arr:\n                result.append(row.pop())\n        if arr and arr[-1]:\n            result += arr.pop()[::-1]\n        if arr and arr[-1]:\n            for row in arr[::-1]:\n                result.append(row.pop(0))\n    return ''.join(result)",
+     "input": "([[')', '+'], ['&', '**'], ['%', '^'], ['-', '==', '{', '=='], ['}', '', ']]'], ['', '@', '#', '@']],)",
+     "expected_canonical": "')+**^==]]@#@}-%&{=='",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node66",
+     "diff": "--- canonical\n+++ mutant\n@@ -11,3 +11,3 @@\n     if not arr:\n-        return \"\"\n+        return ''\n     result = []\n@@ -15,3 +15,3 @@\n         result += arr.pop(0)\n-        if arr and arr[0]:\n+        if arr and arr[-1]:\n             for row in arr:\n@@ -23,2 +23,2 @@\n                 result.append(row.pop(0))\n-    return \"\".join(result)+    return ''.join(result)",
+     "mutant_src": "def word_spiral(arr):\n    \"\"\"Create a function which takes in a 2D array of characters and returns a \n    string which represents the words in the array read in a clockwise spiral starting\n    from the top left corner. If the array is empty, return an empty string. \n\n    Examples:\n    assert word_spiral([['h','i','!'],['b','y','e']]) == 'hi!eyb'\n    assert word_spiral([['l','o','v','e'],['i','s','i','n'],['t','h','e','a'],['i','r', '!','!!']]) == 'lovena!!!ritisieh'\n    assert word_spiral([]) == ''\n    \"\"\"\n    if not arr:\n        return ''\n    result = []\n    while arr:\n        result += arr.pop(0)\n        if arr and arr[-1]:\n            for row in arr:\n                result.append(row.pop())\n        if arr and arr[-1]:\n            result += arr.pop()[::-1]\n        if arr and arr[0]:\n            for row in arr[::-1]:\n                result.append(row.pop(0))\n    return ''.join(result)",
+     "input": "([['11', '22'], ['4', '55'], ['8', ''], ['0', 'b'], ['c', 'dd', 'ee', 'ee'], ['11', '22']],)",
+     "expected_canonical": "'112255bee2211c084eedd'",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node94",
+     "diff": "--- canonical\n+++ mutant\n@@ -11,3 +11,3 @@\n     if not arr:\n-        return \"\"\n+        return ''\n     result = []\n@@ -18,3 +18,3 @@\n                 result.append(row.pop())\n-        if arr and arr[-1]:\n+        if arr and arr[-0]:\n             result += arr.pop()[::-1]\n@@ -23,2 +23,2 @@\n                 result.append(row.pop(0))\n-    return \"\".join(result)+    return ''.join(result)",
+     "mutant_src": "def word_spiral(arr):\n    \"\"\"Create a function which takes in a 2D array of characters and returns a \n    string which represents the words in the array read in a clockwise spiral starting\n    from the top left corner. If the array is empty, return an empty string. \n\n    Examples:\n    assert word_spiral([['h','i','!'],['b','y','e']]) == 'hi!eyb'\n    assert word_spiral([['l','o','v','e'],['i','s','i','n'],['t','h','e','a'],['i','r', '!','!!']]) == 'lovena!!!ritisieh'\n    assert word_spiral([]) == ''\n    \"\"\"\n    if not arr:\n        return ''\n    result = []\n    while arr:\n        result += arr.pop(0)\n        if arr and arr[0]:\n            for row in arr:\n                result.append(row.pop())\n        if arr and arr[-0]:\n            result += arr.pop()[::-1]\n        if arr and arr[0]:\n            for row in arr[::-1]:\n                result.append(row.pop(0))\n    return ''.join(result)",
+     "input": "([[], [], ['b'], ['g'], [''], ['f'], ['d']],)",
+     "expected_canonical": "'dbgf'",
+     "mutant_output": "'bgfd'"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/88",
+   "entry": "planet_population",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/89",
+   "entry": "space_invaders",
+   "mutants_tried": 19,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/90",
+   "entry": "magical_multiply",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/91",
+   "entry": "spaceship_trajectory",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/92",
+   "entry": "paint_fountain",
+   "mutants_tried": 28,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/93",
+   "entry": "secret_code",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node63",
+     "diff": "--- canonical\n+++ mutant\n@@ -22,3 +22,3 @@\n     \"\"\"\n-    result = \"\"\n+    result = ''\n     n_values_len = len(n_values)\n@@ -27,3 +27,3 @@\n         if char.isalpha():\n-            ascii_offset = 65 if char.isupper() else 97\n+            ascii_offset = 64 if char.isupper() else 97\n             new_char = chr((ord(char) - ascii_offset + n_values[i % n_values_len]) % 26 + ascii_offset)\n",
+     "mutant_src": "def secret_code(message, n_values):\n    \"\"\"\n    Your task is to help a secret organization communicate by encoding and decoding messages. The organization has its own secret code, in which each letter is replaced by the letter which is n positions ahead in the alphabet cycle. However, the organization uses a random number generator for n, so n can be different for each letter. Spaces and punctuation are not encoded.\n\n    Your function should take two parameters. The first parameter is a string, which will be the message to encode or decode. The second parameter is a list of integers, which are the values of n for each character in the string.\n\n    If the list of integers is longer than the message, ignore the extra integers. If the message is longer than the list of integers, cycle through the list of integers again from the beginning.\n\n    Example 1:\n        Input: message = \"Hello\", n_values = [1, 2, 3, 4, 5]\n        Output: \"Igopt\"\n\n    Example 2:\n        Input: message = \"Hello World!\", n_values = [1, 2, 3]\n        Output: \"Igomq Xqumf!\"\n\n    Constraints:\n        * 1 <= len(message) <= 100\n        * message contains only letters, spaces and punctuation\n        * 1 <= len(n_values) <= 100\n        * Each integer in n_values will be between 1 and 26.\n    \"\"\"\n    result = ''\n    n_values_len = len(n_values)\n    for i in range(len(message)):\n        char = message[i]\n        if char.isalpha():\n            ascii_offset = 64 if char.isupper() else 97\n            new_char = chr((ord(char) - ascii_offset + n_values[i % n_values_len]) % 26 + ascii_offset)\n            result += new_char\n        else:\n            result += char\n    return result",
+     "input": "('Hello World!', [3, 1, -12])",
+     "expected_canonical": "'Kfzop Zpfoe!'",
+     "mutant_output": "'Kfzop @pfoe!'"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/94",
+   "entry": "spell_casting",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/95",
+   "entry": "matrixMystery",
+   "mutants_tried": 8,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node47",
+     "diff": "--- canonical\n+++ mutant\n@@ -15,12 +15,6 @@\n     \"\"\"\n-\n-    # Check if the matrix is square\n-    if len(m) != len(m[0]):\n+    if len(m) != len(m[-1]):\n         return 'Invalid Matrix'\n-    \n-    # Calculate the sum of the diagonals\n-    diag1 = sum(m[i][i] for i in range(len(m)))\n-    diag2 = sum(m[i][len(m)-i-1] for i in range(len(m)))\n-    \n-    # Return the absolute difference between the sums\n+    diag1 = sum((m[i][i] for i in range(len(m))))\n+    diag2 = sum((m[i][len(m) - i - 1] for i in range(len(m))))\n     return abs(diag1 - diag2)",
+     "mutant_src": "def matrixMystery(m):\n    \"\"\"Write a function that takes a 2D array of integers as input (a matrix m) and returns \n    the absolute difference between the sum of the diagonals. For the purpose of this problem, \n    the diagonals are defined as follows: \n\n    - The first diagonal starts at the top left corner and descends down to the right (i.e., along the line of m[i][i] for all i)\n    - The second diagonal starts at the top right corner and descends down to the left (i.e., along the line of m[i][len(m)-i-1] for all i)\n\n    If the matrix is not square, return 'Invalid Matrix'.\n\n    Example:\n    matrixMystery([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) => 0\n    matrixMystery([[1, 0, 0], [0, 1, 0], [0, 0, 1]]) => 2\n    matrixMystery([[1, 2], [3, 4]]) => 0\n    \"\"\"\n    if len(m) != len(m[-1]):\n        return 'Invalid Matrix'\n    diag1 = sum((m[i][i] for i in range(len(m))))\n    diag2 = sum((m[i][len(m) - i - 1] for i in range(len(m))))\n    return abs(diag1 - diag2)",
+     "input": "([[2, 4, 2, 2], [4, 4, 8], [-10, 9, 9]],)",
+     "expected_canonical": "'Invalid Matrix'",
+     "mutant_output": "19"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/96",
+   "entry": "get_magic_indices",
+   "mutants_tried": 18,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/97",
+   "entry": "alien_invasion",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/98",
+   "entry": "nature_sequence_generator",
+   "mutants_tried": 54,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "cmp:Lt@node38",
+     "diff": "--- canonical\n+++ mutant\n@@ -25,2 +25,3 @@\n     \"\"\"\n+\n     def is_prime(n):\n@@ -33,3 +34,3 @@\n         i = 5\n-        while i * i <= n:\n+        while i * i < n:\n             if n % i == 0 or n % (i + 2) == 0:\n@@ -40,5 +41,4 @@\n     for i in range(2, n):\n-        next_num = sequence[i-2] + sequence[i-1] + i - 1\n+        next_num = sequence[i - 2] + sequence[i - 1] + i - 1\n         sequence.append(next_num)\n-        \n     sequence = [x if not is_prime(x) else 'prime' for x in sequence]\n",
+     "mutant_src": "def nature_sequence_generator(n, a, b):\n    \"\"\"Write a function that generates a sequence of natural numbers.\n    The function accepts three parameters:\n    - The first parameter, n, is an integer and indicates how many elements the sequence should contain.\n    - The second parameter, a, is an integer and represents the first number in the sequence.\n    - The third parameter, b, is an integer and represents the second number in the sequence.\n    \n    The sequence starts with a and b, and each subsequent element in the sequence is generated by adding \n    the next natural number (starting from 1, incrementing by 1) to the sum of its two preceding numbers.\n    The function should return the sequence as a list of integers.\n\n    The function should also check if the generated sequence has any prime numbers. If yes, then replace \n    these prime numbers with the string 'prime'. \n\n    The function should return a list of integers and strings in the above mentioned order.\n\n    For example:\n    assert nature_sequence_generator(5, 1, 2) == [1, 'prime', 4, 8, 15]\n    assert nature_sequence_generator(6, 2, 3) == ['prime', 'prime', 6, 'prime', 20, 35]\n\n    Note: \n    - The number 1 is not considered a prime number.\n    - All input parameters are positive integers.\n    - n will always be greater than 2.\n    \"\"\"\n\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i < n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n    sequence = [a, b]\n    for i in range(2, n):\n        next_num = sequence[i - 2] + sequence[i - 1] + i - 1\n        sequence.append(next_num)\n    sequence = [x if not is_prime(x) else 'prime' for x in sequence]\n    return sequence",
+     "input": "(9, 3, 4)",
+     "expected_canonical": "['prime', 4, 8, 14, 25, 'prime', 'prime', 122, 202]",
+     "mutant_output": "['prime', 4, 8, 14, 'prime', 'prime', 'prime', 122, 202]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_creative/99",
+   "entry": "musical_chairs",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  }
+ ]
+}

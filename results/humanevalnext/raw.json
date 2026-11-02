@@ -1,0 +1,1007 @@
+{
+ "benchmark": "humanevalnext",
+ "n_tasks": 82,
+ "seed": 1337,
+ "results": [
+  {
+   "task_id": "HumanEvalNext/0",
+   "entry": "has_close_elements",
+   "mutants_tried": 8,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/1",
+   "entry": "separate_paren_groups",
+   "mutants_tried": 37,
+   "survivors": 3,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node361",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -17,10 +16,9 @@\n     \"\"\"\n-    input = \"\".join([x for x in paren_string if x in '()'])\n+    input = ''.join([x for x in paren_string if x in '()'])\n     breakpoints = input.split('()')\n     groups = []\n-\n     for i in range(len(breakpoints) - 1):\n         group = '()'\n-        while breakpoints[i] != \"\" and breakpoints[i].endswith('(') and breakpoints[i + 1] != \"\" and breakpoints[i + 1].startswith(')'):\n-            group = f\"({group})\"\n+        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n+            group = f'({group})'\n             breakpoints[i] = breakpoints[i][:-1]\n@@ -28,3 +26,2 @@\n         groups.append(group)\n-\n     while '' in breakpoints:\n@@ -33,3 +30,2 @@\n         end = None\n-\n         for i in range(len(breakpoints)):\n@@ -39,3 +35,3 @@\n                 end = None\n-            elif breakpoints[i] == \"\" and start is not None:\n+            elif breakpoints[i] == '' and start is not None:\n                 middle = True\n@@ -44,10 +40,8 @@\n                 break\n-\n         if start is not None and end is not None:\n-            chained = \"\".join(groups[start:end])\n-            while breakpoints[start] != \"\" and breakpoints[start].endswith('(') and breakpoints[end] != \"\" and breakpoints[end].startswith(')'):\n-                chained = f\"({chained})\"\n+            chained = ''.join(groups[start:end])\n+            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n+                chained = f'({chained})'\n                 breakpoints[start] = breakpoints[start][:-1]\n-                breakpoints[end] = breakpoints[end][1:]\n-\n+                breakpoints[end] = breakpoints[end][0:]\n             groups = groups[:start] + [chained] + groups[end:]\n@@ -56,3 +50,2 @@\n             break\n-\n-    return groups\n+    return groups",
+     "mutant_src": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string possibly containing multiple groups of nested parentheses.\n    Your goal is to separate those groups into separate strings and return the list of those.\n    Ignore anything other than \"(\" and \")\" in the input string.\n\n    Examples:\n        >>> seperate_paren_groups('(()())')\n        ['(()())']\n        >>> separate_paren_groups('()(())')\n        ['()', '(())']\n        >>> separate_paren_groups(')( [) (( ))] (({})( ))')\n        ['()', '(())', '(()())']\n    \"\"\"\n    input = ''.join([x for x in paren_string if x in '()'])\n    breakpoints = input.split('()')\n    groups = []\n    for i in range(len(breakpoints) - 1):\n        group = '()'\n        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n            group = f'({group})'\n            breakpoints[i] = breakpoints[i][:-1]\n            breakpoints[i + 1] = breakpoints[i + 1][1:]\n        groups.append(group)\n    while '' in breakpoints:\n        start = None\n        middle = False\n        end = None\n        for i in range(len(breakpoints)):\n            if breakpoints[i].endswith('('):\n                start = i\n                middle = False\n                end = None\n            elif breakpoints[i] == '' and start is not None:\n                middle = True\n            elif breakpoints[i].startswith(')') and middle:\n                end = i\n                break\n        if start is not None and end is not None:\n            chained = ''.join(groups[start:end])\n            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n                chained = f'({chained})'\n                breakpoints[start] = breakpoints[start][:-1]\n                breakpoints[end] = breakpoints[end][0:]\n            groups = groups[:start] + [chained] + groups[end:]\n            breakpoints = breakpoints[:start] + [breakpoints[start]] + breakpoints[end:]\n        else:\n            break\n    return groups",
+     "input": "('(((())(()))',)",
+     "expected_canonical": "['((())(()))']",
+     "mutant_output": "['(((())(())))']"
+    },
+    {
+     "mutation": "bool:Or@node250",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -17,10 +16,9 @@\n     \"\"\"\n-    input = \"\".join([x for x in paren_string if x in '()'])\n+    input = ''.join([x for x in paren_string if x in '()'])\n     breakpoints = input.split('()')\n     groups = []\n-\n     for i in range(len(breakpoints) - 1):\n         group = '()'\n-        while breakpoints[i] != \"\" and breakpoints[i].endswith('(') and breakpoints[i + 1] != \"\" and breakpoints[i + 1].startswith(')'):\n-            group = f\"({group})\"\n+        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n+            group = f'({group})'\n             breakpoints[i] = breakpoints[i][:-1]\n@@ -28,3 +26,2 @@\n         groups.append(group)\n-\n     while '' in breakpoints:\n@@ -33,3 +30,2 @@\n         end = None\n-\n         for i in range(len(breakpoints)):\n@@ -39,15 +35,13 @@\n                 end = None\n-            elif breakpoints[i] == \"\" and start is not None:\n+            elif breakpoints[i] == '' and start is not None:\n                 middle = True\n-            elif breakpoints[i].startswith(')') and middle:\n+            elif breakpoints[i].startswith(')') or middle:\n                 end = i\n                 break\n-\n         if start is not None and end is not None:\n-            chained = \"\".join(groups[start:end])\n-            while breakpoints[start] != \"\" and breakpoints[start].endswith('(') and breakpoints[end] != \"\" and breakpoints[end].startswith(')'):\n-                chained = f\"({chained})\"\n+            chained = ''.join(groups[start:end])\n+            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n+                chained = f'({chained})'\n                 breakpoints[start] = breakpoints[start][:-1]\n                 breakpoints[end] = breakpoints[end][1:]\n-\n             groups = groups[:start] + [chained] + groups[end:]\n@@ -56,3 +50,2 @@\n             break\n-\n-    return groups\n+    return groups",
+     "mutant_src": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string possibly containing multiple groups of nested parentheses.\n    Your goal is to separate those groups into separate strings and return the list of those.\n    Ignore anything other than \"(\" and \")\" in the input string.\n\n    Examples:\n        >>> seperate_paren_groups('(()())')\n        ['(()())']\n        >>> separate_paren_groups('()(())')\n        ['()', '(())']\n        >>> separate_paren_groups(')( [) (( ))] (({})( ))')\n        ['()', '(())', '(()())']\n    \"\"\"\n    input = ''.join([x for x in paren_string if x in '()'])\n    breakpoints = input.split('()')\n    groups = []\n    for i in range(len(breakpoints) - 1):\n        group = '()'\n        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n            group = f'({group})'\n            breakpoints[i] = breakpoints[i][:-1]\n            breakpoints[i + 1] = breakpoints[i + 1][1:]\n        groups.append(group)\n    while '' in breakpoints:\n        start = None\n        middle = False\n        end = None\n        for i in range(len(breakpoints)):\n            if breakpoints[i].endswith('('):\n                start = i\n                middle = False\n                end = None\n            elif breakpoints[i] == '' and start is not None:\n                middle = True\n            elif breakpoints[i].startswith(')') or middle:\n                end = i\n                break\n        if start is not None and end is not None:\n            chained = ''.join(groups[start:end])\n            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n                chained = f'({chained})'\n                breakpoints[start] = breakpoints[start][:-1]\n                breakpoints[end] = breakpoints[end][1:]\n            groups = groups[:start] + [chained] + groups[end:]\n            breakpoints = breakpoints[:start] + [breakpoints[start]] + breakpoints[end:]\n        else:\n            break\n    return groups",
+     "input": "(')())(((()())()',)",
+     "expected_canonical": "['()', '(()())', '()']",
+     "mutant_output": "['()', '()', '()', '()']"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/2",
+   "entry": "truncate_number",
+   "mutants_tried": 5,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/3",
+   "entry": "below_zero",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/4",
+   "entry": "mean_absolute_deviation",
+   "mutants_tried": 5,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/5",
+   "entry": "intersperse",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/6",
+   "entry": "parse_nested_parens",
+   "mutants_tried": 47,
+   "survivors": 5,
+   "equivalent_or_unknown": 3,
+   "witnesses": [
+    {
+     "mutation": "bool:Or@node293",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -11,13 +10,12 @@\n     Example:\n-        >>> parse_nested_parens('{\\\"example\\\": \\\"(()[]()) ((()))()((())()() )\\\"}')\n+        >>> parse_nested_parens('{\"example\": \"(()[]()) ((()))()((())()() )\"}')\n         [2, 3, 1, 3]\n     \"\"\"\n-    input = \"\".join([x for x in paren_string if x in '()'])\n+    input = ''.join([x for x in paren_string if x in '()'])\n     breakpoints = input.split('()')\n     groups = []\n-\n     for i in range(len(breakpoints) - 1):\n         group = '()'\n-        while breakpoints[i] != \"\" and breakpoints[i].endswith('(') and breakpoints[i + 1] != \"\" and breakpoints[i + 1].startswith(')'):\n-            group = f\"({group})\"\n+        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n+            group = f'({group})'\n             breakpoints[i] = breakpoints[i][:-1]\n@@ -25,3 +23,2 @@\n         groups.append(group)\n-\n     while '' in breakpoints:\n@@ -30,3 +27,2 @@\n         end = None\n-\n         for i in range(len(breakpoints)):\n@@ -36,21 +32,18 @@\n                 end = None\n-            elif breakpoints[i] == \"\" and start is not None:\n+            elif breakpoints[i] == '' and start is not None:\n                 middle = True\n-            elif breakpoints[i].startswith(')') and middle:\n+            elif breakpoints[i].startswith(')') or middle:\n                 end = i\n                 break\n-\n         if start is not None and end is not None:\n-            chained = \"\".join(groups[start:end])\n-            while breakpoints[start] != \"\" and breakpoints[start].endswith('(') and breakpoints[end] != \"\" and breakpoints[end].startswith(')'):\n-                chained = f\"({chained})\"\n+            chained = ''.join(groups[start:end])\n+            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n+                chained = f'({chained})'\n                 breakpoints[start] = breakpoints[start][:-1]\n                 breakpoints[end] = breakpoints[end][1:]\n-\n             groups = groups[:start] + [chained] + groups[end:]\n-            breakpoints = breakpoints[:start] + \\\n-                [breakpoints[start]] + breakpoints[end:]\n+            breakpoints = breakpoints[:start] + [breakpoints[start]] + breakpoints[end:]\n         else:\n             break\n-    \n+\n     def depth(s):\n@@ -65,3 +58,2 @@\n         return max_depth\n-\n-    return [depth(group) for group in groups]\n+    return [depth(group) for group in groups]",
+     "mutant_src": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\"\n    Input to this function is a string containing \"(\" and \")\"s (not exclusively),\n    possibly including multiple groups for nested parentheses.\n    For each of these groups, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three and )( has zero.\n\n    Example:\n        >>> parse_nested_parens('{\"example\": \"(()[]()) ((()))()((())()() )\"}')\n        [2, 3, 1, 3]\n    \"\"\"\n    input = ''.join([x for x in paren_string if x in '()'])\n    breakpoints = input.split('()')\n    groups = []\n    for i in range(len(breakpoints) - 1):\n        group = '()'\n        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n            group = f'({group})'\n            breakpoints[i] = breakpoints[i][:-1]\n            breakpoints[i + 1] = breakpoints[i + 1][1:]\n        groups.append(group)\n    while '' in breakpoints:\n        start = None\n        middle = False\n        end = None\n        for i in range(len(breakpoints)):\n            if breakpoints[i].endswith('('):\n                start = i\n                middle = False\n                end = None\n            elif breakpoints[i] == '' and start is not None:\n                middle = True\n            elif breakpoints[i].startswith(')') or middle:\n                end = i\n                break\n        if start is not None and end is not None:\n            chained = ''.join(groups[start:end])\n            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n                chained = f'({chained})'\n                breakpoints[start] = breakpoints[start][:-1]\n                breakpoints[end] = breakpoints[end][1:]\n            groups = groups[:start] + [chained] + groups[end:]\n            breakpoints = breakpoints[:start] + [breakpoints[start]] + breakpoints[end:]\n        else:\n            break\n\n    def depth(s):\n        max_depth = 0\n        depth = 0\n        for c in s:\n            if c == '(':\n                depth += 1\n                max_depth = max(max_depth, depth)\n            elif c == ')':\n                depth -= 1\n        return max_depth\n    return [depth(group) for group in groups]",
+     "input": "(')()))()((()()((( ())() )() ',)",
+     "expected_canonical": "[1, 1, 1, 1, 3, 1]",
+     "mutant_output": "[1, 1, 1, 1, 2, 1, 1]"
+    },
+    {
+     "mutation": "const:-1@node416",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -11,13 +10,12 @@\n     Example:\n-        >>> parse_nested_parens('{\\\"example\\\": \\\"(()[]()) ((()))()((())()() )\\\"}')\n+        >>> parse_nested_parens('{\"example\": \"(()[]()) ((()))()((())()() )\"}')\n         [2, 3, 1, 3]\n     \"\"\"\n-    input = \"\".join([x for x in paren_string if x in '()'])\n+    input = ''.join([x for x in paren_string if x in '()'])\n     breakpoints = input.split('()')\n     groups = []\n-\n     for i in range(len(breakpoints) - 1):\n         group = '()'\n-        while breakpoints[i] != \"\" and breakpoints[i].endswith('(') and breakpoints[i + 1] != \"\" and breakpoints[i + 1].startswith(')'):\n-            group = f\"({group})\"\n+        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n+            group = f'({group})'\n             breakpoints[i] = breakpoints[i][:-1]\n@@ -25,3 +23,2 @@\n         groups.append(group)\n-\n     while '' in breakpoints:\n@@ -30,3 +27,2 @@\n         end = None\n-\n         for i in range(len(breakpoints)):\n@@ -36,3 +32,3 @@\n                 end = None\n-            elif breakpoints[i] == \"\" and start is not None:\n+            elif breakpoints[i] == '' and start is not None:\n                 middle = True\n@@ -41,16 +37,13 @@\n                 break\n-\n         if start is not None and end is not None:\n-            chained = \"\".join(groups[start:end])\n-            while breakpoints[start] != \"\" and breakpoints[start].endswith('(') and breakpoints[end] != \"\" and breakpoints[end].startswith(')'):\n-                chained = f\"({chained})\"\n+            chained = ''.join(groups[start:end])\n+            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n+                chained = f'({chained})'\n                 breakpoints[start] = breakpoints[start][:-1]\n-                breakpoints[end] = breakpoints[end][1:]\n-\n+                breakpoints[end] = breakpoints[end][0:]\n             groups = groups[:start] + [chained] + groups[end:]\n-            breakpoints = breakpoints[:start] + \\\n-                [breakpoints[start]] + breakpoints[end:]\n+            breakpoints = breakpoints[:start] + [breakpoints[start]] + breakpoints[end:]\n         else:\n             break\n-    \n+\n     def depth(s):\n@@ -65,3 +58,2 @@\n         return max_depth\n-\n-    return [depth(group) for group in groups]\n+    return [depth(group) for group in groups]",
+     "mutant_src": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\"\n    Input to this function is a string containing \"(\" and \")\"s (not exclusively),\n    possibly including multiple groups for nested parentheses.\n    For each of these groups, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three and )( has zero.\n\n    Example:\n        >>> parse_nested_parens('{\"example\": \"(()[]()) ((()))()((())()() )\"}')\n        [2, 3, 1, 3]\n    \"\"\"\n    input = ''.join([x for x in paren_string if x in '()'])\n    breakpoints = input.split('()')\n    groups = []\n    for i in range(len(breakpoints) - 1):\n        group = '()'\n        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n            group = f'({group})'\n            breakpoints[i] = breakpoints[i][:-1]\n            breakpoints[i + 1] = breakpoints[i + 1][1:]\n        groups.append(group)\n    while '' in breakpoints:\n        start = None\n        middle = False\n        end = None\n        for i in range(len(breakpoints)):\n            if breakpoints[i].endswith('('):\n                start = i\n                middle = False\n                end = None\n            elif breakpoints[i] == '' and start is not None:\n                middle = True\n            elif breakpoints[i].startswith(')') and middle:\n                end = i\n                break\n        if start is not None and end is not None:\n            chained = ''.join(groups[start:end])\n            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n                chained = f'({chained})'\n                breakpoints[start] = breakpoints[start][:-1]\n                breakpoints[end] = breakpoints[end][0:]\n            groups = groups[:start] + [chained] + groups[end:]\n            breakpoints = breakpoints[:start] + [breakpoints[start]] + breakpoints[end:]\n        else:\n            break\n\n    def depth(s):\n        max_depth = 0\n        depth = 0\n        for c in s:\n            if c == '(':\n                depth += 1\n                max_depth = max(max_depth, depth)\n            elif c == ')':\n                depth -= 1\n        return max_depth\n    return [depth(group) for group in groups]",
+     "input": "('((()())',)",
+     "expected_canonical": "[2]",
+     "mutant_output": "[3]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/7",
+   "entry": "filter_by_substring",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/8",
+   "entry": "sum_product",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/9",
+   "entry": "rolling_max",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/10",
+   "entry": "make_palindrome",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/11",
+   "entry": "string_xor",
+   "mutants_tried": 11,
+   "survivors": 3,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "bin:Add@node66",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -13,3 +12,3 @@\n     if len(a) < len(b):\n-        a = '0' * (len(b) - len(a)) + a\n+        a = '0' * (len(b) + len(a)) + a\n     elif len(b) < len(a):\n@@ -22,3 +21,2 @@\n             return '1'\n-\n-    return ''.join(xor(x, y) for x, y in zip(a, b))\n+    return ''.join((xor(x, y) for x, y in zip(a, b)))",
+     "mutant_src": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\"\n    Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n\n    Example:\n        >>> string_xor('10', '110')\n        '100'\n    \"\"\"\n    if len(a) < len(b):\n        a = '0' * (len(b) + len(a)) + a\n    elif len(b) < len(a):\n        b = '0' * (len(a) - len(b)) + b\n\n    def xor(i, j):\n        if i == j:\n            return '0'\n        else:\n            return '1'\n    return ''.join((xor(x, y) for x, y in zip(a, b)))",
+     "input": "('11100', '1010010')",
+     "expected_canonical": "'1001110'",
+     "mutant_output": "'1010010'"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/12",
+   "entry": "longest",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/13",
+   "entry": "greatest_common_divisor",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/14",
+   "entry": "all_prefixes",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/15",
+   "entry": "string_sequence",
+   "mutants_tried": 7,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/16",
+   "entry": "count_distinct_characters",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/17",
+   "entry": "parse_music",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/18",
+   "entry": "how_many_times",
+   "mutants_tried": 14,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/19",
+   "entry": "sort_numbers",
+   "mutants_tried": 21,
+   "survivors": 7,
+   "equivalent_or_unknown": 6,
+   "witnesses": [
+    {
+     "mutation": "bool:Or@node50",
+     "diff": "--- canonical\n+++ mutant\n@@ -10,14 +10,3 @@\n     \"\"\"\n-    value_map = {\n-        'zero': 0,\n-        'one': 1,\n-        'two': 2,\n-        'three': 3,\n-        'four': 4,\n-        'five': 5,\n-        'six': 6,\n-        'seven': 7,\n-        'eight': 8,\n-        'nine': 9\n-    }\n-    return ' '.join(sorted([x for x in numbers.split(' ') if x and x in value_map], key=lambda x: value_map[x]))\n+    value_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n+    return ' '.join(sorted([x for x in numbers.split(' ') if x or x in value_map], key=lambda x: value_map[x]))",
+     "mutant_src": "def sort_numbers(numbers: str) -> str:\n    \"\"\"\n    Input is a space-delimited string of numerals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n\n    Example:\n        >>> sort_numbers('three one  five ')\n        'one three five'\n    \"\"\"\n    value_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    return ' '.join(sorted([x for x in numbers.split(' ') if x or x in value_map], key=lambda x: value_map[x]))",
+     "input": "('1',)",
+     "expected_canonical": "''",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/20",
+   "entry": "find_closest_elements",
+   "mutants_tried": 9,
+   "survivors": 5,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "cmp:LtE@node91",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List, Tuple\n-\n \n@@ -16,6 +15,4 @@\n     assert len(numbers) >= 2\n-\n     closest_pair = None\n     distance = None\n-\n     for idx, elem in enumerate(numbers):\n@@ -28,6 +25,5 @@\n                     new_distance = abs(elem - elem2)\n-                    if new_distance < distance:\n+                    if new_distance <= distance:\n                         distance = new_distance\n                         closest_pair = tuple(sorted([elem, elem2]))\n-\n-    return closest_pair\n+    return closest_pair",
+     "mutant_src": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\"\n    From a supplied list of numbers (of length at least two) select and return \n    the last two elements that are the closest to each other and return them\n    in order (smaller number, larger number).\n\n    Examples:\n        >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n        (2.0, 2.2)\n        >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n        (2.0, 2.0)\n    \"\"\"\n    assert len(numbers) >= 2\n    closest_pair = None\n    distance = None\n    for idx, elem in enumerate(numbers):\n        for idx2, elem2 in enumerate(numbers):\n            if idx != idx2:\n                if distance is None:\n                    distance = abs(elem - elem2)\n                    closest_pair = tuple(sorted([elem, elem2]))\n                else:\n                    new_distance = abs(elem - elem2)\n                    if new_distance <= distance:\n                        distance = new_distance\n                        closest_pair = tuple(sorted([elem, elem2]))\n    return closest_pair",
+     "input": "([-1.87, 3.64, 1.29, 3.74, 3.93, 3.74, 3.93],)",
+     "expected_canonical": "(3.74, 3.74)",
+     "mutant_output": "(3.93, 3.93)"
+    },
+    {
+     "mutation": "cmp:Gt@node15",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List, Tuple\n-\n \n@@ -15,7 +14,5 @@\n     \"\"\"\n-    assert len(numbers) >= 2\n-\n+    assert len(numbers) > 2\n     closest_pair = None\n     distance = None\n-\n     for idx, elem in enumerate(numbers):\n@@ -31,3 +28,2 @@\n                         closest_pair = tuple(sorted([elem, elem2]))\n-\n-    return closest_pair\n+    return closest_pair",
+     "mutant_src": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\"\n    From a supplied list of numbers (of length at least two) select and return \n    the last two elements that are the closest to each other and return them\n    in order (smaller number, larger number).\n\n    Examples:\n        >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n        (2.0, 2.2)\n        >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n        (2.0, 2.0)\n    \"\"\"\n    assert len(numbers) > 2\n    closest_pair = None\n    distance = None\n    for idx, elem in enumerate(numbers):\n        for idx2, elem2 in enumerate(numbers):\n            if idx != idx2:\n                if distance is None:\n                    distance = abs(elem - elem2)\n                    closest_pair = tuple(sorted([elem, elem2]))\n                else:\n                    new_distance = abs(elem - elem2)\n                    if new_distance < distance:\n                        distance = new_distance\n                        closest_pair = tuple(sorted([elem, elem2]))\n    return closest_pair",
+     "input": "([3.97, 5.82],)",
+     "expected_canonical": "(3.97, 5.82)",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "bin:Add@node97",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List, Tuple\n-\n \n@@ -16,6 +15,4 @@\n     assert len(numbers) >= 2\n-\n     closest_pair = None\n     distance = None\n-\n     for idx, elem in enumerate(numbers):\n@@ -24,3 +21,3 @@\n                 if distance is None:\n-                    distance = abs(elem - elem2)\n+                    distance = abs(elem + elem2)\n                     closest_pair = tuple(sorted([elem, elem2]))\n@@ -31,3 +28,2 @@\n                         closest_pair = tuple(sorted([elem, elem2]))\n-\n-    return closest_pair\n+    return closest_pair",
+     "mutant_src": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\"\n    From a supplied list of numbers (of length at least two) select and return \n    the last two elements that are the closest to each other and return them\n    in order (smaller number, larger number).\n\n    Examples:\n        >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n        (2.0, 2.2)\n        >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n        (2.0, 2.0)\n    \"\"\"\n    assert len(numbers) >= 2\n    closest_pair = None\n    distance = None\n    for idx, elem in enumerate(numbers):\n        for idx2, elem2 in enumerate(numbers):\n            if idx != idx2:\n                if distance is None:\n                    distance = abs(elem + elem2)\n                    closest_pair = tuple(sorted([elem, elem2]))\n                else:\n                    new_distance = abs(elem - elem2)\n                    if new_distance < distance:\n                        distance = new_distance\n                        closest_pair = tuple(sorted([elem, elem2]))\n    return closest_pair",
+     "input": "([-0.92, 2.43, 7.59, 4.96],)",
+     "expected_canonical": "(2.43, 4.96)",
+     "mutant_output": "(-0.92, 2.43)"
+    },
+    {
+     "mutation": "const:1@node30",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List, Tuple\n-\n \n@@ -15,7 +14,5 @@\n     \"\"\"\n-    assert len(numbers) >= 2\n-\n+    assert len(numbers) >= 3\n     closest_pair = None\n     distance = None\n-\n     for idx, elem in enumerate(numbers):\n@@ -31,3 +28,2 @@\n                         closest_pair = tuple(sorted([elem, elem2]))\n-\n-    return closest_pair\n+    return closest_pair",
+     "mutant_src": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\"\n    From a supplied list of numbers (of length at least two) select and return \n    the last two elements that are the closest to each other and return them\n    in order (smaller number, larger number).\n\n    Examples:\n        >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n        (2.0, 2.2)\n        >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n        (2.0, 2.0)\n    \"\"\"\n    assert len(numbers) >= 3\n    closest_pair = None\n    distance = None\n    for idx, elem in enumerate(numbers):\n        for idx2, elem2 in enumerate(numbers):\n            if idx != idx2:\n                if distance is None:\n                    distance = abs(elem - elem2)\n                    closest_pair = tuple(sorted([elem, elem2]))\n                else:\n                    new_distance = abs(elem - elem2)\n                    if new_distance < distance:\n                        distance = new_distance\n                        closest_pair = tuple(sorted([elem, elem2]))\n    return closest_pair",
+     "input": "([3.97, 5.82],)",
+     "expected_canonical": "(3.97, 5.82)",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/21",
+   "entry": "rescale_to_unit",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/22",
+   "entry": "filter_integers",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/23",
+   "entry": "strlen",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/24",
+   "entry": "largest_divisor",
+   "mutants_tried": 10,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/25",
+   "entry": "factorize",
+   "mutants_tried": 21,
+   "survivors": 6,
+   "equivalent_or_unknown": 6,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/26",
+   "entry": "remove_duplicates",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/27",
+   "entry": "flip_case",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/28",
+   "entry": "concatenate",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/29",
+   "entry": "filter_by_prefix",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/30",
+   "entry": "get_positive",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/31",
+   "entry": "is_prime",
+   "mutants_tried": 13,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/32",
+   "entry": "find_zero",
+   "mutants_tried": 15,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node48",
+     "diff": "--- canonical\n+++ mutant\n@@ -2,3 +2,2 @@\n from typing import List\n-\n \n@@ -10,3 +9,2 @@\n     return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n-\n \n@@ -27,4 +25,4 @@\n     \"\"\"\n-    begin, end = -1., 1.\n-    while poly(xs, begin) * poly(xs, end) > 0:\n+    begin, end = (-1.0, 1.0)\n+    while poly(xs, begin) * poly(xs, end) > 1:\n         begin *= 2.0\n@@ -37,2 +35,2 @@\n             end = center\n-    return begin\n+    return begin",
+     "mutant_src": "import math\nfrom typing import List\n\ndef poly(xs: list, x: float) -> float:\n    \"\"\"\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n    \"\"\"\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs: List[int]) -> float:\n    \"\"\"\n    xs are coefficients of a polynomial.\n    Find x such that poly(x) = 0 and return only one zero point, even if there are many.\n    \n    Constraints:\n        List xs should have an even number of coefficients\n        and as largest a non-zero coefficient to guarantee a solution.\n\n    Examples:\n        >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n        -0.5\n        >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n        1.0\n    \"\"\"\n    begin, end = (-1.0, 1.0)\n    while poly(xs, begin) * poly(xs, end) > 1:\n        begin *= 2.0\n        end *= 2.0\n    while end - begin > 1e-10:\n        center = (begin + end) / 2.0\n        if poly(xs, center) * poly(xs, begin) > 0:\n            begin = center\n        else:\n            end = center\n    return begin",
+     "input": "([-1, 0],)",
+     "expected_canonical": "-inf",
+     "mutant_output": "0.9999999999417923"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/33",
+   "entry": "sort_third",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/34",
+   "entry": "unique",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/35",
+   "entry": "max_element",
+   "mutants_tried": 8,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/36",
+   "entry": "fizz_buzz",
+   "mutants_tried": 20,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/37",
+   "entry": "sort_even",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/38",
+   "entry": "decode_cyclic",
+   "mutants_tried": 23,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/39",
+   "entry": "prime_fib",
+   "mutants_tried": 38,
+   "survivors": 8,
+   "equivalent_or_unknown": 8,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/40",
+   "entry": "triples_sum_to_zero",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/41",
+   "entry": "car_race_collision",
+   "mutants_tried": 6,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/42",
+   "entry": "incr_list",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/43",
+   "entry": "pairs_sum_to_zero",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/44",
+   "entry": "change_base",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/45",
+   "entry": "triangle_area",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/46",
+   "entry": "fib4",
+   "mutants_tried": 40,
+   "survivors": 6,
+   "equivalent_or_unknown": 3,
+   "witnesses": [
+    {
+     "mutation": "const:1@node36",
+     "diff": "--- canonical\n+++ mutant\n@@ -20,8 +20,6 @@\n     assert n >= 0\n-\n     results = [0, 0, 2, 0]\n-    if n < 4:\n+    if n < 5:\n         assert n >= 0\n         return results[n]\n-\n     for _ in range(4, n + 1):\n@@ -29,3 +27,2 @@\n         results.pop(0)\n-\n-    return results[-1]\n+    return results[-1]",
+     "mutant_src": "def fib4(n: int) -> int:\n    \"\"\"\n    The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n        fib4(0) -> 0\n        fib4(1) -> 0\n        fib4(2) -> 2\n        fib4(3) -> 0\n        fib4(n) -> fib4(n - 1) + fib4(n - 2) + fib4(n - 3) + fib4(n - 4)\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.\n    Do not use recursion.\n\n    Examples:\n        >>> fib4(5)\n        4\n        >>> fib4(6)\n        8\n        >>> fib4(7)\n        14\n    \"\"\"\n    assert n >= 0\n    results = [0, 0, 2, 0]\n    if n < 5:\n        assert n >= 0\n        return results[n]\n    for _ in range(4, n + 1):\n        results.append(results[-1] + results[-2] + results[-3] + results[-4])\n        results.pop(0)\n    return results[-1]",
+     "input": "(4,)",
+     "expected_canonical": "2",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "cmp:LtE@node15",
+     "diff": "--- canonical\n+++ mutant\n@@ -20,8 +20,6 @@\n     assert n >= 0\n-\n     results = [0, 0, 2, 0]\n-    if n < 4:\n+    if n <= 4:\n         assert n >= 0\n         return results[n]\n-\n     for _ in range(4, n + 1):\n@@ -29,3 +27,2 @@\n         results.pop(0)\n-\n-    return results[-1]\n+    return results[-1]",
+     "mutant_src": "def fib4(n: int) -> int:\n    \"\"\"\n    The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n        fib4(0) -> 0\n        fib4(1) -> 0\n        fib4(2) -> 2\n        fib4(3) -> 0\n        fib4(n) -> fib4(n - 1) + fib4(n - 2) + fib4(n - 3) + fib4(n - 4)\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.\n    Do not use recursion.\n\n    Examples:\n        >>> fib4(5)\n        4\n        >>> fib4(6)\n        8\n        >>> fib4(7)\n        14\n    \"\"\"\n    assert n >= 0\n    results = [0, 0, 2, 0]\n    if n <= 4:\n        assert n >= 0\n        return results[n]\n    for _ in range(4, n + 1):\n        results.append(results[-1] + results[-2] + results[-3] + results[-4])\n        results.pop(0)\n    return results[-1]",
+     "input": "(4,)",
+     "expected_canonical": "2",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "cmp:LtE@node37",
+     "diff": "--- canonical\n+++ mutant\n@@ -20,8 +20,6 @@\n     assert n >= 0\n-\n     results = [0, 0, 2, 0]\n     if n < 4:\n-        assert n >= 0\n+        assert n <= 0\n         return results[n]\n-\n     for _ in range(4, n + 1):\n@@ -29,3 +27,2 @@\n         results.pop(0)\n-\n-    return results[-1]\n+    return results[-1]",
+     "mutant_src": "def fib4(n: int) -> int:\n    \"\"\"\n    The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n        fib4(0) -> 0\n        fib4(1) -> 0\n        fib4(2) -> 2\n        fib4(3) -> 0\n        fib4(n) -> fib4(n - 1) + fib4(n - 2) + fib4(n - 3) + fib4(n - 4)\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.\n    Do not use recursion.\n\n    Examples:\n        >>> fib4(5)\n        4\n        >>> fib4(6)\n        8\n        >>> fib4(7)\n        14\n    \"\"\"\n    assert n >= 0\n    results = [0, 0, 2, 0]\n    if n < 4:\n        assert n <= 0\n        return results[n]\n    for _ in range(4, n + 1):\n        results.append(results[-1] + results[-2] + results[-3] + results[-4])\n        results.pop(0)\n    return results[-1]",
+     "input": "(2,)",
+     "expected_canonical": "2",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/47",
+   "entry": "median",
+   "mutants_tried": 23,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/48",
+   "entry": "is_palindrome",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/49",
+   "entry": "modp",
+   "mutants_tried": 14,
+   "survivors": 4,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "cmp:LtE@node19",
+     "diff": "--- canonical\n+++ mutant\n@@ -14,5 +14,5 @@\n     for _ in range(n):\n-        ret = (2 * ret) % p\n-    while ret < 0:\n+        ret = 2 * ret % p\n+    while ret <= 0:\n         ret += abs(p)\n-    return ret\n+    return ret",
+     "mutant_src": "def modp(n: int, p: int) -> int:\n    \"\"\"\n    Solve 2^n modulo p (be aware of numerics).\n    Return the least non-negative residue.\n\n    Examples:\n        >>> modp(3, 5)\n        3\n        >>> modp(100, 101)\n        1\n    \"\"\"\n    assert n >= 0\n    ret = 1\n    for _ in range(n):\n        ret = 2 * ret % p\n    while ret <= 0:\n        ret += abs(p)\n    return ret",
+     "input": "(3, 2)",
+     "expected_canonical": "0",
+     "mutant_output": "2"
+    },
+    {
+     "mutation": "const:1@node36",
+     "diff": "--- canonical\n+++ mutant\n@@ -14,5 +14,5 @@\n     for _ in range(n):\n-        ret = (2 * ret) % p\n-    while ret < 0:\n+        ret = 2 * ret % p\n+    while ret < 1:\n         ret += abs(p)\n-    return ret\n+    return ret",
+     "mutant_src": "def modp(n: int, p: int) -> int:\n    \"\"\"\n    Solve 2^n modulo p (be aware of numerics).\n    Return the least non-negative residue.\n\n    Examples:\n        >>> modp(3, 5)\n        3\n        >>> modp(100, 101)\n        1\n    \"\"\"\n    assert n >= 0\n    ret = 1\n    for _ in range(n):\n        ret = 2 * ret % p\n    while ret < 1:\n        ret += abs(p)\n    return ret",
+     "input": "(3, 2)",
+     "expected_canonical": "0",
+     "mutant_output": "2"
+    },
+    {
+     "mutation": "const:-1@node36",
+     "diff": "--- canonical\n+++ mutant\n@@ -14,5 +14,5 @@\n     for _ in range(n):\n-        ret = (2 * ret) % p\n-    while ret < 0:\n+        ret = 2 * ret % p\n+    while ret < -1:\n         ret += abs(p)\n-    return ret\n+    return ret",
+     "mutant_src": "def modp(n: int, p: int) -> int:\n    \"\"\"\n    Solve 2^n modulo p (be aware of numerics).\n    Return the least non-negative residue.\n\n    Examples:\n        >>> modp(3, 5)\n        3\n        >>> modp(100, 101)\n        1\n    \"\"\"\n    assert n >= 0\n    ret = 1\n    for _ in range(n):\n        ret = 2 * ret % p\n    while ret < -1:\n        ret += abs(p)\n    return ret",
+     "input": "(5, -11)",
+     "expected_canonical": "10",
+     "mutant_output": "-1"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/50",
+   "entry": "decode_shift",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/51",
+   "entry": "remove_vowels",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/52",
+   "entry": "below_threshold",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/53",
+   "entry": "add",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/54",
+   "entry": "same_chars",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/55",
+   "entry": "fib",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": false
+  },
+  {
+   "task_id": "HumanEvalNext/56",
+   "entry": "correct_bracketing",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/57",
+   "entry": "monotonic",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/58",
+   "entry": "common",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/59",
+   "entry": "largest_prime_factor",
+   "mutants_tried": 29,
+   "survivors": 11,
+   "equivalent_or_unknown": 8,
+   "witnesses": [
+    {
+     "mutation": "bin:Sub@node41",
+     "diff": "--- canonical\n+++ mutant\n@@ -21,5 +21,5 @@\n     largest = 1\n-    for j in range(2, n + 1):\n+    for j in range(2, n - 1):\n         if n % j == 0 and is_prime(j):\n             largest = max(largest, j)\n-    return largest\n+    return largest",
+     "mutant_src": "def largest_prime_factor(n: int) -> int:\n    \"\"\"\n    Return the largest prime factor of n.\n    Assume n > 1 and is not a prime.\n\n    Examples:\n        >>> largest_prime_factor(13195)\n        29\n        >>> largest_prime_factor(2048)\n        2\n    \"\"\"\n    assert n > 1\n\n    def is_prime(k: int) -> bool:\n        if k < 2:\n            return False\n        for i in range(2, k - 1):\n            if k % i == 0:\n                return False\n        return True\n    largest = 1\n    for j in range(2, n - 1):\n        if n % j == 0 and is_prime(j):\n            largest = max(largest, j)\n    return largest",
+     "input": "(3,)",
+     "expected_canonical": "3",
+     "mutant_output": "1"
+    },
+    {
+     "mutation": "const:1@node28",
+     "diff": "--- canonical\n+++ mutant\n@@ -11,3 +11,3 @@\n     \"\"\"\n-    assert n > 1\n+    assert n > 2\n \n@@ -24,2 +24,2 @@\n             largest = max(largest, j)\n-    return largest\n+    return largest",
+     "mutant_src": "def largest_prime_factor(n: int) -> int:\n    \"\"\"\n    Return the largest prime factor of n.\n    Assume n > 1 and is not a prime.\n\n    Examples:\n        >>> largest_prime_factor(13195)\n        29\n        >>> largest_prime_factor(2048)\n        2\n    \"\"\"\n    assert n > 2\n\n    def is_prime(k: int) -> bool:\n        if k < 2:\n            return False\n        for i in range(2, k - 1):\n            if k % i == 0:\n                return False\n        return True\n    largest = 1\n    for j in range(2, n + 1):\n        if n % j == 0 and is_prime(j):\n            largest = max(largest, j)\n    return largest",
+     "input": "(2,)",
+     "expected_canonical": "2",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node61",
+     "diff": "--- canonical\n+++ mutant\n@@ -21,5 +21,5 @@\n     largest = 1\n-    for j in range(2, n + 1):\n+    for j in range(2, n + 0):\n         if n % j == 0 and is_prime(j):\n             largest = max(largest, j)\n-    return largest\n+    return largest",
+     "mutant_src": "def largest_prime_factor(n: int) -> int:\n    \"\"\"\n    Return the largest prime factor of n.\n    Assume n > 1 and is not a prime.\n\n    Examples:\n        >>> largest_prime_factor(13195)\n        29\n        >>> largest_prime_factor(2048)\n        2\n    \"\"\"\n    assert n > 1\n\n    def is_prime(k: int) -> bool:\n        if k < 2:\n            return False\n        for i in range(2, k - 1):\n            if k % i == 0:\n                return False\n        return True\n    largest = 1\n    for j in range(2, n + 0):\n        if n % j == 0 and is_prime(j):\n            largest = max(largest, j)\n    return largest",
+     "input": "(3,)",
+     "expected_canonical": "3",
+     "mutant_output": "1"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/60",
+   "entry": "sum_to_n",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/61",
+   "entry": "correct_bracketing",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/62",
+   "entry": "derivative",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/63",
+   "entry": "fibfib",
+   "mutants_tried": 30,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/64",
+   "entry": "vowels_count",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/65",
+   "entry": "circular_shift",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/66",
+   "entry": "digitSum",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/67",
+   "entry": "fruit_distribution",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/68",
+   "entry": "pluck",
+   "mutants_tried": 10,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/69",
+   "entry": "search",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": false
+  },
+  {
+   "task_id": "HumanEvalNext/70",
+   "entry": "strange_sort_list",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/71",
+   "entry": "triangle_area",
+   "mutants_tried": 39,
+   "survivors": 14,
+   "equivalent_or_unknown": 10,
+   "witnesses": [
+    {
+     "mutation": "const:1@node66",
+     "diff": "--- canonical\n+++ mutant\n@@ -13,10 +13,8 @@\n     if a < 0 or b < 0 or c < 0:\n-        return -1\n-\n+        return -2\n     if a + b <= c or a + c <= b or b + c <= a:\n         return -1\n-\n-    s = (a + b + c)/2\n+    s = (a + b + c) / 2\n     area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n     area = round(area, 2)\n-    return area\n+    return area",
+     "mutant_src": "def triangle_area(a: int, b: int, c: int) -> float:\n    \"\"\"\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n\n    Examples:\n        triangle_area(3, 4, 5) == 6.00\n        triangle_area(1, 2, 10) == -1\n    \"\"\"\n    if a < 0 or b < 0 or c < 0:\n        return -2\n    if a + b <= c or a + c <= b or b + c <= a:\n        return -1\n    s = (a + b + c) / 2\n    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n    area = round(area, 2)\n    return area",
+     "input": "(5, 5, -13)",
+     "expected_canonical": "-1",
+     "mutant_output": "-2"
+    },
+    {
+     "mutation": "cmp:Lt@node38",
+     "diff": "--- canonical\n+++ mutant\n@@ -14,9 +14,7 @@\n         return -1\n-\n-    if a + b <= c or a + c <= b or b + c <= a:\n+    if a + b <= c or a + c <= b or b + c < a:\n         return -1\n-\n-    s = (a + b + c)/2\n+    s = (a + b + c) / 2\n     area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n     area = round(area, 2)\n-    return area\n+    return area",
+     "mutant_src": "def triangle_area(a: int, b: int, c: int) -> float:\n    \"\"\"\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n\n    Examples:\n        triangle_area(3, 4, 5) == 6.00\n        triangle_area(1, 2, 10) == -1\n    \"\"\"\n    if a < 0 or b < 0 or c < 0:\n        return -1\n    if a + b <= c or a + c <= b or b + c < a:\n        return -1\n    s = (a + b + c) / 2\n    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n    area = round(area, 2)\n    return area",
+     "input": "(7, 3, 4)",
+     "expected_canonical": "-1",
+     "mutant_output": "0.0"
+    },
+    {
+     "mutation": "cmp:Lt@node37",
+     "diff": "--- canonical\n+++ mutant\n@@ -14,9 +14,7 @@\n         return -1\n-\n-    if a + b <= c or a + c <= b or b + c <= a:\n+    if a + b <= c or a + c < b or b + c <= a:\n         return -1\n-\n-    s = (a + b + c)/2\n+    s = (a + b + c) / 2\n     area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n     area = round(area, 2)\n-    return area\n+    return area",
+     "mutant_src": "def triangle_area(a: int, b: int, c: int) -> float:\n    \"\"\"\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n\n    Examples:\n        triangle_area(3, 4, 5) == 6.00\n        triangle_area(1, 2, 10) == -1\n    \"\"\"\n    if a < 0 or b < 0 or c < 0:\n        return -1\n    if a + b <= c or a + c < b or b + c <= a:\n        return -1\n    s = (a + b + c) / 2\n    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n    area = round(area, 2)\n    return area",
+     "input": "(2, 6, 4)",
+     "expected_canonical": "-1",
+     "mutant_output": "0.0"
+    },
+    {
+     "mutation": "const:-1@node66",
+     "diff": "--- canonical\n+++ mutant\n@@ -13,10 +13,8 @@\n     if a < 0 or b < 0 or c < 0:\n-        return -1\n-\n+        return -0\n     if a + b <= c or a + c <= b or b + c <= a:\n         return -1\n-\n-    s = (a + b + c)/2\n+    s = (a + b + c) / 2\n     area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n     area = round(area, 2)\n-    return area\n+    return area",
+     "mutant_src": "def triangle_area(a: int, b: int, c: int) -> float:\n    \"\"\"\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n\n    Examples:\n        triangle_area(3, 4, 5) == 6.00\n        triangle_area(1, 2, 10) == -1\n    \"\"\"\n    if a < 0 or b < 0 or c < 0:\n        return -0\n    if a + b <= c or a + c <= b or b + c <= a:\n        return -1\n    s = (a + b + c) / 2\n    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n    area = round(area, 2)\n    return area",
+     "input": "(5, 5, -13)",
+     "expected_canonical": "-1",
+     "mutant_output": "0"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/72",
+   "entry": "will_it_fly",
+   "mutants_tried": 52,
+   "survivors": 11,
+   "equivalent_or_unknown": 10,
+   "witnesses": [
+    {
+     "mutation": "const:1@node101",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -28,18 +27,9 @@\n     if w < 0:\n-        # Invalid weight\n         return False\n-\n     if sum(q) > w:\n-        # Too heavy\n         return False\n-    \n-    if len(q) == 0 or sum(q) <= 0:\n-        # Nothing to fly\n+    if len(q) == 0 or sum(q) <= 1:\n         return False\n-    \n     if any([x < 0 for x in q]):\n-        # Negative elements\n         return False\n-    \n-    # Remove leading and trailing zeros\n     while q and q[0] == 0:\n@@ -49,9 +39,6 @@\n     if len(q) == 0 or 0 in q:\n-        # Invalid object\n         return False\n-\n-    i, j = 0, len(q) - 1\n+    i, j = (0, len(q) - 1)\n     while i < j:\n         if q[i] != q[j]:\n-            # Unbalanced\n             return False\n@@ -59,2 +46,2 @@\n         j -= 1\n-    return True\n+    return True",
+     "mutant_src": "from typing import List\n\ndef will_it_fly(q: List[int], w: int) -> bool:\n    \"\"\"\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n    If the requirements are not met, the object will not fly.\n    \n    Other requirements:\n        * w is a non-negative integer\n        * q is a list of non-negative integers\n        * q is a connected object, i.e. no zeros between non-zero elements\n\n    Examples:\n        will_it_fly([1, 2], 5) == False \n        (1 + 2 is less than the maximum possible weight, but it's unbalanced)\n\n        will_it_fly([3, 2, 3], 1) == False\n        (it's balanced, but 3 + 2 + 3 is more than the maximum possible weight)\n\n        will_it_fly([3, 2, 3], 9) == True\n        (3 + 2 + 3 is less than the maximum possible weight, and it's balanced)\n\n        will_it_fly([0, 3], 5) == True\n        (3 is less than the maximum possible weight, and it's balanced since the 0 is negligible for the balance)\n    \"\"\"\n    if w < 0:\n        return False\n    if sum(q) > w:\n        return False\n    if len(q) == 0 or sum(q) <= 1:\n        return False\n    if any([x < 0 for x in q]):\n        return False\n    while q and q[0] == 0:\n        q.pop(0)\n    while q and q[-1] == 0:\n        q.pop(-1)\n    if len(q) == 0 or 0 in q:\n        return False\n    i, j = (0, len(q) - 1)\n    while i < j:\n        if q[i] != q[j]:\n            return False\n        i += 1\n        j -= 1\n    return True",
+     "input": "([1], 2)",
+     "expected_canonical": "True",
+     "mutant_output": "False"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/73",
+   "entry": "smallest_change",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/74",
+   "entry": "total_match",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/75",
+   "entry": "is_multiply_prime",
+   "mutants_tried": 28,
+   "survivors": 10,
+   "equivalent_or_unknown": 6,
+   "witnesses": [
+    {
+     "mutation": "const:1@node35",
+     "diff": "--- canonical\n+++ mutant\n@@ -19,4 +19,3 @@\n         return True\n-\n-    for i in range(2, 101):\n+    for i in range(2, 102):\n         if not is_prime(i):\n@@ -29,4 +28,4 @@\n                     continue\n-                if i*j*k == a:\n+                if i * j * k == a:\n                     return True\n-    return False\n+    return False",
+     "mutant_src": "def is_multiply_prime(a: int) -> bool:\n    \"\"\"\n    Check if the given number is the multiplication of 3 prime numbers.\n\n    Constraints:\n        The three prime numbers must be <= 100.\n\n    Example:\n        is_multiply_prime(30) == True\n        30 = 2 * 3 * 5\n    \"\"\"\n    if a < 2:\n        return False\n\n    def is_prime(n):\n        for j in range(2, n):\n            if n % j == 0:\n                return False\n        return True\n    for i in range(2, 102):\n        if not is_prime(i):\n            continue\n        for j in range(2, 101):\n            if not is_prime(j):\n                continue\n            for k in range(2, 101):\n                if not is_prime(k):\n                    continue\n                if i * j * k == a:\n                    return True\n    return False",
+     "input": "(1010,)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "const:1@node77",
+     "diff": "--- canonical\n+++ mutant\n@@ -19,3 +19,2 @@\n         return True\n-\n     for i in range(2, 101):\n@@ -26,7 +25,7 @@\n                 continue\n-            for k in range(2, 101):\n+            for k in range(2, 102):\n                 if not is_prime(k):\n                     continue\n-                if i*j*k == a:\n+                if i * j * k == a:\n                     return True\n-    return False\n+    return False",
+     "mutant_src": "def is_multiply_prime(a: int) -> bool:\n    \"\"\"\n    Check if the given number is the multiplication of 3 prime numbers.\n\n    Constraints:\n        The three prime numbers must be <= 100.\n\n    Example:\n        is_multiply_prime(30) == True\n        30 = 2 * 3 * 5\n    \"\"\"\n    if a < 2:\n        return False\n\n    def is_prime(n):\n        for j in range(2, n):\n            if n % j == 0:\n                return False\n        return True\n    for i in range(2, 101):\n        if not is_prime(i):\n            continue\n        for j in range(2, 101):\n            if not is_prime(j):\n                continue\n            for k in range(2, 102):\n                if not is_prime(k):\n                    continue\n                if i * j * k == a:\n                    return True\n    return False",
+     "input": "(1010,)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "const:1@node46",
+     "diff": "--- canonical\n+++ mutant\n@@ -15,3 +15,3 @@\n     def is_prime(n):\n-        for j in range(2, n):\n+        for j in range(3, n):\n             if n % j == 0:\n@@ -19,3 +19,2 @@\n         return True\n-\n     for i in range(2, 101):\n@@ -29,4 +28,4 @@\n                     continue\n-                if i*j*k == a:\n+                if i * j * k == a:\n                     return True\n-    return False\n+    return False",
+     "mutant_src": "def is_multiply_prime(a: int) -> bool:\n    \"\"\"\n    Check if the given number is the multiplication of 3 prime numbers.\n\n    Constraints:\n        The three prime numbers must be <= 100.\n\n    Example:\n        is_multiply_prime(30) == True\n        30 = 2 * 3 * 5\n    \"\"\"\n    if a < 2:\n        return False\n\n    def is_prime(n):\n        for j in range(3, n):\n            if n % j == 0:\n                return False\n        return True\n    for i in range(2, 101):\n        if not is_prime(i):\n            continue\n        for j in range(2, 101):\n            if not is_prime(j):\n                continue\n            for k in range(2, 101):\n                if not is_prime(k):\n                    continue\n                if i * j * k == a:\n                    return True\n    return False",
+     "input": "(32,)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "const:1@node56",
+     "diff": "--- canonical\n+++ mutant\n@@ -19,3 +19,2 @@\n         return True\n-\n     for i in range(2, 101):\n@@ -23,3 +22,3 @@\n             continue\n-        for j in range(2, 101):\n+        for j in range(2, 102):\n             if not is_prime(j):\n@@ -29,4 +28,4 @@\n                     continue\n-                if i*j*k == a:\n+                if i * j * k == a:\n                     return True\n-    return False\n+    return False",
+     "mutant_src": "def is_multiply_prime(a: int) -> bool:\n    \"\"\"\n    Check if the given number is the multiplication of 3 prime numbers.\n\n    Constraints:\n        The three prime numbers must be <= 100.\n\n    Example:\n        is_multiply_prime(30) == True\n        30 = 2 * 3 * 5\n    \"\"\"\n    if a < 2:\n        return False\n\n    def is_prime(n):\n        for j in range(2, n):\n            if n % j == 0:\n                return False\n        return True\n    for i in range(2, 101):\n        if not is_prime(i):\n            continue\n        for j in range(2, 102):\n            if not is_prime(j):\n                continue\n            for k in range(2, 101):\n                if not is_prime(k):\n                    continue\n                if i * j * k == a:\n                    return True\n    return False",
+     "input": "(1010,)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/76",
+   "entry": "is_simple_power",
+   "mutants_tried": 12,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node24",
+     "diff": "--- canonical\n+++ mutant\n@@ -11,7 +11,7 @@\n     \"\"\"\n-    if (n == 1):\n-        return (x == 1)\n+    if n == 0:\n+        return x == 1\n     power = 1\n-    while (abs(power) < abs(x)):\n+    while abs(power) < abs(x):\n         power = power * n\n-    return (power == x)\n+    return power == x",
+     "mutant_src": "def is_simple_power(x: int, n: int) -> bool:\n    \"\"\"\n    Check if number x is a simple power of n.\n    x is a simple power of n if n to the power of some integer equals x.\n    For example:\n        is_simple_power(1, 4) => true (4^0 = 1)\n        is_simple_power(2, 2) => true (2^1 = 2)\n        is_simple_power(8, 2) => true (2^3 = 8)\n        is_simple_power(3, 2) => false (only 2 and 4 are neighbouring simple powers)\n        is_simple_power(3, 1) => false (1 is not a simple power of any number besides itself)\n    \"\"\"\n    if n == 0:\n        return x == 1\n    power = 1\n    while abs(power) < abs(x):\n        power = power * n\n    return power == x",
+     "input": "(15, 1)",
+     "expected_canonical": "False",
+     "mutant_output": "timeout"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/77",
+   "entry": "iscube",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/78",
+   "entry": "hex_key",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/79",
+   "entry": "decimal_to_binary",
+   "mutants_tried": 8,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/80",
+   "entry": "is_happy",
+   "mutants_tried": 23,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node77",
+     "diff": "--- canonical\n+++ mutant\n@@ -13,6 +13,5 @@\n         return False\n-\n     for i in range(len(s) - 2):\n-        if s[i] == s[i+1] or s[i+1] == s[i+2] or s[i] == s[i+2]:\n+        if s[i] == s[i + 2] or s[i + 1] == s[i + 2] or s[i] == s[i + 2]:\n             return False\n-    return True\n+    return True",
+     "mutant_src": "def is_happy(s: str) -> bool:\n    \"\"\"\n    Check if the string is happy or not:\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct.\n\n    Examples:\n      is_happy(a) => False\n      is_happy(aa) => False\n      is_happy(abcd) => True\n      is_happy(aabb) => False\n    \"\"\"\n    if len(s) < 3:\n        return False\n    for i in range(len(s) - 2):\n        if s[i] == s[i + 2] or s[i + 1] == s[i + 2] or s[i] == s[i + 2]:\n            return False\n    return True",
+     "input": "('lleho',)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalNext/81",
+   "entry": "numerical_letter_grade",
+   "mutants_tried": 28,
+   "survivors": 11,
+   "equivalent_or_unknown": 11,
+   "witnesses": [],
+   "canonical_passes": true
+  }
+ ]
+}

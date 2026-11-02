@@ -1,0 +1,1176 @@
+{
+ "benchmark": "evoeval_combine",
+ "n_tasks": 100,
+ "seed": 1337,
+ "results": [
+  {
+   "task_id": "EvoEval_combine/0",
+   "entry": "compare_happiness",
+   "mutants_tried": 34,
+   "survivors": 2,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "bin:Sub@node145",
+     "diff": "--- canonical\n+++ mutant\n@@ -23,12 +23,10 @@\n         for i in range(len(s) - 2):\n-            if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+            if s[i] == s[i - 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n                 return False\n         return True\n-\n     a_happy = is_happy(a)\n     b_happy = is_happy(b)\n-\n-    if not a_happy and not b_happy:\n+    if not a_happy and (not b_happy):\n         return None\n-    elif a_happy and not b_happy:\n+    elif a_happy and (not b_happy):\n         return a\n@@ -44,2 +42,2 @@\n         else:\n-            return None\n+            return None",
+     "mutant_src": "def compare_happiness(a, b):\n    \"\"\"\n    Create a function that takes two strings representing real numbers. \n    The function should first check if each string is 'happy' or not. \n    A string is 'happy' if its length is at least 3 and every 3 consecutive characters are distinct.\n    If neither string is 'happy', return None. \n    If only one string is 'happy', return that string.\n    If both strings are 'happy', compare them as real numbers (the floating point might be . or ,) \n    and return the larger number as a string. If they are equal, return None.\n\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n    compare_happiness(\"1,234\", \"5,678\") is \"5,678\"\n    compare_happiness(\"1,112\", \"3,344\") is None\n    compare_happiness(\"1,123\", \"1,123\") is None\n    compare_happiness(\"1,234\", \"1,112\") is \"1,234\"\n    \"\"\"\n\n    def is_happy(s):\n        s = s.replace(',', '.')\n        if len(s) < 3:\n            return False\n        for i in range(len(s) - 2):\n            if s[i] == s[i - 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n                return False\n        return True\n    a_happy = is_happy(a)\n    b_happy = is_happy(b)\n    if not a_happy and (not b_happy):\n        return None\n    elif a_happy and (not b_happy):\n        return a\n    elif not a_happy and b_happy:\n        return b\n    else:\n        a_float = a.replace(',', '.')\n        b_float = b.replace(',', '.')\n        if float(a_float) > float(b_float):\n            return a\n        elif float(a_float) < float(b_float):\n            return b\n        else:\n            return None",
+     "input": "('8.9071', '2890.12')",
+     "expected_canonical": "'2890.12'",
+     "mutant_output": "'8.9071'"
+    },
+    {
+     "mutation": "const:1@node179",
+     "diff": "--- canonical\n+++ mutant\n@@ -23,12 +23,10 @@\n         for i in range(len(s) - 2):\n-            if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+            if s[i] == s[i + 2] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n                 return False\n         return True\n-\n     a_happy = is_happy(a)\n     b_happy = is_happy(b)\n-\n-    if not a_happy and not b_happy:\n+    if not a_happy and (not b_happy):\n         return None\n-    elif a_happy and not b_happy:\n+    elif a_happy and (not b_happy):\n         return a\n@@ -44,2 +42,2 @@\n         else:\n-            return None\n+            return None",
+     "mutant_src": "def compare_happiness(a, b):\n    \"\"\"\n    Create a function that takes two strings representing real numbers. \n    The function should first check if each string is 'happy' or not. \n    A string is 'happy' if its length is at least 3 and every 3 consecutive characters are distinct.\n    If neither string is 'happy', return None. \n    If only one string is 'happy', return that string.\n    If both strings are 'happy', compare them as real numbers (the floating point might be . or ,) \n    and return the larger number as a string. If they are equal, return None.\n\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n    compare_happiness(\"1,234\", \"5,678\") is \"5,678\"\n    compare_happiness(\"1,112\", \"3,344\") is None\n    compare_happiness(\"1,123\", \"1,123\") is None\n    compare_happiness(\"1,234\", \"1,112\") is \"1,234\"\n    \"\"\"\n\n    def is_happy(s):\n        s = s.replace(',', '.')\n        if len(s) < 3:\n            return False\n        for i in range(len(s) - 2):\n            if s[i] == s[i + 2] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n                return False\n        return True\n    a_happy = is_happy(a)\n    b_happy = is_happy(b)\n    if not a_happy and (not b_happy):\n        return None\n    elif a_happy and (not b_happy):\n        return a\n    elif not a_happy and b_happy:\n        return b\n    else:\n        a_float = a.replace(',', '.')\n        b_float = b.replace(',', '.')\n        if float(a_float) > float(b_float):\n            return a\n        elif float(a_float) < float(b_float):\n            return b\n        else:\n            return None",
+     "input": "('1,23', '112,1')",
+     "expected_canonical": "'1,23'",
+     "mutant_output": "'112,1'"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/1",
+   "entry": "round_and_flip",
+   "mutants_tried": 17,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/2",
+   "entry": "modp_intersperse",
+   "mutants_tried": 25,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/3",
+   "entry": "sort_parentheses",
+   "mutants_tried": 34,
+   "survivors": 18,
+   "equivalent_or_unknown": 18,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/4",
+   "entry": "largest_prime_divisor_digit_sum",
+   "mutants_tried": 24,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/5",
+   "entry": "sort_and_check",
+   "mutants_tried": 17,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "bin:Sub@node89",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n from typing import List\n@@ -20,4 +19,2 @@\n     \"\"\"\n-\n-    # Check if any two numbers are closer than the threshold\n     for i in range(len(numbers)):\n@@ -25,9 +22,6 @@\n             if abs(numbers[i] - numbers[j]) < threshold:\n-                # If the sum of the first and last numbers is even\n-                if round(numbers[0] + numbers[-1]) % 2 == 0:\n+                if round(numbers[0] - numbers[-1]) % 2 == 0:\n                     return sorted(numbers, reverse=True)\n-                # If the sum of the first and last numbers is odd\n                 else:\n                     return sorted(numbers)\n-    # If no two numbers are closer than the threshold\n-    return numbers\n+    return numbers",
+     "mutant_src": "from typing import List\n\ndef sort_and_check(numbers: List[float], threshold: float) -> List[float]:\n    \"\"\"\n    Given an array of numbers, check if any two numbers in the array are closer to each other \n    than the given threshold. If yes, sort the array according to the following rules:\n\n    - If the sum of the first and last numbers in the array is even, sort the array in descending order.\n    - If the sum of the first and last numbers in the array is odd, sort the array in ascending order.\n    \n    If no two numbers are closer than the threshold, return the array as it is.\n    \n    Note: Consider the sum as even or odd after rounding off to the nearest integer.\n\n    Examples:\n    * sort_and_check([1.0, 2.0, 3.0], 0.5) => [1.0, 2.0, 3.0]\n    * sort_and_check([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3) => [1.0, 2.0, 2.8, 3.0, 4.0, 5.0]\n    * sort_and_check([4.0, 2.0, 3.0, 0.0], 2.0) => [4.0, 3.0, 2.0, 0.0]\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                if round(numbers[0] - numbers[-1]) % 2 == 0:\n                    return sorted(numbers, reverse=True)\n                else:\n                    return sorted(numbers)\n    return numbers",
+     "input": "([6.33, 1.2, 0.4, 1.39, 1.39], 0.89)",
+     "expected_canonical": "[6.33, 1.39, 1.39, 1.2, 0.4]",
+     "mutant_output": "[0.4, 1.2, 1.39, 1.39, 6.33]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/6",
+   "entry": "pile_median",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/7",
+   "entry": "sum_square_cube_to_n",
+   "mutants_tried": 23,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/8",
+   "entry": "correct_bracket_sequence_and_count",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/9",
+   "entry": "planet_to_roman_distance",
+   "mutants_tried": 39,
+   "survivors": 6,
+   "equivalent_or_unknown": 6,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/10",
+   "entry": "class_grades_with_flip",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/11",
+   "entry": "planet_vowel_count",
+   "mutants_tried": 12,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/12",
+   "entry": "grade_students",
+   "mutants_tried": 38,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/13",
+   "entry": "filter_exchange",
+   "mutants_tried": 31,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/14",
+   "entry": "prime_avg_range",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/15",
+   "entry": "balance_triples",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/16",
+   "entry": "get_music_notes",
+   "mutants_tried": 23,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/17",
+   "entry": "fibfib_search",
+   "mutants_tried": 37,
+   "survivors": 5,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:1@node75",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def fibfib_search(n: int, lst: list) -> int:\n@@ -21,9 +20,5 @@\n     \"\"\"\n-\n-    # Define the FibFib sequence\n     fibfib = [0, 0, 1]\n-    for i in range(3, n+1):\n-        fibfib.append(fibfib[i-1] + fibfib[i-2] + fibfib[i-3])\n-\n-    # Calculate the frequency of each integer in the list\n+    for i in range(3, n + 1):\n+        fibfib.append(fibfib[i - 1] + fibfib[i - 2] + fibfib[i - 3])\n     freq = {}\n@@ -33,10 +28,7 @@\n         else:\n-            freq[i] = 1\n-\n-    # Find the greatest integer that meets the conditions\n+            freq[i] = 2\n     max_val = -1\n     for key, value in freq.items():\n-        if key > 0 and value >= fibfib[n] and key > max_val:\n+        if key > 0 and value >= fibfib[n] and (key > max_val):\n             max_val = key\n-\n-    return max_val\n+    return max_val",
+     "mutant_src": "def fibfib_search(n: int, lst: list) -> int:\n    \"\"\"\n    Implement a function that computes the n-th element of the FibFib sequence as defined by:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3)\n    \n    The function should then evaluate a non-empty list of positive integers, and return the greatest \n    integer in the list that is greater than zero, and has a frequency equal to or greater than the value\n    of the calculated n-th FibFib element. The frequency of an integer is the number of times it appears \n    in the list.\n\n    If no such value exists, return -1.\n\n    Examples:\n        fibfib_search(5, [4, 1, 2, 2, 3, 1, 1, 1, 1]) == 1\n        fibfib_search(3, [1, 2, 2, 3, 3, 3, 4, 4, 4]) == 4\n        fibfib_search(6, [5, 5, 4, 4, 4, 1, 1, 1, 1, 1]) == -1\n    \"\"\"\n    fibfib = [0, 0, 1]\n    for i in range(3, n + 1):\n        fibfib.append(fibfib[i - 1] + fibfib[i - 2] + fibfib[i - 3])\n    freq = {}\n    for i in lst:\n        if i in freq:\n            freq[i] += 1\n        else:\n            freq[i] = 2\n    max_val = -1\n    for key, value in freq.items():\n        if key > 0 and value >= fibfib[n] and (key > max_val):\n            max_val = key\n    return max_val",
+     "input": "(4, [7, 10, 4, 6, 2, -1, 3, 2, 1])",
+     "expected_canonical": "2",
+     "mutant_output": "10"
+    },
+    {
+     "mutation": "const:-1@node103",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def fibfib_search(n: int, lst: list) -> int:\n@@ -21,9 +20,5 @@\n     \"\"\"\n-\n-    # Define the FibFib sequence\n     fibfib = [0, 0, 1]\n-    for i in range(3, n+1):\n-        fibfib.append(fibfib[i-1] + fibfib[i-2] + fibfib[i-3])\n-\n-    # Calculate the frequency of each integer in the list\n+    for i in range(3, n + 1):\n+        fibfib.append(fibfib[i - 1] + fibfib[i - 2] + fibfib[i - 3])\n     freq = {}\n@@ -34,9 +29,6 @@\n             freq[i] = 1\n-\n-    # Find the greatest integer that meets the conditions\n     max_val = -1\n     for key, value in freq.items():\n-        if key > 0 and value >= fibfib[n] and key > max_val:\n+        if key > -1 and value >= fibfib[n] and (key > max_val):\n             max_val = key\n-\n-    return max_val\n+    return max_val",
+     "mutant_src": "def fibfib_search(n: int, lst: list) -> int:\n    \"\"\"\n    Implement a function that computes the n-th element of the FibFib sequence as defined by:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3)\n    \n    The function should then evaluate a non-empty list of positive integers, and return the greatest \n    integer in the list that is greater than zero, and has a frequency equal to or greater than the value\n    of the calculated n-th FibFib element. The frequency of an integer is the number of times it appears \n    in the list.\n\n    If no such value exists, return -1.\n\n    Examples:\n        fibfib_search(5, [4, 1, 2, 2, 3, 1, 1, 1, 1]) == 1\n        fibfib_search(3, [1, 2, 2, 3, 3, 3, 4, 4, 4]) == 4\n        fibfib_search(6, [5, 5, 4, 4, 4, 1, 1, 1, 1, 1]) == -1\n    \"\"\"\n    fibfib = [0, 0, 1]\n    for i in range(3, n + 1):\n        fibfib.append(fibfib[i - 1] + fibfib[i - 2] + fibfib[i - 3])\n    freq = {}\n    for i in lst:\n        if i in freq:\n            freq[i] += 1\n        else:\n            freq[i] = 1\n    max_val = -1\n    for key, value in freq.items():\n        if key > -1 and value >= fibfib[n] and (key > max_val):\n            max_val = key\n    return max_val",
+     "input": "(4, [5, 0, 0, -9, -17, 1, 0, 0])",
+     "expected_canonical": "-1",
+     "mutant_output": "0"
+    },
+    {
+     "mutation": "cmp:GtE@node81",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def fibfib_search(n: int, lst: list) -> int:\n@@ -21,9 +20,5 @@\n     \"\"\"\n-\n-    # Define the FibFib sequence\n     fibfib = [0, 0, 1]\n-    for i in range(3, n+1):\n-        fibfib.append(fibfib[i-1] + fibfib[i-2] + fibfib[i-3])\n-\n-    # Calculate the frequency of each integer in the list\n+    for i in range(3, n + 1):\n+        fibfib.append(fibfib[i - 1] + fibfib[i - 2] + fibfib[i - 3])\n     freq = {}\n@@ -34,9 +29,6 @@\n             freq[i] = 1\n-\n-    # Find the greatest integer that meets the conditions\n     max_val = -1\n     for key, value in freq.items():\n-        if key > 0 and value >= fibfib[n] and key > max_val:\n+        if key >= 0 and value >= fibfib[n] and (key > max_val):\n             max_val = key\n-\n-    return max_val\n+    return max_val",
+     "mutant_src": "def fibfib_search(n: int, lst: list) -> int:\n    \"\"\"\n    Implement a function that computes the n-th element of the FibFib sequence as defined by:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3)\n    \n    The function should then evaluate a non-empty list of positive integers, and return the greatest \n    integer in the list that is greater than zero, and has a frequency equal to or greater than the value\n    of the calculated n-th FibFib element. The frequency of an integer is the number of times it appears \n    in the list.\n\n    If no such value exists, return -1.\n\n    Examples:\n        fibfib_search(5, [4, 1, 2, 2, 3, 1, 1, 1, 1]) == 1\n        fibfib_search(3, [1, 2, 2, 3, 3, 3, 4, 4, 4]) == 4\n        fibfib_search(6, [5, 5, 4, 4, 4, 1, 1, 1, 1, 1]) == -1\n    \"\"\"\n    fibfib = [0, 0, 1]\n    for i in range(3, n + 1):\n        fibfib.append(fibfib[i - 1] + fibfib[i - 2] + fibfib[i - 3])\n    freq = {}\n    for i in lst:\n        if i in freq:\n            freq[i] += 1\n        else:\n            freq[i] = 1\n    max_val = -1\n    for key, value in freq.items():\n        if key >= 0 and value >= fibfib[n] and (key > max_val):\n            max_val = key\n    return max_val",
+     "input": "(4, [5, 0, 0, -9, -17, 1, 0, 0])",
+     "expected_canonical": "-1",
+     "mutant_output": "0"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/18",
+   "entry": "min_triplets_sum",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/19",
+   "entry": "account_operations",
+   "mutants_tried": 20,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/20",
+   "entry": "grade_and_case",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/21",
+   "entry": "base_change_prefixes",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/22",
+   "entry": "binary_planet_distance",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/23",
+   "entry": "special_stone_factorial",
+   "mutants_tried": 8,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/24",
+   "entry": "sort_happy_numbers",
+   "mutants_tried": 39,
+   "survivors": 25,
+   "equivalent_or_unknown": 21,
+   "witnesses": [
+    {
+     "mutation": "bin:Sub@node112",
+     "diff": "--- canonical\n+++ mutant\n@@ -21,16 +21,9 @@\n     \"\"\"\n-\n     num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n     num_list = numbers.split()\n-    \n-    # Check if the string is happy\n-    s = numbers.replace(\" \", \"\")\n+    s = numbers.replace(' ', '')\n     for i in range(len(s) - 2):\n-        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+        if s[i] == s[i + 1] or s[i] == s[i - 2] or s[i + 1] == s[i + 2]:\n             return 'Not a happy string'\n-    \n-    # If the string is happy, sort the numbers\n     num_list.sort(key=lambda x: num_dict[x])\n-    \n-    return ' '.join(num_list)\n-\n+    return ' '.join(num_list)",
+     "mutant_src": "from typing import List\n\ndef sort_happy_numbers(numbers: str) -> str:\n    \"\"\" \n    Input is a space-delimited string of numerals from 'zero' to 'nine'. Valid choices are 'zero', 'one', 'two', \n    'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'. This function has two main operations:\n    \n    1) It checks if the string of numbers is 'happy'. A string is happy if, after removing spaces from the string, every 3 consecutive letters are distinct.\n    For instance, 'one two three' is not happy, but 'one one two' is happy. If the string is not happy, return 'Not a happy string'.\n    \n    2) If the string is happy, it sorts the string with numbers from smallest to largest and returns the sorted string.\n    \n    >>> sort_happy_numbers('three one five')\n    'Not a happy string'\n    \n    >>> sort_happy_numbers('three two two')\n    'Not a happy string'\n    \n    >>> sort_happy_numbers('five two eight')\n    'two five eight'\n    \"\"\"\n    num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    num_list = numbers.split()\n    s = numbers.replace(' ', '')\n    for i in range(len(s) - 2):\n        if s[i] == s[i + 1] or s[i] == s[i - 2] or s[i + 1] == s[i + 2]:\n            return 'Not a happy string'\n    num_list.sort(key=lambda x: num_dict[x])\n    return ' '.join(num_list)",
+     "input": "('five two eigtht',)",
+     "expected_canonical": "'Not a happy string'",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node139",
+     "diff": "--- canonical\n+++ mutant\n@@ -21,16 +21,9 @@\n     \"\"\"\n-\n     num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n     num_list = numbers.split()\n-    \n-    # Check if the string is happy\n-    s = numbers.replace(\" \", \"\")\n+    s = numbers.replace(' ', '')\n     for i in range(len(s) - 2):\n-        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+        if s[i] == s[i + 1] or s[i] == s[i + 2] or s[i + 0] == s[i + 2]:\n             return 'Not a happy string'\n-    \n-    # If the string is happy, sort the numbers\n     num_list.sort(key=lambda x: num_dict[x])\n-    \n-    return ' '.join(num_list)\n-\n+    return ' '.join(num_list)",
+     "mutant_src": "from typing import List\n\ndef sort_happy_numbers(numbers: str) -> str:\n    \"\"\" \n    Input is a space-delimited string of numerals from 'zero' to 'nine'. Valid choices are 'zero', 'one', 'two', \n    'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'. This function has two main operations:\n    \n    1) It checks if the string of numbers is 'happy'. A string is happy if, after removing spaces from the string, every 3 consecutive letters are distinct.\n    For instance, 'one two three' is not happy, but 'one one two' is happy. If the string is not happy, return 'Not a happy string'.\n    \n    2) If the string is happy, it sorts the string with numbers from smallest to largest and returns the sorted string.\n    \n    >>> sort_happy_numbers('three one five')\n    'Not a happy string'\n    \n    >>> sort_happy_numbers('three two two')\n    'Not a happy string'\n    \n    >>> sort_happy_numbers('five two eight')\n    'two five eight'\n    \"\"\"\n    num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    num_list = numbers.split()\n    s = numbers.replace(' ', '')\n    for i in range(len(s) - 2):\n        if s[i] == s[i + 1] or s[i] == s[i + 2] or s[i + 0] == s[i + 2]:\n            return 'Not a happy string'\n    num_list.sort(key=lambda x: num_dict[x])\n    return ' '.join(num_list)",
+     "input": "('one one onee',)",
+     "expected_canonical": "'Not a happy string'",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:1@node72",
+     "diff": "--- canonical\n+++ mutant\n@@ -21,16 +21,9 @@\n     \"\"\"\n-\n     num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n     num_list = numbers.split()\n-    \n-    # Check if the string is happy\n-    s = numbers.replace(\" \", \"\")\n-    for i in range(len(s) - 2):\n-        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+    s = numbers.replace(' ', '')\n+    for i in range(len(s) - 3):\n+        if s[i] == s[i + 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n             return 'Not a happy string'\n-    \n-    # If the string is happy, sort the numbers\n     num_list.sort(key=lambda x: num_dict[x])\n-    \n-    return ' '.join(num_list)\n-\n+    return ' '.join(num_list)",
+     "mutant_src": "from typing import List\n\ndef sort_happy_numbers(numbers: str) -> str:\n    \"\"\" \n    Input is a space-delimited string of numerals from 'zero' to 'nine'. Valid choices are 'zero', 'one', 'two', \n    'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'. This function has two main operations:\n    \n    1) It checks if the string of numbers is 'happy'. A string is happy if, after removing spaces from the string, every 3 consecutive letters are distinct.\n    For instance, 'one two three' is not happy, but 'one one two' is happy. If the string is not happy, return 'Not a happy string'.\n    \n    2) If the string is happy, it sorts the string with numbers from smallest to largest and returns the sorted string.\n    \n    >>> sort_happy_numbers('three one five')\n    'Not a happy string'\n    \n    >>> sort_happy_numbers('three two two')\n    'Not a happy string'\n    \n    >>> sort_happy_numbers('five two eight')\n    'two five eight'\n    \"\"\"\n    num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    num_list = numbers.split()\n    s = numbers.replace(' ', '')\n    for i in range(len(s) - 3):\n        if s[i] == s[i + 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n            return 'Not a happy string'\n    num_list.sort(key=lambda x: num_dict[x])\n    return ' '.join(num_list)",
+     "input": "('five two eigtht',)",
+     "expected_canonical": "'Not a happy string'",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:1@node129",
+     "diff": "--- canonical\n+++ mutant\n@@ -21,16 +21,9 @@\n     \"\"\"\n-\n     num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n     num_list = numbers.split()\n-    \n-    # Check if the string is happy\n-    s = numbers.replace(\" \", \"\")\n+    s = numbers.replace(' ', '')\n     for i in range(len(s) - 2):\n-        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+        if s[i] == s[i + 2] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n             return 'Not a happy string'\n-    \n-    # If the string is happy, sort the numbers\n     num_list.sort(key=lambda x: num_dict[x])\n-    \n-    return ' '.join(num_list)\n-\n+    return ' '.join(num_list)",
+     "mutant_src": "from typing import List\n\ndef sort_happy_numbers(numbers: str) -> str:\n    \"\"\" \n    Input is a space-delimited string of numerals from 'zero' to 'nine'. Valid choices are 'zero', 'one', 'two', \n    'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'. This function has two main operations:\n    \n    1) It checks if the string of numbers is 'happy'. A string is happy if, after removing spaces from the string, every 3 consecutive letters are distinct.\n    For instance, 'one two three' is not happy, but 'one one two' is happy. If the string is not happy, return 'Not a happy string'.\n    \n    2) If the string is happy, it sorts the string with numbers from smallest to largest and returns the sorted string.\n    \n    >>> sort_happy_numbers('three one five')\n    'Not a happy string'\n    \n    >>> sort_happy_numbers('three two two')\n    'Not a happy string'\n    \n    >>> sort_happy_numbers('five two eight')\n    'two five eight'\n    \"\"\"\n    num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    num_list = numbers.split()\n    s = numbers.replace(' ', '')\n    for i in range(len(s) - 2):\n        if s[i] == s[i + 2] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n            return 'Not a happy string'\n    num_list.sort(key=lambda x: num_dict[x])\n    return ' '.join(num_list)",
+     "input": "('zzero zero zero',)",
+     "expected_canonical": "'Not a happy string'",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/25",
+   "entry": "sum_product_triples",
+   "mutants_tried": 35,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/26",
+   "entry": "sort_and_pluck",
+   "mutants_tried": 32,
+   "survivors": 7,
+   "equivalent_or_unknown": 4,
+   "witnesses": [
+    {
+     "mutation": "const:1@node56",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n from typing import List, Tuple\n@@ -41,15 +40,3 @@\n     \"\"\"\n-\n-    numeral_to_number = {\n-        'zero': 0,\n-        'one': 1,\n-        'two': 2,\n-        'three': 3,\n-        'four': 4,\n-        'five': 5,\n-        'six': 6,\n-        'seven': 7,\n-        'eight': 8,\n-        'nine': 9\n-    }\n+    numeral_to_number = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 9, 'nine': 9}\n     number_to_numeral = {v: k for k, v in numeral_to_number.items()}\n@@ -69,3 +56,2 @@\n     else:\n-        return ()\n-\n+        return ()",
+     "mutant_src": "from typing import List, Tuple\n\ndef sort_and_pluck(values: List[str]) -> Tuple[str, int]:\n    \"\"\"\n    Given a list of space-delimited strings representing numerals from 'zero' to 'nine', \n    your task is to first sort each string of numerals from smallest to largest and then \n    pluck one numeral from the sorted list.\n\n    The plucked numeral should be the numeral with the smallest even value. If multiple numerals \n    with the same smallest even value are found return the numeral that has the smallest index in its \n    original string (before sorting). The plucked numeral should be returned in a tuple, \n    (\"numeral\", its original index in the list), If there are no even values or the given list \n    is empty, return an empty tuple.\n\n    Example 1:\n        Input: ['three two one', 'nine eight seven']\n        Output: ('two', 1)\n        Explanation: After sorting we get ['one two three', 'seven eight nine']. \n                     'two' and 'eight' are the only even numerals.\n\n    Example 2:\n        Input: ['five four three', 'one zero nine']\n        Output: ('zero', 1)\n        Explanation: After sorting we get ['three four five', 'nine one zero']. \n                     'four' and 'zero' are the only even numerals.\n\n    Example 3:\n        Input: []\n        Output: ()\n        \n    Example 4:\n        Input: ['three two one', 'five four zero', 'six nine eight']\n        Output: ('zero', 2)\n        Explanation: After sorting we get ['one two three', 'four five zero', 'eight six nine']. \n                     'two', 'zero', 'four', 'eight' and 'six' are the even numerals.\n\n    Constraints:\n        * 0 <= len(values) <= 10000\n        * 0 <= len(value) <= 50 ( for each value in values list)\n    \"\"\"\n    numeral_to_number = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 9, 'nine': 9}\n    number_to_numeral = {v: k for k, v in numeral_to_number.items()}\n    even_numerals = []\n    for i, value in enumerate(values):\n        numerals = value.split()\n        numbers = [(numeral_to_number[numeral], idx) for idx, numeral in enumerate(numerals)]\n        numbers.sort()\n        for number, idx in numbers:\n            if number % 2 == 0:\n                even_numerals.append((number_to_numeral[number], idx))\n                break\n    print(even_numerals)\n    if even_numerals:\n        even_numerals.sort(key=lambda x: (numeral_to_number[x[0]], x[1]))\n        return even_numerals[0]\n    else:\n        return ()",
+     "input": "(['nine eight seven'],)",
+     "expected_canonical": "('eight', 1)",
+     "mutant_output": "()"
+    },
+    {
+     "mutation": "const:-1@node57",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n from typing import List, Tuple\n@@ -41,15 +40,3 @@\n     \"\"\"\n-\n-    numeral_to_number = {\n-        'zero': 0,\n-        'one': 1,\n-        'two': 2,\n-        'three': 3,\n-        'four': 4,\n-        'five': 5,\n-        'six': 6,\n-        'seven': 7,\n-        'eight': 8,\n-        'nine': 9\n-    }\n+    numeral_to_number = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 8}\n     number_to_numeral = {v: k for k, v in numeral_to_number.items()}\n@@ -69,3 +56,2 @@\n     else:\n-        return ()\n-\n+        return ()",
+     "mutant_src": "from typing import List, Tuple\n\ndef sort_and_pluck(values: List[str]) -> Tuple[str, int]:\n    \"\"\"\n    Given a list of space-delimited strings representing numerals from 'zero' to 'nine', \n    your task is to first sort each string of numerals from smallest to largest and then \n    pluck one numeral from the sorted list.\n\n    The plucked numeral should be the numeral with the smallest even value. If multiple numerals \n    with the same smallest even value are found return the numeral that has the smallest index in its \n    original string (before sorting). The plucked numeral should be returned in a tuple, \n    (\"numeral\", its original index in the list), If there are no even values or the given list \n    is empty, return an empty tuple.\n\n    Example 1:\n        Input: ['three two one', 'nine eight seven']\n        Output: ('two', 1)\n        Explanation: After sorting we get ['one two three', 'seven eight nine']. \n                     'two' and 'eight' are the only even numerals.\n\n    Example 2:\n        Input: ['five four three', 'one zero nine']\n        Output: ('zero', 1)\n        Explanation: After sorting we get ['three four five', 'nine one zero']. \n                     'four' and 'zero' are the only even numerals.\n\n    Example 3:\n        Input: []\n        Output: ()\n        \n    Example 4:\n        Input: ['three two one', 'five four zero', 'six nine eight']\n        Output: ('zero', 2)\n        Explanation: After sorting we get ['one two three', 'four five zero', 'eight six nine']. \n                     'two', 'zero', 'four', 'eight' and 'six' are the even numerals.\n\n    Constraints:\n        * 0 <= len(values) <= 10000\n        * 0 <= len(value) <= 50 ( for each value in values list)\n    \"\"\"\n    numeral_to_number = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 8}\n    number_to_numeral = {v: k for k, v in numeral_to_number.items()}\n    even_numerals = []\n    for i, value in enumerate(values):\n        numerals = value.split()\n        numbers = [(numeral_to_number[numeral], idx) for idx, numeral in enumerate(numerals)]\n        numbers.sort()\n        for number, idx in numbers:\n            if number % 2 == 0:\n                even_numerals.append((number_to_numeral[number], idx))\n                break\n    print(even_numerals)\n    if even_numerals:\n        even_numerals.sort(key=lambda x: (numeral_to_number[x[0]], x[1]))\n        return even_numerals[0]\n    else:\n        return ()",
+     "input": "(['nine eight seven'],)",
+     "expected_canonical": "('eight', 1)",
+     "mutant_output": "('nine', 0)"
+    },
+    {
+     "mutation": "const:-1@node56",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n from typing import List, Tuple\n@@ -41,15 +40,3 @@\n     \"\"\"\n-\n-    numeral_to_number = {\n-        'zero': 0,\n-        'one': 1,\n-        'two': 2,\n-        'three': 3,\n-        'four': 4,\n-        'five': 5,\n-        'six': 6,\n-        'seven': 7,\n-        'eight': 8,\n-        'nine': 9\n-    }\n+    numeral_to_number = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 7, 'nine': 9}\n     number_to_numeral = {v: k for k, v in numeral_to_number.items()}\n@@ -69,3 +56,2 @@\n     else:\n-        return ()\n-\n+        return ()",
+     "mutant_src": "from typing import List, Tuple\n\ndef sort_and_pluck(values: List[str]) -> Tuple[str, int]:\n    \"\"\"\n    Given a list of space-delimited strings representing numerals from 'zero' to 'nine', \n    your task is to first sort each string of numerals from smallest to largest and then \n    pluck one numeral from the sorted list.\n\n    The plucked numeral should be the numeral with the smallest even value. If multiple numerals \n    with the same smallest even value are found return the numeral that has the smallest index in its \n    original string (before sorting). The plucked numeral should be returned in a tuple, \n    (\"numeral\", its original index in the list), If there are no even values or the given list \n    is empty, return an empty tuple.\n\n    Example 1:\n        Input: ['three two one', 'nine eight seven']\n        Output: ('two', 1)\n        Explanation: After sorting we get ['one two three', 'seven eight nine']. \n                     'two' and 'eight' are the only even numerals.\n\n    Example 2:\n        Input: ['five four three', 'one zero nine']\n        Output: ('zero', 1)\n        Explanation: After sorting we get ['three four five', 'nine one zero']. \n                     'four' and 'zero' are the only even numerals.\n\n    Example 3:\n        Input: []\n        Output: ()\n        \n    Example 4:\n        Input: ['three two one', 'five four zero', 'six nine eight']\n        Output: ('zero', 2)\n        Explanation: After sorting we get ['one two three', 'four five zero', 'eight six nine']. \n                     'two', 'zero', 'four', 'eight' and 'six' are the even numerals.\n\n    Constraints:\n        * 0 <= len(values) <= 10000\n        * 0 <= len(value) <= 50 ( for each value in values list)\n    \"\"\"\n    numeral_to_number = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 7, 'nine': 9}\n    number_to_numeral = {v: k for k, v in numeral_to_number.items()}\n    even_numerals = []\n    for i, value in enumerate(values):\n        numerals = value.split()\n        numbers = [(numeral_to_number[numeral], idx) for idx, numeral in enumerate(numerals)]\n        numbers.sort()\n        for number, idx in numbers:\n            if number % 2 == 0:\n                even_numerals.append((number_to_numeral[number], idx))\n                break\n    print(even_numerals)\n    if even_numerals:\n        even_numerals.sort(key=lambda x: (numeral_to_number[x[0]], x[1]))\n        return even_numerals[0]\n    else:\n        return ()",
+     "input": "(['nine eight seven'],)",
+     "expected_canonical": "('eight', 1)",
+     "mutant_output": "()"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/27",
+   "entry": "list_prime_exchange",
+   "mutants_tried": 16,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/28",
+   "entry": "grade_with_same_chars",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/29",
+   "entry": "largest_prime_factor_or_value",
+   "mutants_tried": 24,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node39",
+     "diff": "--- canonical\n+++ mutant\n@@ -12,3 +12,3 @@\n             return False\n-        for i in range(2, int(num**0.5) + 1):\n+        for i in range(3, int(num ** 0.5) + 1):\n             if num % i == 0:\n@@ -16,3 +16,2 @@\n         return True\n-\n     if n == 1:\n@@ -28,3 +27,2 @@\n                 n //= i\n-        return n\n-    +        return n",
+     "mutant_src": "def largest_prime_factor_or_value(n, x, y):\n    \"\"\"A program which should return the largest prime factor of n if n is not a prime number, should return the value of x if n is a prime number and y if n is 1. \n\n    Examples:\n    for largest_prime_factor_or_value(13195, 34, 12) == 29\n    for largest_prime_factor_or_value(7, 8, 5) == 8\n    for largest_prime_factor_or_value(1, 8, 5) == 5\n    \"\"\"\n\n    def is_prime(num):\n        if num < 2:\n            return False\n        for i in range(3, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n    if n == 1:\n        return y\n    elif is_prime(n):\n        return x\n    else:\n        i = 2\n        while i * i <= n:\n            if n % i:\n                i += 1\n            else:\n                n //= i\n        return n",
+     "input": "(14, 62, 44)",
+     "expected_canonical": "7",
+     "mutant_output": "62"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/30",
+   "entry": "parse_music_simplify",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/31",
+   "entry": "special_prime_factorial",
+   "mutants_tried": 19,
+   "survivors": 6,
+   "equivalent_or_unknown": 6,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/32",
+   "entry": "circular_shift_nested_parens",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/33",
+   "entry": "roman_happiness",
+   "mutants_tried": 57,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/34",
+   "entry": "md5_nested_parens",
+   "mutants_tried": 14,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node78",
+     "diff": "--- canonical\n+++ mutant\n@@ -19,8 +19,10 @@\n         return []\n-    \n+\n     def count_depth(s: str) -> int:\n-        max_depth, cnt = 0, 0\n+        max_depth, cnt = (1, 0)\n         for ch in s:\n-            if ch == \"(\": cnt += 1\n-            if ch == \")\": cnt -= 1\n+            if ch == '(':\n+                cnt += 1\n+            if ch == ')':\n+                cnt -= 1\n             max_depth = max(max_depth, cnt)\n@@ -34,5 +36,4 @@\n     for dep in depths:\n-        md5_hash = hashlib.md5(dep.encode(\"utf-8\")).hexdigest()\n+        md5_hash = hashlib.md5(dep.encode('utf-8')).hexdigest()\n         result.append(md5_hash)\n-    \n     return result",
+     "mutant_src": "from typing import List\n\ndef md5_nested_parens(paren_string: str) -> List[str]:\n    \"\"\"\n    Given a string 'paren_string' that represents multiple groups of nested parentheses separated by spaces,\n    compute the md5 hash of the string that represents the deepest level of nesting of parentheses for each group.\n    For example '(()())' has deepest level string of '2'.\n    Each deepest level is converted to a string before hashing.\n\n    If a group is not balanced (balanced means each open brace is properly closed), return an md5 hash of the string 'None'.\n    If 'paren_string' is an empty string, return an empty list.\n\n    An md5 hash is a 32-character hexadecimal number.\n\n    >>> md5_nested_parens('(()()) ((())) () ((())()())')\n    ['c81e728d9d4c2f636f067f89cc14862c', 'eccbc87e4b5ce2fe28308fd9f2a7baf3', 'c4ca4238a0b923820dcc509a6f75849b', 'eccbc87e4b5ce2fe28308fd9f2a7baf3']\n    \"\"\"\n    if not paren_string:\n        return []\n\n    def count_depth(s: str) -> int:\n        max_depth, cnt = (1, 0)\n        for ch in s:\n            if ch == '(':\n                cnt += 1\n            if ch == ')':\n                cnt -= 1\n            max_depth = max(max_depth, cnt)\n        if cnt != 0:\n            return None\n        return max_depth\n    groups = paren_string.split()\n    depths = [str(count_depth(s)) for s in groups]\n    import hashlib\n    result = []\n    for dep in depths:\n        md5_hash = hashlib.md5(dep.encode('utf-8')).hexdigest()\n        result.append(md5_hash)\n    return result",
+     "input": "('a',)",
+     "expected_canonical": "['cfcd208495d565ef66e7dff9f98764da']",
+     "mutant_output": "['c4ca4238a0b923820dcc509a6f75849b']"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/35",
+   "entry": "check_dict_happiness",
+   "mutants_tried": 29,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/36",
+   "entry": "mod_shift_sort",
+   "mutants_tried": 29,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/37",
+   "entry": "minSubArraySumEvenOdd",
+   "mutants_tried": 18,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/38",
+   "entry": "even_odd_zero_sum",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/39",
+   "entry": "smallest_change_and_sum",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/40",
+   "entry": "largest_prime_odd_ends",
+   "mutants_tried": 32,
+   "survivors": 8,
+   "equivalent_or_unknown": 8,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/41",
+   "entry": "shifted_upper_count",
+   "mutants_tried": 33,
+   "survivors": 10,
+   "equivalent_or_unknown": 10,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/42",
+   "entry": "check_expression",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/43",
+   "entry": "sorted_fib4_sequence",
+   "mutants_tried": 36,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/44",
+   "entry": "roman_prefixes",
+   "mutants_tried": 26,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/45",
+   "entry": "primes_sum_product",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/46",
+   "entry": "get_max_even_positive",
+   "mutants_tried": 14,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/47",
+   "entry": "count_odd_upper",
+   "mutants_tried": 16,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/48",
+   "entry": "prime_prefixed_strings",
+   "mutants_tried": 16,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/49",
+   "entry": "modp_count",
+   "mutants_tried": 35,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/50",
+   "entry": "get_closest_upper_vowel",
+   "mutants_tried": 23,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/51",
+   "entry": "modify_and_compare",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/52",
+   "entry": "pluck_and_prod",
+   "mutants_tried": 34,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/53",
+   "entry": "hex_grade_calculator",
+   "mutants_tried": 23,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/54",
+   "entry": "max_sum_of_prime_subarray",
+   "mutants_tried": 29,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/55",
+   "entry": "mini_roman_to_md5",
+   "mutants_tried": 25,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/56",
+   "entry": "product_of_odd_prime_factors",
+   "mutants_tried": 23,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/57",
+   "entry": "palindromic_and_odd_digit_array",
+   "mutants_tried": 54,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/58",
+   "entry": "max_freq_and_sum_check",
+   "mutants_tried": 17,
+   "survivors": 4,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node54",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def max_freq_and_sum_check(lst, a, b):\n-    '''\n+    \"\"\"\n     You are given a non-empty list of positive integers and two additional integers a and b.\n@@ -16,3 +16,3 @@\n         max_freq_and_sum_check([5, 5, 4, 4, 4], 10, 5) \u279e (-1, False)\n-    '''\n+    \"\"\"\n     from collections import Counter\n@@ -23,5 +23,5 @@\n             max_freq = num\n-    if max_freq == -1:\n+    if max_freq == -0:\n         return (-1, False)\n     else:\n-        return (max_freq, a == max_freq + b or b == max_freq + a)\n+        return (max_freq, a == max_freq + b or b == max_freq + a)",
+     "mutant_src": "def max_freq_and_sum_check(lst, a, b):\n    \"\"\"\n    You are given a non-empty list of positive integers and two additional integers a and b.\n    The function should first find the greatest integer in the list that has a frequency greater than or equal \n    to the value of the integer itself. Let's call this value 'max_freq'.\n    If there's no such element in the list, 'max_freq' is -1.\n    After finding 'max_freq', the function should check if either a or b is equal to the sum of 'max_freq' and the other integer.\n    If this is true, return a tuple: (max_freq, True)\n    If this is not true, return a tuple: (max_freq, False)\n    If 'max_freq' is -1, return (-1, False)\n\n    Examples:\n        max_freq_and_sum_check([4, 1, 2, 2, 3, 1], 2, 0) \u279e (2, True)\n        max_freq_and_sum_check([1, 2, 2, 3, 3, 3, 4, 4, 4], 5, 2) \u279e (3, True)\n        max_freq_and_sum_check([5, 5, 4, 4, 4], 8, 3) \u279e (-1, False)\n        max_freq_and_sum_check([5, 5, 4, 4, 4], 10, 5) \u279e (-1, False)\n    \"\"\"\n    from collections import Counter\n    count = Counter(lst)\n    max_freq = -1\n    for num, freq in count.items():\n        if freq >= num and num > max_freq:\n            max_freq = num\n    if max_freq == -0:\n        return (-1, False)\n    else:\n        return (max_freq, a == max_freq + b or b == max_freq + a)",
+     "input": "([4, 3, 5, 3], 6, 5)",
+     "expected_canonical": "(-1, False)",
+     "mutant_output": "(-1, True)"
+    },
+    {
+     "mutation": "const:1@node54",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def max_freq_and_sum_check(lst, a, b):\n-    '''\n+    \"\"\"\n     You are given a non-empty list of positive integers and two additional integers a and b.\n@@ -16,3 +16,3 @@\n         max_freq_and_sum_check([5, 5, 4, 4, 4], 10, 5) \u279e (-1, False)\n-    '''\n+    \"\"\"\n     from collections import Counter\n@@ -23,5 +23,5 @@\n             max_freq = num\n-    if max_freq == -1:\n+    if max_freq == -2:\n         return (-1, False)\n     else:\n-        return (max_freq, a == max_freq + b or b == max_freq + a)\n+        return (max_freq, a == max_freq + b or b == max_freq + a)",
+     "mutant_src": "def max_freq_and_sum_check(lst, a, b):\n    \"\"\"\n    You are given a non-empty list of positive integers and two additional integers a and b.\n    The function should first find the greatest integer in the list that has a frequency greater than or equal \n    to the value of the integer itself. Let's call this value 'max_freq'.\n    If there's no such element in the list, 'max_freq' is -1.\n    After finding 'max_freq', the function should check if either a or b is equal to the sum of 'max_freq' and the other integer.\n    If this is true, return a tuple: (max_freq, True)\n    If this is not true, return a tuple: (max_freq, False)\n    If 'max_freq' is -1, return (-1, False)\n\n    Examples:\n        max_freq_and_sum_check([4, 1, 2, 2, 3, 1], 2, 0) \u279e (2, True)\n        max_freq_and_sum_check([1, 2, 2, 3, 3, 3, 4, 4, 4], 5, 2) \u279e (3, True)\n        max_freq_and_sum_check([5, 5, 4, 4, 4], 8, 3) \u279e (-1, False)\n        max_freq_and_sum_check([5, 5, 4, 4, 4], 10, 5) \u279e (-1, False)\n    \"\"\"\n    from collections import Counter\n    count = Counter(lst)\n    max_freq = -1\n    for num, freq in count.items():\n        if freq >= num and num > max_freq:\n            max_freq = num\n    if max_freq == -2:\n        return (-1, False)\n    else:\n        return (max_freq, a == max_freq + b or b == max_freq + a)",
+     "input": "([4, 3, 5, 3], 6, 5)",
+     "expected_canonical": "(-1, False)",
+     "mutant_output": "(-1, True)"
+    },
+    {
+     "mutation": "bin:Sub@node85",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def max_freq_and_sum_check(lst, a, b):\n-    '''\n+    \"\"\"\n     You are given a non-empty list of positive integers and two additional integers a and b.\n@@ -16,3 +16,3 @@\n         max_freq_and_sum_check([5, 5, 4, 4, 4], 10, 5) \u279e (-1, False)\n-    '''\n+    \"\"\"\n     from collections import Counter\n@@ -26,2 +26,2 @@\n     else:\n-        return (max_freq, a == max_freq + b or b == max_freq + a)\n+        return (max_freq, a == max_freq + b or b == max_freq - a)",
+     "mutant_src": "def max_freq_and_sum_check(lst, a, b):\n    \"\"\"\n    You are given a non-empty list of positive integers and two additional integers a and b.\n    The function should first find the greatest integer in the list that has a frequency greater than or equal \n    to the value of the integer itself. Let's call this value 'max_freq'.\n    If there's no such element in the list, 'max_freq' is -1.\n    After finding 'max_freq', the function should check if either a or b is equal to the sum of 'max_freq' and the other integer.\n    If this is true, return a tuple: (max_freq, True)\n    If this is not true, return a tuple: (max_freq, False)\n    If 'max_freq' is -1, return (-1, False)\n\n    Examples:\n        max_freq_and_sum_check([4, 1, 2, 2, 3, 1], 2, 0) \u279e (2, True)\n        max_freq_and_sum_check([1, 2, 2, 3, 3, 3, 4, 4, 4], 5, 2) \u279e (3, True)\n        max_freq_and_sum_check([5, 5, 4, 4, 4], 8, 3) \u279e (-1, False)\n        max_freq_and_sum_check([5, 5, 4, 4, 4], 10, 5) \u279e (-1, False)\n    \"\"\"\n    from collections import Counter\n    count = Counter(lst)\n    max_freq = -1\n    for num, freq in count.items():\n        if freq >= num and num > max_freq:\n            max_freq = num\n    if max_freq == -1:\n        return (-1, False)\n    else:\n        return (max_freq, a == max_freq + b or b == max_freq - a)",
+     "input": "([5, 1, 0, 3, 5, 2, 0], 1, 2)",
+     "expected_canonical": "(1, True)",
+     "mutant_output": "(1, False)"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/59",
+   "entry": "odd_count_base_change",
+   "mutants_tried": 14,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/60",
+   "entry": "smallest_even_triple",
+   "mutants_tried": 41,
+   "survivors": 12,
+   "equivalent_or_unknown": 9,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node121",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def smallest_even_triple(arr, n):\n@@ -26,3 +25,3 @@\n     \"\"\"\n-    a = [i * i - i + 1 for i in range(1, n + 1)]\n+    a = [i * i - i + 1 for i in range(1, n + 0)]\n     smallest_triple = None\n@@ -37,4 +36,3 @@\n     arr.append(a[smallest_triple[0]])\n-    smallest_even = min((val, idx) for idx, val in enumerate(arr) if val % 2 == 0)\n-    return [smallest_even[0], smallest_even[1]]\n-\n+    smallest_even = min(((val, idx) for idx, val in enumerate(arr) if val % 2 == 0))\n+    return [smallest_even[0], smallest_even[1]]",
+     "mutant_src": "def smallest_even_triple(arr, n):\n    \"\"\"\n    Given an array representing a branch of a tree with non-negative integer nodes and a positive integer n, \n    first create an integer array a of length n where for each i (1 \u2264 i \u2264 n), the value of a[i] = i * i - i + 1.\n    Then, find the smallest triple (a[i], a[j], a[k]) of a where i < j < k, and a[i] + a[j] + a[k]\n    is a multiple of 3. The smallest triple should be the one with the smallest value of a[i].\n    If multiple triples with the same smallest value are found, return the triple that has the smallest index for i.\n\n    Finally, add the a[i] of the smallest triple to the array. If the updated array has a node with an even value, \n    return the node with the smallest even value and its index in a list, [ smallest_value, its index ].\n    If there are no even values or the array is empty, return [].\n\n    Example :\n        Input: arr = [4,2,3], n = 5\n        Output: [2, 1]\n        Explanation: \n        a = [1, 3, 7, 13, 21]\n        The only valid triple is (1, 7, 13). 1 is the smallest a[i] in the triple and is added to arr. \n        The updated arr = [4, 2, 3, 1]. The smallest even value in arr is 2 and it is at index 1.\n\n    Constraints:\n        * 1 <= arr.length <= 10000\n        * 0 <= arr[i] <= 10000\n        * 1 <= n <= 10000\n    \"\"\"\n    a = [i * i - i + 1 for i in range(1, n + 0)]\n    smallest_triple = None\n    for i in range(len(a)):\n        for j in range(i + 1, len(a)):\n            for k in range(j + 1, len(a)):\n                if (a[i] + a[j] + a[k]) % 3 == 0:\n                    if smallest_triple is None or a[i] < a[smallest_triple[0]]:\n                        smallest_triple = (i, j, k)\n    if smallest_triple is None:\n        return []\n    arr.append(a[smallest_triple[0]])\n    smallest_even = min(((val, idx) for idx, val in enumerate(arr) if val % 2 == 0))\n    return [smallest_even[0], smallest_even[1]]",
+     "input": "([1, 6, 7], 4)",
+     "expected_canonical": "[6, 1]",
+     "mutant_output": "[]"
+    },
+    {
+     "mutation": "bin:Add@node49",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def smallest_even_triple(arr, n):\n@@ -26,3 +25,3 @@\n     \"\"\"\n-    a = [i * i - i + 1 for i in range(1, n + 1)]\n+    a = [i * i + i + 1 for i in range(1, n + 1)]\n     smallest_triple = None\n@@ -37,4 +36,3 @@\n     arr.append(a[smallest_triple[0]])\n-    smallest_even = min((val, idx) for idx, val in enumerate(arr) if val % 2 == 0)\n-    return [smallest_even[0], smallest_even[1]]\n-\n+    smallest_even = min(((val, idx) for idx, val in enumerate(arr) if val % 2 == 0))\n+    return [smallest_even[0], smallest_even[1]]",
+     "mutant_src": "def smallest_even_triple(arr, n):\n    \"\"\"\n    Given an array representing a branch of a tree with non-negative integer nodes and a positive integer n, \n    first create an integer array a of length n where for each i (1 \u2264 i \u2264 n), the value of a[i] = i * i - i + 1.\n    Then, find the smallest triple (a[i], a[j], a[k]) of a where i < j < k, and a[i] + a[j] + a[k]\n    is a multiple of 3. The smallest triple should be the one with the smallest value of a[i].\n    If multiple triples with the same smallest value are found, return the triple that has the smallest index for i.\n\n    Finally, add the a[i] of the smallest triple to the array. If the updated array has a node with an even value, \n    return the node with the smallest even value and its index in a list, [ smallest_value, its index ].\n    If there are no even values or the array is empty, return [].\n\n    Example :\n        Input: arr = [4,2,3], n = 5\n        Output: [2, 1]\n        Explanation: \n        a = [1, 3, 7, 13, 21]\n        The only valid triple is (1, 7, 13). 1 is the smallest a[i] in the triple and is added to arr. \n        The updated arr = [4, 2, 3, 1]. The smallest even value in arr is 2 and it is at index 1.\n\n    Constraints:\n        * 1 <= arr.length <= 10000\n        * 0 <= arr[i] <= 10000\n        * 1 <= n <= 10000\n    \"\"\"\n    a = [i * i + i + 1 for i in range(1, n + 1)]\n    smallest_triple = None\n    for i in range(len(a)):\n        for j in range(i + 1, len(a)):\n            for k in range(j + 1, len(a)):\n                if (a[i] + a[j] + a[k]) % 3 == 0:\n                    if smallest_triple is None or a[i] < a[smallest_triple[0]]:\n                        smallest_triple = (i, j, k)\n    if smallest_triple is None:\n        return []\n    arr.append(a[smallest_triple[0]])\n    smallest_even = min(((val, idx) for idx, val in enumerate(arr) if val % 2 == 0))\n    return [smallest_even[0], smallest_even[1]]",
+     "input": "([1, 6, 7], 4)",
+     "expected_canonical": "[6, 1]",
+     "mutant_output": "[]"
+    },
+    {
+     "mutation": "const:1@node133",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def smallest_even_triple(arr, n):\n@@ -31,3 +30,3 @@\n             for k in range(j + 1, len(a)):\n-                if (a[i] + a[j] + a[k]) % 3 == 0:\n+                if (a[i] + a[j] + a[k]) % 3 == 1:\n                     if smallest_triple is None or a[i] < a[smallest_triple[0]]:\n@@ -37,4 +36,3 @@\n     arr.append(a[smallest_triple[0]])\n-    smallest_even = min((val, idx) for idx, val in enumerate(arr) if val % 2 == 0)\n-    return [smallest_even[0], smallest_even[1]]\n-\n+    smallest_even = min(((val, idx) for idx, val in enumerate(arr) if val % 2 == 0))\n+    return [smallest_even[0], smallest_even[1]]",
+     "mutant_src": "def smallest_even_triple(arr, n):\n    \"\"\"\n    Given an array representing a branch of a tree with non-negative integer nodes and a positive integer n, \n    first create an integer array a of length n where for each i (1 \u2264 i \u2264 n), the value of a[i] = i * i - i + 1.\n    Then, find the smallest triple (a[i], a[j], a[k]) of a where i < j < k, and a[i] + a[j] + a[k]\n    is a multiple of 3. The smallest triple should be the one with the smallest value of a[i].\n    If multiple triples with the same smallest value are found, return the triple that has the smallest index for i.\n\n    Finally, add the a[i] of the smallest triple to the array. If the updated array has a node with an even value, \n    return the node with the smallest even value and its index in a list, [ smallest_value, its index ].\n    If there are no even values or the array is empty, return [].\n\n    Example :\n        Input: arr = [4,2,3], n = 5\n        Output: [2, 1]\n        Explanation: \n        a = [1, 3, 7, 13, 21]\n        The only valid triple is (1, 7, 13). 1 is the smallest a[i] in the triple and is added to arr. \n        The updated arr = [4, 2, 3, 1]. The smallest even value in arr is 2 and it is at index 1.\n\n    Constraints:\n        * 1 <= arr.length <= 10000\n        * 0 <= arr[i] <= 10000\n        * 1 <= n <= 10000\n    \"\"\"\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    smallest_triple = None\n    for i in range(len(a)):\n        for j in range(i + 1, len(a)):\n            for k in range(j + 1, len(a)):\n                if (a[i] + a[j] + a[k]) % 3 == 1:\n                    if smallest_triple is None or a[i] < a[smallest_triple[0]]:\n                        smallest_triple = (i, j, k)\n    if smallest_triple is None:\n        return []\n    arr.append(a[smallest_triple[0]])\n    smallest_even = min(((val, idx) for idx, val in enumerate(arr) if val % 2 == 0))\n    return [smallest_even[0], smallest_even[1]]",
+     "input": "([1, 6, 7], 4)",
+     "expected_canonical": "[6, 1]",
+     "mutant_output": "[]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/61",
+   "entry": "longest_planet_chain",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/62",
+   "entry": "strange_word_sort",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/63",
+   "entry": "sort_planets",
+   "mutants_tried": 12,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/64",
+   "entry": "modp_prime_numbers",
+   "mutants_tried": 35,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/65",
+   "entry": "modp_largest_divisor",
+   "mutants_tried": 33,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/66",
+   "entry": "find_max_triple_sum",
+   "mutants_tried": 53,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "cmp:GtE@node153",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def find_max_triple_sum(x, y, n):\n@@ -19,5 +18,4 @@\n     \"\"\"\n-    # Find the largest even number in the range [x, y]\n     largest_even = -1\n-    for i in range(y, x-1, -1):\n+    for i in range(y, x - 1, -1):\n         if i % 2 == 0:\n@@ -25,25 +23,14 @@\n             break\n-\n-    # If no even number was found in the range [x, y], return the triple sum\n     if largest_even == -1:\n         return -1\n-\n-    # Create the array a\n-    a = [i * i - i + 1 for i in range(1, n+1)]\n-\n-    # Find the largest triple sum that is a multiple of 3\n+    a = [i * i - i + 1 for i in range(1, n + 1)]\n     triple_sum = -1\n     for i in range(n):\n-        for j in range(i+1, n):\n-            for k in range(j+1, n):\n+        for j in range(i + 1, n):\n+            for k in range(j + 1, n):\n                 current_sum = a[i] + a[j] + a[k]\n-                if current_sum % 3 == 0 and current_sum > triple_sum:\n+                if current_sum % 3 == 0 and current_sum >= triple_sum:\n                     triple_sum = current_sum\n-\n-    # If no such triple exists, return -1\n     if triple_sum == -1:\n         return -1\n-\n-    # Otherwise, add the largest even number to the triple sum and return the result\n-    return triple_sum + largest_even\n-\n+    return triple_sum + largest_even",
+     "mutant_src": "def find_max_triple_sum(x, y, n):\n    \"\"\"\n    This function takes two positive numbers x and y, and a positive integer n. It first identifies the\n    largest even integer in the range [x, y] inclusive, if there's no such number, it should return -1. \n\n    Then the function should create an integer array a of length n. For each i (1 \u2264 i \u2264 n), \n    the value of a[i] = i * i - i + 1. \n\n    The function then finds and returns the sum of the largest triple (a[i], a[j], a[k]) in array a \n    where i < j < k, and a[i] + a[j] + a[k] is a multiple of 3. \n\n    If no such triple exists, the function returns -1. If the largest even integer in the range [x, y] \n    inclusive is found, it should be added to the sum of the largest triple. \n\n    Examples:\n    find_max_triple_sum(12, 15, 5) = 14 + 21 = 35\n    find_max_triple_sum(13, 17, 6) = 16 + 28 = 67\n    \"\"\"\n    largest_even = -1\n    for i in range(y, x - 1, -1):\n        if i % 2 == 0:\n            largest_even = i\n            break\n    if largest_even == -1:\n        return -1\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    triple_sum = -1\n    for i in range(n):\n        for j in range(i + 1, n):\n            for k in range(j + 1, n):\n                current_sum = a[i] + a[j] + a[k]\n                if current_sum % 3 == 0 and current_sum >= triple_sum:\n                    triple_sum = current_sum\n    if triple_sum == -1:\n        return -1\n    return triple_sum + largest_even",
+     "input": "(106, 790, 455)",
+     "expected_canonical": "614161",
+     "mutant_output": "timeout"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/67",
+   "entry": "max_close_element_difference",
+   "mutants_tried": 12,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/68",
+   "entry": "minOddDigitsProductSubArray",
+   "mutants_tried": 18,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/69",
+   "entry": "sorted_happy_strings",
+   "mutants_tried": 30,
+   "survivors": 6,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "bin:Sub@node94",
+     "diff": "--- canonical\n+++ mutant\n@@ -22,8 +22,7 @@\n         for i in range(len(s) - 2):\n-            if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+            if s[i] == s[i - 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n                 return False\n         return True\n-\n     happy_strings = [s for s in lst if is_happy(s) and len(s) % 2 == 0]\n     happy_strings.sort(key=lambda s: (len(s), s))\n-    return happy_strings\n+    return happy_strings",
+     "mutant_src": "def sorted_happy_strings(lst):\n    \"\"\"Write a function that accepts a list of strings as a parameter,\n    deletes the strings that are not happy or have odd lengths from it,\n    and returns the resulted list in a sorted order.\n    \n    A string is considered happy if its length is at least 3 and every 3 consecutive letters are distinct.\n    For example: \"abcd\" and \"adb\" are happy strings, but \"a\", \"aa\", \"aabb\", and \"xyy\" are not.\n\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n\n    The function should return a list of strings in sorted order by ascending length and alphabetically for words with same length.\n    \n    For example:\n    assert sorted_happy_strings([\"abc\", \"a\", \"aaabcd\", \"abcd\"]) => [\"abcd\"]\n    assert sorted_happy_strings([\"abcd\", \"aaa\", \"abc\", \"abccba\", \"cd\"]) => [\"abcd\"]\n    \"\"\"\n\n    def is_happy(s):\n        if len(s) < 3:\n            return False\n        for i in range(len(s) - 2):\n            if s[i] == s[i - 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n                return False\n        return True\n    happy_strings = [s for s in lst if is_happy(s) and len(s) % 2 == 0]\n    happy_strings.sort(key=lambda s: (len(s), s))\n    return happy_strings",
+     "input": "(['abc', 'eacdb', 'abcdef', 'abcdefg', 'abcdefgh', 'abcdefghia', 'gcdehifabj', 'abdefghijk', 'abcdefgh'],)",
+     "expected_canonical": "['abcdef', 'abcdefgh', 'abcdefgh', 'abcdefghia', 'abdefghijk', 'gcdehifabj']",
+     "mutant_output": "['abcdef', 'abcdefgh', 'abcdefgh', 'abdefghijk', 'gcdehifabj']"
+    },
+    {
+     "mutation": "bin:Sub@node100",
+     "diff": "--- canonical\n+++ mutant\n@@ -22,8 +22,7 @@\n         for i in range(len(s) - 2):\n-            if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+            if s[i] == s[i + 1] or s[i] == s[i - 2] or s[i + 1] == s[i + 2]:\n                 return False\n         return True\n-\n     happy_strings = [s for s in lst if is_happy(s) and len(s) % 2 == 0]\n     happy_strings.sort(key=lambda s: (len(s), s))\n-    return happy_strings\n+    return happy_strings",
+     "mutant_src": "def sorted_happy_strings(lst):\n    \"\"\"Write a function that accepts a list of strings as a parameter,\n    deletes the strings that are not happy or have odd lengths from it,\n    and returns the resulted list in a sorted order.\n    \n    A string is considered happy if its length is at least 3 and every 3 consecutive letters are distinct.\n    For example: \"abcd\" and \"adb\" are happy strings, but \"a\", \"aa\", \"aabb\", and \"xyy\" are not.\n\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n\n    The function should return a list of strings in sorted order by ascending length and alphabetically for words with same length.\n    \n    For example:\n    assert sorted_happy_strings([\"abc\", \"a\", \"aaabcd\", \"abcd\"]) => [\"abcd\"]\n    assert sorted_happy_strings([\"abcd\", \"aaa\", \"abc\", \"abccba\", \"cd\"]) => [\"abcd\"]\n    \"\"\"\n\n    def is_happy(s):\n        if len(s) < 3:\n            return False\n        for i in range(len(s) - 2):\n            if s[i] == s[i + 1] or s[i] == s[i - 2] or s[i + 1] == s[i + 2]:\n                return False\n        return True\n    happy_strings = [s for s in lst if is_happy(s) and len(s) % 2 == 0]\n    happy_strings.sort(key=lambda s: (len(s), s))\n    return happy_strings",
+     "input": "(['abbc', 'a', 'acdaba', 'bcd'],)",
+     "expected_canonical": "[]",
+     "mutant_output": "['acdaba']"
+    },
+    {
+     "mutation": "const:-1@node131",
+     "diff": "--- canonical\n+++ mutant\n@@ -22,8 +22,7 @@\n         for i in range(len(s) - 2):\n-            if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+            if s[i] == s[i + 1] or s[i] == s[i + 2] or s[i + 0] == s[i + 2]:\n                 return False\n         return True\n-\n     happy_strings = [s for s in lst if is_happy(s) and len(s) % 2 == 0]\n     happy_strings.sort(key=lambda s: (len(s), s))\n-    return happy_strings\n+    return happy_strings",
+     "mutant_src": "def sorted_happy_strings(lst):\n    \"\"\"Write a function that accepts a list of strings as a parameter,\n    deletes the strings that are not happy or have odd lengths from it,\n    and returns the resulted list in a sorted order.\n    \n    A string is considered happy if its length is at least 3 and every 3 consecutive letters are distinct.\n    For example: \"abcd\" and \"adb\" are happy strings, but \"a\", \"aa\", \"aabb\", and \"xyy\" are not.\n\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n\n    The function should return a list of strings in sorted order by ascending length and alphabetically for words with same length.\n    \n    For example:\n    assert sorted_happy_strings([\"abc\", \"a\", \"aaabcd\", \"abcd\"]) => [\"abcd\"]\n    assert sorted_happy_strings([\"abcd\", \"aaa\", \"abc\", \"abccba\", \"cd\"]) => [\"abcd\"]\n    \"\"\"\n\n    def is_happy(s):\n        if len(s) < 3:\n            return False\n        for i in range(len(s) - 2):\n            if s[i] == s[i + 1] or s[i] == s[i + 2] or s[i + 0] == s[i + 2]:\n                return False\n        return True\n    happy_strings = [s for s in lst if is_happy(s) and len(s) % 2 == 0]\n    happy_strings.sort(key=lambda s: (len(s), s))\n    return happy_strings",
+     "input": "(['abbc', '', 'acbdaa', 'abcd'],)",
+     "expected_canonical": "['abcd']",
+     "mutant_output": "['abcd', 'acbdaa']"
+    },
+    {
+     "mutation": "const:1@node52",
+     "diff": "--- canonical\n+++ mutant\n@@ -21,9 +21,8 @@\n             return False\n-        for i in range(len(s) - 2):\n-            if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n+        for i in range(len(s) - 3):\n+            if s[i] == s[i + 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n                 return False\n         return True\n-\n     happy_strings = [s for s in lst if is_happy(s) and len(s) % 2 == 0]\n     happy_strings.sort(key=lambda s: (len(s), s))\n-    return happy_strings\n+    return happy_strings",
+     "mutant_src": "def sorted_happy_strings(lst):\n    \"\"\"Write a function that accepts a list of strings as a parameter,\n    deletes the strings that are not happy or have odd lengths from it,\n    and returns the resulted list in a sorted order.\n    \n    A string is considered happy if its length is at least 3 and every 3 consecutive letters are distinct.\n    For example: \"abcd\" and \"adb\" are happy strings, but \"a\", \"aa\", \"aabb\", and \"xyy\" are not.\n\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n\n    The function should return a list of strings in sorted order by ascending length and alphabetically for words with same length.\n    \n    For example:\n    assert sorted_happy_strings([\"abc\", \"a\", \"aaabcd\", \"abcd\"]) => [\"abcd\"]\n    assert sorted_happy_strings([\"abcd\", \"aaa\", \"abc\", \"abccba\", \"cd\"]) => [\"abcd\"]\n    \"\"\"\n\n    def is_happy(s):\n        if len(s) < 3:\n            return False\n        for i in range(len(s) - 3):\n            if s[i] == s[i + 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n                return False\n        return True\n    happy_strings = [s for s in lst if is_happy(s) and len(s) % 2 == 0]\n    happy_strings.sort(key=lambda s: (len(s), s))\n    return happy_strings",
+     "input": "(['abbc', '', 'acbdaa', 'abcd'],)",
+     "expected_canonical": "['abcd']",
+     "mutant_output": "['abcd', 'acbdaa']"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/70",
+   "entry": "closest_special_factorial",
+   "mutants_tried": 16,
+   "survivors": 7,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:1@node137",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,3 @@\n-\n from typing import List, Tuple\n import math\n-\n \n@@ -21,15 +19,6 @@\n     def special_factorial(n: int) -> int:\n-        return math.prod(math.factorial(i) for i in range(1, n + 1))\n-    # Calculate the special factorials for all numbers\n+        return math.prod((math.factorial(i) for i in range(1, n + 2)))\n     special_factorials = {n: special_factorial(n) for n in numbers}\n-    \n-    # Sort the numbers by their special factorials\n     sorted_numbers = sorted(numbers, key=special_factorials.get)\n-    \n-    # Find the pair with the smallest difference\n-    closest_pair = min(\n-        ((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)),\n-        key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[0]]\n-    )\n-    \n-    return closest_pair\n+    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[0]])\n+    return closest_pair",
+     "mutant_src": "from typing import List, Tuple\nimport math\n\ndef closest_special_factorial(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" This function will receive a list of integers as input and should return a tuple of two integers \n    that have the closest special factorials. The special factorial is defined as:\n    special_factorial(n) = n! * (n-1)! * ... * 1! where n > 0\n\n    The function should return the two numbers whose special factorials are the closest to each other. \n    The result should be in ascending order.\n\n    For example:\n    >>> closest_special_factorial([4, 5, 6])\n    (4, 5)\n\n    The special factorial of 4 is 288, of 5 is 34560, and of 6 is 24883200. The closest pair is (4, 5).\n    \"\"\"\n\n    def special_factorial(n: int) -> int:\n        return math.prod((math.factorial(i) for i in range(1, n + 2)))\n    special_factorials = {n: special_factorial(n) for n in numbers}\n    sorted_numbers = sorted(numbers, key=special_factorials.get)\n    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[0]])\n    return closest_pair",
+     "input": "([1, 0],)",
+     "expected_canonical": "(1, 0)",
+     "mutant_output": "(0, 1)"
+    },
+    {
+     "mutation": "const:1@node147",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,3 @@\n-\n from typing import List, Tuple\n import math\n-\n \n@@ -21,15 +19,6 @@\n     def special_factorial(n: int) -> int:\n-        return math.prod(math.factorial(i) for i in range(1, n + 1))\n-    # Calculate the special factorials for all numbers\n+        return math.prod((math.factorial(i) for i in range(1, n + 1)))\n     special_factorials = {n: special_factorial(n) for n in numbers}\n-    \n-    # Sort the numbers by their special factorials\n     sorted_numbers = sorted(numbers, key=special_factorials.get)\n-    \n-    # Find the pair with the smallest difference\n-    closest_pair = min(\n-        ((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)),\n-        key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[0]]\n-    )\n-    \n-    return closest_pair\n+    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[1]])\n+    return closest_pair",
+     "mutant_src": "from typing import List, Tuple\nimport math\n\ndef closest_special_factorial(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" This function will receive a list of integers as input and should return a tuple of two integers \n    that have the closest special factorials. The special factorial is defined as:\n    special_factorial(n) = n! * (n-1)! * ... * 1! where n > 0\n\n    The function should return the two numbers whose special factorials are the closest to each other. \n    The result should be in ascending order.\n\n    For example:\n    >>> closest_special_factorial([4, 5, 6])\n    (4, 5)\n\n    The special factorial of 4 is 288, of 5 is 34560, and of 6 is 24883200. The closest pair is (4, 5).\n    \"\"\"\n\n    def special_factorial(n: int) -> int:\n        return math.prod((math.factorial(i) for i in range(1, n + 1)))\n    special_factorials = {n: special_factorial(n) for n in numbers}\n    sorted_numbers = sorted(numbers, key=special_factorials.get)\n    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[1]])\n    return closest_pair",
+     "input": "([5, 4, 8, 8],)",
+     "expected_canonical": "(8, 8)",
+     "mutant_output": "(4, 5)"
+    },
+    {
+     "mutation": "const:-1@node147",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,3 @@\n-\n from typing import List, Tuple\n import math\n-\n \n@@ -21,15 +19,6 @@\n     def special_factorial(n: int) -> int:\n-        return math.prod(math.factorial(i) for i in range(1, n + 1))\n-    # Calculate the special factorials for all numbers\n+        return math.prod((math.factorial(i) for i in range(1, n + 1)))\n     special_factorials = {n: special_factorial(n) for n in numbers}\n-    \n-    # Sort the numbers by their special factorials\n     sorted_numbers = sorted(numbers, key=special_factorials.get)\n-    \n-    # Find the pair with the smallest difference\n-    closest_pair = min(\n-        ((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)),\n-        key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[0]]\n-    )\n-    \n-    return closest_pair\n+    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[-1]])\n+    return closest_pair",
+     "mutant_src": "from typing import List, Tuple\nimport math\n\ndef closest_special_factorial(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" This function will receive a list of integers as input and should return a tuple of two integers \n    that have the closest special factorials. The special factorial is defined as:\n    special_factorial(n) = n! * (n-1)! * ... * 1! where n > 0\n\n    The function should return the two numbers whose special factorials are the closest to each other. \n    The result should be in ascending order.\n\n    For example:\n    >>> closest_special_factorial([4, 5, 6])\n    (4, 5)\n\n    The special factorial of 4 is 288, of 5 is 34560, and of 6 is 24883200. The closest pair is (4, 5).\n    \"\"\"\n\n    def special_factorial(n: int) -> int:\n        return math.prod((math.factorial(i) for i in range(1, n + 1)))\n    special_factorials = {n: special_factorial(n) for n in numbers}\n    sorted_numbers = sorted(numbers, key=special_factorials.get)\n    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[-1]])\n    return closest_pair",
+     "input": "([5, 4, 8, 8],)",
+     "expected_canonical": "(8, 8)",
+     "mutant_output": "(4, 5)"
+    },
+    {
+     "mutation": "const:-1@node143",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,3 @@\n-\n from typing import List, Tuple\n import math\n-\n \n@@ -21,15 +19,6 @@\n     def special_factorial(n: int) -> int:\n-        return math.prod(math.factorial(i) for i in range(1, n + 1))\n-    # Calculate the special factorials for all numbers\n+        return math.prod((math.factorial(i) for i in range(1, n + 1)))\n     special_factorials = {n: special_factorial(n) for n in numbers}\n-    \n-    # Sort the numbers by their special factorials\n     sorted_numbers = sorted(numbers, key=special_factorials.get)\n-    \n-    # Find the pair with the smallest difference\n-    closest_pair = min(\n-        ((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)),\n-        key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[0]]\n-    )\n-    \n-    return closest_pair\n+    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[0]] - special_factorials[pair[0]])\n+    return closest_pair",
+     "mutant_src": "from typing import List, Tuple\nimport math\n\ndef closest_special_factorial(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" This function will receive a list of integers as input and should return a tuple of two integers \n    that have the closest special factorials. The special factorial is defined as:\n    special_factorial(n) = n! * (n-1)! * ... * 1! where n > 0\n\n    The function should return the two numbers whose special factorials are the closest to each other. \n    The result should be in ascending order.\n\n    For example:\n    >>> closest_special_factorial([4, 5, 6])\n    (4, 5)\n\n    The special factorial of 4 is 288, of 5 is 34560, and of 6 is 24883200. The closest pair is (4, 5).\n    \"\"\"\n\n    def special_factorial(n: int) -> int:\n        return math.prod((math.factorial(i) for i in range(1, n + 1)))\n    special_factorials = {n: special_factorial(n) for n in numbers}\n    sorted_numbers = sorted(numbers, key=special_factorials.get)\n    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[0]] - special_factorials[pair[0]])\n    return closest_pair",
+     "input": "([5, 4, 8, 8],)",
+     "expected_canonical": "(8, 8)",
+     "mutant_output": "(4, 5)"
+    },
+    {
+     "mutation": "bin:Add@node90",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,5 +1,3 @@\n-\n from typing import List, Tuple\n import math\n-\n \n@@ -21,15 +19,6 @@\n     def special_factorial(n: int) -> int:\n-        return math.prod(math.factorial(i) for i in range(1, n + 1))\n-    # Calculate the special factorials for all numbers\n+        return math.prod((math.factorial(i) for i in range(1, n + 1)))\n     special_factorials = {n: special_factorial(n) for n in numbers}\n-    \n-    # Sort the numbers by their special factorials\n     sorted_numbers = sorted(numbers, key=special_factorials.get)\n-    \n-    # Find the pair with the smallest difference\n-    closest_pair = min(\n-        ((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)),\n-        key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[0]]\n-    )\n-    \n-    return closest_pair\n+    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] + special_factorials[pair[0]])\n+    return closest_pair",
+     "mutant_src": "from typing import List, Tuple\nimport math\n\ndef closest_special_factorial(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" This function will receive a list of integers as input and should return a tuple of two integers \n    that have the closest special factorials. The special factorial is defined as:\n    special_factorial(n) = n! * (n-1)! * ... * 1! where n > 0\n\n    The function should return the two numbers whose special factorials are the closest to each other. \n    The result should be in ascending order.\n\n    For example:\n    >>> closest_special_factorial([4, 5, 6])\n    (4, 5)\n\n    The special factorial of 4 is 288, of 5 is 34560, and of 6 is 24883200. The closest pair is (4, 5).\n    \"\"\"\n\n    def special_factorial(n: int) -> int:\n        return math.prod((math.factorial(i) for i in range(1, n + 1)))\n    special_factorials = {n: special_factorial(n) for n in numbers}\n    sorted_numbers = sorted(numbers, key=special_factorials.get)\n    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] + special_factorials[pair[0]])\n    return closest_pair",
+     "input": "([5, 4, 8, 8],)",
+     "expected_canonical": "(8, 8)",
+     "mutant_output": "(4, 5)"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/71",
+   "entry": "special_brazilian_balloon",
+   "mutants_tried": 11,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/72",
+   "entry": "special_close_factorials",
+   "mutants_tried": 12,
+   "survivors": 4,
+   "equivalent_or_unknown": 3,
+   "witnesses": [
+    {
+     "mutation": "bin:Add@node101",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n from typing import List\n@@ -16,3 +15,2 @@\n     \"\"\"\n-    # Calculate special factorial for each number\n     special_factorials = []\n@@ -23,9 +21,6 @@\n         special_factorials.append(special_fact)\n-\n-    # Check if any two factorials are closer than threshold\n     for i in range(len(special_factorials)):\n-        for j in range(i+1, len(special_factorials)):\n-            if abs(special_factorials[i] - special_factorials[j]) < threshold:\n+        for j in range(i + 1, len(special_factorials)):\n+            if abs(special_factorials[i] + special_factorials[j]) < threshold:\n                 return True\n-\n-    return False\n+    return False",
+     "mutant_src": "from typing import List\nfrom math import factorial\n\ndef special_close_factorials(numbers: List[int], threshold: int) -> bool:\n    \"\"\" \n    Check if in given list of numbers, are any two special factorials closer to each other than \n    given threshold. The special factorial (Brazilian factorial) is defined as n! * (n-1)! * (n-2)! * ... * 1! \n    where n > 0.\n\n    For example:\n    >>> special_close_factorials([2, 3], 10)\n    False\n    >>> special_close_factorials([1, 2, 3, 4], 100)\n    True\n    \"\"\"\n    special_factorials = []\n    for num in numbers:\n        special_fact = 1\n        for i in range(num, 0, -1):\n            special_fact *= factorial(i)\n        special_factorials.append(special_fact)\n    for i in range(len(special_factorials)):\n        for j in range(i + 1, len(special_factorials)):\n            if abs(special_factorials[i] + special_factorials[j]) < threshold:\n                return True\n    return False",
+     "input": "([-1, 17, 14, 4, 4], 99)",
+     "expected_canonical": "True",
+     "mutant_output": "False"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/73",
+   "entry": "filter_and_simplify",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/74",
+   "entry": "sum_exchange",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/75",
+   "entry": "transform_dict",
+   "mutants_tried": 21,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/76",
+   "entry": "sort_prime_digit_sum",
+   "mutants_tried": 25,
+   "survivors": 5,
+   "equivalent_or_unknown": 5,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/77",
+   "entry": "mixed_solution",
+   "mutants_tried": 24,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/78",
+   "entry": "solve_and_count",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/79",
+   "entry": "happy_case_string",
+   "mutants_tried": 26,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/80",
+   "entry": "cyclic_encode_delete",
+   "mutants_tried": 36,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/81",
+   "entry": "mean_absolute_deviation_fibfib",
+   "mutants_tried": 45,
+   "survivors": 25,
+   "equivalent_or_unknown": 25,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/82",
+   "entry": "odd_fibfib",
+   "mutants_tried": 53,
+   "survivors": 11,
+   "equivalent_or_unknown": 11,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/83",
+   "entry": "prime_underscored_length",
+   "mutants_tried": 20,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/84",
+   "entry": "prefixes_histogram",
+   "mutants_tried": 8,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/85",
+   "entry": "next_smallest_sorted_binary",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/86",
+   "entry": "evaluate_common_expressions",
+   "mutants_tried": 13,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/87",
+   "entry": "match_and_remove_unbalanced",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/88",
+   "entry": "process_and_sort_string",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/89",
+   "entry": "md5_substring_filter",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/90",
+   "entry": "vowels_in_dict_keys",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/91",
+   "entry": "sort_prime_even",
+   "mutants_tried": 29,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/92",
+   "entry": "get_common_max_triples",
+   "mutants_tried": 34,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/93",
+   "entry": "prime_vowel",
+   "mutants_tried": 27,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/94",
+   "entry": "sort_count_nums",
+   "mutants_tried": 21,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/95",
+   "entry": "filter_sort_strings",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/96",
+   "entry": "common_pairs_with_zero_sum",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/97",
+   "entry": "fib_max_triples",
+   "mutants_tried": 55,
+   "survivors": 6,
+   "equivalent_or_unknown": 6,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/98",
+   "entry": "check_dict_bracketing",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_combine/99",
+   "entry": "len_base_conversion",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  }
+ ]
+}

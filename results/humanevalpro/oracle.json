@@ -1,0 +1,1415 @@
+[
+ {
+  "task_id": "HumanEvalPro/6",
+  "oracle": "HumanEval/6",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node42",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node42",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/11",
+  "oracle": "HumanEval/11",
+  "per_witness": [
+   {
+    "mutation": "cmp:NotEq@node38",
+    "oracle_disagrees": true,
+    "oracle_input": "['111000', '101010']",
+    "oracle_expected": "'010010'",
+    "mutant_helper_output": "'101101'"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/18",
+  "oracle": "HumanEval/18",
+  "per_witness": [
+   {
+    "mutation": "const:1@node59",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/24",
+  "oracle": "HumanEval/24",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node62",
+    "oracle_disagrees": true,
+    "oracle_input": "[3]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "cmp:NotEq@node38",
+    "oracle_disagrees": true,
+    "oracle_input": "[3]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "2"
+   },
+   {
+    "mutation": "bin:FloorDiv@node60",
+    "oracle_disagrees": true,
+    "oracle_input": "[3]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node51",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node32",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node62",
+    "oracle_disagrees": true,
+    "oracle_input": "[3]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "2"
+   },
+   {
+    "mutation": "const:-1@node32",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/25",
+  "oracle": "HumanEval/25",
+  "per_witness": [
+   {
+    "mutation": "const:1@node95",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/31",
+  "oracle": "HumanEval/31",
+  "per_witness": [
+   {
+    "mutation": "cmp:LtE@node12",
+    "oracle_disagrees": true,
+    "oracle_input": "[2]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:1@node22",
+    "oracle_disagrees": true,
+    "oracle_input": "[2]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/32",
+  "oracle": "HumanEval/32",
+  "per_witness": [
+   {
+    "mutation": "const:1@node116",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-10, -2]]",
+    "oracle_expected": "-5.0",
+    "mutant_helper_output": "-5.5"
+   },
+   {
+    "mutation": "const:1@node58",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-3, 6, 9, -10]]",
+    "oracle_expected": "0.3763741272657057",
+    "mutant_helper_output": "-0.6685768984025344"
+   },
+   {
+    "mutation": "const:1@node91",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-3, 6, 9, -10]]",
+    "oracle_expected": "0.3763741272657057",
+    "mutant_helper_output": "-0.6685768984025344"
+   },
+   {
+    "mutation": "const:-1@node91",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-3, 6, 9, -10]]",
+    "oracle_expected": "0.3763741272657057",
+    "mutant_helper_output": "-0.6685768984025344"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/33",
+  "oracle": "HumanEval/33",
+  "per_witness": [
+   {
+    "mutation": "const:1@node36",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node61",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]]",
+    "oracle_expected": "[1, 3, -5, 2, -3, 3, 5, 0, 123, 9, -10]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node46",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]]",
+    "oracle_expected": "[1, 3, -5, 2, -3, 3, 5, 0, 123, 9, -10]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node36",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/38",
+  "oracle": "HumanEval/38",
+  "per_witness": [
+   {
+    "mutation": "const:1@node98",
+    "oracle_disagrees": true,
+    "oracle_input": "['uzfplzjfzcltmdly']",
+    "oracle_expected": "'fuzzplzjftcllmdy'",
+    "mutant_helper_output": "'fuzzz'"
+   },
+   {
+    "mutation": "const:1@node107",
+    "oracle_disagrees": true,
+    "oracle_input": "['uzfplzjfzcltmdly']",
+    "oracle_expected": "'fuzzplzjftcllmdy'",
+    "mutant_helper_output": "'fuzzplzjf'"
+   },
+   {
+    "mutation": "const:-1@node125",
+    "oracle_disagrees": true,
+    "oracle_input": "['uzfplzjfzcltmdly']",
+    "oracle_expected": "'fuzzplzjftcllmdy'",
+    "mutant_helper_output": "'fuzzplzjftcllmd'"
+   },
+   {
+    "mutation": "const:-1@node98",
+    "oracle_disagrees": true,
+    "oracle_input": "['uzfplzjfzcltmdly']",
+    "oracle_expected": "'fuzzplzjftcllmdy'",
+    "mutant_helper_output": "'fuzufplplzlzzlzjfzzjfzjfzfzjfzcltjfzcltzclzcltzcltmdltzcltmdlltzcltmdlltmdlltmdlltmdly'"
+   },
+   {
+    "mutation": "const:1@node120",
+    "oracle_disagrees": true,
+    "oracle_input": "['uzfplzjfzcltmdly']",
+    "oracle_expected": "'fuzzplzjftcllmdy'",
+    "mutant_helper_output": "'uzfppplzzjjffzcccltmmmdlyyl'"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/40",
+  "oracle": "HumanEval/40",
+  "per_witness": [
+   {
+    "mutation": "bin:Sub@node58",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, -2, -4]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "bin:Sub@node39",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, -2, -4]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:-1@node70",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-1, -2, 1]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:-1@node53",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, -2, -4]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/43",
+  "oracle": "HumanEval/43",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node49",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 3, 5, 0]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "bin:Sub@node39",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 3, 5, 0]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node49",
+    "oracle_disagrees": true,
+    "oracle_input": "[[0, 0]]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/44",
+  "oracle": "HumanEval/44",
+  "per_witness": [
+   {
+    "mutation": "cmp:LtE@node60",
+    "oracle_disagrees": true,
+    "oracle_input": "[0, 3]",
+    "oracle_expected": "'0'",
+    "mutant_helper_output": "''"
+   },
+   {
+    "mutation": "const:1@node83",
+    "oracle_disagrees": true,
+    "oracle_input": "[0, 3]",
+    "oracle_expected": "'0'",
+    "mutant_helper_output": "''"
+   },
+   {
+    "mutation": "const:-1@node83",
+    "oracle_disagrees": true,
+    "oracle_input": "[0, 3]",
+    "oracle_expected": "'0'",
+    "mutant_helper_output": "''"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/46",
+  "oracle": "HumanEval/46",
+  "per_witness": [
+   {
+    "mutation": "cmp:LtE@node20",
+    "oracle_disagrees": true,
+    "oracle_input": "[4]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node43",
+    "oracle_disagrees": true,
+    "oracle_input": "[4]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/47",
+  "oracle": "HumanEval/47",
+  "per_witness": [
+   {
+    "mutation": "bin:Add@node75",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-10, 4, 6, 1000, 10, 20]]",
+    "oracle_expected": "8.0",
+    "mutant_helper_output": "15.0"
+   },
+   {
+    "mutation": "const:-1@node85",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-10, 4, 6, 1000, 10, 20]]",
+    "oracle_expected": "8.0",
+    "mutant_helper_output": "10.0"
+   },
+   {
+    "mutation": "const:-1@node92",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-10, 4, 6, 1000, 10, 20]]",
+    "oracle_expected": "8.0",
+    "mutant_helper_output": "505.0"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/58",
+  "oracle": "HumanEval/58",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node48",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3], [False, True, False, False]]",
+    "oracle_expected": "[True]",
+    "mutant_helper_output": "[1]"
+   },
+   {
+    "mutation": "const:1@node48",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3], [False, True, False, False]]",
+    "oracle_expected": "[True]",
+    "mutant_helper_output": "[1]"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/59",
+  "oracle": "HumanEval/59",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node145",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node73",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node73",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "cmp:GtE@node106",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/61",
+  "oracle": "HumanEval/61",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node50",
+    "oracle_disagrees": true,
+    "oracle_input": "[')(()']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/69",
+  "oracle": "HumanEval/69",
+  "per_witness": [
+   {
+    "mutation": "const:1@node58",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/71",
+  "oracle": "HumanEval/71",
+  "per_witness": [
+   {
+    "mutation": "const:1@node52",
+    "oracle_disagrees": true,
+    "oracle_input": "[4, 8, 5]",
+    "oracle_expected": "8.18",
+    "mutant_helper_output": "8.182"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/74",
+  "oracle": "HumanEval/74",
+  "per_witness": [
+   {
+    "mutation": "cmp:LtE@node67",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/75",
+  "oracle": "HumanEval/75",
+  "per_witness": [
+   {
+    "mutation": "const:1@node75",
+    "oracle_disagrees": true,
+    "oracle_input": "[8]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:1@node50",
+    "oracle_disagrees": true,
+    "oracle_input": "[8]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:1@node29",
+    "oracle_disagrees": true,
+    "oracle_input": "[8]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/76",
+  "oracle": "HumanEval/76",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node26",
+    "oracle_disagrees": true,
+    "oracle_input": "[82, 1]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "timeout"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/80",
+  "oracle": "HumanEval/80",
+  "per_witness": [
+   {
+    "mutation": "bin:Sub@node79",
+    "oracle_disagrees": true,
+    "oracle_input": "['iopaxioi']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node90",
+    "oracle_disagrees": true,
+    "oracle_input": "['xxy']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:-1@node104",
+    "oracle_disagrees": true,
+    "oracle_input": "['iopaxioi']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "bin:Sub@node67",
+    "oracle_disagrees": true,
+    "oracle_input": "['iopaxpoi']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/81",
+  "oracle": "HumanEval/81",
+  "per_witness": [
+   {
+    "mutation": "cmp:Lt@node157",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1.2]]",
+    "oracle_expected": "['D+']",
+    "mutant_helper_output": "['D']"
+   },
+   {
+    "mutation": "cmp:Lt@node170",
+    "oracle_disagrees": true,
+    "oracle_input": "[[0.5]]",
+    "oracle_expected": "['D-']",
+    "mutant_helper_output": "['D']"
+   },
+   {
+    "mutation": "cmp:Lt@node144",
+    "oracle_disagrees": true,
+    "oracle_input": "[[4.0, 3, 1.7, 2, 3.5]]",
+    "oracle_expected": "['A+', 'B', 'C-', 'C', 'A-']",
+    "mutant_helper_output": "['A+', 'B', 'D+', 'C', 'A-']"
+   },
+   {
+    "mutation": "cmp:Lt@node183",
+    "oracle_disagrees": true,
+    "oracle_input": "[[0.5]]",
+    "oracle_expected": "['D-']",
+    "mutant_helper_output": "['E']"
+   },
+   {
+    "mutation": "cmp:Lt@node118",
+    "oracle_disagrees": true,
+    "oracle_input": "[[4.0, 3, 1.7, 2, 3.5]]",
+    "oracle_expected": "['A+', 'B', 'C-', 'C', 'A-']",
+    "mutant_helper_output": "['A+', 'B', 'C+', 'C', 'A-']"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/82",
+  "oracle": "HumanEval/82",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node60",
+    "oracle_disagrees": true,
+    "oracle_input": "['']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node60",
+    "oracle_disagrees": true,
+    "oracle_input": "['']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/83",
+  "oracle": "HumanEval/83",
+  "per_witness": [
+   {
+    "mutation": "const:1@node60",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/88",
+  "oracle": "HumanEval/88",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node43",
+    "oracle_disagrees": true,
+    "oracle_input": "[[]]",
+    "oracle_expected": "[]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node85",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5]]",
+    "oracle_expected": "[5]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node43",
+    "oracle_disagrees": true,
+    "oracle_input": "[[]]",
+    "oracle_expected": "[]",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/94",
+  "oracle": "HumanEval/94",
+  "per_witness": [
+   {
+    "mutation": "const:1@node75",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node21",
+    "oracle_disagrees": true,
+    "oracle_input": "[[8191]]",
+    "oracle_expected": "19",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node19",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node19",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/99",
+  "oracle": "HumanEval/99",
+  "per_witness": [
+   {
+    "mutation": "const:1@node67",
+    "oracle_disagrees": true,
+    "oracle_input": "['6']",
+    "oracle_expected": "6",
+    "mutant_helper_output": "0"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/102",
+  "oracle": "HumanEval/102",
+  "per_witness": [
+   {
+    "mutation": "const:1@node93",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node93",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node66",
+    "oracle_disagrees": true,
+    "oracle_input": "[13, 12]",
+    "oracle_expected": "-1",
+    "mutant_helper_output": "0"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/108",
+  "oracle": "HumanEval/108",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node56",
+    "oracle_disagrees": true,
+    "oracle_input": "[[12, 23, 34, -45, -56, 0]]",
+    "oracle_expected": "5",
+    "mutant_helper_output": "3"
+   },
+   {
+    "mutation": "const:1@node99",
+    "oracle_disagrees": true,
+    "oracle_input": "[[12, 23, 34, -45, -56, 0]]",
+    "oracle_expected": "5",
+    "mutant_helper_output": "3"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/110",
+  "oracle": "HumanEval/110",
+  "per_witness": [
+   {
+    "mutation": "cmp:NotEq@node40",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "cmp:NotEq@node95",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node99",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 7, 3], [2, 6, 3]]",
+    "oracle_expected": "'NO'",
+    "mutant_helper_output": "'YES'"
+   },
+   {
+    "mutation": "cmp:NotEq@node94",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node81",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3, 4], [1, 5, 3, 4]]",
+    "oracle_expected": "'NO'",
+    "mutant_helper_output": "'YES'"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/111",
+  "oracle": "HumanEval/111",
+  "per_witness": [
+   {
+    "mutation": "const:1@node24",
+    "oracle_disagrees": true,
+    "oracle_input": "['']",
+    "oracle_expected": "{}",
+    "mutant_helper_output": "{'': 1}"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/114",
+  "oracle": "HumanEval/114",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node63",
+    "oracle_disagrees": true,
+    "oracle_input": "[[2, 3, 4, 1, 2, 4]]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:-1@node100",
+    "oracle_disagrees": true,
+    "oracle_input": "[[100, -1, -2, -3, 10, -5]]",
+    "oracle_expected": "-6",
+    "mutant_helper_output": "-5"
+   },
+   {
+    "mutation": "const:1@node23",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-1, -2, -3]]",
+    "oracle_expected": "-6",
+    "mutant_helper_output": "-7"
+   },
+   {
+    "mutation": "const:1@node100",
+    "oracle_disagrees": true,
+    "oracle_input": "[[2, 3, 4, 1, 2, 4]]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "-1"
+   },
+   {
+    "mutation": "cmp:GtE@node38",
+    "oracle_disagrees": true,
+    "oracle_input": "[[True, True, True, False, True, True]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:-1@node23",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-1, -2, -3]]",
+    "oracle_expected": "-6",
+    "mutant_helper_output": "-5"
+   },
+   {
+    "mutation": "const:-1@node127",
+    "oracle_disagrees": true,
+    "oracle_input": "[[True, True, True, False, True, True]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node63",
+    "oracle_disagrees": true,
+    "oracle_input": "[[2, 3, 4, 1, 2, 4]]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node21",
+    "oracle_disagrees": true,
+    "oracle_input": "[[2, 3, 4, 1, 2, 4]]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "-1"
+   },
+   {
+    "mutation": "const:-1@node125",
+    "oracle_disagrees": true,
+    "oracle_input": "[[True, True, True, False, True, True]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "cmp:GtE@node86",
+    "oracle_disagrees": true,
+    "oracle_input": "[[True, True, True, False, True, True]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node127",
+    "oracle_disagrees": true,
+    "oracle_input": "[[True, True, True, False, True, True]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "0"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/116",
+  "oracle": "HumanEval/116",
+  "per_witness": [
+   {
+    "mutation": "const:1@node69",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/118",
+  "oracle": "HumanEval/118",
+  "per_witness": [
+   {
+    "mutation": "const:1@node33",
+    "oracle_disagrees": true,
+    "oracle_input": "['bad']",
+    "oracle_expected": "'a'",
+    "mutant_helper_output": "''"
+   },
+   {
+    "mutation": "const:-1@node49",
+    "oracle_disagrees": true,
+    "oracle_input": "['alb']",
+    "oracle_expected": "''",
+    "mutant_helper_output": "'a'"
+   },
+   {
+    "mutation": "cmp:LtE@node15",
+    "oracle_disagrees": true,
+    "oracle_input": "['bad']",
+    "oracle_expected": "'a'",
+    "mutant_helper_output": "''"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/119",
+  "oracle": "HumanEval/119",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node129",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/120",
+  "oracle": "HumanEval/120",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node32",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3, -23, 243, -400, 0], 0]",
+    "oracle_expected": "[]",
+    "mutant_helper_output": "[-400, -23, 0, 1, 2, 3, 243]"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/124",
+  "oracle": "HumanEval/124",
+  "per_witness": [
+   {
+    "mutation": "const:1@node166",
+    "oracle_disagrees": true,
+    "oracle_input": "['12-31-1999']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "cmp:LtE@node74",
+    "oracle_disagrees": true,
+    "oracle_input": "['01-01-2007']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "cmp:LtE@node130",
+    "oracle_disagrees": true,
+    "oracle_input": "['12-31-1999']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:1@node159",
+    "oracle_disagrees": true,
+    "oracle_input": "['01-01-2007']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:1@node118",
+    "oracle_disagrees": true,
+    "oracle_input": "['01-01-2007']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:-1@node187",
+    "oracle_disagrees": true,
+    "oracle_input": "['12-31-1999']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:-1@node118",
+    "oracle_disagrees": true,
+    "oracle_input": "['12-31-1999']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "cmp:LtE@node124",
+    "oracle_disagrees": true,
+    "oracle_input": "['01-01-2007']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:1@node187",
+    "oracle_disagrees": true,
+    "oracle_input": "['12-31-1999']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/127",
+  "oracle": "HumanEval/127",
+  "per_witness": [
+   {
+    "mutation": "const:1@node133",
+    "oracle_disagrees": true,
+    "oracle_input": "[[10, 20], [15, 25]]",
+    "oracle_expected": "'YES'",
+    "mutant_helper_output": "'NO'"
+   },
+   {
+    "mutation": "cmp:NotEq@node42",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-15, 15], [-10, 10]]",
+    "oracle_expected": "'NO'",
+    "mutant_helper_output": "'YES'"
+   },
+   {
+    "mutation": "bin:FloorDiv@node131",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-15, 15], [-10, 10]]",
+    "oracle_expected": "'NO'",
+    "mutant_helper_output": "'YES'"
+   },
+   {
+    "mutation": "cmp:NotEq@node87",
+    "oracle_disagrees": true,
+    "oracle_input": "[[10, 20], [15, 25]]",
+    "oracle_expected": "'YES'",
+    "mutant_helper_output": "'NO'"
+   },
+   {
+    "mutation": "const:-1@node85",
+    "oracle_disagrees": true,
+    "oracle_input": "[[10, 20], [15, 25]]",
+    "oracle_expected": "'YES'",
+    "mutant_helper_output": "'NO'"
+   },
+   {
+    "mutation": "const:-1@node133",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-15, 15], [-10, 10]]",
+    "oracle_expected": "'NO'",
+    "mutant_helper_output": "'YES'"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/129",
+  "oracle": "HumanEval/129",
+  "per_witness": [
+   {
+    "mutation": "const:1@node229",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7]",
+    "oracle_expected": "[1, 10, 1, 10, 1, 10, 1]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node290",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7]",
+    "oracle_expected": "[1, 10, 1, 10, 1, 10, 1]",
+    "mutant_helper_output": "[1, 1, 1, 1, 1, 1, 1]"
+   },
+   {
+    "mutation": "bin:Add@node249",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7]",
+    "oracle_expected": "[1, 10, 1, 10, 1, 10, 1]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "cmp:Eq@node151",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[11, 8, 7, 2], [5, 16, 14, 4], [9, 3, 15, 6], [12, 13, 10, 1]], 9]",
+    "oracle_expected": "[1, 6, 1, 6, 1, 6, 1, 6, 1]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node185",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[2, 7, 4], [3, 1, 5], [6, 8, 9]], 8]",
+    "oracle_expected": "[1, 3, 1, 3, 1, 3, 1, 3]",
+    "mutant_helper_output": "[1, 5, 1, 5, 1, 5, 1, 5]"
+   },
+   {
+    "mutation": "const:1@node274",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7]",
+    "oracle_expected": "[1, 10, 1, 10, 1, 10, 1]",
+    "mutant_helper_output": "[1, 7, 1, 7, 1, 7, 1]"
+   },
+   {
+    "mutation": "bin:Add@node189",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[11, 8, 7, 2], [5, 16, 14, 4], [9, 3, 15, 6], [12, 13, 10, 1]], 9]",
+    "oracle_expected": "[1, 6, 1, 6, 1, 6, 1, 6, 1]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "bin:FloorDiv@node55",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node223",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[11, 8, 7, 2], [5, 16, 14, 4], [9, 3, 15, 6], [12, 13, 10, 1]], 9]",
+    "oracle_expected": "[1, 6, 1, 6, 1, 6, 1, 6, 1]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "cmp:Eq@node149",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[8, 14, 9, 2], [6, 4, 13, 15], [5, 7, 1, 12], [3, 10, 11, 16]], 5]",
+    "oracle_expected": "[1, 7, 1, 7, 1]",
+    "mutant_helper_output": "[1, 11, 1, 11, 1]"
+   },
+   {
+    "mutation": "bin:Add@node265",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7]",
+    "oracle_expected": "[1, 10, 1, 10, 1, 10, 1]",
+    "mutant_helper_output": "[1, 12, 1, 12, 1, 12, 1]"
+   },
+   {
+    "mutation": "const:1@node57",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node290",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7]",
+    "oracle_expected": "[1, 10, 1, 10, 1, 10, 1]",
+    "mutant_helper_output": "[1, 2, 1, 2, 1, 2, 1]"
+   },
+   {
+    "mutation": "const:-1@node223",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[11, 8, 7, 2], [5, 16, 14, 4], [9, 3, 15, 6], [12, 13, 10, 1]], 9]",
+    "oracle_expected": "[1, 6, 1, 6, 1, 6, 1, 6, 1]",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node57",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "bin:Sub@node24",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node274",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7]",
+    "oracle_expected": "[1, 10, 1, 10, 1, 10, 1]",
+    "mutant_helper_output": "[1, 1, 1, 1, 1, 1, 1]"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/132",
+  "oracle": "HumanEval/132",
+  "per_witness": [
+   {
+    "mutation": "cmp:LtE@node83",
+    "oracle_disagrees": true,
+    "oracle_input": "['[[]']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/134",
+  "oracle": "HumanEval/134",
+  "per_witness": [
+   {
+    "mutation": "cmp:Lt@node31",
+    "oracle_disagrees": true,
+    "oracle_input": "['A']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:1@node41",
+    "oracle_disagrees": true,
+    "oracle_input": "['A']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/135",
+  "oracle": "HumanEval/135",
+  "per_witness": [
+   {
+    "mutation": "const:1@node143",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node143",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "cmp:LtE@node47",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "bin:Sub@node138",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node20",
+    "oracle_disagrees": true,
+    "oracle_input": "[[6, 0, 1, 2, 3]]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "-1"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/136",
+  "oracle": "HumanEval/136",
+  "per_witness": [
+   {
+    "mutation": "cmp:Lt@node107",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "cmp:Gt@node115",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/138",
+  "oracle": "HumanEval/138",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node30",
+    "oracle_disagrees": true,
+    "oracle_input": "[11]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/140",
+  "oracle": "HumanEval/140",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node59",
+    "oracle_disagrees": true,
+    "oracle_input": "['  spaces  every  where  ']",
+    "oracle_expected": "'__spaces__every__where__'",
+    "mutant_helper_output": "'__spaces__every__where-'"
+   },
+   {
+    "mutation": "cmp:GtE@node27",
+    "oracle_disagrees": true,
+    "oracle_input": "['  spaces  every  where  ']",
+    "oracle_expected": "'__spaces__every__where__'",
+    "mutant_helper_output": "'__spaces__every__where-'"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/142",
+  "oracle": "HumanEval/142",
+  "per_witness": [
+   {
+    "mutation": "const:1@node76",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-1, -5, 2, -1, -5]]",
+    "oracle_expected": "-126",
+    "mutant_helper_output": "22"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/145",
+  "oracle": "HumanEval/145",
+  "per_witness": [
+   {
+    "mutation": "const:1@node27",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 11, -1, -11, -12]]",
+    "oracle_expected": "[-1, -11, 1, -12, 11]",
+    "mutant_helper_output": "[-1, -11, -12, 1, 11]"
+   },
+   {
+    "mutation": "const:1@node113",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node54",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 11, -1, -11, -12]]",
+    "oracle_expected": "[-1, -11, 1, -12, 11]",
+    "mutant_helper_output": "[-1, -11, -12, 1, 11]"
+   },
+   {
+    "mutation": "const:-1@node103",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 11, -1, -11, -12]]",
+    "oracle_expected": "[-1, -11, 1, -12, 11]",
+    "mutant_helper_output": "[-1, 1, -11, 11, -12]"
+   },
+   {
+    "mutation": "const:-1@node115",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 11, -1, -11, -12]]",
+    "oracle_expected": "[-1, -11, 1, -12, 11]",
+    "mutant_helper_output": "[-1, -11, -12, 1, 11]"
+   },
+   {
+    "mutation": "const:1@node115",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 11, -1, -11, -12]]",
+    "oracle_expected": "[-1, -11, 1, -12, 11]",
+    "mutant_helper_output": "[-1, -11, 1, 11, -12]"
+   },
+   {
+    "mutation": "const:-1@node113",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node27",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 11, -1, -11, -12]]",
+    "oracle_expected": "[-1, -11, 1, -12, 11]",
+    "mutant_helper_output": "[-1, 1, -11, 11, -12]"
+   },
+   {
+    "mutation": "const:-1@node84",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 11, -1, -11, -12]]",
+    "oracle_expected": "[-1, -11, 1, -12, 11]",
+    "mutant_helper_output": "[-1, -11, -12, 1, 11]"
+   },
+   {
+    "mutation": "bin:FloorDiv@node75",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 11, -1, -11, -12]]",
+    "oracle_expected": "[-1, -11, 1, -12, 11]",
+    "mutant_helper_output": "[-1, -11, -12, 1, 11]"
+   },
+   {
+    "mutation": "const:1@node103",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 11, -1, -11, -12]]",
+    "oracle_expected": "[-1, -11, 1, -12, 11]",
+    "mutant_helper_output": "[-1, -11, -12, 1, 11]"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/147",
+  "oracle": "HumanEval/147",
+  "per_witness": [
+   {
+    "mutation": "bin:Sub@node156",
+    "oracle_disagrees": true,
+    "oracle_input": "[1]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "0"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/154",
+  "oracle": "HumanEval/154",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node65",
+    "oracle_disagrees": true,
+    "oracle_input": "['mississipi', 'mississipi']",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/156",
+  "oracle": "HumanEval/156",
+  "per_witness": [
+   {
+    "mutation": "const:1@node37",
+    "oracle_disagrees": true,
+    "oracle_input": "[43]",
+    "oracle_expected": "'xliii'",
+    "mutant_helper_output": "'xlii'"
+   },
+   {
+    "mutation": "const:-1@node37",
+    "oracle_disagrees": true,
+    "oracle_input": "[43]",
+    "oracle_expected": "'xliii'",
+    "mutant_helper_output": "'xliv'"
+   },
+   {
+    "mutation": "const:1@node33",
+    "oracle_disagrees": true,
+    "oracle_input": "[4]",
+    "oracle_expected": "'iv'",
+    "mutant_helper_output": "'iiii'"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/157",
+  "oracle": "HumanEval/157",
+  "per_witness": [
+   {
+    "mutation": "bin:FloorDiv@node65",
+    "oracle_disagrees": true,
+    "oracle_input": "[5, 13, 12]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "bin:FloorDiv@node59",
+    "oracle_disagrees": true,
+    "oracle_input": "[10, 6, 8]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "HumanEvalPro/160",
+  "oracle": "HumanEval/160",
+  "per_witness": [
+   {
+    "mutation": "const:1@node231",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "cmp:NotEq@node179",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "bin:FloorDiv@node145",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "cmp:NotEq@node146",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node247",
+    "oracle_disagrees": false
+   }
+  ]
+ }
+]

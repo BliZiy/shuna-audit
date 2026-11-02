@@ -1,0 +1,204 @@
+[
+ {
+  "task_id": "HumanEvalNext/1",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node361",
+   "input": "('(((())(()))',)",
+   "correct": "['((())(()))']",
+   "wrong": "['(((())(())))']",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -17,10 +16,9 @@\n     \"\"\"\n-    input = \"\".join([x for x in paren_string if x in '()'])\n+    input = ''.join([x for x in paren_string if x in '()'])\n     breakpoints = input.split('()')\n     groups = []\n-\n     for i in range(len(breakpoints) - 1):\n         group = '()'\n-        while breakpoints[i] != \"\" and breakpoints[i].endswith('(') and breakpoints[i + 1] != \"\" and breakpoints[i + 1].startswith(')'):\n-            group = f\"({group})\"\n+        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n+            group = f'({group})'\n             breakpoints[i] = breakpoints[i][:-1]\n@@ -28,3 +26,2 @@\n         groups.append(group)\n-\n     while '' in breakpoints:\n@@ -33,3 +30,2 @@\n         end = None\n-\n         for i in range(len(breakpoints)):\n@@ -39,3 +35,3 @@\n                 end = None\n-            elif breakpoints[i] == \"\" and start is not None:\n+            elif breakpoints[i] == '' and start is not None:\n                 middle = True\n@@ -44,10 +40,8 @@\n                 break\n-\n         if start is not None and end is not None:\n-            chained = \"\".join(groups[start:end])\n-            while breakpoints[start] != \"\" and breakpoints[start].endswith('(') and breakpoints[end] != \"\" and breakpoints[end].startswith(')'):\n-                chained = f\"({chained})\"\n+            chained = ''.join(groups[start:end])\n+            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n+                chained = f'({chained})'\n                 breakpoints[start] = breakpoints[start][:-1]\n-                breakpoints[end] = breakpoints[end][1:]\n-\n+                breakpoints[end] = breakpoints[end][0:]\n             groups = groups[:start] + [chained] + groups[end:]\n@@ -56,3 +50,2 @@\n             break\n-\n-    return groups\n+    return groups"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/6",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bool:Or@node293",
+   "input": "(')()))()((()()((( ())() )() ',)",
+   "correct": "[1, 1, 1, 1, 3, 1]",
+   "wrong": "[1, 1, 1, 1, 2, 1, 1]",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -11,13 +10,12 @@\n     Example:\n-        >>> parse_nested_parens('{\\\"example\\\": \\\"(()[]()) ((()))()((())()() )\\\"}')\n+        >>> parse_nested_parens('{\"example\": \"(()[]()) ((()))()((())()() )\"}')\n         [2, 3, 1, 3]\n     \"\"\"\n-    input = \"\".join([x for x in paren_string if x in '()'])\n+    input = ''.join([x for x in paren_string if x in '()'])\n     breakpoints = input.split('()')\n     groups = []\n-\n     for i in range(len(breakpoints) - 1):\n         group = '()'\n-        while breakpoints[i] != \"\" and breakpoints[i].endswith('(') and breakpoints[i + 1] != \"\" and breakpoints[i + 1].startswith(')'):\n-            group = f\"({group})\"\n+        while breakpoints[i] != '' and breakpoints[i].endswith('(') and (breakpoints[i + 1] != '') and breakpoints[i + 1].startswith(')'):\n+            group = f'({group})'\n             breakpoints[i] = breakpoints[i][:-1]\n@@ -25,3 +23,2 @@\n         groups.append(group)\n-\n     while '' in breakpoints:\n@@ -30,3 +27,2 @@\n         end = None\n-\n         for i in range(len(breakpoints)):\n@@ -36,21 +32,18 @@\n                 end = None\n-            elif breakpoints[i] == \"\" and start is not None:\n+            elif breakpoints[i] == '' and start is not None:\n                 middle = True\n-            elif breakpoints[i].startswith(')') and middle:\n+            elif breakpoints[i].startswith(')') or middle:\n                 end = i\n                 break\n-\n         if start is not None and end is not None:\n-            chained = \"\".join(groups[start:end])\n-            while breakpoints[start] != \"\" and breakpoints[start].endswith('(') and breakpoints[end] != \"\" and breakpoints[end].startswith(')'):\n-                chained = f\"({chained})\"\n+            chained = ''.join(groups[start:end])\n+            while breakpoints[start] != '' and breakpoints[start].endswith('(') and (breakpoints[end] != '') and breakpoints[end].startswith(')'):\n+                chained = f'({chained})'\n                 breakpoints[start] = breakpoints[start][:-1]\n                 breakpoints[end] = breakpoints[end][1:]\n-\n             groups = groups[:start] + [chained] + groups[end:]\n-            breakpoints = breakpoints[:start] + \\\n-                [breakpoints[start]] + breakpoints[end:]\n+            breakpoints = breakpoints[:start] + [breakpoints[start]] + breakpoints[end:]\n         else:\n             break\n-    \n+\n     def depth(s):\n@@ -65,3 +58,2 @@\n         return max_depth\n-\n-    return [depth(group) for group in groups]\n+    return [depth(group) for group in groups]"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/11",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bin:Add@node66",
+   "input": "('11100', '1010010')",
+   "correct": "'1001110'",
+   "wrong": "'1010010'",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -13,3 +12,3 @@\n     if len(a) < len(b):\n-        a = '0' * (len(b) - len(a)) + a\n+        a = '0' * (len(b) + len(a)) + a\n     elif len(b) < len(a):\n@@ -22,3 +21,2 @@\n             return '1'\n-\n-    return ''.join(xor(x, y) for x, y in zip(a, b))\n+    return ''.join((xor(x, y) for x, y in zip(a, b)))"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/19",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bool:Or@node50",
+   "input": "(' efzhion ugi sfntrn rv eeieoeve',)",
+   "correct": "''",
+   "wrong": "err",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -10,14 +10,3 @@\n     \"\"\"\n-    value_map = {\n-        'zero': 0,\n-        'one': 1,\n-        'two': 2,\n-        'three': 3,\n-        'four': 4,\n-        'five': 5,\n-        'six': 6,\n-        'seven': 7,\n-        'eight': 8,\n-        'nine': 9\n-    }\n-    return ' '.join(sorted([x for x in numbers.split(' ') if x and x in value_map], key=lambda x: value_map[x]))\n+    value_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n+    return ' '.join(sorted([x for x in numbers.split(' ') if x or x in value_map], key=lambda x: value_map[x]))"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/20",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "cmp:LtE@node91",
+   "input": "([1.0, 1.0, 1.0, 4.0, 4.0],)",
+   "correct": "(1.0, 1.0)",
+   "wrong": "(4.0, 4.0)",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List, Tuple\n-\n \n@@ -16,6 +15,4 @@\n     assert len(numbers) >= 2\n-\n     closest_pair = None\n     distance = None\n-\n     for idx, elem in enumerate(numbers):\n@@ -28,6 +25,5 @@\n                     new_distance = abs(elem - elem2)\n-                    if new_distance < distance:\n+                    if new_distance <= distance:\n                         distance = new_distance\n                         closest_pair = tuple(sorted([elem, elem2]))\n-\n-    return closest_pair\n+    return closest_pair"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/32",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node48",
+   "input": "([-1, 0],)",
+   "correct": "-inf",
+   "wrong": "0.9999999999417923",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -2,3 +2,2 @@\n from typing import List\n-\n \n@@ -10,3 +9,2 @@\n     return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n-\n \n@@ -27,4 +25,4 @@\n     \"\"\"\n-    begin, end = -1., 1.\n-    while poly(xs, begin) * poly(xs, end) > 0:\n+    begin, end = (-1.0, 1.0)\n+    while poly(xs, begin) * poly(xs, end) > 1:\n         begin *= 2.0\n@@ -37,2 +35,2 @@\n             end = center\n-    return begin\n+    return begin"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/46",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node36",
+   "input": "(4,)",
+   "correct": "2",
+   "wrong": "err",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -20,8 +20,6 @@\n     assert n >= 0\n-\n     results = [0, 0, 2, 0]\n-    if n < 4:\n+    if n < 5:\n         assert n >= 0\n         return results[n]\n-\n     for _ in range(4, n + 1):\n@@ -29,3 +27,2 @@\n         results.pop(0)\n-\n-    return results[-1]\n+    return results[-1]"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/49",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:LtE@node19",
+   "input": "(3, 2)",
+   "correct": "0",
+   "wrong": "2",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -14,5 +14,5 @@\n     for _ in range(n):\n-        ret = (2 * ret) % p\n-    while ret < 0:\n+        ret = 2 * ret % p\n+    while ret <= 0:\n         ret += abs(p)\n-    return ret\n+    return ret"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/59",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bin:Sub@node41",
+   "input": "(7,)",
+   "correct": "7",
+   "wrong": "1",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -21,5 +21,5 @@\n     largest = 1\n-    for j in range(2, n + 1):\n+    for j in range(2, n - 1):\n         if n % j == 0 and is_prime(j):\n             largest = max(largest, j)\n-    return largest\n+    return largest"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/71",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:Lt@node38",
+   "input": "(7, 3, 4)",
+   "correct": "-1",
+   "wrong": "0.0",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -14,9 +14,7 @@\n         return -1\n-\n-    if a + b <= c or a + c <= b or b + c <= a:\n+    if a + b <= c or a + c <= b or b + c < a:\n         return -1\n-\n-    s = (a + b + c)/2\n+    s = (a + b + c) / 2\n     area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n     area = round(area, 2)\n-    return area\n+    return area"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/72",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node101",
+   "input": "([1], 2)",
+   "correct": "True",
+   "wrong": "False",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -28,18 +27,9 @@\n     if w < 0:\n-        # Invalid weight\n         return False\n-\n     if sum(q) > w:\n-        # Too heavy\n         return False\n-    \n-    if len(q) == 0 or sum(q) <= 0:\n-        # Nothing to fly\n+    if len(q) == 0 or sum(q) <= 1:\n         return False\n-    \n     if any([x < 0 for x in q]):\n-        # Negative elements\n         return False\n-    \n-    # Remove leading and trailing zeros\n     while q and q[0] == 0:\n@@ -49,9 +39,6 @@\n     if len(q) == 0 or 0 in q:\n-        # Invalid object\n         return False\n-\n-    i, j = 0, len(q) - 1\n+    i, j = (0, len(q) - 1)\n     while i < j:\n         if q[i] != q[j]:\n-            # Unbalanced\n             return False\n@@ -59,2 +46,2 @@\n         j -= 1\n-    return True\n+    return True"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/75",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node77",
+   "input": "(404,)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -19,3 +19,2 @@\n         return True\n-\n     for i in range(2, 101):\n@@ -26,7 +25,7 @@\n                 continue\n-            for k in range(2, 101):\n+            for k in range(2, 102):\n                 if not is_prime(k):\n                     continue\n-                if i*j*k == a:\n+                if i * j * k == a:\n                     return True\n-    return False\n+    return False"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/76",
+  "verdict": "rejected",
+  "reason": "no in-domain witness",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalNext/80",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node77",
+   "input": "('lleho',)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -13,6 +13,5 @@\n         return False\n-\n     for i in range(len(s) - 2):\n-        if s[i] == s[i+1] or s[i+1] == s[i+2] or s[i] == s[i+2]:\n+        if s[i] == s[i + 2] or s[i + 1] == s[i + 2] or s[i] == s[i + 2]:\n             return False\n-    return True\n+    return True"
+  },
+  "oracle_input": null
+ }
+]

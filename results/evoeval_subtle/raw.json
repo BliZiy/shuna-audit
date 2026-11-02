@@ -1,0 +1,968 @@
+{
+ "benchmark": "evoeval_subtle",
+ "n_tasks": 100,
+ "seed": 1337,
+ "results": [
+  {
+   "task_id": "EvoEval_subtle/0",
+   "entry": "has_close_elements",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/1",
+   "entry": "separate_paren_groups",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/2",
+   "entry": "truncate_number",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/3",
+   "entry": "below_one",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/4",
+   "entry": "median_absolute_deviation",
+   "mutants_tried": 22,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/5",
+   "entry": "intersperse",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/6",
+   "entry": "parse_nested_parens",
+   "mutants_tried": 11,
+   "survivors": 2,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node41",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,2 @@\n-\n from typing import List\n-\n \n@@ -13,13 +11,11 @@\n \n-\n-    \n     def count_depth(s: str) -> int:\n-        max_depth, cnt = 0, 0\n+        max_depth, cnt = (-1, 0)\n         for ch in s:\n-            if ch == \"(\": cnt += 1\n-            if ch == \")\": cnt -= 1\n+            if ch == '(':\n+                cnt += 1\n+            if ch == ')':\n+                cnt -= 1\n             max_depth = max(max_depth, cnt)\n         return max_depth\n-    \n-    return sorted([count_depth(s) for s in paren_string.split(\" \") if s != \"\"], reverse=True)\n-\n+    return sorted([count_depth(s) for s in paren_string.split(' ') if s != ''], reverse=True)",
+     "mutant_src": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses. Additionally, return the list in descending order.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [3, 3, 2, 1]\n    \"\"\"\n\n    def count_depth(s: str) -> int:\n        max_depth, cnt = (-1, 0)\n        for ch in s:\n            if ch == '(':\n                cnt += 1\n            if ch == ')':\n                cnt -= 1\n            max_depth = max(max_depth, cnt)\n        return max_depth\n    return sorted([count_depth(s) for s in paren_string.split(' ') if s != ''], reverse=True)",
+     "input": "('))() ))(() ()(((())))(()(( ',)",
+     "expected_canonical": "[4, 0, 0]",
+     "mutant_output": "[4, 0, -1]"
+    },
+    {
+     "mutation": "const:1@node41",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,2 @@\n-\n from typing import List\n-\n \n@@ -13,13 +11,11 @@\n \n-\n-    \n     def count_depth(s: str) -> int:\n-        max_depth, cnt = 0, 0\n+        max_depth, cnt = (1, 0)\n         for ch in s:\n-            if ch == \"(\": cnt += 1\n-            if ch == \")\": cnt -= 1\n+            if ch == '(':\n+                cnt += 1\n+            if ch == ')':\n+                cnt -= 1\n             max_depth = max(max_depth, cnt)\n         return max_depth\n-    \n-    return sorted([count_depth(s) for s in paren_string.split(\" \") if s != \"\"], reverse=True)\n-\n+    return sorted([count_depth(s) for s in paren_string.split(' ') if s != ''], reverse=True)",
+     "mutant_src": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses. Additionally, return the list in descending order.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [3, 3, 2, 1]\n    \"\"\"\n\n    def count_depth(s: str) -> int:\n        max_depth, cnt = (1, 0)\n        for ch in s:\n            if ch == '(':\n                cnt += 1\n            if ch == ')':\n                cnt -= 1\n            max_depth = max(max_depth, cnt)\n        return max_depth\n    return sorted([count_depth(s) for s in paren_string.split(' ') if s != ''], reverse=True)",
+     "input": "('))() ))(() ()(((())))(()(( ',)",
+     "expected_canonical": "[4, 0, 0]",
+     "mutant_output": "[4, 1, 1]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/7",
+   "entry": "filter_by_substring",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/8",
+   "entry": "sum_product",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/9",
+   "entry": "rolling_min",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/10",
+   "entry": "make_palindrome",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/11",
+   "entry": "string_xor",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/12",
+   "entry": "shortest",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/13",
+   "entry": "least_common_multiple",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/14",
+   "entry": "all_prefixes",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/15",
+   "entry": "string_sequence",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/16",
+   "entry": "count_distinct_characters",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/17",
+   "entry": "parse_music",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/18",
+   "entry": "how_many_times",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/19",
+   "entry": "sort_numbers",
+   "mutants_tried": 21,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/20",
+   "entry": "find_closest_elements",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/21",
+   "entry": "rescale_to_unit",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/22",
+   "entry": "filter_even_integers",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/23",
+   "entry": "strlen",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/24",
+   "entry": "smallest_divisor",
+   "mutants_tried": 11,
+   "survivors": 3,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node12",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def smallest_divisor(n: int) -> int:\n@@ -6,8 +5,5 @@\n     \"\"\"\n-\n-\n-\n     for i in range(2, n + 1):\n-        if n % i == 0: return i\n-    return 1\n-\n+        if n % i == 0:\n+            return i\n+    return 0",
+     "mutant_src": "def smallest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the smallest number that divides n evenly, larger than 1\n    >>> smallest_divisor(15)\n    3\n    \"\"\"\n    for i in range(2, n + 1):\n        if n % i == 0:\n            return i\n    return 0",
+     "input": "(1,)",
+     "expected_canonical": "1",
+     "mutant_output": "0"
+    },
+    {
+     "mutation": "const:1@node12",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def smallest_divisor(n: int) -> int:\n@@ -6,8 +5,5 @@\n     \"\"\"\n-\n-\n-\n     for i in range(2, n + 1):\n-        if n % i == 0: return i\n-    return 1\n-\n+        if n % i == 0:\n+            return i\n+    return 2",
+     "mutant_src": "def smallest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the smallest number that divides n evenly, larger than 1\n    >>> smallest_divisor(15)\n    3\n    \"\"\"\n    for i in range(2, n + 1):\n        if n % i == 0:\n            return i\n    return 2",
+     "input": "(1,)",
+     "expected_canonical": "1",
+     "mutant_output": "2"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/25",
+   "entry": "factorize",
+   "mutants_tried": 17,
+   "survivors": 4,
+   "equivalent_or_unknown": 3,
+   "witnesses": [
+    {
+     "mutation": "const:1@node71",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -14,5 +13,2 @@\n     \"\"\"\n-\n-\n-\n     import math\n@@ -20,3 +16,3 @@\n     i = 2\n-    while i <= int(math.sqrt(n) + 1):\n+    while i <= int(math.sqrt(n) + 2):\n         if n % i == 0:\n@@ -26,6 +22,4 @@\n             i += 1\n-\n     if n > 1:\n         fact.append(n)\n-    return sorted(fact, reverse=True)\n-\n+    return sorted(fact, reverse=True)",
+     "mutant_src": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from largest to smallest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [7, 5, 2]\n    \"\"\"\n    import math\n    fact = []\n    i = 2\n    while i <= int(math.sqrt(n) + 2):\n        if n % i == 0:\n            fact.append(i)\n            n //= i\n        else:\n            i += 1\n    if n > 1:\n        fact.append(n)\n    return sorted(fact, reverse=True)",
+     "input": "(0,)",
+     "expected_canonical": "[]",
+     "mutant_output": "timeout"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/26",
+   "entry": "remove_duplicates",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/27",
+   "entry": "flip_case",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/28",
+   "entry": "concatenate",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/29",
+   "entry": "filter_by_suffix",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/30",
+   "entry": "get_positive",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/31",
+   "entry": "is_prime",
+   "mutants_tried": 21,
+   "survivors": 5,
+   "equivalent_or_unknown": 5,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/32",
+   "entry": "find_zero",
+   "mutants_tried": 23,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/33",
+   "entry": "sort_third",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/34",
+   "entry": "unique",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/35",
+   "entry": "min_element",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/36",
+   "entry": "fizz_buzz",
+   "mutants_tried": 16,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/37",
+   "entry": "sort_even",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/38",
+   "entry": "decode_cyclic",
+   "mutants_tried": 39,
+   "survivors": 19,
+   "equivalent_or_unknown": 19,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/39",
+   "entry": "prime_fib",
+   "mutants_tried": 74,
+   "survivors": 19,
+   "equivalent_or_unknown": 19,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/40",
+   "entry": "triples_sum_to_ten",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/41",
+   "entry": "car_race_collision",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/42",
+   "entry": "incr_list",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/43",
+   "entry": "pairs_sum_to_one",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/44",
+   "entry": "change_base",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/45",
+   "entry": "triangle_perimeter",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/46",
+   "entry": "fib4",
+   "mutants_tried": 28,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/47",
+   "entry": "median",
+   "mutants_tried": 24,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/48",
+   "entry": "is_palindrome",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/49",
+   "entry": "modp",
+   "mutants_tried": 20,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/50",
+   "entry": "decode_shift",
+   "mutants_tried": 19,
+   "survivors": 9,
+   "equivalent_or_unknown": 9,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/51",
+   "entry": "remove_consonants",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/52",
+   "entry": "below_threshold",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/53",
+   "entry": "add",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/54",
+   "entry": "same_chars",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/55",
+   "entry": "fib",
+   "mutants_tried": 16,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/56",
+   "entry": "correct_bracketing",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/57",
+   "entry": "monotonic",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/58",
+   "entry": "common",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/59",
+   "entry": "smallest_prime_factor",
+   "mutants_tried": 20,
+   "survivors": 5,
+   "equivalent_or_unknown": 5,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/60",
+   "entry": "sum_to_n",
+   "mutants_tried": 11,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node7",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n-\n-def sum_to_n(n: int, m: int = 1):\n+def sum_to_n(n: int, m: int=2):\n     \"\"\"sum_to_n is a function that sums numbers from m to n.\n@@ -14,6 +13,2 @@\n     \"\"\"\n-\n-\n-\n-    return (n + m) * (n - m + 1) // 2\n-\n+    return (n + m) * (n - m + 1) // 2",
+     "mutant_src": "def sum_to_n(n: int, m: int=2):\n    \"\"\"sum_to_n is a function that sums numbers from m to n.\n    >>> sum_to_n(30, 10)\n    420\n    >>> sum_to_n(100, 50)\n    3825\n    >>> sum_to_n(5, 2)\n    14\n    >>> sum_to_n(10, 5)\n    45\n    >>> sum_to_n(1, 1)\n    1\n    \"\"\"\n    return (n + m) * (n - m + 1) // 2",
+     "input": "(-2,)",
+     "expected_canonical": "1",
+     "mutant_output": "0"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/61",
+   "entry": "correct_bracketing",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/62",
+   "entry": "derivative",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/63",
+   "entry": "fibfib",
+   "mutants_tried": 27,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/64",
+   "entry": "vowels_count",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/65",
+   "entry": "circular_shift",
+   "mutants_tried": 8,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/66",
+   "entry": "digitSum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/67",
+   "entry": "fruit_distribution",
+   "mutants_tried": 18,
+   "survivors": 8,
+   "equivalent_or_unknown": 8,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/68",
+   "entry": "pluck",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/69",
+   "entry": "search",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/70",
+   "entry": "strange_sort_list",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/71",
+   "entry": "triangle_area",
+   "mutants_tried": 24,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/72",
+   "entry": "will_it_fly",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/73",
+   "entry": "smallest_change",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/74",
+   "entry": "total_match",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/75",
+   "entry": "is_multiply_prime",
+   "mutants_tried": 34,
+   "survivors": 11,
+   "equivalent_or_unknown": 11,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/76",
+   "entry": "is_simple_power",
+   "mutants_tried": 51,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/77",
+   "entry": "iscube",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/78",
+   "entry": "hex_key",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/79",
+   "entry": "decimal_to_binary",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/80",
+   "entry": "is_happy",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/81",
+   "entry": "numerical_letter_grade",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/82",
+   "entry": "prime_length",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/83",
+   "entry": "starts_one_ends",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/84",
+   "entry": "solve",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/85",
+   "entry": "add",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/86",
+   "entry": "anti_shuffle",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/87",
+   "entry": "get_row",
+   "mutants_tried": 48,
+   "survivors": 38,
+   "equivalent_or_unknown": 38,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/88",
+   "entry": "sort_array",
+   "mutants_tried": 28,
+   "survivors": 17,
+   "equivalent_or_unknown": 17,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/89",
+   "entry": "encrypt",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/90",
+   "entry": "next_largest",
+   "mutants_tried": 7,
+   "survivors": 3,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:1@node18",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def next_largest(lst):\n@@ -12,5 +11,4 @@\n     \"\"\"\n-\n-\n-    if len(lst) <= 1: return None\n+    if len(lst) <= 2:\n+        return None\n     sorted_list = sorted(lst, reverse=True)\n@@ -18,3 +16,2 @@\n         if x != sorted_list[0]:\n-            return x \n-\n+            return x",
+     "mutant_src": "def next_largest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_largest() that returns the 2nd largest element of the list.\n    Return None if there is no such element.\n    \n    next_largest([1, 2, 3, 4, 5]) == 4\n    next_largest([5, 1, 4, 3, 2]) == 4\n    next_largest([]) == None\n    next_largest([1, 1]) == None\n    \"\"\"\n    if len(lst) <= 2:\n        return None\n    sorted_list = sorted(lst, reverse=True)\n    for x in sorted_list:\n        if x != sorted_list[0]:\n            return x",
+     "input": "([18, 6],)",
+     "expected_canonical": "6",
+     "mutant_output": "None"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/91",
+   "entry": "is_bored",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/92",
+   "entry": "any_int",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/93",
+   "entry": "encode",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/94",
+   "entry": "skjkasdkd",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/95",
+   "entry": "check_dict_case",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/96",
+   "entry": "count_up_to",
+   "mutants_tried": 15,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/97",
+   "entry": "multiply",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/98",
+   "entry": "count_upper",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_subtle/99",
+   "entry": "closest_integer",
+   "mutants_tried": 6,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  }
+ ]
+}

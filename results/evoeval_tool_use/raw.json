@@ -1,0 +1,1312 @@
+{
+ "benchmark": "evoeval_tool_use",
+ "n_tasks": 100,
+ "seed": 1337,
+ "results": [
+  {
+   "task_id": "EvoEval_tool_use/0",
+   "entry": "distribute_candies",
+   "mutants_tried": 21,
+   "survivors": 4,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "bin:FloorDiv@node115",
+     "diff": "--- canonical\n+++ mutant\n@@ -22,11 +22,11 @@\n     total_candies = sum(candies)\n-    children = [0]*n\n+    children = [0] * n\n     i = 0\n     while total_candies > 0:\n-        candies_to_give = get_digit_count((i+1)%n)\n+        candies_to_give = get_digit_count((i + 1) % n)\n         if total_candies >= candies_to_give:\n-            children[i%n] += candies_to_give\n+            children[i % n] += candies_to_give\n             total_candies -= candies_to_give\n         else:\n-            children[i%n] += total_candies\n+            children[i // n] += total_candies\n             total_candies = 0\n",
+     "mutant_src": "def get_digit_count(n: int) -> int:\n    return len(str(n))\nfrom typing import List, Tuple\n\ndef distribute_candies(candies: List[int], n: int) -> List[int]:\n    \"\"\" Distribute the candies to a number of children in clockwise order. Each child should receive \n    candies equivalent to the number of digits in their position number. For example, the 10th child \n    should receive candies equal to the number of digits in 10, i.e., 2.\n    \n    The distribution continues until all candies are distributed. If there are not enough candies \n    for all children in a round of distribution, distribute the remaining candies to the children \n    starting from the first until the candies run out.\n    \n    The function should return a list showing the number of candies each child received in the order \n    they received them.\n\n    >>> distribute_candies([100, 200, 300, 400, 500], 3)\n    [500, 500, 500]\n    >>> distribute_candies([45, 59, 78, 92, 100], 4)\n    [94, 94, 93, 93]\n    \"\"\"\n    total_candies = sum(candies)\n    children = [0] * n\n    i = 0\n    while total_candies > 0:\n        candies_to_give = get_digit_count((i + 1) % n)\n        if total_candies >= candies_to_give:\n            children[i % n] += candies_to_give\n            total_candies -= candies_to_give\n        else:\n            children[i // n] += total_candies\n            total_candies = 0\n        i += 1\n    return children",
+     "input": "([999, 871, 776, 665, 556, 434, 333, 207, 120, 665], 12)",
+     "expected_canonical": "[402, 402, 402, 402, 402, 402, 402, 402, 402, 804, 803, 401]",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:1@node96",
+     "diff": "--- canonical\n+++ mutant\n@@ -22,12 +22,12 @@\n     total_candies = sum(candies)\n-    children = [0]*n\n+    children = [0] * n\n     i = 0\n     while total_candies > 0:\n-        candies_to_give = get_digit_count((i+1)%n)\n+        candies_to_give = get_digit_count((i + 1) % n)\n         if total_candies >= candies_to_give:\n-            children[i%n] += candies_to_give\n+            children[i % n] += candies_to_give\n             total_candies -= candies_to_give\n         else:\n-            children[i%n] += total_candies\n-            total_candies = 0\n+            children[i % n] += total_candies\n+            total_candies = 1\n         i += 1\n",
+     "mutant_src": "def get_digit_count(n: int) -> int:\n    return len(str(n))\nfrom typing import List, Tuple\n\ndef distribute_candies(candies: List[int], n: int) -> List[int]:\n    \"\"\" Distribute the candies to a number of children in clockwise order. Each child should receive \n    candies equivalent to the number of digits in their position number. For example, the 10th child \n    should receive candies equal to the number of digits in 10, i.e., 2.\n    \n    The distribution continues until all candies are distributed. If there are not enough candies \n    for all children in a round of distribution, distribute the remaining candies to the children \n    starting from the first until the candies run out.\n    \n    The function should return a list showing the number of candies each child received in the order \n    they received them.\n\n    >>> distribute_candies([100, 200, 300, 400, 500], 3)\n    [500, 500, 500]\n    >>> distribute_candies([45, 59, 78, 92, 100], 4)\n    [94, 94, 93, 93]\n    \"\"\"\n    total_candies = sum(candies)\n    children = [0] * n\n    i = 0\n    while total_candies > 0:\n        candies_to_give = get_digit_count((i + 1) % n)\n        if total_candies >= candies_to_give:\n            children[i % n] += candies_to_give\n            total_candies -= candies_to_give\n        else:\n            children[i % n] += total_candies\n            total_candies = 1\n        i += 1\n    return children",
+     "input": "([999, 871, 776, 665, 556, 434, 333, 207, 120, 665], 12)",
+     "expected_canonical": "[402, 402, 402, 402, 402, 402, 402, 402, 402, 804, 803, 401]",
+     "mutant_output": "[402, 402, 402, 402, 402, 402, 402, 402, 402, 804, 803, 402]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/1",
+   "entry": "retrieve_info_from_text",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/2",
+   "entry": "register_user",
+   "mutants_tried": 16,
+   "survivors": 3,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "cmp:LtE@node38",
+     "diff": "--- canonical\n+++ mutant\n@@ -10,12 +10,8 @@\n     \"\"\"\n-    if email.count(\"@\") != 1:\n+    if email.count('@') != 1:\n         return False\n-\n-    local, domain = email.split(\"@\")\n-    \n-    if not local or not domain or \" \" in email:\n+    local, domain = email.split('@')\n+    if not local or not domain or ' ' in email:\n         return False\n-\n     return True\n-\n \n@@ -31,15 +27,12 @@\n     \"\"\"\n-    if len(password) < 8:\n+    if len(password) <= 8:\n         return False\n+    if not any((char.isdigit() for char in password)):\n+        return False\n+    if not any((char.isupper() for char in password)):\n+        return False\n+    if not any((char.islower() for char in password)):\n+        return False\n+    return True\n \n-    if not any(char.isdigit() for char in password):\n-        return False\n-\n-    if not any(char.isupper() for char in password):\n-        return False\n-\n-    if not any(char.islower() for char in password):\n-        return False\n-\n-    return True\n def register_user(email: str, password: str, confirmation: str) -> str:\n@@ -68,10 +61,7 @@\n     if not is_valid_email(email):\n-        return \"Invalid email\"\n-\n+        return 'Invalid email'\n     if not is_valid_password(password):\n-        return \"Invalid password\"\n-\n+        return 'Invalid password'\n     if password != confirmation:\n-        return \"Password and confirmation do not match\"\n-\n-    return \"User registered successfully\"+        return 'Password and confirmation do not match'\n+    return 'User registered successfully'",
+     "mutant_src": "def is_valid_email(email: str) -> bool:\n    \"\"\"Checks if the given email is valid. A valid email has the following format:\n    local@domain where local and domain are not empty and do not contain any spaces.\n    \n    Args:\n        email (str): The email to check.\n        \n    Returns:\n        bool: True if the email is valid, False otherwise.\n    \"\"\"\n    if email.count('@') != 1:\n        return False\n    local, domain = email.split('@')\n    if not local or not domain or ' ' in email:\n        return False\n    return True\n\ndef is_valid_password(password: str) -> bool:\n    \"\"\"Checks if the given password is valid. A valid password has at least 8 characters,\n    at least one uppercase letter, at least one lowercase letter and at least one number.\n    \n    Args:\n        password (str): The password to check.\n        \n    Returns:\n        bool: True if the password is valid, False otherwise.\n    \"\"\"\n    if len(password) <= 8:\n        return False\n    if not any((char.isdigit() for char in password)):\n        return False\n    if not any((char.isupper() for char in password)):\n        return False\n    if not any((char.islower() for char in password)):\n        return False\n    return True\n\ndef register_user(email: str, password: str, confirmation: str) -> str:\n    \"\"\"Given an email, a password and a confirmation of the password, register a new user\n    into the system.\n\n    A valid email has the following format:\n    local@domain where local and domain are not empty and do not contain any spaces.\n    A valid password has at least 8 characters,\n    at least one uppercase letter, at least one lowercase letter and at least one number.\n    The password and its confirmation should be identical.\n    If all conditions are met, return \"User registered successfully\".\n\n    If the email is not valid, return \"Invalid email\".\n    If the password is not valid, return \"Invalid password\".\n    If the password and its confirmation are not identical, return \"Password and confirmation do not match\".\n\n    Args:\n        email (str): The email of the user.\n        password (str): The password of the user.\n        confirmation (str): The confirmation of the password.\n\n    Returns:\n        str: A message indicating the result of the registration.\n    \"\"\"\n    if not is_valid_email(email):\n        return 'Invalid email'\n    if not is_valid_password(password):\n        return 'Invalid password'\n    if password != confirmation:\n        return 'Password and confirmation do not match'\n    return 'User registered successfully'",
+     "input": "('teaomsdi@tn', 'Pasword1', 'assword1')",
+     "expected_canonical": "'Password and confirmation do not match'",
+     "mutant_output": "'Invalid password'"
+    },
+    {
+     "mutation": "const:-1@node78",
+     "diff": "--- canonical\n+++ mutant\n@@ -10,12 +10,8 @@\n     \"\"\"\n-    if email.count(\"@\") != 1:\n+    if email.count('@') != 1:\n         return False\n-\n-    local, domain = email.split(\"@\")\n-    \n-    if not local or not domain or \" \" in email:\n+    local, domain = email.split('@')\n+    if not local or not domain or ' ' in email:\n         return False\n-\n     return True\n-\n \n@@ -31,15 +27,12 @@\n     \"\"\"\n-    if len(password) < 8:\n+    if len(password) < 7:\n         return False\n+    if not any((char.isdigit() for char in password)):\n+        return False\n+    if not any((char.isupper() for char in password)):\n+        return False\n+    if not any((char.islower() for char in password)):\n+        return False\n+    return True\n \n-    if not any(char.isdigit() for char in password):\n-        return False\n-\n-    if not any(char.isupper() for char in password):\n-        return False\n-\n-    if not any(char.islower() for char in password):\n-        return False\n-\n-    return True\n def register_user(email: str, password: str, confirmation: str) -> str:\n@@ -68,10 +61,7 @@\n     if not is_valid_email(email):\n-        return \"Invalid email\"\n-\n+        return 'Invalid email'\n     if not is_valid_password(password):\n-        return \"Invalid password\"\n-\n+        return 'Invalid password'\n     if password != confirmation:\n-        return \"Password and confirmation do not match\"\n-\n-    return \"User registered successfully\"+        return 'Password and confirmation do not match'\n+    return 'User registered successfully'",
+     "mutant_src": "def is_valid_email(email: str) -> bool:\n    \"\"\"Checks if the given email is valid. A valid email has the following format:\n    local@domain where local and domain are not empty and do not contain any spaces.\n    \n    Args:\n        email (str): The email to check.\n        \n    Returns:\n        bool: True if the email is valid, False otherwise.\n    \"\"\"\n    if email.count('@') != 1:\n        return False\n    local, domain = email.split('@')\n    if not local or not domain or ' ' in email:\n        return False\n    return True\n\ndef is_valid_password(password: str) -> bool:\n    \"\"\"Checks if the given password is valid. A valid password has at least 8 characters,\n    at least one uppercase letter, at least one lowercase letter and at least one number.\n    \n    Args:\n        password (str): The password to check.\n        \n    Returns:\n        bool: True if the password is valid, False otherwise.\n    \"\"\"\n    if len(password) < 7:\n        return False\n    if not any((char.isdigit() for char in password)):\n        return False\n    if not any((char.isupper() for char in password)):\n        return False\n    if not any((char.islower() for char in password)):\n        return False\n    return True\n\ndef register_user(email: str, password: str, confirmation: str) -> str:\n    \"\"\"Given an email, a password and a confirmation of the password, register a new user\n    into the system.\n\n    A valid email has the following format:\n    local@domain where local and domain are not empty and do not contain any spaces.\n    A valid password has at least 8 characters,\n    at least one uppercase letter, at least one lowercase letter and at least one number.\n    The password and its confirmation should be identical.\n    If all conditions are met, return \"User registered successfully\".\n\n    If the email is not valid, return \"Invalid email\".\n    If the password is not valid, return \"Invalid password\".\n    If the password and its confirmation are not identical, return \"Password and confirmation do not match\".\n\n    Args:\n        email (str): The email of the user.\n        password (str): The password of the user.\n        confirmation (str): The confirmation of the password.\n\n    Returns:\n        str: A message indicating the result of the registration.\n    \"\"\"\n    if not is_valid_email(email):\n        return 'Invalid email'\n    if not is_valid_password(password):\n        return 'Invalid password'\n    if password != confirmation:\n        return 'Password and confirmation do not match'\n    return 'User registered successfully'",
+     "input": "('test@domain.com', 'Pa1ssw1', 'wP1ssa')",
+     "expected_canonical": "'Invalid password'",
+     "mutant_output": "'Password and confirmation do not match'"
+    },
+    {
+     "mutation": "const:1@node78",
+     "diff": "--- canonical\n+++ mutant\n@@ -10,12 +10,8 @@\n     \"\"\"\n-    if email.count(\"@\") != 1:\n+    if email.count('@') != 1:\n         return False\n-\n-    local, domain = email.split(\"@\")\n-    \n-    if not local or not domain or \" \" in email:\n+    local, domain = email.split('@')\n+    if not local or not domain or ' ' in email:\n         return False\n-\n     return True\n-\n \n@@ -31,15 +27,12 @@\n     \"\"\"\n-    if len(password) < 8:\n+    if len(password) < 9:\n         return False\n+    if not any((char.isdigit() for char in password)):\n+        return False\n+    if not any((char.isupper() for char in password)):\n+        return False\n+    if not any((char.islower() for char in password)):\n+        return False\n+    return True\n \n-    if not any(char.isdigit() for char in password):\n-        return False\n-\n-    if not any(char.isupper() for char in password):\n-        return False\n-\n-    if not any(char.islower() for char in password):\n-        return False\n-\n-    return True\n def register_user(email: str, password: str, confirmation: str) -> str:\n@@ -68,10 +61,7 @@\n     if not is_valid_email(email):\n-        return \"Invalid email\"\n-\n+        return 'Invalid email'\n     if not is_valid_password(password):\n-        return \"Invalid password\"\n-\n+        return 'Invalid password'\n     if password != confirmation:\n-        return \"Password and confirmation do not match\"\n-\n-    return \"User registered successfully\"+        return 'Password and confirmation do not match'\n+    return 'User registered successfully'",
+     "mutant_src": "def is_valid_email(email: str) -> bool:\n    \"\"\"Checks if the given email is valid. A valid email has the following format:\n    local@domain where local and domain are not empty and do not contain any spaces.\n    \n    Args:\n        email (str): The email to check.\n        \n    Returns:\n        bool: True if the email is valid, False otherwise.\n    \"\"\"\n    if email.count('@') != 1:\n        return False\n    local, domain = email.split('@')\n    if not local or not domain or ' ' in email:\n        return False\n    return True\n\ndef is_valid_password(password: str) -> bool:\n    \"\"\"Checks if the given password is valid. A valid password has at least 8 characters,\n    at least one uppercase letter, at least one lowercase letter and at least one number.\n    \n    Args:\n        password (str): The password to check.\n        \n    Returns:\n        bool: True if the password is valid, False otherwise.\n    \"\"\"\n    if len(password) < 9:\n        return False\n    if not any((char.isdigit() for char in password)):\n        return False\n    if not any((char.isupper() for char in password)):\n        return False\n    if not any((char.islower() for char in password)):\n        return False\n    return True\n\ndef register_user(email: str, password: str, confirmation: str) -> str:\n    \"\"\"Given an email, a password and a confirmation of the password, register a new user\n    into the system.\n\n    A valid email has the following format:\n    local@domain where local and domain are not empty and do not contain any spaces.\n    A valid password has at least 8 characters,\n    at least one uppercase letter, at least one lowercase letter and at least one number.\n    The password and its confirmation should be identical.\n    If all conditions are met, return \"User registered successfully\".\n\n    If the email is not valid, return \"Invalid email\".\n    If the password is not valid, return \"Invalid password\".\n    If the password and its confirmation are not identical, return \"Password and confirmation do not match\".\n\n    Args:\n        email (str): The email of the user.\n        password (str): The password of the user.\n        confirmation (str): The confirmation of the password.\n\n    Returns:\n        str: A message indicating the result of the registration.\n    \"\"\"\n    if not is_valid_email(email):\n        return 'Invalid email'\n    if not is_valid_password(password):\n        return 'Invalid password'\n    if password != confirmation:\n        return 'Password and confirmation do not match'\n    return 'User registered successfully'",
+     "input": "('teaomsdi@tn', 'Pasword1', 'assword1')",
+     "expected_canonical": "'Password and confirmation do not match'",
+     "mutant_output": "'Invalid password'"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/3",
+   "entry": "process_operations",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/4",
+   "entry": "calculate_geometric_mean",
+   "mutants_tried": 14,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/5",
+   "entry": "rearrange",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/6",
+   "entry": "process_strings",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/7",
+   "entry": "filter_by_valid_dates",
+   "mutants_tried": 58,
+   "survivors": 5,
+   "equivalent_or_unknown": 3,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node87",
+     "diff": "--- canonical\n+++ mutant\n@@ -11,6 +11,5 @@\n \n-\n def get_days_in_month(month: int, year: int) -> int:\n     \"\"\" Returns the number of days in a month for a given year. \"\"\"\n-    if month in [1, 3, 5, 7, 8, 10, 12]:\n+    if month in [0, 3, 5, 7, 8, 10, 12]:\n         return 31\n@@ -31,3 +30,3 @@\n             year, month, day = map(int, date.split('-'))\n-            if month < 1 or month > 12 or day < 1 or day > get_days_in_month(month, year):\n+            if month < 1 or month > 12 or day < 1 or (day > get_days_in_month(month, year)):\n                 continue\n",
+     "mutant_src": "def is_leap_year(year: int) -> bool:\n    \"\"\" Returns True if the year is a leap year, False otherwise. \"\"\"\n    if year % 4 != 0:\n        return False\n    elif year % 100 != 0:\n        return True\n    elif year % 400 != 0:\n        return False\n    else:\n        return True\n\ndef get_days_in_month(month: int, year: int) -> int:\n    \"\"\" Returns the number of days in a month for a given year. \"\"\"\n    if month in [0, 3, 5, 7, 8, 10, 12]:\n        return 31\n    elif month == 2:\n        return 29 if is_leap_year(year) else 28\n    else:\n        return 30\nfrom typing import List\n\ndef filter_by_valid_dates(dates: List[str]) -> List[str]:\n    \"\"\" Filters an input list of strings and returns only those that are valid dates in the format 'YYYY-MM-DD'.\n    >>> filter_by_valid_dates(['2020-02-30', '2020-02-29', '2019-02-29', '2019-12-31'])\n    ['2020-02-29', '2019-12-31']\n    \"\"\"\n    valid_dates = []\n    for date in dates:\n        try:\n            year, month, day = map(int, date.split('-'))\n            if month < 1 or month > 12 or day < 1 or (day > get_days_in_month(month, year)):\n                continue\n            valid_dates.append(date)\n        except ValueError:\n            continue\n    return valid_dates",
+     "input": "(['090-22-020', '92000--219', '2020-02-208', '-000-22320', '20203-13-01', '0000-01-01', '2020-01-32', '200-04-31', '2020-1-31'],)",
+     "expected_canonical": "['0000-01-01', '2020-1-31']",
+     "mutant_output": "['0000-01-01']"
+    },
+    {
+     "mutation": "const:-1@node161",
+     "diff": "--- canonical\n+++ mutant\n@@ -10,3 +10,2 @@\n         return True\n-\n \n@@ -31,3 +30,3 @@\n             year, month, day = map(int, date.split('-'))\n-            if month < 1 or month > 12 or day < 1 or day > get_days_in_month(month, year):\n+            if month < 1 or month > 12 or day < 0 or (day > get_days_in_month(month, year)):\n                 continue\n",
+     "mutant_src": "def is_leap_year(year: int) -> bool:\n    \"\"\" Returns True if the year is a leap year, False otherwise. \"\"\"\n    if year % 4 != 0:\n        return False\n    elif year % 100 != 0:\n        return True\n    elif year % 400 != 0:\n        return False\n    else:\n        return True\n\ndef get_days_in_month(month: int, year: int) -> int:\n    \"\"\" Returns the number of days in a month for a given year. \"\"\"\n    if month in [1, 3, 5, 7, 8, 10, 12]:\n        return 31\n    elif month == 2:\n        return 29 if is_leap_year(year) else 28\n    else:\n        return 30\nfrom typing import List\n\ndef filter_by_valid_dates(dates: List[str]) -> List[str]:\n    \"\"\" Filters an input list of strings and returns only those that are valid dates in the format 'YYYY-MM-DD'.\n    >>> filter_by_valid_dates(['2020-02-30', '2020-02-29', '2019-02-29', '2019-12-31'])\n    ['2020-02-29', '2019-12-31']\n    \"\"\"\n    valid_dates = []\n    for date in dates:\n        try:\n            year, month, day = map(int, date.split('-'))\n            if month < 1 or month > 12 or day < 0 or (day > get_days_in_month(month, year)):\n                continue\n            valid_dates.append(date)\n        except ValueError:\n            continue\n    return valid_dates",
+     "input": "(['-020920-02', '1900-02-29', '2020-02-28', '2020-02-30', '020-11230-', '0100-010-0', '2020-01-32', '20200-04-31', '2020-11-3', '1900-02-29'],)",
+     "expected_canonical": "['2020-02-28', '2020-11-3']",
+     "mutant_output": "['2020-02-28', '0100-010-0', '2020-11-3']"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/8",
+   "entry": "get_valid_and_invalid_strings",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/9",
+   "entry": "process_records",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/10",
+   "entry": "register_user",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/11",
+   "entry": "get_next_day",
+   "mutants_tried": 80,
+   "survivors": 12,
+   "equivalent_or_unknown": 10,
+   "witnesses": [
+    {
+     "mutation": "const:1@node83",
+     "diff": "--- canonical\n+++ mutant\n@@ -43,19 +43,9 @@\n         return 'Invalid date'\n-\n     year, month, day = map(int, date.split('-'))\n-\n     if date == '9999-12-31':\n         return 'Invalid date'\n-\n-    # Define the number of days in each month\n-    month_lengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n-\n-    # Adjust for leap years\n+    month_lengths = [32, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n     if is_leap_year(year):\n         month_lengths[1] = 29\n-\n-    # Increment the day\n     day += 1\n-\n-    # Check if we have moved to the next month\n     if day > month_lengths[month - 1]:\n@@ -63,4 +53,2 @@\n         month += 1\n-\n-    # Check if we have moved to the next year\n     if month > 12:\n@@ -68,3 +56,2 @@\n         year += 1\n-\n     return f'{year:04}-{month:02}-{day:02}'",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\" \n    Helper function to check if a date string is valid. \n    The date string should be in the format of 'YYYY-MM-DD'.\n    Returns True if the date string is valid, False otherwise.\n    \"\"\"\n    try:\n        year, month, day = map(int, date.split('-'))\n        return 1 <= month <= 12 and 1 <= day <= 31\n    except ValueError:\n        return False\n\ndef is_leap_year(year: int) -> bool:\n    \"\"\"\n    Helper function to check if a year is a leap year.\n    Returns True if the year is a leap year, False otherwise.\n    \"\"\"\n    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)\n\ndef get_next_day(date: str) -> str:\n    \"\"\"\n    Function that takes a date string in the format 'YYYY-MM-DD'\n    and returns a string representation of the next date.\n    \n    If the date string is invalid or the date is '9999-12-31', the function should return 'Invalid date'.\n    \n    >>> get_next_day('2018-12-31')\n    '2019-01-01'\n    \n    >>> get_next_day('2020-02-28')\n    '2020-02-29'\n    \n    >>> get_next_day('2020-02-29')\n    '2020-03-01'\n    \n    >>> get_next_day('2020-12-31')\n    '2021-01-01'\n    \n    >>> get_next_day('9999-12-31')\n    'Invalid date'\n    \"\"\"\n    if not is_valid_date(date):\n        return 'Invalid date'\n    year, month, day = map(int, date.split('-'))\n    if date == '9999-12-31':\n        return 'Invalid date'\n    month_lengths = [32, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    if is_leap_year(year):\n        month_lengths[1] = 29\n    day += 1\n    if day > month_lengths[month - 1]:\n        day = 1\n        month += 1\n    if month > 12:\n        month = 1\n        year += 1\n    return f'{year:04}-{month:02}-{day:02}'",
+     "input": "('2018-1-31',)",
+     "expected_canonical": "'2018-02-01'",
+     "mutant_output": "'2018-01-32'"
+    },
+    {
+     "mutation": "const:-1@node83",
+     "diff": "--- canonical\n+++ mutant\n@@ -43,19 +43,9 @@\n         return 'Invalid date'\n-\n     year, month, day = map(int, date.split('-'))\n-\n     if date == '9999-12-31':\n         return 'Invalid date'\n-\n-    # Define the number of days in each month\n-    month_lengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n-\n-    # Adjust for leap years\n+    month_lengths = [30, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n     if is_leap_year(year):\n         month_lengths[1] = 29\n-\n-    # Increment the day\n     day += 1\n-\n-    # Check if we have moved to the next month\n     if day > month_lengths[month - 1]:\n@@ -63,4 +53,2 @@\n         month += 1\n-\n-    # Check if we have moved to the next year\n     if month > 12:\n@@ -68,3 +56,2 @@\n         year += 1\n-\n     return f'{year:04}-{month:02}-{day:02}'",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\" \n    Helper function to check if a date string is valid. \n    The date string should be in the format of 'YYYY-MM-DD'.\n    Returns True if the date string is valid, False otherwise.\n    \"\"\"\n    try:\n        year, month, day = map(int, date.split('-'))\n        return 1 <= month <= 12 and 1 <= day <= 31\n    except ValueError:\n        return False\n\ndef is_leap_year(year: int) -> bool:\n    \"\"\"\n    Helper function to check if a year is a leap year.\n    Returns True if the year is a leap year, False otherwise.\n    \"\"\"\n    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)\n\ndef get_next_day(date: str) -> str:\n    \"\"\"\n    Function that takes a date string in the format 'YYYY-MM-DD'\n    and returns a string representation of the next date.\n    \n    If the date string is invalid or the date is '9999-12-31', the function should return 'Invalid date'.\n    \n    >>> get_next_day('2018-12-31')\n    '2019-01-01'\n    \n    >>> get_next_day('2020-02-28')\n    '2020-02-29'\n    \n    >>> get_next_day('2020-02-29')\n    '2020-03-01'\n    \n    >>> get_next_day('2020-12-31')\n    '2021-01-01'\n    \n    >>> get_next_day('9999-12-31')\n    'Invalid date'\n    \"\"\"\n    if not is_valid_date(date):\n        return 'Invalid date'\n    year, month, day = map(int, date.split('-'))\n    if date == '9999-12-31':\n        return 'Invalid date'\n    month_lengths = [30, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    if is_leap_year(year):\n        month_lengths[1] = 29\n    day += 1\n    if day > month_lengths[month - 1]:\n        day = 1\n        month += 1\n    if month > 12:\n        month = 1\n        year += 1\n    return f'{year:04}-{month:02}-{day:02}'",
+     "input": "('1700-1-30',)",
+     "expected_canonical": "'1700-01-31'",
+     "mutant_output": "'1700-02-01'"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/12",
+   "entry": "count_winning_moves",
+   "mutants_tried": 28,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "bool:And@node90",
+     "diff": "--- canonical\n+++ mutant\n@@ -15,4 +15,5 @@\n             if board[i][j] == ' ':\n-                valid_moves.append((i,j))\n+                valid_moves.append((i, j))\n     return valid_moves\n+\n def count_winning_moves(board, player):\n@@ -50,27 +51,19 @@\n     \"\"\"\n+\n     def check_for_win(board, player):\n         for i in range(3):\n-            if all([spot == player for spot in board[i]]) or all([board[j][i] == player for j in range(3)]):\n+            if all([spot == player for spot in board[i]]) and all([board[j][i] == player for j in range(3)]):\n                 return True\n-        # Checking diagonals\n-        if all([board[i][i] == player for i in range(3)]) or all([board[i][2-i] == player for i in range(3)]):\n+        if all([board[i][i] == player for i in range(3)]) or all([board[i][2 - i] == player for i in range(3)]):\n             return True\n-\n         return False\n-    \n     if check_for_win(board, player):\n         return -1\n-    \n     winning_moves = 0\n     valid_moves_lst = valid_moves(board, player)\n-\n     for move in valid_moves_lst:\n-        # Copying the current board.\n         temp_board = [row.copy() for row in board]\n-        # Making the current move on the copied board.\n         temp_board[move[0]][move[1]] = player\n-        # Checking if the current move is a winning move.\n         if check_for_win(temp_board, player):\n             winning_moves += 1\n-\n     return winning_moves",
+     "mutant_src": "def valid_moves(board, player):\n    \"\"\"This function determines the valid moves a player can make on a given tic-tac-toe board.\n       A valid move is defined as one where the chosen cell of the board is not already occupied.\n\n       Params:\n       board - A 2D list of strings representing the game state.\n       player - A string representing the current player (\"X\" or \"O\").\n       \n       Returns:\n       A list of tuples, where each tuple represents the coordinates (i, j) of a valid move.\"\n    \"\"\"\n    valid_moves = []\n    for i in range(len(board)):\n        for j in range(len(board[i])):\n            if board[i][j] == ' ':\n                valid_moves.append((i, j))\n    return valid_moves\n\ndef count_winning_moves(board, player):\n    \"\"\"Create a function count_winning_moves that takes as input the current state of a tic-tac-toe\n       board and the current player (\"X\" or \"O\") and returns the number of winning moves available \n       to the current player. In order to count as a winning move, placing the player's symbol (\"X\" or \"O\")\n       on a designated cell would result in that player winning the game.\n       \n       A winning condition in tic-tac-toe is defined as any row, column, or diagonal filled \n       exclusively with the player's symbol.\n       \n       If the board is already winning for the player, return -1\n       \n       The tic-tac-toe board is a 2D list of strings where each string is either \"X\", \"O\", or \" \".\n\n       For example:\n       count_winning_moves([\n                               [\"X\", \" \", \" \"],\n                               [\" \", \"X\", \" \"],\n                               [\" \", \" \", \"X\"]\n                           ], \"X\") \n       returns -1\n       count_winning_moves([\n                               [\"O\", \" \", \" \"],\n                               [\" \", \"X\", \" \"],\n                               [\" \", \" \", \"X\"]\n                           ], \"X\") \n       returns 0\n       count_winning_moves([\n                               [\"X\", \"O\", \"X\"],\n                               [\"O\", \"X\", \"O\"],\n                               [\" \", \" \", \" \"]\n                           ], \"X\") \n       returns 2\n    \"\"\"\n\n    def check_for_win(board, player):\n        for i in range(3):\n            if all([spot == player for spot in board[i]]) and all([board[j][i] == player for j in range(3)]):\n                return True\n        if all([board[i][i] == player for i in range(3)]) or all([board[i][2 - i] == player for i in range(3)]):\n            return True\n        return False\n    if check_for_win(board, player):\n        return -1\n    winning_moves = 0\n    valid_moves_lst = valid_moves(board, player)\n    for move in valid_moves_lst:\n        temp_board = [row.copy() for row in board]\n        temp_board[move[0]][move[1]] = player\n        if check_for_win(temp_board, player):\n            winning_moves += 1\n    return winning_moves",
+     "input": "([['X', ' ', ' ', 'X'], [' ', '', '', ''], ['', '  ', 'X', '  ']], '')",
+     "expected_canonical": "2",
+     "mutant_output": "1"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/13",
+   "entry": "days_between_dates",
+   "mutants_tried": 80,
+   "survivors": 3,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node172",
+     "diff": "--- canonical\n+++ mutant\n@@ -14,3 +14,3 @@\n         return False\n-    if day < 1 or day > 31:\n+    if day < 0 or day > 31:\n         return False\n@@ -18,6 +18,5 @@\n         return False\n-    if month == 2 and day > 28 + (1 if year%400 == 0 or (year%4 == 0 and year%100 != 0) else 0):\n+    if month == 2 and day > 28 + (1 if year % 400 == 0 or (year % 4 == 0 and year % 100 != 0) else 0):\n         return False\n     return True\n-\n \n@@ -33,3 +32,4 @@\n     \"\"\"\n-    return year%400 == 0 or (year%4 == 0 and year%100 != 0)\n+    return year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)\n+\n def days_between_dates(date1: str, date2: str) -> int:\n@@ -49,10 +49,6 @@\n         return -1\n-\n-    year1, month1, day1 = (int(i) for i in date1.split(\"-\"))\n-    year2, month2, day2 = (int(i) for i in date2.split(\"-\"))\n-    if year2 < year1 or (\n-        year2 == year1 and (month2 < month1 or (month2 == month1 and day2 < day1))\n-    ):\n+    year1, month1, day1 = (int(i) for i in date1.split('-'))\n+    year2, month2, day2 = (int(i) for i in date2.split('-'))\n+    if year2 < year1 or (year2 == year1 and (month2 < month1 or (month2 == month1 and day2 < day1))):\n         return -2\n-\n     days_in_month = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n@@ -60,8 +56,3 @@\n     while year1 < year2 or month1 < month2:\n-        days += (\n-            days_in_month[month1]\n-            + (1 if month1 == 2 and is_leap_year(year1) else 0)\n-            - day1\n-            + 1\n-        )\n+        days += days_in_month[month1] + (1 if month1 == 2 and is_leap_year(year1) else 0) - day1 + 1\n         month1 += 1\n",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\"\n    Helper function to check if the given date string is valid or not. \n    The date string should be in yyyy-mm-dd format. \n    Return True if the date is valid, False otherwise.\n\n    >>> is_valid_date(\"2021-09-30\")\n    True\n    >>> is_valid_date(\"2021-02-29\")\n    False\n    \"\"\"\n    year, month, day = (int(i) for i in date.split('-'))\n    if month < 1 or month > 12:\n        return False\n    if day < 0 or day > 31:\n        return False\n    if month in [4, 6, 9, 11] and day > 30:\n        return False\n    if month == 2 and day > 28 + (1 if year % 400 == 0 or (year % 4 == 0 and year % 100 != 0) else 0):\n        return False\n    return True\n\ndef is_leap_year(year: int) -> bool:\n    \"\"\"\n    Helper function to check if the given year is a leap year or not.\n    Return True if the year is a leap year, False otherwise.\n\n    >>> is_leap_year(2020)\n    True\n    >>> is_leap_year(2021)\n    False\n    \"\"\"\n    return year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)\n\ndef days_between_dates(date1: str, date2: str) -> int:\n    \"\"\"\n    Return the number of days between two dates date1 and date2. \n    The dates should be in yyyy-mm-dd format. If any or both of the \n    dates are invalid, return -1. If date2 is before date1, return -2.\n\n    >>> days_between_dates(\"2021-09-30\", \"2021-10-01\")\n    1\n    >>> days_between_dates(\"2021-02-29\", \"2021-03-01\")\n    -1\n    >>> days_between_dates(\"2021-10-01\", \"2021-09-30\")\n    -2\n    \"\"\"\n    if not is_valid_date(date1) or not is_valid_date(date2):\n        return -1\n    year1, month1, day1 = (int(i) for i in date1.split('-'))\n    year2, month2, day2 = (int(i) for i in date2.split('-'))\n    if year2 < year1 or (year2 == year1 and (month2 < month1 or (month2 == month1 and day2 < day1))):\n        return -2\n    days_in_month = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    days = 0\n    while year1 < year2 or month1 < month2:\n        days += days_in_month[month1] + (1 if month1 == 2 and is_leap_year(year1) else 0) - day1 + 1\n        month1 += 1\n        day1 = 1\n        if month1 > 12:\n            year1 += 1\n            month1 = 1\n    days += day2 - day1\n    return days",
+     "input": "('291-0002-3', '2021-10-0')",
+     "expected_canonical": "-1",
+     "mutant_output": "632109"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/14",
+   "entry": "find_valid_isbns",
+   "mutants_tried": 16,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node119",
+     "diff": "--- canonical\n+++ mutant\n@@ -21,8 +21,7 @@\n         return isbn.isdigit()\n-    if not isbn[:-1].isdigit():\n+    if not isbn[:-2].isdigit():\n         return False\n-    if len(isbn) == 10 and isbn[-1] not in \"0123456789X\":\n+    if len(isbn) == 10 and isbn[-1] not in '0123456789X':\n         return False\n     return True\n-\n from typing import List\n",
+     "mutant_src": "from typing import List\n\ndef validate_isbn(isbn: str) -> bool:\n    \"\"\"\n    Helper function that checks if a string is a valid ISBN-10 or ISBN-13\n    It assumes that the ISBN string is either 10 or 13 characters long with no hyphens.\n    This function does not perform a thorough validation of the ISBN format,\n    but merely checks the length and checks that all characters are digits\n    (the last character in an ISBN-10 may be an 'X').\n\n    >>> validate_isbn('0123456789')\n    True\n    >>> validate_isbn('01234567890AB')\n    False\n    >>> validate_isbn('0123456789X')\n    True\n    \"\"\"\n    if len(isbn) not in [10, 13]:\n        return False\n    if len(isbn) == 13:\n        return isbn.isdigit()\n    if not isbn[:-2].isdigit():\n        return False\n    if len(isbn) == 10 and isbn[-1] not in '0123456789X':\n        return False\n    return True\nfrom typing import List\n\ndef find_valid_isbns(isbn_list: List[str]) -> List[str]:\n    \"\"\"\n    Given a list of strings, return a list of all valid ISBNs.\n    An ISBN is a 10 or 13 character string. The first 9 characters are all digits. \n    The last character can be 0-9 or 'X'. For a 13 character ISBN, all characters are digits.\n    \n    >>> find_valid_isbns(['0123456789', '01234567890AB', '012345678X'])\n    ['0123456789', '012345678X']\n    \"\"\"\n    valid_isbns = [isbn for isbn in isbn_list if validate_isbn(isbn)]\n    return valid_isbns",
+     "input": "(['9675A08123B40', '80654312X7'],)",
+     "expected_canonical": "[]",
+     "mutant_output": "['80654312X7']"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/15",
+   "entry": "create_user",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/16",
+   "entry": "find_vowel_consonant_ratio",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/17",
+   "entry": "parse_string",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/18",
+   "entry": "format_duration",
+   "mutants_tried": 38,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/19",
+   "entry": "sort_days",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/20",
+   "entry": "vowels_first",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/21",
+   "entry": "get_cleaned_strings",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/22",
+   "entry": "categorize_values",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/23",
+   "entry": "process_passport_data",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/24",
+   "entry": "longest_word",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/25",
+   "entry": "valid_email",
+   "mutants_tried": 24,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/26",
+   "entry": "transform_strings",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/27",
+   "entry": "longest_valid_word",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/28",
+   "entry": "process_stock_data",
+   "mutants_tried": 8,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/29",
+   "entry": "top_k_frequent_words",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/30",
+   "entry": "get_long_words",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/31",
+   "entry": "count_uppercase_lowercase",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/32",
+   "entry": "validate_identifier",
+   "mutants_tried": 13,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node86",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def is_starting_char(ch: str) -> bool:\n-  \"\"\"\n+    \"\"\"\n   Checks whether given character is a valid starting character for a variable name in our language.\n@@ -5,8 +5,8 @@\n   \"\"\"\n-  if ch.isalpha() or ch == '_':\n-    return True\n-  return False\n+    if ch.isalpha() or ch == '_':\n+        return True\n+    return False\n \n def is_valid_char(ch: str) -> bool:\n-  \"\"\"\n+    \"\"\"\n   Checks whether given character is a valid character for a variable name in our language.\n@@ -14,7 +14,8 @@\n   \"\"\"\n-  if ch.isalpha() or ch == '_' or ch.isdigit():\n-    return True\n-  return False\n+    if ch.isalpha() or ch == '_' or ch.isdigit():\n+        return True\n+    return False\n+\n def validate_identifier(identifier: str) -> bool:\n-  \"\"\"\n+    \"\"\"\n   In our programming language, an identifier is valid if it starts with a letter or an underscore,\n@@ -29,9 +30,9 @@\n   \"\"\"\n-  if len(identifier) == 0:\n-    return False\n-  if not is_starting_char(identifier[0]):\n-    return False\n-  for ch in identifier[1:]:\n-    if not is_valid_char(ch):\n-      return False\n-  return True+    if len(identifier) == 0:\n+        return False\n+    if not is_starting_char(identifier[0]):\n+        return False\n+    for ch in identifier[2:]:\n+        if not is_valid_char(ch):\n+            return False\n+    return True",
+     "mutant_src": "def is_starting_char(ch: str) -> bool:\n    \"\"\"\n  Checks whether given character is a valid starting character for a variable name in our language.\n  Our language allows a variable to start with an underscore or a letter.\n  \"\"\"\n    if ch.isalpha() or ch == '_':\n        return True\n    return False\n\ndef is_valid_char(ch: str) -> bool:\n    \"\"\"\n  Checks whether given character is a valid character for a variable name in our language.\n  Our language allows a variable to contain underscores, letters and digits.\n  \"\"\"\n    if ch.isalpha() or ch == '_' or ch.isdigit():\n        return True\n    return False\n\ndef validate_identifier(identifier: str) -> bool:\n    \"\"\"\n  In our programming language, an identifier is valid if it starts with a letter or an underscore,\n  and the rest of the identifier can contain any combination of letters, digits, and underscores.\n\n  This function should return True if given string is a valid identifier in our language, and False otherwise.\n\n  >>> validate_identifier(\"_valid_variable\")\n  True\n  >>> validate_identifier(\"2_invalid_variable\")\n  False\n  \"\"\"\n    if len(identifier) == 0:\n        return False\n    if not is_starting_char(identifier[0]):\n        return False\n    for ch in identifier[2:]:\n        if not is_valid_char(ch):\n            return False\n    return True",
+     "input": "('a bdcfe',)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/33",
+   "entry": "modify_strings",
+   "mutants_tried": 12,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/34",
+   "entry": "sorted_values",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/35",
+   "entry": "count_unique_words",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/36",
+   "entry": "evaluate_string",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/37",
+   "entry": "time_to_minutes",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/38",
+   "entry": "assign_goals",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/39",
+   "entry": "longest_ordered_substring",
+   "mutants_tried": 14,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/40",
+   "entry": "create_user_account",
+   "mutants_tried": 21,
+   "survivors": 7,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node75",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n     \"\"\"\n-    year, month, day = map(int, date.split(\"-\"))\n-    return (1 <= month <= 12) and (1 <= day <= 30)\n+    year, month, day = map(int, date.split('-'))\n+    return 2 <= month <= 12 and 1 <= day <= 30\n \n@@ -14,3 +14,4 @@\n     \"\"\"\n-    return any(char.isdigit() for char in password) and any(char.isalpha() for char in password)\n+    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n+\n def create_user_account(username: str, password: str, date_of_birth: str):\n@@ -30,7 +31,7 @@\n     if not username.isalnum():\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_alphanumeric(password):\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_valid_date(date_of_birth):\n-        return \"Unsuccessful account creation\"\n-    return \"Successful account creation\"+        return 'Unsuccessful account creation'\n+    return 'Successful account creation'",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given date in 'yyyy-mm-dd'\n    format is valid. This function assumes non-leap years and all months \n    have 30 days for simplicity.\n    \"\"\"\n    year, month, day = map(int, date.split('-'))\n    return 2 <= month <= 12 and 1 <= day <= 30\n\ndef is_alphanumeric(password: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given password is alphanumeric, i.e., \n    it contains both numbers and letters.\n    \"\"\"\n    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n\ndef create_user_account(username: str, password: str, date_of_birth: str):\n    \"\"\"\n    The function takes a username, password and date of birth as input and\n    creates a new user account. The function should ensure the following:\n\n    1) The username should not be empty and should not contain special characters.\n    2) The password should be alphanumeric (contains both numbers and letters).\n    3) The date of birth should be a valid date in 'yyyy-mm-dd' format. This function assumes non-leap years and all months\n    have 30 days for simplicity.\n\n    If any of the above conditions are not met, the function should return\n    \"Unsuccessful account creation\".\n    If all conditions are met, the function should return \"Successful account creation\".\n    \"\"\"\n    if not username.isalnum():\n        return 'Unsuccessful account creation'\n    if not is_alphanumeric(password):\n        return 'Unsuccessful account creation'\n    if not is_valid_date(date_of_birth):\n        return 'Unsuccessful account creation'\n    return 'Successful account creation'",
+     "input": "('a', 'osa1sdw2p3r', '2200-01-03')",
+     "expected_canonical": "'Successful account creation'",
+     "mutant_output": "'Unsuccessful account creation'"
+    },
+    {
+     "mutation": "cmp:Lt@node50",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n     \"\"\"\n-    year, month, day = map(int, date.split(\"-\"))\n-    return (1 <= month <= 12) and (1 <= day <= 30)\n+    year, month, day = map(int, date.split('-'))\n+    return 1 <= month <= 12 and 1 < day <= 30\n \n@@ -14,3 +14,4 @@\n     \"\"\"\n-    return any(char.isdigit() for char in password) and any(char.isalpha() for char in password)\n+    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n+\n def create_user_account(username: str, password: str, date_of_birth: str):\n@@ -30,7 +31,7 @@\n     if not username.isalnum():\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_alphanumeric(password):\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_valid_date(date_of_birth):\n-        return \"Unsuccessful account creation\"\n-    return \"Successful account creation\"+        return 'Unsuccessful account creation'\n+    return 'Successful account creation'",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given date in 'yyyy-mm-dd'\n    format is valid. This function assumes non-leap years and all months \n    have 30 days for simplicity.\n    \"\"\"\n    year, month, day = map(int, date.split('-'))\n    return 1 <= month <= 12 and 1 < day <= 30\n\ndef is_alphanumeric(password: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given password is alphanumeric, i.e., \n    it contains both numbers and letters.\n    \"\"\"\n    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n\ndef create_user_account(username: str, password: str, date_of_birth: str):\n    \"\"\"\n    The function takes a username, password and date of birth as input and\n    creates a new user account. The function should ensure the following:\n\n    1) The username should not be empty and should not contain special characters.\n    2) The password should be alphanumeric (contains both numbers and letters).\n    3) The date of birth should be a valid date in 'yyyy-mm-dd' format. This function assumes non-leap years and all months\n    have 30 days for simplicity.\n\n    If any of the above conditions are not met, the function should return\n    \"Unsuccessful account creation\".\n    If all conditions are met, the function should return \"Successful account creation\".\n    \"\"\"\n    if not username.isalnum():\n        return 'Unsuccessful account creation'\n    if not is_alphanumeric(password):\n        return 'Unsuccessful account creation'\n    if not is_valid_date(date_of_birth):\n        return 'Unsuccessful account creation'\n    return 'Successful account creation'",
+     "input": "('1', 'p1d3s2aowrs', '2001-10-01')",
+     "expected_canonical": "'Successful account creation'",
+     "mutant_output": "'Unsuccessful account creation'"
+    },
+    {
+     "mutation": "cmp:Lt@node49",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n     \"\"\"\n-    year, month, day = map(int, date.split(\"-\"))\n-    return (1 <= month <= 12) and (1 <= day <= 30)\n+    year, month, day = map(int, date.split('-'))\n+    return 1 < month <= 12 and 1 <= day <= 30\n \n@@ -14,3 +14,4 @@\n     \"\"\"\n-    return any(char.isdigit() for char in password) and any(char.isalpha() for char in password)\n+    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n+\n def create_user_account(username: str, password: str, date_of_birth: str):\n@@ -30,7 +31,7 @@\n     if not username.isalnum():\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_alphanumeric(password):\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_valid_date(date_of_birth):\n-        return \"Unsuccessful account creation\"\n-    return \"Successful account creation\"+        return 'Unsuccessful account creation'\n+    return 'Successful account creation'",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given date in 'yyyy-mm-dd'\n    format is valid. This function assumes non-leap years and all months \n    have 30 days for simplicity.\n    \"\"\"\n    year, month, day = map(int, date.split('-'))\n    return 1 < month <= 12 and 1 <= day <= 30\n\ndef is_alphanumeric(password: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given password is alphanumeric, i.e., \n    it contains both numbers and letters.\n    \"\"\"\n    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n\ndef create_user_account(username: str, password: str, date_of_birth: str):\n    \"\"\"\n    The function takes a username, password and date of birth as input and\n    creates a new user account. The function should ensure the following:\n\n    1) The username should not be empty and should not contain special characters.\n    2) The password should be alphanumeric (contains both numbers and letters).\n    3) The date of birth should be a valid date in 'yyyy-mm-dd' format. This function assumes non-leap years and all months\n    have 30 days for simplicity.\n\n    If any of the above conditions are not met, the function should return\n    \"Unsuccessful account creation\".\n    If all conditions are met, the function should return \"Successful account creation\".\n    \"\"\"\n    if not username.isalnum():\n        return 'Unsuccessful account creation'\n    if not is_alphanumeric(password):\n        return 'Unsuccessful account creation'\n    if not is_valid_date(date_of_birth):\n        return 'Unsuccessful account creation'\n    return 'Successful account creation'",
+     "input": "('a', 'osa1sdw2p3r', '2200-01-03')",
+     "expected_canonical": "'Successful account creation'",
+     "mutant_output": "'Unsuccessful account creation'"
+    },
+    {
+     "mutation": "const:1@node80",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n     \"\"\"\n-    year, month, day = map(int, date.split(\"-\"))\n-    return (1 <= month <= 12) and (1 <= day <= 30)\n+    year, month, day = map(int, date.split('-'))\n+    return 1 <= month <= 12 and 2 <= day <= 30\n \n@@ -14,3 +14,4 @@\n     \"\"\"\n-    return any(char.isdigit() for char in password) and any(char.isalpha() for char in password)\n+    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n+\n def create_user_account(username: str, password: str, date_of_birth: str):\n@@ -30,7 +31,7 @@\n     if not username.isalnum():\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_alphanumeric(password):\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_valid_date(date_of_birth):\n-        return \"Unsuccessful account creation\"\n-    return \"Successful account creation\"+        return 'Unsuccessful account creation'\n+    return 'Successful account creation'",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given date in 'yyyy-mm-dd'\n    format is valid. This function assumes non-leap years and all months \n    have 30 days for simplicity.\n    \"\"\"\n    year, month, day = map(int, date.split('-'))\n    return 1 <= month <= 12 and 2 <= day <= 30\n\ndef is_alphanumeric(password: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given password is alphanumeric, i.e., \n    it contains both numbers and letters.\n    \"\"\"\n    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n\ndef create_user_account(username: str, password: str, date_of_birth: str):\n    \"\"\"\n    The function takes a username, password and date of birth as input and\n    creates a new user account. The function should ensure the following:\n\n    1) The username should not be empty and should not contain special characters.\n    2) The password should be alphanumeric (contains both numbers and letters).\n    3) The date of birth should be a valid date in 'yyyy-mm-dd' format. This function assumes non-leap years and all months\n    have 30 days for simplicity.\n\n    If any of the above conditions are not met, the function should return\n    \"Unsuccessful account creation\".\n    If all conditions are met, the function should return \"Successful account creation\".\n    \"\"\"\n    if not username.isalnum():\n        return 'Unsuccessful account creation'\n    if not is_alphanumeric(password):\n        return 'Unsuccessful account creation'\n    if not is_valid_date(date_of_birth):\n        return 'Unsuccessful account creation'\n    return 'Successful account creation'",
+     "input": "('1', 'p1d3s2aowrs', '2001-10-01')",
+     "expected_canonical": "'Successful account creation'",
+     "mutant_output": "'Unsuccessful account creation'"
+    },
+    {
+     "mutation": "const:-1@node80",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n     \"\"\"\n-    year, month, day = map(int, date.split(\"-\"))\n-    return (1 <= month <= 12) and (1 <= day <= 30)\n+    year, month, day = map(int, date.split('-'))\n+    return 1 <= month <= 12 and 0 <= day <= 30\n \n@@ -14,3 +14,4 @@\n     \"\"\"\n-    return any(char.isdigit() for char in password) and any(char.isalpha() for char in password)\n+    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n+\n def create_user_account(username: str, password: str, date_of_birth: str):\n@@ -30,7 +31,7 @@\n     if not username.isalnum():\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_alphanumeric(password):\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_valid_date(date_of_birth):\n-        return \"Unsuccessful account creation\"\n-    return \"Successful account creation\"+        return 'Unsuccessful account creation'\n+    return 'Successful account creation'",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given date in 'yyyy-mm-dd'\n    format is valid. This function assumes non-leap years and all months \n    have 30 days for simplicity.\n    \"\"\"\n    year, month, day = map(int, date.split('-'))\n    return 1 <= month <= 12 and 0 <= day <= 30\n\ndef is_alphanumeric(password: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given password is alphanumeric, i.e., \n    it contains both numbers and letters.\n    \"\"\"\n    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n\ndef create_user_account(username: str, password: str, date_of_birth: str):\n    \"\"\"\n    The function takes a username, password and date of birth as input and\n    creates a new user account. The function should ensure the following:\n\n    1) The username should not be empty and should not contain special characters.\n    2) The password should be alphanumeric (contains both numbers and letters).\n    3) The date of birth should be a valid date in 'yyyy-mm-dd' format. This function assumes non-leap years and all months\n    have 30 days for simplicity.\n\n    If any of the above conditions are not met, the function should return\n    \"Unsuccessful account creation\".\n    If all conditions are met, the function should return \"Successful account creation\".\n    \"\"\"\n    if not username.isalnum():\n        return 'Unsuccessful account creation'\n    if not is_alphanumeric(password):\n        return 'Unsuccessful account creation'\n    if not is_valid_date(date_of_birth):\n        return 'Unsuccessful account creation'\n    return 'Successful account creation'",
+     "input": "('testusername', 'sopsrwda132', '2000-12-00')",
+     "expected_canonical": "'Unsuccessful account creation'",
+     "mutant_output": "'Successful account creation'"
+    },
+    {
+     "mutation": "const:-1@node75",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n     \"\"\"\n-    year, month, day = map(int, date.split(\"-\"))\n-    return (1 <= month <= 12) and (1 <= day <= 30)\n+    year, month, day = map(int, date.split('-'))\n+    return 0 <= month <= 12 and 1 <= day <= 30\n \n@@ -14,3 +14,4 @@\n     \"\"\"\n-    return any(char.isdigit() for char in password) and any(char.isalpha() for char in password)\n+    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n+\n def create_user_account(username: str, password: str, date_of_birth: str):\n@@ -30,7 +31,7 @@\n     if not username.isalnum():\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_alphanumeric(password):\n-        return \"Unsuccessful account creation\"\n+        return 'Unsuccessful account creation'\n     if not is_valid_date(date_of_birth):\n-        return \"Unsuccessful account creation\"\n-    return \"Successful account creation\"+        return 'Unsuccessful account creation'\n+    return 'Successful account creation'",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given date in 'yyyy-mm-dd'\n    format is valid. This function assumes non-leap years and all months \n    have 30 days for simplicity.\n    \"\"\"\n    year, month, day = map(int, date.split('-'))\n    return 0 <= month <= 12 and 1 <= day <= 30\n\ndef is_alphanumeric(password: str) -> bool:\n    \"\"\"\n    A helper function that checks if a given password is alphanumeric, i.e., \n    it contains both numbers and letters.\n    \"\"\"\n    return any((char.isdigit() for char in password)) and any((char.isalpha() for char in password))\n\ndef create_user_account(username: str, password: str, date_of_birth: str):\n    \"\"\"\n    The function takes a username, password and date of birth as input and\n    creates a new user account. The function should ensure the following:\n\n    1) The username should not be empty and should not contain special characters.\n    2) The password should be alphanumeric (contains both numbers and letters).\n    3) The date of birth should be a valid date in 'yyyy-mm-dd' format. This function assumes non-leap years and all months\n    have 30 days for simplicity.\n\n    If any of the above conditions are not met, the function should return\n    \"Unsuccessful account creation\".\n    If all conditions are met, the function should return \"Successful account creation\".\n    \"\"\"\n    if not username.isalnum():\n        return 'Unsuccessful account creation'\n    if not is_alphanumeric(password):\n        return 'Unsuccessful account creation'\n    if not is_valid_date(date_of_birth):\n        return 'Unsuccessful account creation'\n    return 'Successful account creation'",
+     "input": "('Alex23', 'A1B2C', '1985-0-25')",
+     "expected_canonical": "'Unsuccessful account creation'",
+     "mutant_output": "'Successful account creation'"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/41",
+   "entry": "find_path",
+   "mutants_tried": 69,
+   "survivors": 9,
+   "equivalent_or_unknown": 6,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node304",
+     "diff": "--- canonical\n+++ mutant\n@@ -15,3 +15,2 @@\n         return False\n-\n     values = coord[1:-1].split(',')\n@@ -19,10 +18,7 @@\n         return False\n-\n     try:\n-        x, y = int(values[0]), int(values[1])\n+        x, y = (int(values[-1]), int(values[1]))\n     except ValueError:\n         return False\n-\n     return True\n-\n \n@@ -41,6 +37,5 @@\n     values = coord[1:-1].split(',')\n-    x, y = int(values[0]), int(values[1])\n+    x, y = (int(values[0]), int(values[1]))\n     return (x, y)\n from typing import List\n-\n \n@@ -69,6 +64,4 @@\n         return -1\n-\n     if not all([valid_coordinate(obstacle) for obstacle in obstacles]):\n         return -1\n-\n     start = convert_to_int(start)\n@@ -76,8 +69,5 @@\n     obstacles = {convert_to_int(obstacle) for obstacle in obstacles}\n-\n     from collections import deque\n-\n     queue = deque([(start, 0)])\n     visited = {start}\n-\n     while queue:\n@@ -88,3 +78,2 @@\n             return steps\n-\n         for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n",
+     "mutant_src": "def valid_coordinate(coord: str):\n    \"\"\"\n    Helper Function\n\n    This function checks whether a given string is a valid (x, y) coordinate.\n    A valid coordinate should have the form (x,y) where x and y are integers.\n\n    Args:\n        coord (str): The input string to check.\n\n    Returns:\n        bool: True if the string is a valid coordinate, False otherwise.\n    \"\"\"\n    if coord[0] != '(' or coord[-1] != ')':\n        return False\n    values = coord[1:-1].split(',')\n    if len(values) != 2:\n        return False\n    try:\n        x, y = (int(values[-1]), int(values[1]))\n    except ValueError:\n        return False\n    return True\n\ndef convert_to_int(coord: str):\n    \"\"\"\n    Helper Function\n\n    This function converts a string of the form (x,y) into a tuple of integers (x, y).\n\n    Args:\n        coord (str): The input string to convert.\n\n    Returns:\n        tuple: A tuple of two integers representing the coordinates.\n    \"\"\"\n    values = coord[1:-1].split(',')\n    x, y = (int(values[0]), int(values[1]))\n    return (x, y)\nfrom typing import List\n\ndef find_path(start: str, end: str, obstacles: List[str]):\n    \"\"\"\n    Imagine a robot positioned at a specific coordinate on a grid. The robot can only move\n    in four directions: up, down, left, right. The robot is trying to reach an end coordinate\n    while avoiding various obstacles. Each coordinate on the grid is represented as a string\n    in the form (x,y).\n\n    This function should output the shortest path for the robot to take from the start to the\n    end coordinate while avoiding the obstacles. Each move from one coordinate to an adjacent\n    coordinate counts as one step.\n\n    Args:\n        start (str): The start coordinate in the form (x,y).\n        end (str): The end coordinate in the form (x,y).\n        obstacles (List[str]): A list of obstacles, each represented as a string in the form\n        (x,y).\n\n    Returns:\n        int: The shortest path length, or -1 if inputs are invalid or there is no path to the\n        end coordinate without hitting an obstacle or the shortest path is longer than 100 steps.\n    \"\"\"\n    if not valid_coordinate(start) or not valid_coordinate(end):\n        return -1\n    if not all([valid_coordinate(obstacle) for obstacle in obstacles]):\n        return -1\n    start = convert_to_int(start)\n    end = convert_to_int(end)\n    obstacles = {convert_to_int(obstacle) for obstacle in obstacles}\n    from collections import deque\n    queue = deque([(start, 0)])\n    visited = {start}\n    while queue:\n        current, steps = queue.popleft()\n        if steps > 100:\n            break\n        if current == end:\n            return steps\n        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            next_coord = (current[0] + dx, current[1] + dy)\n            if next_coord not in visited and next_coord not in obstacles:\n                queue.append((next_coord, steps + 1))\n                visited.add(next_coord)\n    return -1",
+     "input": "('((0,0)', '(-10, 0)', ['(8,0)'])",
+     "expected_canonical": "-1",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node308",
+     "diff": "--- canonical\n+++ mutant\n@@ -15,3 +15,2 @@\n         return False\n-\n     values = coord[1:-1].split(',')\n@@ -19,10 +18,7 @@\n         return False\n-\n     try:\n-        x, y = int(values[0]), int(values[1])\n+        x, y = (int(values[0]), int(values[0]))\n     except ValueError:\n         return False\n-\n     return True\n-\n \n@@ -41,6 +37,5 @@\n     values = coord[1:-1].split(',')\n-    x, y = int(values[0]), int(values[1])\n+    x, y = (int(values[0]), int(values[1]))\n     return (x, y)\n from typing import List\n-\n \n@@ -69,6 +64,4 @@\n         return -1\n-\n     if not all([valid_coordinate(obstacle) for obstacle in obstacles]):\n         return -1\n-\n     start = convert_to_int(start)\n@@ -76,8 +69,5 @@\n     obstacles = {convert_to_int(obstacle) for obstacle in obstacles}\n-\n     from collections import deque\n-\n     queue = deque([(start, 0)])\n     visited = {start}\n-\n     while queue:\n@@ -88,3 +78,2 @@\n             return steps\n-\n         for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n",
+     "mutant_src": "def valid_coordinate(coord: str):\n    \"\"\"\n    Helper Function\n\n    This function checks whether a given string is a valid (x, y) coordinate.\n    A valid coordinate should have the form (x,y) where x and y are integers.\n\n    Args:\n        coord (str): The input string to check.\n\n    Returns:\n        bool: True if the string is a valid coordinate, False otherwise.\n    \"\"\"\n    if coord[0] != '(' or coord[-1] != ')':\n        return False\n    values = coord[1:-1].split(',')\n    if len(values) != 2:\n        return False\n    try:\n        x, y = (int(values[0]), int(values[0]))\n    except ValueError:\n        return False\n    return True\n\ndef convert_to_int(coord: str):\n    \"\"\"\n    Helper Function\n\n    This function converts a string of the form (x,y) into a tuple of integers (x, y).\n\n    Args:\n        coord (str): The input string to convert.\n\n    Returns:\n        tuple: A tuple of two integers representing the coordinates.\n    \"\"\"\n    values = coord[1:-1].split(',')\n    x, y = (int(values[0]), int(values[1]))\n    return (x, y)\nfrom typing import List\n\ndef find_path(start: str, end: str, obstacles: List[str]):\n    \"\"\"\n    Imagine a robot positioned at a specific coordinate on a grid. The robot can only move\n    in four directions: up, down, left, right. The robot is trying to reach an end coordinate\n    while avoiding various obstacles. Each coordinate on the grid is represented as a string\n    in the form (x,y).\n\n    This function should output the shortest path for the robot to take from the start to the\n    end coordinate while avoiding the obstacles. Each move from one coordinate to an adjacent\n    coordinate counts as one step.\n\n    Args:\n        start (str): The start coordinate in the form (x,y).\n        end (str): The end coordinate in the form (x,y).\n        obstacles (List[str]): A list of obstacles, each represented as a string in the form\n        (x,y).\n\n    Returns:\n        int: The shortest path length, or -1 if inputs are invalid or there is no path to the\n        end coordinate without hitting an obstacle or the shortest path is longer than 100 steps.\n    \"\"\"\n    if not valid_coordinate(start) or not valid_coordinate(end):\n        return -1\n    if not all([valid_coordinate(obstacle) for obstacle in obstacles]):\n        return -1\n    start = convert_to_int(start)\n    end = convert_to_int(end)\n    obstacles = {convert_to_int(obstacle) for obstacle in obstacles}\n    from collections import deque\n    queue = deque([(start, 0)])\n    visited = {start}\n    while queue:\n        current, steps = queue.popleft()\n        if steps > 100:\n            break\n        if current == end:\n            return steps\n        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            next_coord = (current[0] + dx, current[1] + dy)\n            if next_coord not in visited and next_coord not in obstacles:\n                queue.append((next_coord, steps + 1))\n                visited.add(next_coord)\n    return -1",
+     "input": "('(10, )', '(0,0)', [])",
+     "expected_canonical": "-1",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:1@node304",
+     "diff": "--- canonical\n+++ mutant\n@@ -15,3 +15,2 @@\n         return False\n-\n     values = coord[1:-1].split(',')\n@@ -19,10 +18,7 @@\n         return False\n-\n     try:\n-        x, y = int(values[0]), int(values[1])\n+        x, y = (int(values[1]), int(values[1]))\n     except ValueError:\n         return False\n-\n     return True\n-\n \n@@ -41,6 +37,5 @@\n     values = coord[1:-1].split(',')\n-    x, y = int(values[0]), int(values[1])\n+    x, y = (int(values[0]), int(values[1]))\n     return (x, y)\n from typing import List\n-\n \n@@ -69,6 +64,4 @@\n         return -1\n-\n     if not all([valid_coordinate(obstacle) for obstacle in obstacles]):\n         return -1\n-\n     start = convert_to_int(start)\n@@ -76,8 +69,5 @@\n     obstacles = {convert_to_int(obstacle) for obstacle in obstacles}\n-\n     from collections import deque\n-\n     queue = deque([(start, 0)])\n     visited = {start}\n-\n     while queue:\n@@ -88,3 +78,2 @@\n             return steps\n-\n         for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n",
+     "mutant_src": "def valid_coordinate(coord: str):\n    \"\"\"\n    Helper Function\n\n    This function checks whether a given string is a valid (x, y) coordinate.\n    A valid coordinate should have the form (x,y) where x and y are integers.\n\n    Args:\n        coord (str): The input string to check.\n\n    Returns:\n        bool: True if the string is a valid coordinate, False otherwise.\n    \"\"\"\n    if coord[0] != '(' or coord[-1] != ')':\n        return False\n    values = coord[1:-1].split(',')\n    if len(values) != 2:\n        return False\n    try:\n        x, y = (int(values[1]), int(values[1]))\n    except ValueError:\n        return False\n    return True\n\ndef convert_to_int(coord: str):\n    \"\"\"\n    Helper Function\n\n    This function converts a string of the form (x,y) into a tuple of integers (x, y).\n\n    Args:\n        coord (str): The input string to convert.\n\n    Returns:\n        tuple: A tuple of two integers representing the coordinates.\n    \"\"\"\n    values = coord[1:-1].split(',')\n    x, y = (int(values[0]), int(values[1]))\n    return (x, y)\nfrom typing import List\n\ndef find_path(start: str, end: str, obstacles: List[str]):\n    \"\"\"\n    Imagine a robot positioned at a specific coordinate on a grid. The robot can only move\n    in four directions: up, down, left, right. The robot is trying to reach an end coordinate\n    while avoiding various obstacles. Each coordinate on the grid is represented as a string\n    in the form (x,y).\n\n    This function should output the shortest path for the robot to take from the start to the\n    end coordinate while avoiding the obstacles. Each move from one coordinate to an adjacent\n    coordinate counts as one step.\n\n    Args:\n        start (str): The start coordinate in the form (x,y).\n        end (str): The end coordinate in the form (x,y).\n        obstacles (List[str]): A list of obstacles, each represented as a string in the form\n        (x,y).\n\n    Returns:\n        int: The shortest path length, or -1 if inputs are invalid or there is no path to the\n        end coordinate without hitting an obstacle or the shortest path is longer than 100 steps.\n    \"\"\"\n    if not valid_coordinate(start) or not valid_coordinate(end):\n        return -1\n    if not all([valid_coordinate(obstacle) for obstacle in obstacles]):\n        return -1\n    start = convert_to_int(start)\n    end = convert_to_int(end)\n    obstacles = {convert_to_int(obstacle) for obstacle in obstacles}\n    from collections import deque\n    queue = deque([(start, 0)])\n    visited = {start}\n    while queue:\n        current, steps = queue.popleft()\n        if steps > 100:\n            break\n        if current == end:\n            return steps\n        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            next_coord = (current[0] + dx, current[1] + dy)\n            if next_coord not in visited and next_coord not in obstacles:\n                queue.append((next_coord, steps + 1))\n                visited.add(next_coord)\n    return -1",
+     "input": "('((0,0)', '(-10, 0)', ['(8,0)'])",
+     "expected_canonical": "-1",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/42",
+   "entry": "find_valid_phones",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/43",
+   "entry": "rotate_matrix_90_degrees_clockwise",
+   "mutants_tried": 7,
+   "survivors": 3,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node86",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -13,3 +12,3 @@\n     n = len(matrix)\n-    m = len(matrix[0])\n+    m = len(matrix[-1])\n     transposed = [[0] * n for _ in range(m)]\n@@ -39,8 +38,4 @@\n     \"\"\"\n-    # Transpose the matrix\n     transposed_matrix = transpose_matrix(matrix)\n-\n-    # Reverse each row of the transposed matrix to get the final result\n     rotated_matrix = [row[::-1] for row in transposed_matrix]\n-\n     return rotated_matrix",
+     "mutant_src": "from typing import List\n\ndef transpose_matrix(matrix: List[List[int]]) -> List[List[int]]:\n    \"\"\"Transpose a given matrix.\n\n    Args:\n        matrix: A 2D list of integers representing the matrix to transpose.\n\n    Returns:\n        A new 2D list of integers representing the transposed matrix.\n    \"\"\"\n    n = len(matrix)\n    m = len(matrix[-1])\n    transposed = [[0] * n for _ in range(m)]\n    for i in range(n):\n        for j in range(m):\n            transposed[j][i] = matrix[i][j]\n    return transposed\nfrom typing import List\n\ndef rotate_matrix_90_degrees_clockwise(matrix: List[List[int]]) -> List[List[int]]:\n    \"\"\"Rotate a given square matrix 90 degrees clockwise.\n\n    Args:\n        matrix: A 2D list of integers representing the matrix to rotate.\n\n    Returns:\n        A new 2D list of integers representing the rotated matrix.\n\n    Note: \n        This function assumes that the input matrix is a square matrix (i.e., number of rows equals number of columns).\n\n    Examples:\n        >>> rotate_matrix_90_degrees_clockwise([[1, 2, 3], [4, 5, 6], [7, 8, 9]])\n        [[7, 4, 1], [8, 5, 2], [9, 6, 3]]\n        >>> rotate_matrix_90_degrees_clockwise([[1, 2], [3, 4]])\n        [[3, 1], [4, 2]]\n    \"\"\"\n    transposed_matrix = transpose_matrix(matrix)\n    rotated_matrix = [row[::-1] for row in transposed_matrix]\n    return rotated_matrix",
+     "input": "([[9, 11], [2, 2, 2], [10, 7, 5]],)",
+     "expected_canonical": "[[10, 2, 9], [7, 2, 11]]",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/44",
+   "entry": "binary_to_decimal",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/45",
+   "entry": "from_string_to_list",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/46",
+   "entry": "word_info",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/47",
+   "entry": "calculate_distance",
+   "mutants_tried": 34,
+   "survivors": 3,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node164",
+     "diff": "--- canonical\n+++ mutant\n@@ -18,5 +18,4 @@\n         return False\n-\n     try:\n-        float(parts[0])\n+        float(parts[-1])\n         float(parts[1])\n@@ -24,4 +23,4 @@\n         return False\n+    return True\n \n-    return True\n def calculate_distance(coordinates1: str, coordinates2: str) -> float:\n@@ -52,14 +51,9 @@\n         return -1\n-\n     lat1, lon1 = map(math.radians, map(float, coordinates1.split(', ')))\n     lat2, lon2 = map(math.radians, map(float, coordinates2.split(', ')))\n-\n     dlat = lat2 - lat1\n     dlon = lon2 - lon1\n-\n-    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2\n-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))\n-\n+    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2\n+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))\n     distance = 6371 * c\n-\n     return round(distance)",
+     "mutant_src": "def validate_coordinates(coordinates: str) -> bool:\n    \"\"\"\n    Helper function to validate the coordinates format\n    Takes a string representation of the coordinates as input\n    The accepted format is two numbers separated by a comma and\n    a space like: '23.5, -45.6'\n    Returns True if the input string is in correct format, False otherwise\n\n    >>> validate_coordinates('23.5, -45.6')\n    True\n    >>> validate_coordinates('23.5,-45.6')\n    False\n    >>> validate_coordinates('23.5 -45.6')\n    False\n    \"\"\"\n    parts = coordinates.split(', ')\n    if len(parts) != 2:\n        return False\n    try:\n        float(parts[-1])\n        float(parts[1])\n    except ValueError:\n        return False\n    return True\n\ndef calculate_distance(coordinates1: str, coordinates2: str) -> float:\n    \"\"\"\n    Write a function to calculate the distance between two points on Earth\n    represented by their coordinates. The coordinates are represented as\n    strings with the format 'latitude, longitude'. The latitude and longitude\n    values are in decimal degrees. Use the Haversine formula to calculate the distance:\n        a = sin\u00b2(\u0394latDifference/2) + cos(lat1)*cos(lt2)*sin\u00b2(\u0394lonDifference/2) \n        c = 2*atan2(\u221aa, \u221a(1\u2212a))\n        distance= 6371 *c\n    \n    The result should be in kilometers. Round the result to the nearest integer.\n    \n    You can assume that the Earth is a perfect sphere with a radius of 6371 kilometers.\n    \n    The function should return -1 if any of the coordinate strings is in incorrect format.\n\n    >>> calculate_distance('48.8566, 2.3522', '40.7128, -74.0060')\n    5837\n    >>> calculate_distance('90.0, 0', '0, 0')\n    10008\n    >>> calculate_distance('90.0, 0', '90.0, 0')\n    0\n    \"\"\"\n    import math\n    if not validate_coordinates(coordinates1) or not validate_coordinates(coordinates2):\n        return -1\n    lat1, lon1 = map(math.radians, map(float, coordinates1.split(', ')))\n    lat2, lon2 = map(math.radians, map(float, coordinates2.split(', ')))\n    dlat = lat2 - lat1\n    dlon = lon2 - lon1\n    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2\n    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))\n    distance = 6371 * c\n    return round(distance)",
+     "input": "('48.8566,, 2.3522', '40.128, -74.0060')",
+     "expected_canonical": "-1",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node168",
+     "diff": "--- canonical\n+++ mutant\n@@ -18,10 +18,9 @@\n         return False\n-\n     try:\n         float(parts[0])\n-        float(parts[1])\n+        float(parts[0])\n     except ValueError:\n         return False\n+    return True\n \n-    return True\n def calculate_distance(coordinates1: str, coordinates2: str) -> float:\n@@ -52,14 +51,9 @@\n         return -1\n-\n     lat1, lon1 = map(math.radians, map(float, coordinates1.split(', ')))\n     lat2, lon2 = map(math.radians, map(float, coordinates2.split(', ')))\n-\n     dlat = lat2 - lat1\n     dlon = lon2 - lon1\n-\n-    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2\n-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))\n-\n+    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2\n+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))\n     distance = 6371 * c\n-\n     return round(distance)",
+     "mutant_src": "def validate_coordinates(coordinates: str) -> bool:\n    \"\"\"\n    Helper function to validate the coordinates format\n    Takes a string representation of the coordinates as input\n    The accepted format is two numbers separated by a comma and\n    a space like: '23.5, -45.6'\n    Returns True if the input string is in correct format, False otherwise\n\n    >>> validate_coordinates('23.5, -45.6')\n    True\n    >>> validate_coordinates('23.5,-45.6')\n    False\n    >>> validate_coordinates('23.5 -45.6')\n    False\n    \"\"\"\n    parts = coordinates.split(', ')\n    if len(parts) != 2:\n        return False\n    try:\n        float(parts[0])\n        float(parts[0])\n    except ValueError:\n        return False\n    return True\n\ndef calculate_distance(coordinates1: str, coordinates2: str) -> float:\n    \"\"\"\n    Write a function to calculate the distance between two points on Earth\n    represented by their coordinates. The coordinates are represented as\n    strings with the format 'latitude, longitude'. The latitude and longitude\n    values are in decimal degrees. Use the Haversine formula to calculate the distance:\n        a = sin\u00b2(\u0394latDifference/2) + cos(lat1)*cos(lt2)*sin\u00b2(\u0394lonDifference/2) \n        c = 2*atan2(\u221aa, \u221a(1\u2212a))\n        distance= 6371 *c\n    \n    The result should be in kilometers. Round the result to the nearest integer.\n    \n    You can assume that the Earth is a perfect sphere with a radius of 6371 kilometers.\n    \n    The function should return -1 if any of the coordinate strings is in incorrect format.\n\n    >>> calculate_distance('48.8566, 2.3522', '40.7128, -74.0060')\n    5837\n    >>> calculate_distance('90.0, 0', '0, 0')\n    10008\n    >>> calculate_distance('90.0, 0', '90.0, 0')\n    0\n    \"\"\"\n    import math\n    if not validate_coordinates(coordinates1) or not validate_coordinates(coordinates2):\n        return -1\n    lat1, lon1 = map(math.radians, map(float, coordinates1.split(', ')))\n    lat2, lon2 = map(math.radians, map(float, coordinates2.split(', ')))\n    dlat = lat2 - lat1\n    dlon = lon2 - lon1\n    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2\n    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))\n    distance = 6371 * c\n    return round(distance)",
+     "input": "('48.8566, 2.352.2', '07, 7.60010824-.4')",
+     "expected_canonical": "-1",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:1@node164",
+     "diff": "--- canonical\n+++ mutant\n@@ -18,5 +18,4 @@\n         return False\n-\n     try:\n-        float(parts[0])\n+        float(parts[1])\n         float(parts[1])\n@@ -24,4 +23,4 @@\n         return False\n+    return True\n \n-    return True\n def calculate_distance(coordinates1: str, coordinates2: str) -> float:\n@@ -52,14 +51,9 @@\n         return -1\n-\n     lat1, lon1 = map(math.radians, map(float, coordinates1.split(', ')))\n     lat2, lon2 = map(math.radians, map(float, coordinates2.split(', ')))\n-\n     dlat = lat2 - lat1\n     dlon = lon2 - lon1\n-\n-    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2\n-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))\n-\n+    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2\n+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))\n     distance = 6371 * c\n-\n     return round(distance)",
+     "mutant_src": "def validate_coordinates(coordinates: str) -> bool:\n    \"\"\"\n    Helper function to validate the coordinates format\n    Takes a string representation of the coordinates as input\n    The accepted format is two numbers separated by a comma and\n    a space like: '23.5, -45.6'\n    Returns True if the input string is in correct format, False otherwise\n\n    >>> validate_coordinates('23.5, -45.6')\n    True\n    >>> validate_coordinates('23.5,-45.6')\n    False\n    >>> validate_coordinates('23.5 -45.6')\n    False\n    \"\"\"\n    parts = coordinates.split(', ')\n    if len(parts) != 2:\n        return False\n    try:\n        float(parts[1])\n        float(parts[1])\n    except ValueError:\n        return False\n    return True\n\ndef calculate_distance(coordinates1: str, coordinates2: str) -> float:\n    \"\"\"\n    Write a function to calculate the distance between two points on Earth\n    represented by their coordinates. The coordinates are represented as\n    strings with the format 'latitude, longitude'. The latitude and longitude\n    values are in decimal degrees. Use the Haversine formula to calculate the distance:\n        a = sin\u00b2(\u0394latDifference/2) + cos(lat1)*cos(lt2)*sin\u00b2(\u0394lonDifference/2) \n        c = 2*atan2(\u221aa, \u221a(1\u2212a))\n        distance= 6371 *c\n    \n    The result should be in kilometers. Round the result to the nearest integer.\n    \n    You can assume that the Earth is a perfect sphere with a radius of 6371 kilometers.\n    \n    The function should return -1 if any of the coordinate strings is in incorrect format.\n\n    >>> calculate_distance('48.8566, 2.3522', '40.7128, -74.0060')\n    5837\n    >>> calculate_distance('90.0, 0', '0, 0')\n    10008\n    >>> calculate_distance('90.0, 0', '90.0, 0')\n    0\n    \"\"\"\n    import math\n    if not validate_coordinates(coordinates1) or not validate_coordinates(coordinates2):\n        return -1\n    lat1, lon1 = map(math.radians, map(float, coordinates1.split(', ')))\n    lat2, lon2 = map(math.radians, map(float, coordinates2.split(', ')))\n    dlat = lat2 - lat1\n    dlon = lon2 - lon1\n    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2\n    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))\n    distance = 6371 * c\n    return round(distance)",
+     "input": "('48.8566,, 2.3522', '40.128, -74.0060')",
+     "expected_canonical": "-1",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/48",
+   "entry": "email_to_username",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/49",
+   "entry": "binary_palindromes_in_range",
+   "mutants_tried": 17,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/50",
+   "entry": "create_todo_list",
+   "mutants_tried": 20,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/51",
+   "entry": "encrypt_text",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/52",
+   "entry": "place_order",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/53",
+   "entry": "birthday_on_a_weekday",
+   "mutants_tried": 40,
+   "survivors": 7,
+   "equivalent_or_unknown": 6,
+   "witnesses": [
+    {
+     "mutation": "const:1@node179",
+     "diff": "--- canonical\n+++ mutant\n@@ -4,10 +4,5 @@\n     \"\"\"\n-    # split the date string into day, month, year parts\n     day, month, year = date.split('/')\n-\n-    # check if day, month, year are all digit strings\n     if not (day.isdigit() and month.isdigit() and year.isdigit()):\n         return False\n-\n-    # convert day, month, year to integers\n     day = int(day)\n@@ -15,16 +10,10 @@\n     year = int(year)\n-\n-    # check if month is in valid range\n     if not 1 <= month <= 12:\n         return False\n-\n-    # check if day is in valid range\n     if not 1 <= day <= 31:\n         return False\n-\n-    # check if year is in valid range\n     if not 1900 <= year <= 2100:\n         return False\n+    return True\n \n-    return True\n def birthday_on_a_weekday(birthdate: str, year: int) -> str:\n@@ -42,6 +31,4 @@\n     import datetime\n-    if not is_valid_date(birthdate) or not (1900 <= year <= 2100):\n+    if not is_valid_date(birthdate) or not 1900 <= year <= 2101:\n         return 'Invalid date or year'\n-\n-    # split the birthdate string into day, month parts\n     day, month, _ = birthdate.split('/')\n@@ -49,4 +36,2 @@\n     month = int(month)\n-\n-    # create a datetime object for the birthday in the specified year\n     try:\n@@ -55,4 +40,2 @@\n         return 'Invalid date or year'\n-\n-    # return the day of the week the birthday falls on\n     return birthday.strftime('%A')",
+     "mutant_src": "def is_valid_date(date: str) -> bool:\n    \"\"\"\n    Check if the given date string is valid.\n    \"\"\"\n    day, month, year = date.split('/')\n    if not (day.isdigit() and month.isdigit() and year.isdigit()):\n        return False\n    day = int(day)\n    month = int(month)\n    year = int(year)\n    if not 1 <= month <= 12:\n        return False\n    if not 1 <= day <= 31:\n        return False\n    if not 1900 <= year <= 2100:\n        return False\n    return True\n\ndef birthday_on_a_weekday(birthdate: str, year: int) -> str:\n    \"\"\"\n    Given a birthdate (in the format DD/MM/YYYY) and a year (e.g. 2022),\n    return the day of the week the birthday falls on in the specified year.\n    A valid birth year should be in the range 1900 to 2100 (inclusive).\n    If the birthdate or year is not valid, return 'Invalid date or year'.\n\n    >>> birthday_on_a_weekday('02/02/2000', 2022)\n    'Wednesday'\n    >>> birthday_on_a_weekday('31/11/2000', 2022)\n    'Invalid date or year'\n    \"\"\"\n    import datetime\n    if not is_valid_date(birthdate) or not 1900 <= year <= 2101:\n        return 'Invalid date or year'\n    day, month, _ = birthdate.split('/')\n    day = int(day)\n    month = int(month)\n    try:\n        birthday = datetime.datetime(year, month, day)\n    except:\n        return 'Invalid date or year'\n    return birthday.strftime('%A')",
+     "input": "('31/12/2100', 2101)",
+     "expected_canonical": "'Invalid date or year'",
+     "mutant_output": "'Saturday'"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/54",
+   "entry": "is_homophone",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/55",
+   "entry": "process_string",
+   "mutants_tried": 22,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/56",
+   "entry": "replace_subsequence",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/57",
+   "entry": "validate_code_blocks",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/58",
+   "entry": "place_queen",
+   "mutants_tried": 25,
+   "survivors": 8,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node67",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,5 +7,6 @@\n     \"\"\"\n-    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):\n+    if row < -1 or row >= len(board) or col < 0 or (col >= len(board[0])):\n         return False\n     return True\n+\n def place_queen(board: list[list[str]], row: int, col: int) -> bool:\n@@ -29,3 +30,2 @@\n             if board[i][j] == 'Q':\n-                # check vertical or horizontal or diagonal conflict\n                 if i == row or j == col or abs(i - row) == abs(j - col):\n",
+     "mutant_src": "def is_valid_location(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\" Checks if a cell [row, col] is valid on the board.\n    >>> is_valid_location([['','',''],['','',''],['','','']], 1, 1)\n    True\n    >>> is_valid_location([['','',''],['','',''],['','','']], 3, 3)\n    False\n    \"\"\"\n    if row < -1 or row >= len(board) or col < 0 or (col >= len(board[0])):\n        return False\n    return True\n\ndef place_queen(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\"Places a queen ('Q') at the cell board[row][col] if it's a valid location. It also checks if by\n    placing queen in the cell does not attack any other queen ('Q') already placed on the board. If placement\n    is successful, it should return True, else False.\n    Queens can attack if they are in the same row or column or placed diagonally from another queen\n\n    Note: The board is represented as a list of lists, where each inner list represents a row in the board.\n    The indexing of the board starts from 0, with row=0 representing the top row and col=0 representing the leftmost column.\n\n    >>> place_queen([['','',''],['','',''],['','','']], 2, 2)\n    True\n    >>> place_queen([['','Q',''],['','',''],['','','']], 0, 1)\n    False\n    \"\"\"\n    if not is_valid_location(board, row, col):\n        return False\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if board[i][j] == 'Q':\n                if i == row or j == col or abs(i - row) == abs(j - col):\n                    return False\n    board[row][col] = 'Q'\n    return True",
+     "input": "([['b', 'QQ', 'b'], ['1', 'b', 'b']], -1, 1)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "cmp:Gt@node41",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,5 +7,6 @@\n     \"\"\"\n-    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):\n+    if row < 0 or row > len(board) or col < 0 or (col >= len(board[0])):\n         return False\n     return True\n+\n def place_queen(board: list[list[str]], row: int, col: int) -> bool:\n@@ -29,3 +30,2 @@\n             if board[i][j] == 'Q':\n-                # check vertical or horizontal or diagonal conflict\n                 if i == row or j == col or abs(i - row) == abs(j - col):\n",
+     "mutant_src": "def is_valid_location(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\" Checks if a cell [row, col] is valid on the board.\n    >>> is_valid_location([['','',''],['','',''],['','','']], 1, 1)\n    True\n    >>> is_valid_location([['','',''],['','',''],['','','']], 3, 3)\n    False\n    \"\"\"\n    if row < 0 or row > len(board) or col < 0 or (col >= len(board[0])):\n        return False\n    return True\n\ndef place_queen(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\"Places a queen ('Q') at the cell board[row][col] if it's a valid location. It also checks if by\n    placing queen in the cell does not attack any other queen ('Q') already placed on the board. If placement\n    is successful, it should return True, else False.\n    Queens can attack if they are in the same row or column or placed diagonally from another queen\n\n    Note: The board is represented as a list of lists, where each inner list represents a row in the board.\n    The indexing of the board starts from 0, with row=0 representing the top row and col=0 representing the leftmost column.\n\n    >>> place_queen([['','',''],['','',''],['','','']], 2, 2)\n    True\n    >>> place_queen([['','Q',''],['','',''],['','','']], 0, 1)\n    False\n    \"\"\"\n    if not is_valid_location(board, row, col):\n        return False\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if board[i][j] == 'Q':\n                if i == row or j == col or abs(i - row) == abs(j - col):\n                    return False\n    board[row][col] = 'Q'\n    return True",
+     "input": "([['', '1', 'a'], ['Q', 'b'], [' ', 'Q', 'b']], 3, 1)",
+     "expected_canonical": "False",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node142",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,5 +7,6 @@\n     \"\"\"\n-    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):\n+    if row < 0 or row >= len(board) or col < 0 or (col >= len(board[0])):\n         return False\n     return True\n+\n def place_queen(board: list[list[str]], row: int, col: int) -> bool:\n@@ -27,5 +28,4 @@\n     for i in range(len(board)):\n-        for j in range(len(board[0])):\n+        for j in range(len(board[-1])):\n             if board[i][j] == 'Q':\n-                # check vertical or horizontal or diagonal conflict\n                 if i == row or j == col or abs(i - row) == abs(j - col):\n",
+     "mutant_src": "def is_valid_location(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\" Checks if a cell [row, col] is valid on the board.\n    >>> is_valid_location([['','',''],['','',''],['','','']], 1, 1)\n    True\n    >>> is_valid_location([['','',''],['','',''],['','','']], 3, 3)\n    False\n    \"\"\"\n    if row < 0 or row >= len(board) or col < 0 or (col >= len(board[0])):\n        return False\n    return True\n\ndef place_queen(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\"Places a queen ('Q') at the cell board[row][col] if it's a valid location. It also checks if by\n    placing queen in the cell does not attack any other queen ('Q') already placed on the board. If placement\n    is successful, it should return True, else False.\n    Queens can attack if they are in the same row or column or placed diagonally from another queen\n\n    Note: The board is represented as a list of lists, where each inner list represents a row in the board.\n    The indexing of the board starts from 0, with row=0 representing the top row and col=0 representing the leftmost column.\n\n    >>> place_queen([['','',''],['','',''],['','','']], 2, 2)\n    True\n    >>> place_queen([['','Q',''],['','',''],['','','']], 0, 1)\n    False\n    \"\"\"\n    if not is_valid_location(board, row, col):\n        return False\n    for i in range(len(board)):\n        for j in range(len(board[-1])):\n            if board[i][j] == 'Q':\n                if i == row or j == col or abs(i - row) == abs(j - col):\n                    return False\n    board[row][col] = 'Q'\n    return True",
+     "input": "([[' ', '1', 'QQ'], ['a', '', '1', 'a']], 1, 2)",
+     "expected_canonical": "True",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:1@node136",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,5 +7,6 @@\n     \"\"\"\n-    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):\n+    if row < 0 or row >= len(board) or col < 0 or (col >= len(board[1])):\n         return False\n     return True\n+\n def place_queen(board: list[list[str]], row: int, col: int) -> bool:\n@@ -29,3 +30,2 @@\n             if board[i][j] == 'Q':\n-                # check vertical or horizontal or diagonal conflict\n                 if i == row or j == col or abs(i - row) == abs(j - col):\n",
+     "mutant_src": "def is_valid_location(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\" Checks if a cell [row, col] is valid on the board.\n    >>> is_valid_location([['','',''],['','',''],['','','']], 1, 1)\n    True\n    >>> is_valid_location([['','',''],['','',''],['','','']], 3, 3)\n    False\n    \"\"\"\n    if row < 0 or row >= len(board) or col < 0 or (col >= len(board[1])):\n        return False\n    return True\n\ndef place_queen(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\"Places a queen ('Q') at the cell board[row][col] if it's a valid location. It also checks if by\n    placing queen in the cell does not attack any other queen ('Q') already placed on the board. If placement\n    is successful, it should return True, else False.\n    Queens can attack if they are in the same row or column or placed diagonally from another queen\n\n    Note: The board is represented as a list of lists, where each inner list represents a row in the board.\n    The indexing of the board starts from 0, with row=0 representing the top row and col=0 representing the leftmost column.\n\n    >>> place_queen([['','',''],['','',''],['','','']], 2, 2)\n    True\n    >>> place_queen([['','Q',''],['','',''],['','','']], 0, 1)\n    False\n    \"\"\"\n    if not is_valid_location(board, row, col):\n        return False\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if board[i][j] == 'Q':\n                if i == row or j == col or abs(i - row) == abs(j - col):\n                    return False\n    board[row][col] = 'Q'\n    return True",
+     "input": "([['b', ''], ['b', 'b', 'a', 'b'], ['', '1', '', '']], 2, 3)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "const:1@node142",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,5 +7,6 @@\n     \"\"\"\n-    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):\n+    if row < 0 or row >= len(board) or col < 0 or (col >= len(board[0])):\n         return False\n     return True\n+\n def place_queen(board: list[list[str]], row: int, col: int) -> bool:\n@@ -27,5 +28,4 @@\n     for i in range(len(board)):\n-        for j in range(len(board[0])):\n+        for j in range(len(board[1])):\n             if board[i][j] == 'Q':\n-                # check vertical or horizontal or diagonal conflict\n                 if i == row or j == col or abs(i - row) == abs(j - col):\n",
+     "mutant_src": "def is_valid_location(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\" Checks if a cell [row, col] is valid on the board.\n    >>> is_valid_location([['','',''],['','',''],['','','']], 1, 1)\n    True\n    >>> is_valid_location([['','',''],['','',''],['','','']], 3, 3)\n    False\n    \"\"\"\n    if row < 0 or row >= len(board) or col < 0 or (col >= len(board[0])):\n        return False\n    return True\n\ndef place_queen(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\"Places a queen ('Q') at the cell board[row][col] if it's a valid location. It also checks if by\n    placing queen in the cell does not attack any other queen ('Q') already placed on the board. If placement\n    is successful, it should return True, else False.\n    Queens can attack if they are in the same row or column or placed diagonally from another queen\n\n    Note: The board is represented as a list of lists, where each inner list represents a row in the board.\n    The indexing of the board starts from 0, with row=0 representing the top row and col=0 representing the leftmost column.\n\n    >>> place_queen([['','',''],['','',''],['','','']], 2, 2)\n    True\n    >>> place_queen([['','Q',''],['','',''],['','','']], 0, 1)\n    False\n    \"\"\"\n    if not is_valid_location(board, row, col):\n        return False\n    for i in range(len(board)):\n        for j in range(len(board[1])):\n            if board[i][j] == 'Q':\n                if i == row or j == col or abs(i - row) == abs(j - col):\n                    return False\n    board[row][col] = 'Q'\n    return True",
+     "input": "([['1', '', 'a'], ['b', ' ', 'Q', ' '], ['', '', 'b']], 1, 1)",
+     "expected_canonical": "False",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node73",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,5 +7,6 @@\n     \"\"\"\n-    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):\n+    if row < 0 or row >= len(board) or col < -1 or (col >= len(board[0])):\n         return False\n     return True\n+\n def place_queen(board: list[list[str]], row: int, col: int) -> bool:\n@@ -29,3 +30,2 @@\n             if board[i][j] == 'Q':\n-                # check vertical or horizontal or diagonal conflict\n                 if i == row or j == col or abs(i - row) == abs(j - col):\n",
+     "mutant_src": "def is_valid_location(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\" Checks if a cell [row, col] is valid on the board.\n    >>> is_valid_location([['','',''],['','',''],['','','']], 1, 1)\n    True\n    >>> is_valid_location([['','',''],['','',''],['','','']], 3, 3)\n    False\n    \"\"\"\n    if row < 0 or row >= len(board) or col < -1 or (col >= len(board[0])):\n        return False\n    return True\n\ndef place_queen(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\"Places a queen ('Q') at the cell board[row][col] if it's a valid location. It also checks if by\n    placing queen in the cell does not attack any other queen ('Q') already placed on the board. If placement\n    is successful, it should return True, else False.\n    Queens can attack if they are in the same row or column or placed diagonally from another queen\n\n    Note: The board is represented as a list of lists, where each inner list represents a row in the board.\n    The indexing of the board starts from 0, with row=0 representing the top row and col=0 representing the leftmost column.\n\n    >>> place_queen([['','',''],['','',''],['','','']], 2, 2)\n    True\n    >>> place_queen([['','Q',''],['','',''],['','','']], 0, 1)\n    False\n    \"\"\"\n    if not is_valid_location(board, row, col):\n        return False\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if board[i][j] == 'Q':\n                if i == row or j == col or abs(i - row) == abs(j - col):\n                    return False\n    board[row][col] = 'Q'\n    return True",
+     "input": "([['a', '', ' '], ['1', 'Q', 'a'], [' ', '1', '', ' '], [' ', '1', '', ' ']], 0, -1)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "cmp:Gt@node43",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,5 +7,6 @@\n     \"\"\"\n-    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):\n+    if row < 0 or row >= len(board) or col < 0 or (col > len(board[0])):\n         return False\n     return True\n+\n def place_queen(board: list[list[str]], row: int, col: int) -> bool:\n@@ -29,3 +30,2 @@\n             if board[i][j] == 'Q':\n-                # check vertical or horizontal or diagonal conflict\n                 if i == row or j == col or abs(i - row) == abs(j - col):\n",
+     "mutant_src": "def is_valid_location(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\" Checks if a cell [row, col] is valid on the board.\n    >>> is_valid_location([['','',''],['','',''],['','','']], 1, 1)\n    True\n    >>> is_valid_location([['','',''],['','',''],['','','']], 3, 3)\n    False\n    \"\"\"\n    if row < 0 or row >= len(board) or col < 0 or (col > len(board[0])):\n        return False\n    return True\n\ndef place_queen(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\"Places a queen ('Q') at the cell board[row][col] if it's a valid location. It also checks if by\n    placing queen in the cell does not attack any other queen ('Q') already placed on the board. If placement\n    is successful, it should return True, else False.\n    Queens can attack if they are in the same row or column or placed diagonally from another queen\n\n    Note: The board is represented as a list of lists, where each inner list represents a row in the board.\n    The indexing of the board starts from 0, with row=0 representing the top row and col=0 representing the leftmost column.\n\n    >>> place_queen([['','',''],['','',''],['','','']], 2, 2)\n    True\n    >>> place_queen([['','Q',''],['','',''],['','','']], 0, 1)\n    False\n    \"\"\"\n    if not is_valid_location(board, row, col):\n        return False\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if board[i][j] == 'Q':\n                if i == row or j == col or abs(i - row) == abs(j - col):\n                    return False\n    board[row][col] = 'Q'\n    return True",
+     "input": "([['1', '', 'b'], ['1', '', '1', ''], ['', ''], ['', '']], 3, 3)",
+     "expected_canonical": "False",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node136",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,5 +7,6 @@\n     \"\"\"\n-    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):\n+    if row < 0 or row >= len(board) or col < 0 or (col >= len(board[-1])):\n         return False\n     return True\n+\n def place_queen(board: list[list[str]], row: int, col: int) -> bool:\n@@ -29,3 +30,2 @@\n             if board[i][j] == 'Q':\n-                # check vertical or horizontal or diagonal conflict\n                 if i == row or j == col or abs(i - row) == abs(j - col):\n",
+     "mutant_src": "def is_valid_location(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\" Checks if a cell [row, col] is valid on the board.\n    >>> is_valid_location([['','',''],['','',''],['','','']], 1, 1)\n    True\n    >>> is_valid_location([['','',''],['','',''],['','','']], 3, 3)\n    False\n    \"\"\"\n    if row < 0 or row >= len(board) or col < 0 or (col >= len(board[-1])):\n        return False\n    return True\n\ndef place_queen(board: list[list[str]], row: int, col: int) -> bool:\n    \"\"\"Places a queen ('Q') at the cell board[row][col] if it's a valid location. It also checks if by\n    placing queen in the cell does not attack any other queen ('Q') already placed on the board. If placement\n    is successful, it should return True, else False.\n    Queens can attack if they are in the same row or column or placed diagonally from another queen\n\n    Note: The board is represented as a list of lists, where each inner list represents a row in the board.\n    The indexing of the board starts from 0, with row=0 representing the top row and col=0 representing the leftmost column.\n\n    >>> place_queen([['','',''],['','',''],['','','']], 2, 2)\n    True\n    >>> place_queen([['','Q',''],['','',''],['','','']], 0, 1)\n    False\n    \"\"\"\n    if not is_valid_location(board, row, col):\n        return False\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if board[i][j] == 'Q':\n                if i == row or j == col or abs(i - row) == abs(j - col):\n                    return False\n    board[row][col] = 'Q'\n    return True",
+     "input": "([['b', ''], ['b', 'b', 'a', 'b'], ['', '1', '', '']], 2, 3)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/59",
+   "entry": "text_to_dict",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/60",
+   "entry": "is_valid_html",
+   "mutants_tried": 31,
+   "survivors": 6,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node142",
+     "diff": "--- canonical\n+++ mutant\n@@ -8,5 +8,5 @@\n     end = html.find('>', start)\n-    if start == -1 or end == -1:\n-        return None, html\n-    return html[start:end+1], html[end+1:]\n+    if start == -2 or end == -1:\n+        return (None, html)\n+    return (html[start:end + 1], html[end + 1:])\n \n@@ -23,2 +23,3 @@\n     return tag[1:-1]\n+\n def is_valid_html(html: str):\n",
+     "mutant_src": "def get_next_tag(html: str):\n    \"\"\"Extract the next tag from the HTML string.\n\n    Returns a tuple containing the tag (including the brackets) and the rest of the HTML string.\n    If no more tags are found, return (None, html).\n    \"\"\"\n    start = html.find('<')\n    end = html.find('>', start)\n    if start == -2 or end == -1:\n        return (None, html)\n    return (html[start:end + 1], html[end + 1:])\n\ndef is_closing_tag(tag: str):\n    \"\"\"Check if the given tag is a closing tag.\n    \"\"\"\n    return tag.startswith('</')\n\ndef get_tag_name(tag: str):\n    \"\"\"Extract the name of the tag, without the brackets and the slash for closing tags.\n    \"\"\"\n    if is_closing_tag(tag):\n        return tag[2:-1]\n    return tag[1:-1]\n\ndef is_valid_html(html: str):\n    \"\"\" html is a string of HTML tags.\n    return True if every opening tag has a corresponding closing tag \n    and they are correctly nested. Ignore self-closing tags. \n    The HTML tags are simplified to just the tag names enclosed in \"<>\" for opening tags and \"</>\" for closing tags.\n\n    >>> is_valid_html(\"<html>\")\n    False\n    >>> is_valid_html(\"<html></html>\")\n    True\n    >>> is_valid_html(\"<html><body></body></html>\")\n    True\n    >>> is_valid_html(\"<html><body></html></body>\")\n    False\n    >>> is_valid_html(\"<html><head></head><body><div></div></body></html>\")\n    True\n    >>> is_valid_html(\"<html><head></head><body><div></body></div></html>\")\n    False\n    \"\"\"\n    stack = []\n    while True:\n        tag, html = get_next_tag(html)\n        if tag is None:\n            break\n        if is_closing_tag(tag):\n            if len(stack) == 0 or stack[-1] != get_tag_name(tag):\n                return False\n            stack.pop()\n        else:\n            stack.append(get_tag_name(tag))\n    return len(stack) == 0",
+     "input": "('html>',)",
+     "expected_canonical": "True",
+     "mutant_output": "False"
+    },
+    {
+     "mutation": "const:-1@node145",
+     "diff": "--- canonical\n+++ mutant\n@@ -8,5 +8,5 @@\n     end = html.find('>', start)\n-    if start == -1 or end == -1:\n-        return None, html\n-    return html[start:end+1], html[end+1:]\n+    if start == -1 or end == -0:\n+        return (None, html)\n+    return (html[start:end + 1], html[end + 1:])\n \n@@ -23,2 +23,3 @@\n     return tag[1:-1]\n+\n def is_valid_html(html: str):\n",
+     "mutant_src": "def get_next_tag(html: str):\n    \"\"\"Extract the next tag from the HTML string.\n\n    Returns a tuple containing the tag (including the brackets) and the rest of the HTML string.\n    If no more tags are found, return (None, html).\n    \"\"\"\n    start = html.find('<')\n    end = html.find('>', start)\n    if start == -1 or end == -0:\n        return (None, html)\n    return (html[start:end + 1], html[end + 1:])\n\ndef is_closing_tag(tag: str):\n    \"\"\"Check if the given tag is a closing tag.\n    \"\"\"\n    return tag.startswith('</')\n\ndef get_tag_name(tag: str):\n    \"\"\"Extract the name of the tag, without the brackets and the slash for closing tags.\n    \"\"\"\n    if is_closing_tag(tag):\n        return tag[2:-1]\n    return tag[1:-1]\n\ndef is_valid_html(html: str):\n    \"\"\" html is a string of HTML tags.\n    return True if every opening tag has a corresponding closing tag \n    and they are correctly nested. Ignore self-closing tags. \n    The HTML tags are simplified to just the tag names enclosed in \"<>\" for opening tags and \"</>\" for closing tags.\n\n    >>> is_valid_html(\"<html>\")\n    False\n    >>> is_valid_html(\"<html></html>\")\n    True\n    >>> is_valid_html(\"<html><body></body></html>\")\n    True\n    >>> is_valid_html(\"<html><body></html></body>\")\n    False\n    >>> is_valid_html(\"<html><head></head><body><div></div></body></html>\")\n    True\n    >>> is_valid_html(\"<html><head></head><body><div></body></div></html>\")\n    False\n    \"\"\"\n    stack = []\n    while True:\n        tag, html = get_next_tag(html)\n        if tag is None:\n            break\n        if is_closing_tag(tag):\n            if len(stack) == 0 or stack[-1] != get_tag_name(tag):\n                return False\n            stack.pop()\n        else:\n            stack.append(get_tag_name(tag))\n    return len(stack) == 0",
+     "input": "('>tl<mh',)",
+     "expected_canonical": "True",
+     "mutant_output": "timeout"
+    },
+    {
+     "mutation": "bool:And@node29",
+     "diff": "--- canonical\n+++ mutant\n@@ -8,5 +8,5 @@\n     end = html.find('>', start)\n-    if start == -1 or end == -1:\n-        return None, html\n-    return html[start:end+1], html[end+1:]\n+    if start == -1 and end == -1:\n+        return (None, html)\n+    return (html[start:end + 1], html[end + 1:])\n \n@@ -23,2 +23,3 @@\n     return tag[1:-1]\n+\n def is_valid_html(html: str):\n",
+     "mutant_src": "def get_next_tag(html: str):\n    \"\"\"Extract the next tag from the HTML string.\n\n    Returns a tuple containing the tag (including the brackets) and the rest of the HTML string.\n    If no more tags are found, return (None, html).\n    \"\"\"\n    start = html.find('<')\n    end = html.find('>', start)\n    if start == -1 and end == -1:\n        return (None, html)\n    return (html[start:end + 1], html[end + 1:])\n\ndef is_closing_tag(tag: str):\n    \"\"\"Check if the given tag is a closing tag.\n    \"\"\"\n    return tag.startswith('</')\n\ndef get_tag_name(tag: str):\n    \"\"\"Extract the name of the tag, without the brackets and the slash for closing tags.\n    \"\"\"\n    if is_closing_tag(tag):\n        return tag[2:-1]\n    return tag[1:-1]\n\ndef is_valid_html(html: str):\n    \"\"\" html is a string of HTML tags.\n    return True if every opening tag has a corresponding closing tag \n    and they are correctly nested. Ignore self-closing tags. \n    The HTML tags are simplified to just the tag names enclosed in \"<>\" for opening tags and \"</>\" for closing tags.\n\n    >>> is_valid_html(\"<html>\")\n    False\n    >>> is_valid_html(\"<html></html>\")\n    True\n    >>> is_valid_html(\"<html><body></body></html>\")\n    True\n    >>> is_valid_html(\"<html><body></html></body>\")\n    False\n    >>> is_valid_html(\"<html><head></head><body><div></div></body></html>\")\n    True\n    >>> is_valid_html(\"<html><head></head><body><div></body></div></html>\")\n    False\n    \"\"\"\n    stack = []\n    while True:\n        tag, html = get_next_tag(html)\n        if tag is None:\n            break\n        if is_closing_tag(tag):\n            if len(stack) == 0 or stack[-1] != get_tag_name(tag):\n                return False\n            stack.pop()\n        else:\n            stack.append(get_tag_name(tag))\n    return len(stack) == 0",
+     "input": "('html>',)",
+     "expected_canonical": "True",
+     "mutant_output": "False"
+    },
+    {
+     "mutation": "const:-1@node185",
+     "diff": "--- canonical\n+++ mutant\n@@ -9,4 +9,4 @@\n     if start == -1 or end == -1:\n-        return None, html\n-    return html[start:end+1], html[end+1:]\n+        return (None, html)\n+    return (html[start:end + 1], html[end + 1:])\n \n@@ -23,2 +23,3 @@\n     return tag[1:-1]\n+\n def is_valid_html(html: str):\n@@ -48,3 +49,3 @@\n         if is_closing_tag(tag):\n-            if len(stack) == 0 or stack[-1] != get_tag_name(tag):\n+            if len(stack) == -1 or stack[-1] != get_tag_name(tag):\n                 return False\n",
+     "mutant_src": "def get_next_tag(html: str):\n    \"\"\"Extract the next tag from the HTML string.\n\n    Returns a tuple containing the tag (including the brackets) and the rest of the HTML string.\n    If no more tags are found, return (None, html).\n    \"\"\"\n    start = html.find('<')\n    end = html.find('>', start)\n    if start == -1 or end == -1:\n        return (None, html)\n    return (html[start:end + 1], html[end + 1:])\n\ndef is_closing_tag(tag: str):\n    \"\"\"Check if the given tag is a closing tag.\n    \"\"\"\n    return tag.startswith('</')\n\ndef get_tag_name(tag: str):\n    \"\"\"Extract the name of the tag, without the brackets and the slash for closing tags.\n    \"\"\"\n    if is_closing_tag(tag):\n        return tag[2:-1]\n    return tag[1:-1]\n\ndef is_valid_html(html: str):\n    \"\"\" html is a string of HTML tags.\n    return True if every opening tag has a corresponding closing tag \n    and they are correctly nested. Ignore self-closing tags. \n    The HTML tags are simplified to just the tag names enclosed in \"<>\" for opening tags and \"</>\" for closing tags.\n\n    >>> is_valid_html(\"<html>\")\n    False\n    >>> is_valid_html(\"<html></html>\")\n    True\n    >>> is_valid_html(\"<html><body></body></html>\")\n    True\n    >>> is_valid_html(\"<html><body></html></body>\")\n    False\n    >>> is_valid_html(\"<html><head></head><body><div></div></body></html>\")\n    True\n    >>> is_valid_html(\"<html><head></head><body><div></body></div></html>\")\n    False\n    \"\"\"\n    stack = []\n    while True:\n        tag, html = get_next_tag(html)\n        if tag is None:\n            break\n        if is_closing_tag(tag):\n            if len(stack) == -1 or stack[-1] != get_tag_name(tag):\n                return False\n            stack.pop()\n        else:\n            stack.append(get_tag_name(tag))\n    return len(stack) == 0",
+     "input": "('t</lt><>mhmhl',)",
+     "expected_canonical": "False",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:1@node145",
+     "diff": "--- canonical\n+++ mutant\n@@ -8,5 +8,5 @@\n     end = html.find('>', start)\n-    if start == -1 or end == -1:\n-        return None, html\n-    return html[start:end+1], html[end+1:]\n+    if start == -1 or end == -2:\n+        return (None, html)\n+    return (html[start:end + 1], html[end + 1:])\n \n@@ -23,2 +23,3 @@\n     return tag[1:-1]\n+\n def is_valid_html(html: str):\n",
+     "mutant_src": "def get_next_tag(html: str):\n    \"\"\"Extract the next tag from the HTML string.\n\n    Returns a tuple containing the tag (including the brackets) and the rest of the HTML string.\n    If no more tags are found, return (None, html).\n    \"\"\"\n    start = html.find('<')\n    end = html.find('>', start)\n    if start == -1 or end == -2:\n        return (None, html)\n    return (html[start:end + 1], html[end + 1:])\n\ndef is_closing_tag(tag: str):\n    \"\"\"Check if the given tag is a closing tag.\n    \"\"\"\n    return tag.startswith('</')\n\ndef get_tag_name(tag: str):\n    \"\"\"Extract the name of the tag, without the brackets and the slash for closing tags.\n    \"\"\"\n    if is_closing_tag(tag):\n        return tag[2:-1]\n    return tag[1:-1]\n\ndef is_valid_html(html: str):\n    \"\"\" html is a string of HTML tags.\n    return True if every opening tag has a corresponding closing tag \n    and they are correctly nested. Ignore self-closing tags. \n    The HTML tags are simplified to just the tag names enclosed in \"<>\" for opening tags and \"</>\" for closing tags.\n\n    >>> is_valid_html(\"<html>\")\n    False\n    >>> is_valid_html(\"<html></html>\")\n    True\n    >>> is_valid_html(\"<html><body></body></html>\")\n    True\n    >>> is_valid_html(\"<html><body></html></body>\")\n    False\n    >>> is_valid_html(\"<html><head></head><body><div></div></body></html>\")\n    True\n    >>> is_valid_html(\"<html><head></head><body><div></body></div></html>\")\n    False\n    \"\"\"\n    stack = []\n    while True:\n        tag, html = get_next_tag(html)\n        if tag is None:\n            break\n        if is_closing_tag(tag):\n            if len(stack) == 0 or stack[-1] != get_tag_name(tag):\n                return False\n            stack.pop()\n        else:\n            stack.append(get_tag_name(tag))\n    return len(stack) == 0",
+     "input": "('>tl<mh',)",
+     "expected_canonical": "True",
+     "mutant_output": "timeout"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/61",
+   "entry": "evaluate_expression",
+   "mutants_tried": 19,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/62",
+   "entry": "compile_report",
+   "mutants_tried": 18,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node121",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,3 @@\n     parts = record.split(',')\n-    return parts[0], float(parts[1]), int(parts[2])\n-\n+    return (parts[0], float(parts[1]), int(parts[2]))\n \n@@ -17,3 +16,4 @@\n     parts = record.split(',')\n-    return len(parts) == 3 and parts[1].replace(\".\", \"\", 1).isdigit() and parts[2].isdigit()\n+    return len(parts) == 3 and parts[1].replace('.', '', 2).isdigit() and parts[2].isdigit()\n+\n def compile_report(records: list):\n",
+     "mutant_src": "def parse_record(record):\n    \"\"\" parse a record into tuple (item, price, quantity)\n    >>> parse_record(\"apple,1.2,3\")\n    ('apple', 1.2, 3)\n    \"\"\"\n    parts = record.split(',')\n    return (parts[0], float(parts[1]), int(parts[2]))\n\ndef is_valid_record(record):\n    \"\"\" verify if a record is valid\n    >>> is_valid_record(\"apple,1.2,3\")\n    True\n    >>> is_valid_record(\"apple,1.2\")\n    False\n    \"\"\"\n    parts = record.split(',')\n    return len(parts) == 3 and parts[1].replace('.', '', 2).isdigit() and parts[2].isdigit()\n\ndef compile_report(records: list):\n    \"\"\" records is a list of strings where each string is a transaction record in the format \"item,price,quantity\".\n    The function should return a dictionary where keys are items and values are total revenues of each item. (skip any transaction records which do not follow the format)\n    >>> compile_report([\"apple,1.2,3\", \"banana,0.5,6\", \"apple,1.2,2\"])\n    {'apple': 6.0, 'banana': 3.0}\n    >>> compile_report([\"orange,1.3,10\", \"banana,0.5,5\", \"orange,1.3,5\"])\n    {'orange': 19.5, 'banana': 2.5}\n    \"\"\"\n    report = {}\n    for record in records:\n        if is_valid_record(record):\n            item, price, quantity = parse_record(record)\n            if item in report:\n                report[item] += price * quantity\n            else:\n                report[item] = price * quantity\n    return report",
+     "input": "(['apple,1.,2,3', 'banana,0..5,6', 'apple,1.p2,2', 'orange,,1.3,10', 'bananan,0.5,6', 'eorange,1.3,10', 'apple,1.,2,3'],)",
+     "expected_canonical": "{'bananan': 3.0, 'eorange': 13.0}",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/63",
+   "entry": "perform_operation",
+   "mutants_tried": 23,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/64",
+   "entry": "find_phone_numbers",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/65",
+   "entry": "rearrange_words",
+   "mutants_tried": 10,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/66",
+   "entry": "stringParse",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/67",
+   "entry": "calculate_distance",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/68",
+   "entry": "zoo_animal_distribution",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/69",
+   "entry": "classify_scores",
+   "mutants_tried": 22,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/70",
+   "entry": "custom_list_parser",
+   "mutants_tried": 9,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/71",
+   "entry": "get_age_at_date",
+   "mutants_tried": 80,
+   "survivors": 5,
+   "equivalent_or_unknown": 5,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/72",
+   "entry": "is_strong",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/73",
+   "entry": "count_ways",
+   "mutants_tried": 14,
+   "survivors": 3,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node43",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,11 +6,7 @@\n     if n == 0:\n-        return 1  # Base case: There is 1 way to reach 0 (by not taking any steps)\n-    if n < 0:\n-        return 0  # Invalid case: We cannot reach a negative value\n-\n+        return 1\n+    if n < -1:\n+        return 0\n     if n in memo:\n-        return memo[\n-            n\n-        ]  # Retrieve the result from the memoization dictionary if available\n-\n+        return memo[n]\n     ways = 0\n@@ -18,5 +14,5 @@\n         ways += helper(n - step, steps, memo)\n+    memo[n] = ways\n+    return ways\n \n-    memo[n] = ways  # Store the calculated result in the memoization dictionary\n-    return ways\n def count_ways(n, steps):\n",
+     "mutant_src": "def helper(n, steps, memo):\n    \"\"\"\n    Helper function to calculate the number of distinct ways to reach `n` using the available `steps`.\n    This function uses memoization to store and reuse previously calculated results.\n    \"\"\"\n    if n == 0:\n        return 1\n    if n < -1:\n        return 0\n    if n in memo:\n        return memo[n]\n    ways = 0\n    for step in steps:\n        ways += helper(n - step, steps, memo)\n    memo[n] = ways\n    return ways\n\ndef count_ways(n, steps):\n    \"\"\" \n    Given a number `n` and a list of `steps` available, calculate the number of distinct ways to reach `n` using only the steps in the list. You may use each step multiple times and you can use them in any order.\n\n    The number `n` will be a positive integer and the list `steps` will contain positive integers. \n\n    For example: \n    count_ways(4, [1, 2]) == 5 \n    count_ways(3, [1, 2, 3]) == 4\n    count_ways(10, [2, 5]) == 2\n\n    Note: In the first example, the ways to reach 4 using 1 and 2 are: [1,1,1,1], [2,2], [1,1,2], [1,2,1], [2,1,1].\n    \"\"\"\n    return helper(n, steps, {})",
+     "input": "(-1, [-1, 2])",
+     "expected_canonical": "0",
+     "mutant_output": "1"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/74",
+   "entry": "check_plates",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/75",
+   "entry": "find_nearest_bus_stop",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/76",
+   "entry": "find_maximum",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/77",
+   "entry": "is_isogram",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/78",
+   "entry": "final_position",
+   "mutants_tried": 22,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/79",
+   "entry": "closest_point",
+   "mutants_tried": 25,
+   "survivors": 10,
+   "equivalent_or_unknown": 7,
+   "witnesses": [
+    {
+     "mutation": "const:1@node145",
+     "diff": "--- canonical\n+++ mutant\n@@ -19,3 +19,3 @@\n     try:\n-        x = int(parts[0])\n+        x = int(parts[1])\n         y = int(parts[1])\n@@ -24,2 +24,3 @@\n     return True\n+\n def closest_point(points: list[str], target: str) -> str:\n",
+     "mutant_src": "def is_valid_coordinate(coord: str) -> bool:\n    \"\"\"\n    Helper function to determine if a given string is a valid coordinate.\n    A valid coordinate is defined as a string of the format 'x,y' where\n    x and y are both integers. If the coordinate is valid, the function\n    should return True, else False.\n    >>> is_valid_coordinate('1,2')\n    True\n    >>> is_valid_coordinate('1.2,3.4')\n    False\n    >>> is_valid_coordinate('10,20')\n    True\n    >>> is_valid_coordinate('X,Y')\n    False\n    \"\"\"\n    parts = coord.split(',')\n    if len(parts) != 2:\n        return False\n    try:\n        x = int(parts[1])\n        y = int(parts[1])\n    except ValueError:\n        return False\n    return True\n\ndef closest_point(points: list[str], target: str) -> str:\n    \"\"\"\n    Given a list of points and a target point, return the point from the list\n    that is closest to the target point. Distance is calculated using the\n    Euclidean distance (i.e., sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)). \n    All points including target point should be a coordinate of integer values\n    in string format like 'x,y'.\n    If there are multiple points at the same closest distance, return one\n    with the smallest first value. If the list of points is empty, return an empty string. If any\n    points are not valid coordinates format, or the target is not a valid\n    coordinate, return an error message: 'Invalid input'\n    >>> closest_point(['1,2','3,4','5,6'],'4,4')\n    '3,4'\n    >>> closest_point(['1,1','2,2','3,3'],'2,2')\n    '2,2'\n    >>> closest_point(['-1,-1','0,0','1,1'],'3,3')\n    '1,1'\n    >>> closest_point(['12,12','1,1','5,6'],'4,4')\n    '5,6'\n    >>> closest_point(['1.1,1.1','2,2','3,3'],'2,2')\n    'Invalid input'\n    >>> closest_point(['1,1', '2,2', '3,3'], 'two,two')\n    'Invalid input'\n    \"\"\"\n    if not is_valid_coordinate(target):\n        return 'Invalid input'\n    target_x, target_y = map(int, target.split(','))\n    min_distance = float('inf')\n    closest_pt = ''\n    for point in points:\n        if not is_valid_coordinate(point):\n            return 'Invalid input'\n        x, y = map(int, point.split(','))\n        distance = ((x - target_x) ** 2 + (y - target_y) ** 2) ** 0.5\n        if distance < min_distance or (distance == min_distance and x < int(closest_pt.split(',')[0])):\n            min_distance = distance\n            closest_pt = point\n    return closest_pt if closest_pt else ''",
+     "input": "(['1,,2', '3,', '5,6'], ',4')",
+     "expected_canonical": "'Invalid input'",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node149",
+     "diff": "--- canonical\n+++ mutant\n@@ -20,3 +20,3 @@\n         x = int(parts[0])\n-        y = int(parts[1])\n+        y = int(parts[0])\n     except ValueError:\n@@ -24,2 +24,3 @@\n     return True\n+\n def closest_point(points: list[str], target: str) -> str:\n",
+     "mutant_src": "def is_valid_coordinate(coord: str) -> bool:\n    \"\"\"\n    Helper function to determine if a given string is a valid coordinate.\n    A valid coordinate is defined as a string of the format 'x,y' where\n    x and y are both integers. If the coordinate is valid, the function\n    should return True, else False.\n    >>> is_valid_coordinate('1,2')\n    True\n    >>> is_valid_coordinate('1.2,3.4')\n    False\n    >>> is_valid_coordinate('10,20')\n    True\n    >>> is_valid_coordinate('X,Y')\n    False\n    \"\"\"\n    parts = coord.split(',')\n    if len(parts) != 2:\n        return False\n    try:\n        x = int(parts[0])\n        y = int(parts[0])\n    except ValueError:\n        return False\n    return True\n\ndef closest_point(points: list[str], target: str) -> str:\n    \"\"\"\n    Given a list of points and a target point, return the point from the list\n    that is closest to the target point. Distance is calculated using the\n    Euclidean distance (i.e., sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)). \n    All points including target point should be a coordinate of integer values\n    in string format like 'x,y'.\n    If there are multiple points at the same closest distance, return one\n    with the smallest first value. If the list of points is empty, return an empty string. If any\n    points are not valid coordinates format, or the target is not a valid\n    coordinate, return an error message: 'Invalid input'\n    >>> closest_point(['1,2','3,4','5,6'],'4,4')\n    '3,4'\n    >>> closest_point(['1,1','2,2','3,3'],'2,2')\n    '2,2'\n    >>> closest_point(['-1,-1','0,0','1,1'],'3,3')\n    '1,1'\n    >>> closest_point(['12,12','1,1','5,6'],'4,4')\n    '5,6'\n    >>> closest_point(['1.1,1.1','2,2','3,3'],'2,2')\n    'Invalid input'\n    >>> closest_point(['1,1', '2,2', '3,3'], 'two,two')\n    'Invalid input'\n    \"\"\"\n    if not is_valid_coordinate(target):\n        return 'Invalid input'\n    target_x, target_y = map(int, target.split(','))\n    min_distance = float('inf')\n    closest_pt = ''\n    for point in points:\n        if not is_valid_coordinate(point):\n            return 'Invalid input'\n        x, y = map(int, point.split(','))\n        distance = ((x - target_x) ** 2 + (y - target_y) ** 2) ** 0.5\n        if distance < min_distance or (distance == min_distance and x < int(closest_pt.split(',')[0])):\n            min_distance = distance\n            closest_pt = point\n    return closest_pt if closest_pt else ''",
+     "input": "(['1,2', '5,', '3,4'], '44,')",
+     "expected_canonical": "'Invalid input'",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "const:-1@node145",
+     "diff": "--- canonical\n+++ mutant\n@@ -19,3 +19,3 @@\n     try:\n-        x = int(parts[0])\n+        x = int(parts[-1])\n         y = int(parts[1])\n@@ -24,2 +24,3 @@\n     return True\n+\n def closest_point(points: list[str], target: str) -> str:\n",
+     "mutant_src": "def is_valid_coordinate(coord: str) -> bool:\n    \"\"\"\n    Helper function to determine if a given string is a valid coordinate.\n    A valid coordinate is defined as a string of the format 'x,y' where\n    x and y are both integers. If the coordinate is valid, the function\n    should return True, else False.\n    >>> is_valid_coordinate('1,2')\n    True\n    >>> is_valid_coordinate('1.2,3.4')\n    False\n    >>> is_valid_coordinate('10,20')\n    True\n    >>> is_valid_coordinate('X,Y')\n    False\n    \"\"\"\n    parts = coord.split(',')\n    if len(parts) != 2:\n        return False\n    try:\n        x = int(parts[-1])\n        y = int(parts[1])\n    except ValueError:\n        return False\n    return True\n\ndef closest_point(points: list[str], target: str) -> str:\n    \"\"\"\n    Given a list of points and a target point, return the point from the list\n    that is closest to the target point. Distance is calculated using the\n    Euclidean distance (i.e., sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)). \n    All points including target point should be a coordinate of integer values\n    in string format like 'x,y'.\n    If there are multiple points at the same closest distance, return one\n    with the smallest first value. If the list of points is empty, return an empty string. If any\n    points are not valid coordinates format, or the target is not a valid\n    coordinate, return an error message: 'Invalid input'\n    >>> closest_point(['1,2','3,4','5,6'],'4,4')\n    '3,4'\n    >>> closest_point(['1,1','2,2','3,3'],'2,2')\n    '2,2'\n    >>> closest_point(['-1,-1','0,0','1,1'],'3,3')\n    '1,1'\n    >>> closest_point(['12,12','1,1','5,6'],'4,4')\n    '5,6'\n    >>> closest_point(['1.1,1.1','2,2','3,3'],'2,2')\n    'Invalid input'\n    >>> closest_point(['1,1', '2,2', '3,3'], 'two,two')\n    'Invalid input'\n    \"\"\"\n    if not is_valid_coordinate(target):\n        return 'Invalid input'\n    target_x, target_y = map(int, target.split(','))\n    min_distance = float('inf')\n    closest_pt = ''\n    for point in points:\n        if not is_valid_coordinate(point):\n            return 'Invalid input'\n        x, y = map(int, point.split(','))\n        distance = ((x - target_x) ** 2 + (y - target_y) ** 2) ** 0.5\n        if distance < min_distance or (distance == min_distance and x < int(closest_pt.split(',')[0])):\n            min_distance = distance\n            closest_pt = point\n    return closest_pt if closest_pt else ''",
+     "input": "(['1,,2', '3,', '5,6'], ',4')",
+     "expected_canonical": "'Invalid input'",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/80",
+   "entry": "add_items",
+   "mutants_tried": 8,
+   "survivors": 3,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "bool:And@node27",
+     "diff": "--- canonical\n+++ mutant\n@@ -9,3 +9,2 @@\n \n-\n def validate_item(items):\n@@ -18,2 +17,3 @@\n     return [item for item in items if item.isdigit() and int(item) > 0]\n+\n def add_items(items_str):\n@@ -36,6 +36,6 @@\n     \"\"\"\n-    if not items_str.startswith('{') or not items_str.endswith('}'):\n-            return \"Invalid\"\n+    if not items_str.startswith('{') and (not items_str.endswith('}')):\n+        return 'Invalid'\n     items = read_items(items_str)\n     valid_items = validate_item(items)\n-    return sum(sum([int(c) for c in str(item)]) for item in valid_items)+    return sum((sum([int(c) for c in str(item)]) for item in valid_items))",
+     "mutant_src": "def read_items(items_str):\n    \"\"\"Converts the string representation of a list of items into a Python list.\n    \n    The string representation of a list follows the format:\n    '{first_item,second_item,third_item,...,last_item}'\n    \"\"\"\n    items_str = items_str.strip('{}')\n    return items_str.split(',')\n\ndef validate_item(items):\n    \"\"\"Validates the items of a Python list.\n    \n    Each valid item is a string of digits that represents a positive integer.\n    An item is invalid if it consists of non-digit characters or if it represents a non-positive integer.\n    This function checks each item in the list and removes invalid items.\n    \"\"\"\n    return [item for item in items if item.isdigit() and int(item) > 0]\n\ndef add_items(items_str):\n    \"\"\"\n    This function takes a string representation of a list of items and returns their sum.\n    Each item is separated by a ','. \n\n    The string starts and ends with a '{' and '}' respectively.\n    If input does not follow the format, return \"Invalid\"\n\n    For each item, if it's not a positive integer, ignore it.\n\n    Finally, return the sum of all the individual digits in the valid items. If no valid items found, return 0.\n\n    Examples:\n    add_items('{1,2,3,4,5}')  # returns 15\n    add_items('{a,b,3,d,e}')  # returns 3\n    add_items('{10,a,20,b,30}')  # returns 6\n    add_items('{}')  # returns 0\n    \"\"\"\n    if not items_str.startswith('{') and (not items_str.endswith('}')):\n        return 'Invalid'\n    items = read_items(items_str)\n    valid_items = validate_item(items)\n    return sum((sum([int(c) for c in str(item)]) for item in valid_items))",
+     "input": "('{012,,a0,b0}3,',)",
+     "expected_canonical": "'Invalid'",
+     "mutant_output": "3"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/81",
+   "entry": "is_valid_password",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/82",
+   "entry": "time_difference",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/83",
+   "entry": "get_conflicting_bookings",
+   "mutants_tried": 14,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/84",
+   "entry": "count_alpha_words",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/85",
+   "entry": "string_processing",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/86",
+   "entry": "process_payments",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/87",
+   "entry": "process_orders",
+   "mutants_tried": 9,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node113",
+     "diff": "--- canonical\n+++ mutant\n@@ -13,2 +13,3 @@\n     return (product_id, quantity)\n+\n def process_orders(orders, product_ids):\n@@ -44,3 +45,3 @@\n             product_id, quantity = parsed_order\n-            if product_id in product_ids and quantity > 0:\n+            if product_id in product_ids and quantity > 1:\n                 valid_orders.append((product_id, quantity))\n",
+     "mutant_src": "def parse_order(order):\n    \"\"\"\n    Parse an order string and return a tuple (product_id, quantity).\n    If the order is not in the correct format, return None.\n    \"\"\"\n    parts = order.split()\n    if len(parts) != 2:\n        return None\n    product_id, quantity_str = parts\n    if not quantity_str.isdigit():\n        return None\n    quantity = int(quantity_str)\n    return (product_id, quantity)\n\ndef process_orders(orders, product_ids):\n    \"\"\"\n    You are given two lists: orders and product_ids. Each element in the \n    orders list is a string, representing an order, in the format \"product_id quantity\". \n    Each order represents a request for a certain quantity of a product.\n    The product_ids list contains strings, each representing a valid product id.\n    \n    Your task is to process the orders. For each order, if the product_id exists in the \n    product_ids list and the quantity is a positive integer, add it to the final list. \n    Otherwise, ignore the order.\n    \n    Return a list of tuples, where each tuple represents a valid order and is in the \n    format (product_id, quantity). The orders should appear in the same order \n    as they appear in the original orders list.\n    \n    The function should not raise any exceptions if any of the input orders are invalid.\n    Instead, it should simply ignore any invalid orders.\n\n    Examples:\n    \n    process_orders([\"p1 2\", \"p2 5\", \"p3 0\", \"p4 10\"], [\"p1\", \"p2\", \"p3\", \"p4\"]) \n    == [(\"p1\", 2), (\"p2\", 5), (\"p4\", 10)]\n    \n    process_orders([\"p1 2\", \"p2 a\", \"p3 0\", \"p4 10\"], [\"p1\", \"p2\", \"p3\", \"p4\"]) \n    == [(\"p1\", 2), (\"p4\", 10)]\n    \"\"\"\n    valid_orders = []\n    for order in orders:\n        parsed_order = parse_order(order)\n        if parsed_order is not None:\n            product_id, quantity = parsed_order\n            if product_id in product_ids and quantity > 1:\n                valid_orders.append((product_id, quantity))\n    return valid_orders",
+     "input": "(['p4 1', ' p3 0', 'p5 2', ' 2p1'], ['1p', 'p2', 'p3', 'p4'])",
+     "expected_canonical": "[('p4', 1)]",
+     "mutant_output": "[]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/88",
+   "entry": "unique_minimum",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/89",
+   "entry": "is_happy",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/90",
+   "entry": "find_max_product_sublist",
+   "mutants_tried": 17,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node62",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,3 @@\n def is_valid_input(lst):\n-    '''\n+    \"\"\"\n     This helper function checks if the input is a list of integers.\n@@ -15,8 +15,9 @@\n     is_valid_input([]) \u279e False\n-    '''\n+    \"\"\"\n     if not lst or type(lst) != list:\n         return False\n-    return all(isinstance(i, int) for i in lst)\n+    return all((isinstance(i, int) for i in lst))\n+\n def find_max_product_sublist(lst):\n-    '''\n+    \"\"\"\n     Write a function that takes a list of integers as input. \n@@ -38,3 +39,3 @@\n     find_max_product_sublist([1.2, 3, 4]) \u279e \"Invalid input\"\n-    '''\n+    \"\"\"\n     if not lst:\n@@ -42,8 +43,6 @@\n     if not is_valid_input(lst):\n-        return \"Invalid input\"\n-\n+        return 'Invalid input'\n     max_product = lst[0]\n     min_product = lst[0]\n-    result = lst[0]\n-\n+    result = lst[-1]\n     for i in range(1, len(lst)):\n@@ -53,3 +52,2 @@\n         result = max(result, max_product)\n-\n     return result",
+     "mutant_src": "def is_valid_input(lst):\n    \"\"\"\n    This helper function checks if the input is a list of integers.\n    \n    Parameters: \n    lst (list): list of integers\n\n    Returns:\n    boolean: True if the input is a list of integers, False otherwise \n\n    Examples: \n    is_valid_input([1, 2, 3]) \u279e True\n    is_valid_input([1, '2', 3]) \u279e False\n    is_valid_input([1, 2.0, 3]) \u279e False\n    is_valid_input([]) \u279e False\n    \"\"\"\n    if not lst or type(lst) != list:\n        return False\n    return all((isinstance(i, int) for i in lst))\n\ndef find_max_product_sublist(lst):\n    \"\"\"\n    Write a function that takes a list of integers as input. \n    The function should find the sublist of consecutive integers in the list that has the maximum product.\n    The function should return this maximum product.\n    \n    If the input list is empty, the function should return None.\n    If the input is not a list of integers, the function should return the string \"Invalid input\".\n\n    The function does not need to return the sublist itself, just the product.\n    \n    Examples\n    find_max_product_sublist([1,2,3]) \u279e 6\n    find_max_product_sublist([-1,-2,-3]) \u279e 6\n    find_max_product_sublist([-1,-2,3]) \u279e 6\n    find_max_product_sublist([0, -4, -2, 3]) \u279e 24\n    find_max_product_sublist([]) \u279e None\n    find_max_product_sublist([3,'a',1]) \u279e \"Invalid input\"\n    find_max_product_sublist([1.2, 3, 4]) \u279e \"Invalid input\"\n    \"\"\"\n    if not lst:\n        return None\n    if not is_valid_input(lst):\n        return 'Invalid input'\n    max_product = lst[0]\n    min_product = lst[0]\n    result = lst[-1]\n    for i in range(1, len(lst)):\n        temp = max_product\n        max_product = max(lst[i], max_product * lst[i], min_product * lst[i])\n        min_product = min(lst[i], temp * lst[i], min_product * lst[i])\n        result = max(result, max_product)\n    return result",
+     "input": "([1, 0],)",
+     "expected_canonical": "1",
+     "mutant_output": "0"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/91",
+   "entry": "rearrange_string",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/92",
+   "entry": "convert_strings",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/93",
+   "entry": "scramble",
+   "mutants_tried": 10,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/94",
+   "entry": "calculate_duration",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/95",
+   "entry": "replicate_string",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/96",
+   "entry": "find_special_triplet",
+   "mutants_tried": 23,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/97",
+   "entry": "frequency_count",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/98",
+   "entry": "correct_sudoku",
+   "mutants_tried": 61,
+   "survivors": 13,
+   "equivalent_or_unknown": 13,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "EvoEval_tool_use/99",
+   "entry": "lowerAlphaDigitSum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  }
+ ]
+}

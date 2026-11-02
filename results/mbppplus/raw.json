@@ -1,0 +1,3897 @@
+{
+ "benchmark": "mbppplus",
+ "n_tasks": 378,
+ "seed": 1337,
+ "results": [
+  {
+   "task_id": "MbppPlus/2",
+   "entry": "similar_elements",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/3",
+   "entry": "is_not_prime",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/4",
+   "entry": "heap_queue_largest",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/6",
+   "entry": "differ_At_One_Bit_Pos",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/7",
+   "entry": "find_char_long",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/8",
+   "entry": "square_nums",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/9",
+   "entry": "find_Rotations",
+   "mutants_tried": 9,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/11",
+   "entry": "remove_Occ",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/12",
+   "entry": "sort_matrix",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/14",
+   "entry": "find_Volume",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/16",
+   "entry": "text_lowercase_underscore",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/17",
+   "entry": "square_perimeter",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/18",
+   "entry": "remove_dirty_chars",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/19",
+   "entry": "test_duplicate",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/20",
+   "entry": "is_woodall",
+   "mutants_tried": 30,
+   "survivors": 9,
+   "equivalent_or_unknown": 9,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/56",
+   "entry": "check",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/57",
+   "entry": "find_Max_Num",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/58",
+   "entry": "opposite_Signs",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/59",
+   "entry": "is_octagonal",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/61",
+   "entry": "count_Substrings",
+   "mutants_tried": 21,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/62",
+   "entry": "smallest_num",
+   "mutants_tried": 4,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/63",
+   "entry": "max_difference",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/64",
+   "entry": "subject_marks",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/65",
+   "entry": "recursive_list_sum",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/66",
+   "entry": "pos_count",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/67",
+   "entry": "bell_number",
+   "mutants_tried": 44,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/68",
+   "entry": "is_Monotonic",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/69",
+   "entry": "is_sublist",
+   "mutants_tried": 8,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/70",
+   "entry": "get_equal",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/71",
+   "entry": "comb_sort",
+   "mutants_tried": 17,
+   "survivors": 5,
+   "equivalent_or_unknown": 3,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node59",
+     "diff": "--- canonical\n+++ mutant\n@@ -13,3 +13,3 @@\n         if gap < 1:\n-            gap = 1\n+            gap = 0\n         swapped = False\n@@ -17,4 +17,4 @@\n             if nums[i] > nums[i + gap]:\n-                nums[i], nums[i + gap] = nums[i + gap], nums[i]\n+                nums[i], nums[i + gap] = (nums[i + gap], nums[i])\n                 swapped = True\n-    return nums\n+    return nums",
+     "mutant_src": "\"\"\"\nWrite a function to sort a list of elements.\nassert comb_sort([5, 15, 37, 25, 79]) == [5, 15, 25, 37, 79]\n\"\"\"\n\ndef comb_sort(nums):\n    n = len(nums)\n    gap = n\n    shrink = 1.3\n    swapped = True\n    while gap > 1 or swapped:\n        gap = int(gap / shrink)\n        if gap < 1:\n            gap = 0\n        swapped = False\n        for i in range(n - gap):\n            if nums[i] > nums[i + gap]:\n                nums[i], nums[i + gap] = (nums[i + gap], nums[i])\n                swapped = True\n    return nums",
+     "input": "([3, 17, 1, 8, 4, 8, 4, 7, 12, -7],)",
+     "expected_canonical": "[-7, 1, 3, 4, 4, 7, 8, 8, 12, 17]",
+     "mutant_output": "[-7, 1, 3, 4, 7, 4, 8, 8, 12, 17]"
+    },
+    {
+     "mutation": "const:-1@node57",
+     "diff": "--- canonical\n+++ mutant\n@@ -12,3 +12,3 @@\n         gap = int(gap / shrink)\n-        if gap < 1:\n+        if gap < 0:\n             gap = 1\n@@ -17,4 +17,4 @@\n             if nums[i] > nums[i + gap]:\n-                nums[i], nums[i + gap] = nums[i + gap], nums[i]\n+                nums[i], nums[i + gap] = (nums[i + gap], nums[i])\n                 swapped = True\n-    return nums\n+    return nums",
+     "mutant_src": "\"\"\"\nWrite a function to sort a list of elements.\nassert comb_sort([5, 15, 37, 25, 79]) == [5, 15, 25, 37, 79]\n\"\"\"\n\ndef comb_sort(nums):\n    n = len(nums)\n    gap = n\n    shrink = 1.3\n    swapped = True\n    while gap > 1 or swapped:\n        gap = int(gap / shrink)\n        if gap < 0:\n            gap = 1\n        swapped = False\n        for i in range(n - gap):\n            if nums[i] > nums[i + gap]:\n                nums[i], nums[i + gap] = (nums[i + gap], nums[i])\n                swapped = True\n    return nums",
+     "input": "([3, 17, 1, 8, 4, 8, 4, 7, 12, -7],)",
+     "expected_canonical": "[-7, 1, 3, 4, 4, 7, 8, 8, 12, 17]",
+     "mutant_output": "[-7, 1, 3, 4, 7, 4, 8, 8, 12, 17]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/72",
+   "entry": "dif_Square",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/74",
+   "entry": "is_samepatterns",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/75",
+   "entry": "find_tuples",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/77",
+   "entry": "is_Diff",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/79",
+   "entry": "word_len",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/80",
+   "entry": "tetrahedral_number",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/82",
+   "entry": "volume_sphere",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/84",
+   "entry": "sequence",
+   "mutants_tried": 34,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/85",
+   "entry": "surfacearea_sphere",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/86",
+   "entry": "centered_hexagonal_number",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/87",
+   "entry": "merge_dictionaries_three",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/88",
+   "entry": "freq_count",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/89",
+   "entry": "closest_num",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/90",
+   "entry": "len_log",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/91",
+   "entry": "find_substring",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/92",
+   "entry": "is_undulating",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/93",
+   "entry": "power",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/94",
+   "entry": "index_minimum",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/95",
+   "entry": "Find_Min_Length",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/96",
+   "entry": "divisor",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node26",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,2 +6,2 @@\n def divisor(n):\n-  return sum(1 for i in range(1, n + 1) if n % i == 0)\n+    return sum((1 for i in range(1, n + 2) if n % i == 0))",
+     "mutant_src": "\"\"\"\nWrite a python function to find the number of divisors of a given integer.\nassert divisor(15) == 4\n\"\"\"\n\ndef divisor(n):\n    return sum((1 for i in range(1, n + 2) if n % i == 0))",
+     "input": "(False,)",
+     "expected_canonical": "0",
+     "mutant_output": "1"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/97",
+   "entry": "frequency_lists",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/98",
+   "entry": "multiply_num",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/99",
+   "entry": "decimal_to_binary",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/100",
+   "entry": "next_smallest_palindrome",
+   "mutants_tried": 70,
+   "survivors": 13,
+   "equivalent_or_unknown": 9,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node98",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,3 +6,3 @@\n def next_smallest_palindrome(num):\n-    if all(digit == '9' for digit in str(num)):\n+    if all((digit == '9' for digit in str(num))):\n         return num + 2\n@@ -13,3 +13,2 @@\n         left_smaller = False\n-        # if n is odd, ignore the middle digit at first\n         i = mid - 1\n@@ -19,11 +18,8 @@\n             j += 1\n-        # stop if traverse end or difference found\n         if i < 0 or num[i] < num[j]:\n             left_smaller = True\n-        # copy left to right\n         while i >= 0:\n             num[j] = num[i]\n-            j += 1\n+            j += 0\n             i -= 1\n-        # the middle digit must be incremented\n         if left_smaller:\n@@ -45,2 +41,2 @@\n                 i -= 1\n-    return int(\"\".join(map(str, num)))\n+    return int(''.join(map(str, num)))",
+     "mutant_src": "\"\"\"\nWrite a function to find the next smallest palindrome of a specified integer, returned as an integer.\nassert next_smallest_palindrome(99)==101\n\"\"\"\n\ndef next_smallest_palindrome(num):\n    if all((digit == '9' for digit in str(num))):\n        return num + 2\n    else:\n        num = [int(digit) for digit in str(num)]\n        n = len(num)\n        mid = n // 2\n        left_smaller = False\n        i = mid - 1\n        j = mid + 1 if n % 2 else mid\n        while i >= 0 and num[i] == num[j]:\n            i -= 1\n            j += 1\n        if i < 0 or num[i] < num[j]:\n            left_smaller = True\n        while i >= 0:\n            num[j] = num[i]\n            j += 0\n            i -= 1\n        if left_smaller:\n            carry = 1\n            i = mid - 1\n            if n % 2:\n                num[mid] += carry\n                carry = num[mid] // 10\n                num[mid] %= 10\n                j = mid + 1\n            else:\n                j = mid\n            while i >= 0:\n                num[i] += carry\n                carry = num[i] // 10\n                num[i] %= 10\n                num[j] = num[i]\n                j += 1\n                i -= 1\n    return int(''.join(map(str, num)))",
+     "input": "(1219,)",
+     "expected_canonical": "1221",
+     "mutant_output": "1219"
+    },
+    {
+     "mutation": "const:1@node82",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,3 +6,3 @@\n def next_smallest_palindrome(num):\n-    if all(digit == '9' for digit in str(num)):\n+    if all((digit == '9' for digit in str(num))):\n         return num + 2\n@@ -13,3 +13,2 @@\n         left_smaller = False\n-        # if n is odd, ignore the middle digit at first\n         i = mid - 1\n@@ -17,8 +16,6 @@\n         while i >= 0 and num[i] == num[j]:\n-            i -= 1\n+            i -= 2\n             j += 1\n-        # stop if traverse end or difference found\n         if i < 0 or num[i] < num[j]:\n             left_smaller = True\n-        # copy left to right\n         while i >= 0:\n@@ -27,3 +24,2 @@\n             i -= 1\n-        # the middle digit must be incremented\n         if left_smaller:\n@@ -45,2 +41,2 @@\n                 i -= 1\n-    return int(\"\".join(map(str, num)))\n+    return int(''.join(map(str, num)))",
+     "mutant_src": "\"\"\"\nWrite a function to find the next smallest palindrome of a specified integer, returned as an integer.\nassert next_smallest_palindrome(99)==101\n\"\"\"\n\ndef next_smallest_palindrome(num):\n    if all((digit == '9' for digit in str(num))):\n        return num + 2\n    else:\n        num = [int(digit) for digit in str(num)]\n        n = len(num)\n        mid = n // 2\n        left_smaller = False\n        i = mid - 1\n        j = mid + 1 if n % 2 else mid\n        while i >= 0 and num[i] == num[j]:\n            i -= 2\n            j += 1\n        if i < 0 or num[i] < num[j]:\n            left_smaller = True\n        while i >= 0:\n            num[j] = num[i]\n            j += 1\n            i -= 1\n        if left_smaller:\n            carry = 1\n            i = mid - 1\n            if n % 2:\n                num[mid] += carry\n                carry = num[mid] // 10\n                num[mid] %= 10\n                j = mid + 1\n            else:\n                j = mid\n            while i >= 0:\n                num[i] += carry\n                carry = num[i] // 10\n                num[i] %= 10\n                num[j] = num[i]\n                j += 1\n                i -= 1\n    return int(''.join(map(str, num)))",
+     "input": "(1220,)",
+     "expected_canonical": "1221",
+     "mutant_output": "1331"
+    },
+    {
+     "mutation": "const:1@node101",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,3 +6,3 @@\n def next_smallest_palindrome(num):\n-    if all(digit == '9' for digit in str(num)):\n+    if all((digit == '9' for digit in str(num))):\n         return num + 2\n@@ -13,3 +13,2 @@\n         left_smaller = False\n-        # if n is odd, ignore the middle digit at first\n         i = mid - 1\n@@ -19,6 +18,4 @@\n             j += 1\n-        # stop if traverse end or difference found\n         if i < 0 or num[i] < num[j]:\n             left_smaller = True\n-        # copy left to right\n         while i >= 0:\n@@ -26,4 +23,3 @@\n             j += 1\n-            i -= 1\n-        # the middle digit must be incremented\n+            i -= 2\n         if left_smaller:\n@@ -45,2 +41,2 @@\n                 i -= 1\n-    return int(\"\".join(map(str, num)))\n+    return int(''.join(map(str, num)))",
+     "mutant_src": "\"\"\"\nWrite a function to find the next smallest palindrome of a specified integer, returned as an integer.\nassert next_smallest_palindrome(99)==101\n\"\"\"\n\ndef next_smallest_palindrome(num):\n    if all((digit == '9' for digit in str(num))):\n        return num + 2\n    else:\n        num = [int(digit) for digit in str(num)]\n        n = len(num)\n        mid = n // 2\n        left_smaller = False\n        i = mid - 1\n        j = mid + 1 if n % 2 else mid\n        while i >= 0 and num[i] == num[j]:\n            i -= 1\n            j += 1\n        if i < 0 or num[i] < num[j]:\n            left_smaller = True\n        while i >= 0:\n            num[j] = num[i]\n            j += 1\n            i -= 2\n        if left_smaller:\n            carry = 1\n            i = mid - 1\n            if n % 2:\n                num[mid] += carry\n                carry = num[mid] // 10\n                num[mid] %= 10\n                j = mid + 1\n            else:\n                j = mid\n            while i >= 0:\n                num[i] += carry\n                carry = num[i] // 10\n                num[i] %= 10\n                num[j] = num[i]\n                j += 1\n                i -= 1\n    return int(''.join(map(str, num)))",
+     "input": "(1219,)",
+     "expected_canonical": "1221",
+     "mutant_output": "1229"
+    },
+    {
+     "mutation": "const:-1@node85",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,3 +6,3 @@\n def next_smallest_palindrome(num):\n-    if all(digit == '9' for digit in str(num)):\n+    if all((digit == '9' for digit in str(num))):\n         return num + 2\n@@ -13,3 +13,2 @@\n         left_smaller = False\n-        # if n is odd, ignore the middle digit at first\n         i = mid - 1\n@@ -18,7 +17,5 @@\n             i -= 1\n-            j += 1\n-        # stop if traverse end or difference found\n+            j += 0\n         if i < 0 or num[i] < num[j]:\n             left_smaller = True\n-        # copy left to right\n         while i >= 0:\n@@ -27,3 +24,2 @@\n             i -= 1\n-        # the middle digit must be incremented\n         if left_smaller:\n@@ -45,2 +41,2 @@\n                 i -= 1\n-    return int(\"\".join(map(str, num)))\n+    return int(''.join(map(str, num)))",
+     "mutant_src": "\"\"\"\nWrite a function to find the next smallest palindrome of a specified integer, returned as an integer.\nassert next_smallest_palindrome(99)==101\n\"\"\"\n\ndef next_smallest_palindrome(num):\n    if all((digit == '9' for digit in str(num))):\n        return num + 2\n    else:\n        num = [int(digit) for digit in str(num)]\n        n = len(num)\n        mid = n // 2\n        left_smaller = False\n        i = mid - 1\n        j = mid + 1 if n % 2 else mid\n        while i >= 0 and num[i] == num[j]:\n            i -= 1\n            j += 0\n        if i < 0 or num[i] < num[j]:\n            left_smaller = True\n        while i >= 0:\n            num[j] = num[i]\n            j += 1\n            i -= 1\n        if left_smaller:\n            carry = 1\n            i = mid - 1\n            if n % 2:\n                num[mid] += carry\n                carry = num[mid] // 10\n                num[mid] %= 10\n                j = mid + 1\n            else:\n                j = mid\n            while i >= 0:\n                num[i] += carry\n                carry = num[i] // 10\n                num[i] %= 10\n                num[j] = num[i]\n                j += 1\n                i -= 1\n    return int(''.join(map(str, num)))",
+     "input": "(1220,)",
+     "expected_canonical": "1221",
+     "mutant_output": "1331"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/101",
+   "entry": "kth_element",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/102",
+   "entry": "snake_to_camel",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/103",
+   "entry": "eulerian_num",
+   "mutants_tried": 29,
+   "survivors": 3,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "bool:And@node10",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,7 +5,7 @@\n \n-def eulerian_num(n, m): \n-\tif (m >= n or n == 0): \n-\t\treturn 0 \n-\tif (m == 0): \n-\t\treturn 1 \n-\treturn (n - m) * eulerian_num(n - 1, m - 1) + (m + 1) * eulerian_num(n - 1, m)\n+def eulerian_num(n, m):\n+    if m >= n and n == 0:\n+        return 0\n+    if m == 0:\n+        return 1\n+    return (n - m) * eulerian_num(n - 1, m - 1) + (m + 1) * eulerian_num(n - 1, m)",
+     "mutant_src": "\"\"\"\nWrite a function to find the Eulerian number a(n, m).\nassert eulerian_num(3, 1) == 4\n\"\"\"\n\ndef eulerian_num(n, m):\n    if m >= n and n == 0:\n        return 0\n    if m == 0:\n        return 1\n    return (n - m) * eulerian_num(n - 1, m - 1) + (m + 1) * eulerian_num(n - 1, m)",
+     "input": "(1, -1)",
+     "expected_canonical": "0",
+     "mutant_output": "err"
+    },
+    {
+     "mutation": "cmp:Gt@node16",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,7 +5,7 @@\n \n-def eulerian_num(n, m): \n-\tif (m >= n or n == 0): \n-\t\treturn 0 \n-\tif (m == 0): \n-\t\treturn 1 \n-\treturn (n - m) * eulerian_num(n - 1, m - 1) + (m + 1) * eulerian_num(n - 1, m)\n+def eulerian_num(n, m):\n+    if m > n or n == 0:\n+        return 0\n+    if m == 0:\n+        return 1\n+    return (n - m) * eulerian_num(n - 1, m - 1) + (m + 1) * eulerian_num(n - 1, m)",
+     "mutant_src": "\"\"\"\nWrite a function to find the Eulerian number a(n, m).\nassert eulerian_num(3, 1) == 4\n\"\"\"\n\ndef eulerian_num(n, m):\n    if m > n or n == 0:\n        return 0\n    if m == 0:\n        return 1\n    return (n - m) * eulerian_num(n - 1, m - 1) + (m + 1) * eulerian_num(n - 1, m)",
+     "input": "(-1, -1)",
+     "expected_canonical": "0",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/104",
+   "entry": "sort_sublists",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/105",
+   "entry": "count",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/106",
+   "entry": "add_lists",
+   "mutants_tried": 1,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/108",
+   "entry": "merge_sorted_list",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/109",
+   "entry": "odd_Equivalent",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/111",
+   "entry": "common_in_nested_lists",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/113",
+   "entry": "check_integer",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/116",
+   "entry": "tuple_to_int",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/118",
+   "entry": "string_to_list",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/119",
+   "entry": "search",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/120",
+   "entry": "max_product_tuple",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/123",
+   "entry": "amicable_numbers_sum",
+   "mutants_tried": 23,
+   "survivors": 7,
+   "equivalent_or_unknown": 5,
+   "witnesses": [
+    {
+     "mutation": "bin:Sub@node50",
+     "diff": "--- canonical\n+++ mutant\n@@ -15,5 +15,6 @@\n     return res\n+\n def amicable_numbers_sum(limit):\n     amicables = set()\n-    for num in range(2, limit + 1):\n+    for num in range(2, limit - 1):\n         if num in amicables:\n@@ -25,2 +26,2 @@\n             amicables.add(sum_fact2)\n-    return sum(amicables)\n+    return sum(amicables)",
+     "mutant_src": "\"\"\"\nWrite a function to sum all amicable numbers from 1 to a specified number.\nassert amicable_numbers_sum(999)==504\n\"\"\"\n\ndef div_sum(num):\n    res = 1\n    i = 2\n    while i * i <= num:\n        if num % i == 0:\n            res += i\n            if i * i != num:\n                res += num / i\n        i += 1\n    return res\n\ndef amicable_numbers_sum(limit):\n    amicables = set()\n    for num in range(2, limit - 1):\n        if num in amicables:\n            continue\n        sum_fact = div_sum(num)\n        sum_fact2 = div_sum(sum_fact)\n        if num == sum_fact2 and num != sum_fact:\n            amicables.add(num)\n            amicables.add(sum_fact2)\n    return sum(amicables)",
+     "input": "(5020,)",
+     "expected_canonical": "13462",
+     "mutant_output": "8442"
+    },
+    {
+     "mutation": "const:-1@node79",
+     "diff": "--- canonical\n+++ mutant\n@@ -15,5 +15,6 @@\n     return res\n+\n def amicable_numbers_sum(limit):\n     amicables = set()\n-    for num in range(2, limit + 1):\n+    for num in range(2, limit + 0):\n         if num in amicables:\n@@ -25,2 +26,2 @@\n             amicables.add(sum_fact2)\n-    return sum(amicables)\n+    return sum(amicables)",
+     "mutant_src": "\"\"\"\nWrite a function to sum all amicable numbers from 1 to a specified number.\nassert amicable_numbers_sum(999)==504\n\"\"\"\n\ndef div_sum(num):\n    res = 1\n    i = 2\n    while i * i <= num:\n        if num % i == 0:\n            res += i\n            if i * i != num:\n                res += num / i\n        i += 1\n    return res\n\ndef amicable_numbers_sum(limit):\n    amicables = set()\n    for num in range(2, limit + 0):\n        if num in amicables:\n            continue\n        sum_fact = div_sum(num)\n        sum_fact2 = div_sum(sum_fact)\n        if num == sum_fact2 and num != sum_fact:\n            amicables.add(num)\n            amicables.add(sum_fact2)\n    return sum(amicables)",
+     "input": "(5020,)",
+     "expected_canonical": "13462",
+     "mutant_output": "8442"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/124",
+   "entry": "angle_complex",
+   "mutants_tried": 1,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/125",
+   "entry": "find_length",
+   "mutants_tried": 15,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/126",
+   "entry": "sum",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/127",
+   "entry": "multiply_int",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/128",
+   "entry": "long_words",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/129",
+   "entry": "magic_square_test",
+   "mutants_tried": 12,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/130",
+   "entry": "max_occurrences",
+   "mutants_tried": 2,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/131",
+   "entry": "reverse_vowels",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/132",
+   "entry": "tup_string",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/133",
+   "entry": "sum_negativenum",
+   "mutants_tried": 4,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node21",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,2 +6,2 @@\n def sum_negativenum(nums):\n-  return sum(x for x in nums if x < 0)\n+    return sum((x for x in nums if x < 1))",
+     "mutant_src": "\"\"\"\nWrite a function to calculate the sum of the negative numbers of a given list of numbers.\nassert sum_negativenum([2, 4, -6, -9, 11, -12, 14, -5, 17])==-32\n\"\"\"\n\ndef sum_negativenum(nums):\n    return sum((x for x in nums if x < 1))",
+     "input": "([4, -20, -1, -7, 0.88, -6.24, 6, -6, -6],)",
+     "expected_canonical": "-46.24",
+     "mutant_output": "-45.36"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/135",
+   "entry": "hexagonal_num",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/137",
+   "entry": "zero_count",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/138",
+   "entry": "is_Sum_Of_Powers_Of_Two",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/139",
+   "entry": "circle_circumference",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/140",
+   "entry": "extract_singly",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/141",
+   "entry": "pancake_sort",
+   "mutants_tried": 20,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/142",
+   "entry": "count_samepair",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/145",
+   "entry": "max_Abs_Diff",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/160",
+   "entry": "find_solution",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/161",
+   "entry": "remove_elements",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/162",
+   "entry": "sum_series",
+   "mutants_tried": 16,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/165",
+   "entry": "count_char_position",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/166",
+   "entry": "find_even_pair",
+   "mutants_tried": 15,
+   "survivors": 3,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node13",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,5 +5,5 @@\n \n-def find_even_pair(A): \n-  if len(A) < 2: \n-    return 0\n-  return sum((a ^ b) % 2 == 0 for i, a in enumerate(A) for b in A[i + 1:])\n+def find_even_pair(A):\n+    if len(A) < 3:\n+        return 0\n+    return sum(((a ^ b) % 2 == 0 for i, a in enumerate(A) for b in A[i + 1:]))",
+     "mutant_src": "\"\"\"\nWrite a function that counts the number of pairs of integers in a list that xor to an even number.\nassert find_even_pair([5, 4, 7, 2, 1]) == 4\n\"\"\"\n\ndef find_even_pair(A):\n    if len(A) < 3:\n        return 0\n    return sum(((a ^ b) % 2 == 0 for i, a in enumerate(A) for b in A[i + 1:]))",
+     "input": "([0, 2],)",
+     "expected_canonical": "1",
+     "mutant_output": "0"
+    },
+    {
+     "mutation": "cmp:LtE@node8",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,5 +5,5 @@\n \n-def find_even_pair(A): \n-  if len(A) < 2: \n-    return 0\n-  return sum((a ^ b) % 2 == 0 for i, a in enumerate(A) for b in A[i + 1:])\n+def find_even_pair(A):\n+    if len(A) <= 2:\n+        return 0\n+    return sum(((a ^ b) % 2 == 0 for i, a in enumerate(A) for b in A[i + 1:]))",
+     "mutant_src": "\"\"\"\nWrite a function that counts the number of pairs of integers in a list that xor to an even number.\nassert find_even_pair([5, 4, 7, 2, 1]) == 4\n\"\"\"\n\ndef find_even_pair(A):\n    if len(A) <= 2:\n        return 0\n    return sum(((a ^ b) % 2 == 0 for i, a in enumerate(A) for b in A[i + 1:]))",
+     "input": "([0, 2],)",
+     "expected_canonical": "1",
+     "mutant_output": "0"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/167",
+   "entry": "next_power_of_2",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/168",
+   "entry": "frequency",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/170",
+   "entry": "sum_range_list",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/171",
+   "entry": "perimeter_pentagon",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/172",
+   "entry": "count_occurance",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/222",
+   "entry": "check_type",
+   "mutants_tried": 2,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/223",
+   "entry": "is_majority",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/224",
+   "entry": "count_Set_Bits",
+   "mutants_tried": 2,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/226",
+   "entry": "odd_values_string",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/227",
+   "entry": "min_of_three",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/230",
+   "entry": "replace_blank",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/232",
+   "entry": "larg_nnum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/233",
+   "entry": "lateralsuface_cylinder",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/234",
+   "entry": "volume_cube",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/235",
+   "entry": "even_bit_set_number",
+   "mutants_tried": 6,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/237",
+   "entry": "check_occurences",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/238",
+   "entry": "number_of_substrings",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/239",
+   "entry": "get_total_number_of_sequences",
+   "mutants_tried": 40,
+   "survivors": 9,
+   "equivalent_or_unknown": 7,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node60",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,13 +6,13 @@\n def get_total_number_of_sequences(m, n):\n-\tT=[[0 for _ in range(n + 1)] for _ in range(m + 1)] \n-\tfor i in range(m + 1): \n-\t\tfor j in range(n + 1): \n-\t\t\tif i==0 or j==0: \n-\t\t\t\tT[i][j] = 0\n-\t\t\telif i<j: \n-\t\t\t\tT[i][j] = 0\n-\t\t\telif j==1: \n-\t\t\t\tT[i][j] = i \n-\t\t\telse: \n-\t\t\t\tT[i][j] = T[i-1][j] + T[i//2][j-1] \n-\treturn T[m][n]\n+    T = [[0 for _ in range(n + 1)] for _ in range(m + 1)]\n+    for i in range(m + 1):\n+        for j in range(n + 1):\n+            if i == 0 or j == 0:\n+                T[i][j] = -1\n+            elif i < j:\n+                T[i][j] = 0\n+            elif j == 1:\n+                T[i][j] = i\n+            else:\n+                T[i][j] = T[i - 1][j] + T[i // 2][j - 1]\n+    return T[m][n]",
+     "mutant_src": "\"\"\"\nWrite a function that takes in positive integers m and n and finds the number of possible sequences of length n, such that each element is a positive integer and is greater than or equal to twice the previous element but less than or equal to m.\nassert get_total_number_of_sequences(10, 4) == 4\n\"\"\"\n\ndef get_total_number_of_sequences(m, n):\n    T = [[0 for _ in range(n + 1)] for _ in range(m + 1)]\n    for i in range(m + 1):\n        for j in range(n + 1):\n            if i == 0 or j == 0:\n                T[i][j] = -1\n            elif i < j:\n                T[i][j] = 0\n            elif j == 1:\n                T[i][j] = i\n            else:\n                T[i][j] = T[i - 1][j] + T[i // 2][j - 1]\n    return T[m][n]",
+     "input": "(17, 0)",
+     "expected_canonical": "0",
+     "mutant_output": "-1"
+    },
+    {
+     "mutation": "const:1@node60",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,13 +6,13 @@\n def get_total_number_of_sequences(m, n):\n-\tT=[[0 for _ in range(n + 1)] for _ in range(m + 1)] \n-\tfor i in range(m + 1): \n-\t\tfor j in range(n + 1): \n-\t\t\tif i==0 or j==0: \n-\t\t\t\tT[i][j] = 0\n-\t\t\telif i<j: \n-\t\t\t\tT[i][j] = 0\n-\t\t\telif j==1: \n-\t\t\t\tT[i][j] = i \n-\t\t\telse: \n-\t\t\t\tT[i][j] = T[i-1][j] + T[i//2][j-1] \n-\treturn T[m][n]\n+    T = [[0 for _ in range(n + 1)] for _ in range(m + 1)]\n+    for i in range(m + 1):\n+        for j in range(n + 1):\n+            if i == 0 or j == 0:\n+                T[i][j] = 1\n+            elif i < j:\n+                T[i][j] = 0\n+            elif j == 1:\n+                T[i][j] = i\n+            else:\n+                T[i][j] = T[i - 1][j] + T[i // 2][j - 1]\n+    return T[m][n]",
+     "mutant_src": "\"\"\"\nWrite a function that takes in positive integers m and n and finds the number of possible sequences of length n, such that each element is a positive integer and is greater than or equal to twice the previous element but less than or equal to m.\nassert get_total_number_of_sequences(10, 4) == 4\n\"\"\"\n\ndef get_total_number_of_sequences(m, n):\n    T = [[0 for _ in range(n + 1)] for _ in range(m + 1)]\n    for i in range(m + 1):\n        for j in range(n + 1):\n            if i == 0 or j == 0:\n                T[i][j] = 1\n            elif i < j:\n                T[i][j] = 0\n            elif j == 1:\n                T[i][j] = i\n            else:\n                T[i][j] = T[i - 1][j] + T[i // 2][j - 1]\n    return T[m][n]",
+     "input": "(17, 0)",
+     "expected_canonical": "0",
+     "mutant_output": "1"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/240",
+   "entry": "replace_list",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/242",
+   "entry": "count_charac",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/244",
+   "entry": "next_Perfect_Square",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/245",
+   "entry": "max_sum",
+   "mutants_tried": 25,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/247",
+   "entry": "lps",
+   "mutants_tried": 36,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/250",
+   "entry": "count_X",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/251",
+   "entry": "insert_element",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/252",
+   "entry": "convert",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/253",
+   "entry": "count_integer",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/255",
+   "entry": "combinations_colors",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/256",
+   "entry": "count_Primes_nums",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/257",
+   "entry": "swap_numbers",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/259",
+   "entry": "maximize_elements",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/260",
+   "entry": "newman_prime",
+   "mutants_tried": 24,
+   "survivors": 6,
+   "equivalent_or_unknown": 4,
+   "witnesses": [
+    {
+     "mutation": "const:1@node19",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,12 +5,12 @@\n \n-def newman_prime(n): \n-\tif n == 0 or n == 1: \n-\t\treturn 1\n-\ta = 1\n-\tb = 1\n-\tc = 1\n-\tfor _ in range(2, n + 1):\n-\t\tc = 2 * b + a\n-\t\ta = b\n-\t\tb = c\n-\treturn c\n+def newman_prime(n):\n+    if n == 0 or n == 1:\n+        return 1\n+    a = 1\n+    b = 1\n+    c = 2\n+    for _ in range(2, n + 1):\n+        c = 2 * b + a\n+        a = b\n+        b = c\n+    return c",
+     "mutant_src": "\"\"\"\nWrite a function to find the nth newman\u2013shanks\u2013williams prime number.\nassert newman_prime(3) == 7\n\"\"\"\n\ndef newman_prime(n):\n    if n == 0 or n == 1:\n        return 1\n    a = 1\n    b = 1\n    c = 2\n    for _ in range(2, n + 1):\n        c = 2 * b + a\n        a = b\n        b = c\n    return c",
+     "input": "(-5,)",
+     "expected_canonical": "1",
+     "mutant_output": "2"
+    },
+    {
+     "mutation": "const:-1@node19",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,12 +5,12 @@\n \n-def newman_prime(n): \n-\tif n == 0 or n == 1: \n-\t\treturn 1\n-\ta = 1\n-\tb = 1\n-\tc = 1\n-\tfor _ in range(2, n + 1):\n-\t\tc = 2 * b + a\n-\t\ta = b\n-\t\tb = c\n-\treturn c\n+def newman_prime(n):\n+    if n == 0 or n == 1:\n+        return 1\n+    a = 1\n+    b = 1\n+    c = 0\n+    for _ in range(2, n + 1):\n+        c = 2 * b + a\n+        a = b\n+        b = c\n+    return c",
+     "mutant_src": "\"\"\"\nWrite a function to find the nth newman\u2013shanks\u2013williams prime number.\nassert newman_prime(3) == 7\n\"\"\"\n\ndef newman_prime(n):\n    if n == 0 or n == 1:\n        return 1\n    a = 1\n    b = 1\n    c = 0\n    for _ in range(2, n + 1):\n        c = 2 * b + a\n        a = b\n        b = c\n    return c",
+     "input": "(-5,)",
+     "expected_canonical": "1",
+     "mutant_output": "0"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/261",
+   "entry": "division_elements",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/262",
+   "entry": "split_two_parts",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/264",
+   "entry": "dog_age",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/265",
+   "entry": "list_split",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/266",
+   "entry": "lateralsurface_cube",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/267",
+   "entry": "square_Sum",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/268",
+   "entry": "find_star_num",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/269",
+   "entry": "ascii_value",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/270",
+   "entry": "sum_even_and_even_index",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/271",
+   "entry": "even_Power_Sum",
+   "mutants_tried": 12,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/272",
+   "entry": "rear_extract",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/273",
+   "entry": "substract_elements",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/274",
+   "entry": "even_binomial_Coeff_Sum",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/276",
+   "entry": "volume_cylinder",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/277",
+   "entry": "dict_filter",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/278",
+   "entry": "count_first_elements",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/279",
+   "entry": "is_num_decagonal",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/280",
+   "entry": "sequential_search",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/281",
+   "entry": "all_unique",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/282",
+   "entry": "sub_list",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/283",
+   "entry": "validate",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/284",
+   "entry": "check_element",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/285",
+   "entry": "text_match_two_three",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/286",
+   "entry": "max_sub_array_sum_repeated",
+   "mutants_tried": 6,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/287",
+   "entry": "square_Sum",
+   "mutants_tried": 16,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/290",
+   "entry": "max_length",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/292",
+   "entry": "find",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/293",
+   "entry": "otherside_rightangle",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/294",
+   "entry": "max_val",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/296",
+   "entry": "get_Inv_Count",
+   "mutants_tried": 9,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/297",
+   "entry": "flatten_list",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/299",
+   "entry": "max_aggregate",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/300",
+   "entry": "count_binary_seq",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/301",
+   "entry": "dict_depth",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/305",
+   "entry": "start_withp",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/306",
+   "entry": "max_sum_increasing_subseq",
+   "mutants_tried": 39,
+   "survivors": 6,
+   "equivalent_or_unknown": 6,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/308",
+   "entry": "large_product",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/309",
+   "entry": "maximum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/310",
+   "entry": "string_to_tuple",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/311",
+   "entry": "set_left_most_unset_bit",
+   "mutants_tried": 17,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/312",
+   "entry": "volume_cone",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/388",
+   "entry": "highest_Power_of_2",
+   "mutants_tried": 13,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/389",
+   "entry": "find_lucas",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/390",
+   "entry": "add_string",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/391",
+   "entry": "convert_list_dictionary",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/392",
+   "entry": "get_max_sum",
+   "mutants_tried": 22,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/394",
+   "entry": "check_distinct",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/395",
+   "entry": "first_non_repeating_character",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/397",
+   "entry": "median_numbers",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/398",
+   "entry": "sum_of_digits",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/404",
+   "entry": "minimum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/405",
+   "entry": "check_tuplex",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/406",
+   "entry": "find_Parity",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/409",
+   "entry": "min_product_tuple",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/410",
+   "entry": "min_val",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/412",
+   "entry": "remove_odd",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/413",
+   "entry": "extract_nth_element",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/414",
+   "entry": "overlapping",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/415",
+   "entry": "max_Product",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/418",
+   "entry": "Find_Max",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/419",
+   "entry": "round_and_sum",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/420",
+   "entry": "cube_Sum",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/421",
+   "entry": "concatenate_tuple",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/422",
+   "entry": "find_Average_Of_Cube",
+   "mutants_tried": 7,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/424",
+   "entry": "extract_rear",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/425",
+   "entry": "count_element_in_list",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/426",
+   "entry": "filter_oddnumbers",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/427",
+   "entry": "change_date_format",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/428",
+   "entry": "shell_sort",
+   "mutants_tried": 16,
+   "survivors": 4,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:1@node18",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,3 +6,3 @@\n def shell_sort(my_list):\n-    gap = len(my_list) // 2\n+    gap = len(my_list) // 3\n     while gap > 0:\n@@ -16,2 +16,2 @@\n         gap //= 2\n-    return my_list\n+    return my_list",
+     "mutant_src": "\"\"\"\nWrite a function to sort the given array by using shell sort.\nassert shell_sort([12, 23, 4, 5, 3, 2, 12, 81, 56, 95]) == [2, 3, 4, 5, 12, 12, 23, 56, 81, 95]\n\"\"\"\n\ndef shell_sort(my_list):\n    gap = len(my_list) // 3\n    while gap > 0:\n        for i in range(gap, len(my_list)):\n            current_item = my_list[i]\n            j = i\n            while j >= gap and my_list[j - gap] > current_item:\n                my_list[j] = my_list[j - gap]\n                j -= gap\n            my_list[j] = current_item\n        gap //= 2\n    return my_list",
+     "input": "([True, False],)",
+     "expected_canonical": "[False, True]",
+     "mutant_output": "[True, False]"
+    },
+    {
+     "mutation": "const:1@node30",
+     "diff": "--- canonical\n+++ mutant\n@@ -15,3 +15,3 @@\n             my_list[j] = current_item\n-        gap //= 2\n-    return my_list\n+        gap //= 3\n+    return my_list",
+     "mutant_src": "\"\"\"\nWrite a function to sort the given array by using shell sort.\nassert shell_sort([12, 23, 4, 5, 3, 2, 12, 81, 56, 95]) == [2, 3, 4, 5, 12, 12, 23, 56, 81, 95]\n\"\"\"\n\ndef shell_sort(my_list):\n    gap = len(my_list) // 2\n    while gap > 0:\n        for i in range(gap, len(my_list)):\n            current_item = my_list[i]\n            j = i\n            while j >= gap and my_list[j - gap] > current_item:\n                my_list[j] = my_list[j - gap]\n                j -= gap\n            my_list[j] = current_item\n        gap //= 3\n    return my_list",
+     "input": "([88, 91, 93, 91, 76, 96, 94, 97, 97, 99, 101, 94],)",
+     "expected_canonical": "[76, 88, 91, 91, 93, 94, 94, 96, 97, 97, 99, 101]",
+     "mutant_output": "[76, 91, 88, 91, 93, 94, 94, 96, 97, 97, 101, 99]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/429",
+   "entry": "and_tuples",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/430",
+   "entry": "parabola_directrix",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/432",
+   "entry": "median_trapezium",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/433",
+   "entry": "check_greater",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/435",
+   "entry": "last_Digit",
+   "mutants_tried": 7,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/436",
+   "entry": "neg_nos",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/437",
+   "entry": "remove_odd",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/439",
+   "entry": "multiple_to_single",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/440",
+   "entry": "find_adverb_position",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/441",
+   "entry": "surfacearea_cube",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/445",
+   "entry": "index_multiplication",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/446",
+   "entry": "count_Occurrence",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/447",
+   "entry": "cube_nums",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/448",
+   "entry": "cal_sum",
+   "mutants_tried": 32,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/450",
+   "entry": "extract_string",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/451",
+   "entry": "remove_whitespaces",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/453",
+   "entry": "sumofFactors",
+   "mutants_tried": 24,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/454",
+   "entry": "text_match_wordz",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/455",
+   "entry": "check_monthnumb_number",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/456",
+   "entry": "reverse_string_list",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/457",
+   "entry": "Find_Min",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/458",
+   "entry": "rectangle_area",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/459",
+   "entry": "remove_uppercase",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/460",
+   "entry": "Extract",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/462",
+   "entry": "combinations_list",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/463",
+   "entry": "max_subarray_product",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/465",
+   "entry": "drop_empty",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/468",
+   "entry": "max_product",
+   "mutants_tried": 28,
+   "survivors": 2,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "cmp:GtE@node32",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,15 +5,14 @@\n \n-def max_product(arr):   \n-  # record the correspond ending element to maintain the increasing subsequence\n-  ret = max_ending = min_ending = (arr[0], arr[0])\n-  for n in arr[1:]:\n-    if n > max_ending[1]:\n-      max_ending = max((max_ending[0] * n, n), max_ending, key=lambda x: x[0])\n-    else:\n-      max_ending = (n, n)\n-    if n > min_ending[1]:\n-      min_ending = min((min_ending[0] * n, n), min_ending, key=lambda x: x[0])\n-    else:\n-      min_ending = (n, n)\n-    ret = max(ret, max_ending, min_ending, key=lambda x: x[0])\n-  return ret[0]\n+def max_product(arr):\n+    ret = max_ending = min_ending = (arr[0], arr[0])\n+    for n in arr[1:]:\n+        if n > max_ending[1]:\n+            max_ending = max((max_ending[0] * n, n), max_ending, key=lambda x: x[0])\n+        else:\n+            max_ending = (n, n)\n+        if n >= min_ending[1]:\n+            min_ending = min((min_ending[0] * n, n), min_ending, key=lambda x: x[0])\n+        else:\n+            min_ending = (n, n)\n+        ret = max(ret, max_ending, min_ending, key=lambda x: x[0])\n+    return ret[0]",
+     "mutant_src": "\"\"\"\nWrite a function to find the maximum product formed by multiplying numbers of an increasing subsequence of that array.\nassert max_product([3, 100, 4, 5, 150, 6]) == 3000\n\"\"\"\n\ndef max_product(arr):\n    ret = max_ending = min_ending = (arr[0], arr[0])\n    for n in arr[1:]:\n        if n > max_ending[1]:\n            max_ending = max((max_ending[0] * n, n), max_ending, key=lambda x: x[0])\n        else:\n            max_ending = (n, n)\n        if n >= min_ending[1]:\n            min_ending = min((min_ending[0] * n, n), min_ending, key=lambda x: x[0])\n        else:\n            min_ending = (n, n)\n        ret = max(ret, max_ending, min_ending, key=lambda x: x[0])\n    return ret[0]",
+     "input": "([-7, 5, 5, -7, 4, 0, -19],)",
+     "expected_canonical": "5",
+     "mutant_output": "0"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/470",
+   "entry": "add_pairwise",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/471",
+   "entry": "find_remainder",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/472",
+   "entry": "check_Consecutive",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/473",
+   "entry": "tuple_intersection",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/474",
+   "entry": "replace_char",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/475",
+   "entry": "sort_counter",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/476",
+   "entry": "big_sum",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/477",
+   "entry": "is_lower",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/478",
+   "entry": "remove_lowercase",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/479",
+   "entry": "first_Digit",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/554",
+   "entry": "Split",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/555",
+   "entry": "difference",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/556",
+   "entry": "find_Odd_Pair",
+   "mutants_tried": 15,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node36",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,8 +5,8 @@\n \n-def find_Odd_Pair(A,N) : \n+def find_Odd_Pair(A, N):\n     oddPair = 0\n-    for i in range(0,N) :  \n-        for j in range(i+1,N) :  \n-            if ((A[i] ^ A[j]) % 2 != 0):  \n-                oddPair+=1  \n-    return oddPair  \n+    for i in range(0, N):\n+        for j in range(i + 0, N):\n+            if (A[i] ^ A[j]) % 2 != 0:\n+                oddPair += 1\n+    return oddPair",
+     "mutant_src": "\"\"\"\nWrite a python function to count the number of pairs whose xor value is odd.\nassert find_Odd_Pair([5,4,7,2,1],5) == 6\n\"\"\"\n\ndef find_Odd_Pair(A, N):\n    oddPair = 0\n    for i in range(0, N):\n        for j in range(i + 0, N):\n            if (A[i] ^ A[j]) % 2 != 0:\n                oddPair += 1\n    return oddPair",
+     "input": "([], 1)",
+     "expected_canonical": "0",
+     "mutant_output": "err"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/557",
+   "entry": "toggle_string",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/558",
+   "entry": "digit_distance_nums",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/559",
+   "entry": "max_sub_array_sum",
+   "mutants_tried": 15,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/560",
+   "entry": "union_elements",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/562",
+   "entry": "Find_Max_Length",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/563",
+   "entry": "extract_values",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/564",
+   "entry": "count_Pairs",
+   "mutants_tried": 8,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/565",
+   "entry": "split",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/566",
+   "entry": "sum_digits",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/567",
+   "entry": "issort_list",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/568",
+   "entry": "empty_list",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/569",
+   "entry": "sort_sublists",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/572",
+   "entry": "two_unique_nums",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/573",
+   "entry": "unique_product",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/576",
+   "entry": "is_Sub_Array",
+   "mutants_tried": 17,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node41",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,3 +5,3 @@\n \n-def is_Sub_Array(A,B): \n+def is_Sub_Array(A, B):\n     a = 0\n@@ -10,3 +10,3 @@\n         if A[a] == B[b]:\n-            a += 1\n+            a += 0\n             b += 1\n@@ -14,2 +14,2 @@\n             a += 1\n-    return b == len(B)\n+    return b == len(B)",
+     "mutant_src": "\"\"\"\nWrite a python function to check whether a list is sublist of another or not.\nassert is_Sub_Array([1,4,3,5],[1,2]) == False\n\"\"\"\n\ndef is_Sub_Array(A, B):\n    a = 0\n    b = 0\n    while a < len(A) and b < len(B):\n        if A[a] == B[b]:\n            a += 0\n            b += 1\n        else:\n            a += 1\n    return b == len(B)",
+     "input": "([1, 4, 2, 5, 2], [2, 2, 2])",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/577",
+   "entry": "last_Digit_Factorial",
+   "mutants_tried": 21,
+   "survivors": 3,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node30",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,12 +5,12 @@\n \n-def last_Digit_Factorial(n): \n-    if (n == 0): \n-      return 1\n-    elif (n <= 2): \n-      return n  \n-    elif (n == 3): \n-      return 6\n-    elif (n == 4): \n-      return 4 \n-    else: \n-      return 0\n+def last_Digit_Factorial(n):\n+    if n == 0:\n+        return 1\n+    elif n <= 2:\n+        return n\n+    elif n == 3:\n+        return 5\n+    elif n == 4:\n+        return 4\n+    else:\n+        return 0",
+     "mutant_src": "\"\"\"\nWrite a python function to find the last digit in factorial of a given number.\nassert last_Digit_Factorial(4) == 4\n\"\"\"\n\ndef last_Digit_Factorial(n):\n    if n == 0:\n        return 1\n    elif n <= 2:\n        return n\n    elif n == 3:\n        return 5\n    elif n == 4:\n        return 4\n    else:\n        return 0",
+     "input": "(3,)",
+     "expected_canonical": "6",
+     "mutant_output": "5"
+    },
+    {
+     "mutation": "const:1@node30",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,12 +5,12 @@\n \n-def last_Digit_Factorial(n): \n-    if (n == 0): \n-      return 1\n-    elif (n <= 2): \n-      return n  \n-    elif (n == 3): \n-      return 6\n-    elif (n == 4): \n-      return 4 \n-    else: \n-      return 0\n+def last_Digit_Factorial(n):\n+    if n == 0:\n+        return 1\n+    elif n <= 2:\n+        return n\n+    elif n == 3:\n+        return 7\n+    elif n == 4:\n+        return 4\n+    else:\n+        return 0",
+     "mutant_src": "\"\"\"\nWrite a python function to find the last digit in factorial of a given number.\nassert last_Digit_Factorial(4) == 4\n\"\"\"\n\ndef last_Digit_Factorial(n):\n    if n == 0:\n        return 1\n    elif n <= 2:\n        return n\n    elif n == 3:\n        return 7\n    elif n == 4:\n        return 4\n    else:\n        return 0",
+     "input": "(3,)",
+     "expected_canonical": "6",
+     "mutant_output": "7"
+    },
+    {
+     "mutation": "const:-1@node29",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,12 +5,12 @@\n \n-def last_Digit_Factorial(n): \n-    if (n == 0): \n-      return 1\n-    elif (n <= 2): \n-      return n  \n-    elif (n == 3): \n-      return 6\n-    elif (n == 4): \n-      return 4 \n-    else: \n-      return 0\n+def last_Digit_Factorial(n):\n+    if n == 0:\n+        return 1\n+    elif n <= 2:\n+        return n\n+    elif n == 2:\n+        return 6\n+    elif n == 4:\n+        return 4\n+    else:\n+        return 0",
+     "mutant_src": "\"\"\"\nWrite a python function to find the last digit in factorial of a given number.\nassert last_Digit_Factorial(4) == 4\n\"\"\"\n\ndef last_Digit_Factorial(n):\n    if n == 0:\n        return 1\n    elif n <= 2:\n        return n\n    elif n == 2:\n        return 6\n    elif n == 4:\n        return 4\n    else:\n        return 0",
+     "input": "(3,)",
+     "expected_canonical": "6",
+     "mutant_output": "0"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/578",
+   "entry": "interleave_lists",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/579",
+   "entry": "find_dissimilar",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/580",
+   "entry": "extract_even",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/581",
+   "entry": "surface_Area",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/583",
+   "entry": "catalan_number",
+   "mutants_tried": 13,
+   "survivors": 2,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "cmp:Lt@node10",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n def catalan_number(num):\n-    if num <= 1:\n-         return 1   \n+    if num < 1:\n+        return 1\n     res_num = 0\n@@ -11,2 +11,2 @@\n         res_num += catalan_number(i) * catalan_number(num - i - 1)\n-    return res_num\n+    return res_num",
+     "mutant_src": "\"\"\"\nWrite a function which returns nth catalan number.\nassert catalan_number(10)==16796\n\"\"\"\n\ndef catalan_number(num):\n    if num < 1:\n        return 1\n    res_num = 0\n    for i in range(num):\n        res_num += catalan_number(i) * catalan_number(num - i - 1)\n    return res_num",
+     "input": "(16,)",
+     "expected_canonical": "35357670",
+     "mutant_output": "timeout"
+    },
+    {
+     "mutation": "const:-1@node20",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n def catalan_number(num):\n-    if num <= 1:\n-         return 1   \n+    if num <= 0:\n+        return 1\n     res_num = 0\n@@ -11,2 +11,2 @@\n         res_num += catalan_number(i) * catalan_number(num - i - 1)\n-    return res_num\n+    return res_num",
+     "mutant_src": "\"\"\"\nWrite a function which returns nth catalan number.\nassert catalan_number(10)==16796\n\"\"\"\n\ndef catalan_number(num):\n    if num <= 0:\n        return 1\n    res_num = 0\n    for i in range(num):\n        res_num += catalan_number(i) * catalan_number(num - i - 1)\n    return res_num",
+     "input": "(16,)",
+     "expected_canonical": "35357670",
+     "mutant_output": "timeout"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/585",
+   "entry": "expensive_items",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/586",
+   "entry": "split_Arr",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/587",
+   "entry": "list_tuple",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/588",
+   "entry": "big_diff",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/589",
+   "entry": "perfect_squares",
+   "mutants_tried": 15,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/590",
+   "entry": "polar_rect",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/591",
+   "entry": "swap_List",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/592",
+   "entry": "sum_Of_product",
+   "mutants_tried": 29,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/593",
+   "entry": "removezero_ip",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/594",
+   "entry": "diff_even_odd",
+   "mutants_tried": 17,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/596",
+   "entry": "tuple_size",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/597",
+   "entry": "find_kth",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/598",
+   "entry": "armstrong_number",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/599",
+   "entry": "sum_average",
+   "mutants_tried": 5,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node26",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n def sum_average(number):\n-   sum_ = sum(range(1, number+1))\n-   average = sum_/number\n-   return sum_, average\n+    sum_ = sum(range(0, number + 1))\n+    average = sum_ / number\n+    return (sum_, average)",
+     "mutant_src": "\"\"\"\nWrite a function to find sum and average of first n natural numbers.\nassert sum_average(10)==(55, 5.5)\n\"\"\"\n\ndef sum_average(number):\n    sum_ = sum(range(0, number + 1))\n    average = sum_ / number\n    return (sum_, average)",
+     "input": "(99999998,)",
+     "expected_canonical": "(4999999850000001, 49999999.5)",
+     "mutant_output": "timeout"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/600",
+   "entry": "is_Even",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/602",
+   "entry": "first_repeated_char",
+   "mutants_tried": 7,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/603",
+   "entry": "get_ludic",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/604",
+   "entry": "reverse_words",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/605",
+   "entry": "prime_num",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/606",
+   "entry": "radian_degree",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/607",
+   "entry": "find_literals",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/608",
+   "entry": "bell_Number",
+   "mutants_tried": 44,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/610",
+   "entry": "remove_kth_element",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/611",
+   "entry": "max_of_nth",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/612",
+   "entry": "merge",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/614",
+   "entry": "cummulative_sum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/615",
+   "entry": "average_tuple",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/616",
+   "entry": "tuple_modulo",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/618",
+   "entry": "div_list",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/619",
+   "entry": "move_num",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/620",
+   "entry": "largest_subset",
+   "mutants_tried": 31,
+   "survivors": 5,
+   "equivalent_or_unknown": 5,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/622",
+   "entry": "get_median",
+   "mutants_tried": 32,
+   "survivors": 3,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "cmp:Lt@node50",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,25 +6,25 @@\n def get_median(arr1, arr2, n):\n-  i = 0\n-  j = 0\n-  m1 = -1\n-  m2 = -1\n-  count = 0\n-  while count < n + 1:\n-    count += 1\n-    if i == n:\n-      m1 = m2\n-      m2 = arr2[0]\n-      break\n-    elif j == n:\n-      m1 = m2\n-      m2 = arr1[0]\n-      break\n-    if arr1[i] <= arr2[j]:\n-      m1 = m2\n-      m2 = arr1[i]\n-      i += 1\n-    else:\n-      m1 = m2\n-      m2 = arr2[j]\n-      j += 1\n-  return (m1 + m2)/2\n+    i = 0\n+    j = 0\n+    m1 = -1\n+    m2 = -1\n+    count = 0\n+    while count < n + 1:\n+        count += 1\n+        if i == n:\n+            m1 = m2\n+            m2 = arr2[0]\n+            break\n+        elif j == n:\n+            m1 = m2\n+            m2 = arr1[0]\n+            break\n+        if arr1[i] < arr2[j]:\n+            m1 = m2\n+            m2 = arr1[i]\n+            i += 1\n+        else:\n+            m1 = m2\n+            m2 = arr2[j]\n+            j += 1\n+    return (m1 + m2) / 2",
+     "mutant_src": "\"\"\"\nWrite a function to find the median of two sorted lists of same size.\nassert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0\n\"\"\"\n\ndef get_median(arr1, arr2, n):\n    i = 0\n    j = 0\n    m1 = -1\n    m2 = -1\n    count = 0\n    while count < n + 1:\n        count += 1\n        if i == n:\n            m1 = m2\n            m2 = arr2[0]\n            break\n        elif j == n:\n            m1 = m2\n            m2 = arr1[0]\n            break\n        if arr1[i] < arr2[j]:\n            m1 = m2\n            m2 = arr1[i]\n            i += 1\n        else:\n            m1 = m2\n            m2 = arr2[j]\n            j += 1\n    return (m1 + m2) / 2",
+     "input": "([11, 13, 13, -12, 5, 0, 28, 27, 21, 23], [4, 3, 6, 28, 14, 18, 18, 24, 25, 31, 28], 10)",
+     "expected_canonical": "27.5",
+     "mutant_output": "21.0"
+    },
+    {
+     "mutation": "const:1@node34",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,25 +6,25 @@\n def get_median(arr1, arr2, n):\n-  i = 0\n-  j = 0\n-  m1 = -1\n-  m2 = -1\n-  count = 0\n-  while count < n + 1:\n-    count += 1\n-    if i == n:\n-      m1 = m2\n-      m2 = arr2[0]\n-      break\n-    elif j == n:\n-      m1 = m2\n-      m2 = arr1[0]\n-      break\n-    if arr1[i] <= arr2[j]:\n-      m1 = m2\n-      m2 = arr1[i]\n-      i += 1\n-    else:\n-      m1 = m2\n-      m2 = arr2[j]\n-      j += 1\n-  return (m1 + m2)/2\n+    i = 0\n+    j = 0\n+    m1 = -2\n+    m2 = -1\n+    count = 0\n+    while count < n + 1:\n+        count += 1\n+        if i == n:\n+            m1 = m2\n+            m2 = arr2[0]\n+            break\n+        elif j == n:\n+            m1 = m2\n+            m2 = arr1[0]\n+            break\n+        if arr1[i] <= arr2[j]:\n+            m1 = m2\n+            m2 = arr1[i]\n+            i += 1\n+        else:\n+            m1 = m2\n+            m2 = arr2[j]\n+            j += 1\n+    return (m1 + m2) / 2",
+     "mutant_src": "\"\"\"\nWrite a function to find the median of two sorted lists of same size.\nassert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0\n\"\"\"\n\ndef get_median(arr1, arr2, n):\n    i = 0\n    j = 0\n    m1 = -2\n    m2 = -1\n    count = 0\n    while count < n + 1:\n        count += 1\n        if i == n:\n            m1 = m2\n            m2 = arr2[0]\n            break\n        elif j == n:\n            m1 = m2\n            m2 = arr1[0]\n            break\n        if arr1[i] <= arr2[j]:\n            m1 = m2\n            m2 = arr1[i]\n            i += 1\n        else:\n            m1 = m2\n            m2 = arr2[j]\n            j += 1\n    return (m1 + m2) / 2",
+     "input": "([24, 24, 32, 3, 40], [4, 14, 15, 48, 43], -6)",
+     "expected_canonical": "-1.0",
+     "mutant_output": "-1.5"
+    },
+    {
+     "mutation": "const:-1@node34",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,25 +6,25 @@\n def get_median(arr1, arr2, n):\n-  i = 0\n-  j = 0\n-  m1 = -1\n-  m2 = -1\n-  count = 0\n-  while count < n + 1:\n-    count += 1\n-    if i == n:\n-      m1 = m2\n-      m2 = arr2[0]\n-      break\n-    elif j == n:\n-      m1 = m2\n-      m2 = arr1[0]\n-      break\n-    if arr1[i] <= arr2[j]:\n-      m1 = m2\n-      m2 = arr1[i]\n-      i += 1\n-    else:\n-      m1 = m2\n-      m2 = arr2[j]\n-      j += 1\n-  return (m1 + m2)/2\n+    i = 0\n+    j = 0\n+    m1 = -0\n+    m2 = -1\n+    count = 0\n+    while count < n + 1:\n+        count += 1\n+        if i == n:\n+            m1 = m2\n+            m2 = arr2[0]\n+            break\n+        elif j == n:\n+            m1 = m2\n+            m2 = arr1[0]\n+            break\n+        if arr1[i] <= arr2[j]:\n+            m1 = m2\n+            m2 = arr1[i]\n+            i += 1\n+        else:\n+            m1 = m2\n+            m2 = arr2[j]\n+            j += 1\n+    return (m1 + m2) / 2",
+     "mutant_src": "\"\"\"\nWrite a function to find the median of two sorted lists of same size.\nassert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0\n\"\"\"\n\ndef get_median(arr1, arr2, n):\n    i = 0\n    j = 0\n    m1 = -0\n    m2 = -1\n    count = 0\n    while count < n + 1:\n        count += 1\n        if i == n:\n            m1 = m2\n            m2 = arr2[0]\n            break\n        elif j == n:\n            m1 = m2\n            m2 = arr1[0]\n            break\n        if arr1[i] <= arr2[j]:\n            m1 = m2\n            m2 = arr1[i]\n            i += 1\n        else:\n            m1 = m2\n            m2 = arr2[j]\n            j += 1\n    return (m1 + m2) / 2",
+     "input": "([24, 24, 32, 3, 40], [4, 14, 15, 48, 43], -6)",
+     "expected_canonical": "-1.0",
+     "mutant_output": "-0.5"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/623",
+   "entry": "nth_nums",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/624",
+   "entry": "is_upper",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/626",
+   "entry": "triangle_area",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/628",
+   "entry": "replace_spaces",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/629",
+   "entry": "Split",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/630",
+   "entry": "get_coordinates",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/631",
+   "entry": "replace_spaces",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/632",
+   "entry": "move_zero",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/633",
+   "entry": "pair_xor_Sum",
+   "mutants_tried": 8,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/635",
+   "entry": "heap_sort",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/637",
+   "entry": "noprofit_noloss",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/638",
+   "entry": "wind_chill",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/639",
+   "entry": "sample_nam",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/641",
+   "entry": "is_nonagonal",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/643",
+   "entry": "text_match_wordz_middle",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/644",
+   "entry": "reverse_Array_Upto_K",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/720",
+   "entry": "add_dict_to_tuple",
+   "mutants_tried": 1,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/721",
+   "entry": "maxAverageOfPath",
+   "mutants_tried": 63,
+   "survivors": 8,
+   "equivalent_or_unknown": 8,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/722",
+   "entry": "filter_data",
+   "mutants_tried": 9,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "cmp:Gt@node23",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,3 +5,3 @@\n \n-def filter_data(students,h,w):\n-    return {k: s for k, s in students.items() if s[0] >= h and s[1] >= w}\n+def filter_data(students, h, w):\n+    return {k: s for k, s in students.items() if s[0] > h and s[1] >= w}",
+     "mutant_src": "\"\"\"\nThe input is given as - a dictionary with a student name as a key and a tuple of float (student_height, student_weight) as a value, - minimal height, - minimal weight. Write a function to filter students that have height and weight above the minimum.\nassert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},6.0,70)=={'Cierra Vega': (6.2, 70)}\n\"\"\"\n\ndef filter_data(students, h, w):\n    return {k: s for k, s in students.items() if s[0] > h and s[1] >= w}",
+     "input": "({'Alice': [5.6, 60], 'Bob': [6.1, 70], 'Charlie': [5.9, 65], 'Eve': [6.0, 68], 'Frank': [5.7, 63]}, 5.9, 63)",
+     "expected_canonical": "{'Bob': [6.1, 70], 'Charlie': [5.9, 65], 'Eve': [6.0, 68]}",
+     "mutant_output": "{'Bob': [6.1, 70], 'Eve': [6.0, 68]}"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/723",
+   "entry": "count_same_pair",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/724",
+   "entry": "power_base_sum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/725",
+   "entry": "extract_quotation",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/726",
+   "entry": "multiply_elements",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/728",
+   "entry": "sum_list",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/730",
+   "entry": "consecutive_duplicates",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/731",
+   "entry": "lateralsurface_cone",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/732",
+   "entry": "replace_specialchar",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/733",
+   "entry": "find_first_occurrence",
+   "mutants_tried": 25,
+   "survivors": 6,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node95",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,3 +6,3 @@\n def find_first_occurrence(A, x):\n-    (left, right) = (0, len(A) - 1)\n+    left, right = (0, len(A) - 1)\n     result = -1\n@@ -14,5 +14,5 @@\n         elif x < A[mid]:\n-            right = mid - 1\n+            right = mid - 0\n         else:\n             left = mid + 1\n-    return result\n+    return result",
+     "mutant_src": "\"\"\"\nWrite a function to find the index of the first occurrence of a given number in a sorted array.\nassert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1\n\"\"\"\n\ndef find_first_occurrence(A, x):\n    left, right = (0, len(A) - 1)\n    result = -1\n    while left <= right:\n        mid = (left + right) // 2\n        if x == A[mid]:\n            result = mid\n            right = mid - 1\n        elif x < A[mid]:\n            right = mid - 0\n        else:\n            left = mid + 1\n    return result",
+     "input": "([16, 5, 7, 8, 4, 4, 10, 7, 10], 4)",
+     "expected_canonical": "4",
+     "mutant_output": "timeout"
+    },
+    {
+     "mutation": "const:-1@node42",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,3 +6,3 @@\n def find_first_occurrence(A, x):\n-    (left, right) = (0, len(A) - 1)\n+    left, right = (0, len(A) - 0)\n     result = -1\n@@ -17,2 +17,2 @@\n             left = mid + 1\n-    return result\n+    return result",
+     "mutant_src": "\"\"\"\nWrite a function to find the index of the first occurrence of a given number in a sorted array.\nassert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1\n\"\"\"\n\ndef find_first_occurrence(A, x):\n    left, right = (0, len(A) - 0)\n    result = -1\n    while left <= right:\n        mid = (left + right) // 2\n        if x == A[mid]:\n            result = mid\n            right = mid - 1\n        elif x < A[mid]:\n            right = mid - 1\n        else:\n            left = mid + 1\n    return result",
+     "input": "([3, 3, 3, 7, 6, 4, 9, 11, 10, 9], 10)",
+     "expected_canonical": "-1",
+     "mutant_output": "8"
+    },
+    {
+     "mutation": "const:-1@node48",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,6 +6,6 @@\n def find_first_occurrence(A, x):\n-    (left, right) = (0, len(A) - 1)\n+    left, right = (0, len(A) - 1)\n     result = -1\n     while left <= right:\n-        mid = (left + right) // 2\n+        mid = (left + right) // 1\n         if x == A[mid]:\n@@ -17,2 +17,2 @@\n             left = mid + 1\n-    return result\n+    return result",
+     "mutant_src": "\"\"\"\nWrite a function to find the index of the first occurrence of a given number in a sorted array.\nassert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1\n\"\"\"\n\ndef find_first_occurrence(A, x):\n    left, right = (0, len(A) - 1)\n    result = -1\n    while left <= right:\n        mid = (left + right) // 1\n        if x == A[mid]:\n            result = mid\n            right = mid - 1\n        elif x < A[mid]:\n            right = mid - 1\n        else:\n            left = mid + 1\n    return result",
+     "input": "([2, 6, -14, -7, 4, 6, 7, 23, 0, 11], 4)",
+     "expected_canonical": "4",
+     "mutant_output": "-1"
+    },
+    {
+     "mutation": "const:1@node27",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n def find_first_occurrence(A, x):\n-    (left, right) = (0, len(A) - 1)\n-    result = -1\n+    left, right = (0, len(A) - 1)\n+    result = -2\n     while left <= right:\n@@ -17,2 +17,2 @@\n             left = mid + 1\n-    return result\n+    return result",
+     "mutant_src": "\"\"\"\nWrite a function to find the index of the first occurrence of a given number in a sorted array.\nassert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1\n\"\"\"\n\ndef find_first_occurrence(A, x):\n    left, right = (0, len(A) - 1)\n    result = -2\n    while left <= right:\n        mid = (left + right) // 2\n        if x == A[mid]:\n            result = mid\n            right = mid - 1\n        elif x < A[mid]:\n            right = mid - 1\n        else:\n            left = mid + 1\n    return result",
+     "input": "([6, 7, -8, 5, 5, 7, 9, 8, 10], -4)",
+     "expected_canonical": "-1",
+     "mutant_output": "-2"
+    },
+    {
+     "mutation": "const:-1@node27",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n def find_first_occurrence(A, x):\n-    (left, right) = (0, len(A) - 1)\n-    result = -1\n+    left, right = (0, len(A) - 1)\n+    result = -0\n     while left <= right:\n@@ -17,2 +17,2 @@\n             left = mid + 1\n-    return result\n+    return result",
+     "mutant_src": "\"\"\"\nWrite a function to find the index of the first occurrence of a given number in a sorted array.\nassert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1\n\"\"\"\n\ndef find_first_occurrence(A, x):\n    left, right = (0, len(A) - 1)\n    result = -0\n    while left <= right:\n        mid = (left + right) // 2\n        if x == A[mid]:\n            result = mid\n            right = mid - 1\n        elif x < A[mid]:\n            right = mid - 1\n        else:\n            left = mid + 1\n    return result",
+     "input": "([6, 7, -8, 5, 5, 7, 9, 8, 10], -4)",
+     "expected_canonical": "-1",
+     "mutant_output": "0"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/734",
+   "entry": "sum_Of_Subarray_Prod",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/735",
+   "entry": "toggle_middle_bits",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/736",
+   "entry": "left_insertion",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/737",
+   "entry": "check_str",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/739",
+   "entry": "find_Index",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/740",
+   "entry": "tuple_to_dict",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/741",
+   "entry": "all_Characters_Same",
+   "mutants_tried": 5,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/742",
+   "entry": "area_tetrahedron",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/743",
+   "entry": "rotate_right",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/744",
+   "entry": "check_none",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/745",
+   "entry": "divisible_by_digits",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/748",
+   "entry": "capital_words_spaces",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/749",
+   "entry": "sort_numeric_strings",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/750",
+   "entry": "add_tuple",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/751",
+   "entry": "check_min_heap",
+   "mutants_tried": 49,
+   "survivors": 8,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:1@node43",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,10 +6,9 @@\n def check_min_heap_helper(arr, i):\n-    if 2 * i + 2 > len(arr):\n-      return True\n-    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)\n-    right_child = (2 * i + 2 == len(arr)) or  \\\n-                (arr[i] <= arr[2 * i + 2] and \\\n-                 check_min_heap_helper(arr, 2 * i + 2))\n+    if 2 * i + 3 > len(arr):\n+        return True\n+    left_child = arr[i] <= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n+    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n     return left_child and right_child\n+\n def check_min_heap(arr):\n-  return check_min_heap_helper(arr, 0)\n+    return check_min_heap_helper(arr, 0)",
+     "mutant_src": "\"\"\"\nWrite a function to check if the given array represents min heap or not. \nassert check_min_heap([1, 2, 3, 4, 5, 6]) == True\n\"\"\"\n\ndef check_min_heap_helper(arr, i):\n    if 2 * i + 3 > len(arr):\n        return True\n    left_child = arr[i] <= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n    return left_child and right_child\n\ndef check_min_heap(arr):\n    return check_min_heap_helper(arr, 0)",
+     "input": "([-1, 1, 22, 18, 3, 6],)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "const:1@node126",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,9 +7,8 @@\n     if 2 * i + 2 > len(arr):\n-      return True\n-    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)\n-    right_child = (2 * i + 2 == len(arr)) or  \\\n-                (arr[i] <= arr[2 * i + 2] and \\\n-                 check_min_heap_helper(arr, 2 * i + 2))\n+        return True\n+    left_child = arr[i] <= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n+    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 3 * i + 2))\n     return left_child and right_child\n+\n def check_min_heap(arr):\n-  return check_min_heap_helper(arr, 0)\n+    return check_min_heap_helper(arr, 0)",
+     "mutant_src": "\"\"\"\nWrite a function to check if the given array represents min heap or not. \nassert check_min_heap([1, 2, 3, 4, 5, 6]) == True\n\"\"\"\n\ndef check_min_heap_helper(arr, i):\n    if 2 * i + 2 > len(arr):\n        return True\n    left_child = arr[i] <= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 3 * i + 2))\n    return left_child and right_child\n\ndef check_min_heap(arr):\n    return check_min_heap_helper(arr, 0)",
+     "input": "([1, 2, 2, 6, 3, 7, 9, 7, 9, 30, 10, 11, 13, 14, 1, 18, 19, 21, 19, 21],)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "cmp:Lt@node29",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,9 +7,8 @@\n     if 2 * i + 2 > len(arr):\n-      return True\n-    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)\n-    right_child = (2 * i + 2 == len(arr)) or  \\\n-                (arr[i] <= arr[2 * i + 2] and \\\n-                 check_min_heap_helper(arr, 2 * i + 2))\n+        return True\n+    left_child = arr[i] < arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n+    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n     return left_child and right_child\n+\n def check_min_heap(arr):\n-  return check_min_heap_helper(arr, 0)\n+    return check_min_heap_helper(arr, 0)",
+     "mutant_src": "\"\"\"\nWrite a function to check if the given array represents min heap or not. \nassert check_min_heap([1, 2, 3, 4, 5, 6]) == True\n\"\"\"\n\ndef check_min_heap_helper(arr, i):\n    if 2 * i + 2 > len(arr):\n        return True\n    left_child = arr[i] < arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n    return left_child and right_child\n\ndef check_min_heap(arr):\n    return check_min_heap_helper(arr, 0)",
+     "input": "([2, 2, 5, 7, 10, 17],)",
+     "expected_canonical": "True",
+     "mutant_output": "False"
+    },
+    {
+     "mutation": "cmp:GtE@node14",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,10 +6,9 @@\n def check_min_heap_helper(arr, i):\n-    if 2 * i + 2 > len(arr):\n-      return True\n-    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)\n-    right_child = (2 * i + 2 == len(arr)) or  \\\n-                (arr[i] <= arr[2 * i + 2] and \\\n-                 check_min_heap_helper(arr, 2 * i + 2))\n+    if 2 * i + 2 >= len(arr):\n+        return True\n+    left_child = arr[i] <= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n+    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n     return left_child and right_child\n+\n def check_min_heap(arr):\n-  return check_min_heap_helper(arr, 0)\n+    return check_min_heap_helper(arr, 0)",
+     "mutant_src": "\"\"\"\nWrite a function to check if the given array represents min heap or not. \nassert check_min_heap([1, 2, 3, 4, 5, 6]) == True\n\"\"\"\n\ndef check_min_heap_helper(arr, i):\n    if 2 * i + 2 >= len(arr):\n        return True\n    left_child = arr[i] <= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n    return left_child and right_child\n\ndef check_min_heap(arr):\n    return check_min_heap_helper(arr, 0)",
+     "input": "([-1, 1, 22, 18, 3, 6],)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "cmp:Lt@node56",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,9 +7,8 @@\n     if 2 * i + 2 > len(arr):\n-      return True\n-    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)\n-    right_child = (2 * i + 2 == len(arr)) or  \\\n-                (arr[i] <= arr[2 * i + 2] and \\\n-                 check_min_heap_helper(arr, 2 * i + 2))\n+        return True\n+    left_child = arr[i] <= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n+    right_child = 2 * i + 2 == len(arr) or (arr[i] < arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n     return left_child and right_child\n+\n def check_min_heap(arr):\n-  return check_min_heap_helper(arr, 0)\n+    return check_min_heap_helper(arr, 0)",
+     "mutant_src": "\"\"\"\nWrite a function to check if the given array represents min heap or not. \nassert check_min_heap([1, 2, 3, 4, 5, 6]) == True\n\"\"\"\n\ndef check_min_heap_helper(arr, i):\n    if 2 * i + 2 > len(arr):\n        return True\n    left_child = arr[i] <= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)\n    right_child = 2 * i + 2 == len(arr) or (arr[i] < arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n    return left_child and right_child\n\ndef check_min_heap(arr):\n    return check_min_heap_helper(arr, 0)",
+     "input": "([-9, 1, 2, 7, 8, 14, 2],)",
+     "expected_canonical": "True",
+     "mutant_output": "False"
+    },
+    {
+     "mutation": "bin:Sub@node71",
+     "diff": "--- canonical\n+++ mutant\n@@ -7,9 +7,8 @@\n     if 2 * i + 2 > len(arr):\n-      return True\n-    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)\n-    right_child = (2 * i + 2 == len(arr)) or  \\\n-                (arr[i] <= arr[2 * i + 2] and \\\n-                 check_min_heap_helper(arr, 2 * i + 2))\n+        return True\n+    left_child = arr[i] <= arr[2 * i - 1] and check_min_heap_helper(arr, 2 * i + 1)\n+    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n     return left_child and right_child\n+\n def check_min_heap(arr):\n-  return check_min_heap_helper(arr, 0)\n+    return check_min_heap_helper(arr, 0)",
+     "mutant_src": "\"\"\"\nWrite a function to check if the given array represents min heap or not. \nassert check_min_heap([1, 2, 3, 4, 5, 6]) == True\n\"\"\"\n\ndef check_min_heap_helper(arr, i):\n    if 2 * i + 2 > len(arr):\n        return True\n    left_child = arr[i] <= arr[2 * i - 1] and check_min_heap_helper(arr, 2 * i + 1)\n    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n    return left_child and right_child\n\ndef check_min_heap(arr):\n    return check_min_heap_helper(arr, 0)",
+     "input": "([0, 4, 1, 2, 7, 6, 1],)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/752",
+   "entry": "jacobsthal_num",
+   "mutants_tried": 29,
+   "survivors": 5,
+   "equivalent_or_unknown": 5,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/753",
+   "entry": "min_k",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/754",
+   "entry": "extract_index_list",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/755",
+   "entry": "second_smallest",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/757",
+   "entry": "count_reverse_pairs",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/758",
+   "entry": "unique_sublists",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/759",
+   "entry": "is_decimal",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/760",
+   "entry": "unique_Element",
+   "mutants_tried": 3,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/762",
+   "entry": "check_monthnumber_number",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/763",
+   "entry": "find_min_diff",
+   "mutants_tried": 17,
+   "survivors": 5,
+   "equivalent_or_unknown": 1,
+   "witnesses": [
+    {
+     "mutation": "const:1@node23",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,8 +5,8 @@\n \n-def find_min_diff(arr,n): \n-    arr = sorted(arr) \n-    diff = 10**20 \n-    for i in range(n-1): \n-        if arr[i+1] - arr[i] < diff: \n-            diff = arr[i+1] - arr[i]  \n-    return diff \n+def find_min_diff(arr, n):\n+    arr = sorted(arr)\n+    diff = 11 ** 20\n+    for i in range(n - 1):\n+        if arr[i + 1] - arr[i] < diff:\n+            diff = arr[i + 1] - arr[i]\n+    return diff",
+     "mutant_src": "\"\"\"\nWrite a python function to find the minimum difference between any two elements in a given array. \nassert find_min_diff((1,5,3,19,18,25),6) == 1\n\"\"\"\n\ndef find_min_diff(arr, n):\n    arr = sorted(arr)\n    diff = 11 ** 20\n    for i in range(n - 1):\n        if arr[i + 1] - arr[i] < diff:\n            diff = arr[i + 1] - arr[i]\n    return diff",
+     "input": "([-1, 6, 4, 17, 17, 24], -11)",
+     "expected_canonical": "100000000000000000000",
+     "mutant_output": "672749994932560009201"
+    },
+    {
+     "mutation": "const:-1@node23",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,8 +5,8 @@\n \n-def find_min_diff(arr,n): \n-    arr = sorted(arr) \n-    diff = 10**20 \n-    for i in range(n-1): \n-        if arr[i+1] - arr[i] < diff: \n-            diff = arr[i+1] - arr[i]  \n-    return diff \n+def find_min_diff(arr, n):\n+    arr = sorted(arr)\n+    diff = 9 ** 20\n+    for i in range(n - 1):\n+        if arr[i + 1] - arr[i] < diff:\n+            diff = arr[i + 1] - arr[i]\n+    return diff",
+     "mutant_src": "\"\"\"\nWrite a python function to find the minimum difference between any two elements in a given array. \nassert find_min_diff((1,5,3,19,18,25),6) == 1\n\"\"\"\n\ndef find_min_diff(arr, n):\n    arr = sorted(arr)\n    diff = 9 ** 20\n    for i in range(n - 1):\n        if arr[i + 1] - arr[i] < diff:\n            diff = arr[i + 1] - arr[i]\n    return diff",
+     "input": "([-1, 6, 4, 17, 17, 24], -11)",
+     "expected_canonical": "100000000000000000000",
+     "mutant_output": "12157665459056928801"
+    },
+    {
+     "mutation": "const:1@node25",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,8 +5,8 @@\n \n-def find_min_diff(arr,n): \n-    arr = sorted(arr) \n-    diff = 10**20 \n-    for i in range(n-1): \n-        if arr[i+1] - arr[i] < diff: \n-            diff = arr[i+1] - arr[i]  \n-    return diff \n+def find_min_diff(arr, n):\n+    arr = sorted(arr)\n+    diff = 10 ** 21\n+    for i in range(n - 1):\n+        if arr[i + 1] - arr[i] < diff:\n+            diff = arr[i + 1] - arr[i]\n+    return diff",
+     "mutant_src": "\"\"\"\nWrite a python function to find the minimum difference between any two elements in a given array. \nassert find_min_diff((1,5,3,19,18,25),6) == 1\n\"\"\"\n\ndef find_min_diff(arr, n):\n    arr = sorted(arr)\n    diff = 10 ** 21\n    for i in range(n - 1):\n        if arr[i + 1] - arr[i] < diff:\n            diff = arr[i + 1] - arr[i]\n    return diff",
+     "input": "([-1, 6, 4, 17, 17, 24], -11)",
+     "expected_canonical": "100000000000000000000",
+     "mutant_output": "1000000000000000000000"
+    },
+    {
+     "mutation": "const:-1@node25",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,8 +5,8 @@\n \n-def find_min_diff(arr,n): \n-    arr = sorted(arr) \n-    diff = 10**20 \n-    for i in range(n-1): \n-        if arr[i+1] - arr[i] < diff: \n-            diff = arr[i+1] - arr[i]  \n-    return diff \n+def find_min_diff(arr, n):\n+    arr = sorted(arr)\n+    diff = 10 ** 19\n+    for i in range(n - 1):\n+        if arr[i + 1] - arr[i] < diff:\n+            diff = arr[i + 1] - arr[i]\n+    return diff",
+     "mutant_src": "\"\"\"\nWrite a python function to find the minimum difference between any two elements in a given array. \nassert find_min_diff((1,5,3,19,18,25),6) == 1\n\"\"\"\n\ndef find_min_diff(arr, n):\n    arr = sorted(arr)\n    diff = 10 ** 19\n    for i in range(n - 1):\n        if arr[i + 1] - arr[i] < diff:\n            diff = arr[i + 1] - arr[i]\n    return diff",
+     "input": "([-1, 6, 4, 17, 17, 24], -11)",
+     "expected_canonical": "100000000000000000000",
+     "mutant_output": "10000000000000000000"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/764",
+   "entry": "number_ctr",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/765",
+   "entry": "is_polite",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/766",
+   "entry": "pair_wise",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/767",
+   "entry": "get_pairs_count",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/769",
+   "entry": "Diff",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/770",
+   "entry": "odd_num_sum",
+   "mutants_tried": 19,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/771",
+   "entry": "check_expression",
+   "mutants_tried": 31,
+   "survivors": 3,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node64",
+     "diff": "--- canonical\n+++ mutant\n@@ -4,6 +4,6 @@\n \"\"\"\n+from collections import deque\n \n-from collections import deque\n def check_expression(exp):\n-    if len(exp) == 0 or len(exp) % 2 == 1:\n+    if len(exp) == 0 or len(exp) % 1 == 1:\n         return False\n@@ -17,4 +17,4 @@\n             top = stack.pop()\n-            if (top == '(' and ch != ')') or (top == '{' and ch != '}' or (top == '[' and ch != ']')):\n+            if top == '(' and ch != ')' or (top == '{' and ch != '}' or (top == '[' and ch != ']')):\n                 return False\n-    return not stack\n+    return not stack",
+     "mutant_src": "\"\"\"\nWrite a function to check if the given expression is balanced or not. \nassert check_expression(\"{()}[{}]\") == True\n\"\"\"\nfrom collections import deque\n\ndef check_expression(exp):\n    if len(exp) == 0 or len(exp) % 1 == 1:\n        return False\n    stack = deque()\n    for ch in exp:\n        if ch == '(' or ch == '{' or ch == '[':\n            stack.append(ch)\n        if ch == ')' or ch == '}' or ch == ']':\n            if not stack:\n                return False\n            top = stack.pop()\n            if top == '(' and ch != ')' or (top == '{' and ch != '}' or (top == '[' and ch != ']')):\n                return False\n    return not stack",
+     "input": "(' ',)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "const:1@node42",
+     "diff": "--- canonical\n+++ mutant\n@@ -4,6 +4,6 @@\n \"\"\"\n+from collections import deque\n \n-from collections import deque\n def check_expression(exp):\n-    if len(exp) == 0 or len(exp) % 2 == 1:\n+    if len(exp) == 0 or len(exp) % 2 == 2:\n         return False\n@@ -17,4 +17,4 @@\n             top = stack.pop()\n-            if (top == '(' and ch != ')') or (top == '{' and ch != '}' or (top == '[' and ch != ']')):\n+            if top == '(' and ch != ')' or (top == '{' and ch != '}' or (top == '[' and ch != ']')):\n                 return False\n-    return not stack\n+    return not stack",
+     "mutant_src": "\"\"\"\nWrite a function to check if the given expression is balanced or not. \nassert check_expression(\"{()}[{}]\") == True\n\"\"\"\nfrom collections import deque\n\ndef check_expression(exp):\n    if len(exp) == 0 or len(exp) % 2 == 2:\n        return False\n    stack = deque()\n    for ch in exp:\n        if ch == '(' or ch == '{' or ch == '[':\n            stack.append(ch)\n        if ch == ')' or ch == '}' or ch == ']':\n            if not stack:\n                return False\n            top = stack.pop()\n            if top == '(' and ch != ')' or (top == '{' and ch != '}' or (top == '[' and ch != ']')):\n                return False\n    return not stack",
+     "input": "(' ',)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    },
+    {
+     "mutation": "bool:And@node92",
+     "diff": "--- canonical\n+++ mutant\n@@ -4,4 +4,4 @@\n \"\"\"\n+from collections import deque\n \n-from collections import deque\n def check_expression(exp):\n@@ -17,4 +17,4 @@\n             top = stack.pop()\n-            if (top == '(' and ch != ')') or (top == '{' and ch != '}' or (top == '[' and ch != ']')):\n+            if top == '(' and ch != ')' or ((top == '{' and ch != '}') and (top == '[' and ch != ']')):\n                 return False\n-    return not stack\n+    return not stack",
+     "mutant_src": "\"\"\"\nWrite a function to check if the given expression is balanced or not. \nassert check_expression(\"{()}[{}]\") == True\n\"\"\"\nfrom collections import deque\n\ndef check_expression(exp):\n    if len(exp) == 0 or len(exp) % 2 == 1:\n        return False\n    stack = deque()\n    for ch in exp:\n        if ch == '(' or ch == '{' or ch == '[':\n            stack.append(ch)\n        if ch == ')' or ch == '}' or ch == ']':\n            if not stack:\n                return False\n            top = stack.pop()\n            if top == '(' and ch != ')' or ((top == '{' and ch != '}') and (top == '[' and ch != ']')):\n                return False\n    return not stack",
+     "input": "('{()}{]',)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/772",
+   "entry": "remove_length",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/773",
+   "entry": "occurance_substring",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/775",
+   "entry": "odd_position",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/777",
+   "entry": "find_sum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/778",
+   "entry": "pack_consecutive_duplicates",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/780",
+   "entry": "find_combinations",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/781",
+   "entry": "count_divisors",
+   "mutants_tried": 24,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/782",
+   "entry": "odd_length_sum",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/784",
+   "entry": "mul_even_odd",
+   "mutants_tried": 17,
+   "survivors": 4,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node29",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n def mul_even_odd(list1):\n-    first_even = next((el for el in list1 if el%2==0),-1)\n-    first_odd = next((el for el in list1 if el%2!=0),-1)\n-    return (first_even*first_odd)\n+    first_even = next((el for el in list1 if el % 2 == 0), -2)\n+    first_odd = next((el for el in list1 if el % 2 != 0), -1)\n+    return first_even * first_odd",
+     "mutant_src": "\"\"\"\nWrite a function to find the product of first even and odd number of a given list.\nassert mul_even_odd([1,3,5,7,4,1,6,8])==4\n\"\"\"\n\ndef mul_even_odd(list1):\n    first_even = next((el for el in list1 if el % 2 == 0), -2)\n    first_odd = next((el for el in list1 if el % 2 != 0), -1)\n    return first_even * first_odd",
+     "input": "([-1, 7, 9, 21, 9, 9],)",
+     "expected_canonical": "1",
+     "mutant_output": "2"
+    },
+    {
+     "mutation": "const:-1@node34",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n def mul_even_odd(list1):\n-    first_even = next((el for el in list1 if el%2==0),-1)\n-    first_odd = next((el for el in list1 if el%2!=0),-1)\n-    return (first_even*first_odd)\n+    first_even = next((el for el in list1 if el % 2 == 0), -1)\n+    first_odd = next((el for el in list1 if el % 2 != 0), -0)\n+    return first_even * first_odd",
+     "mutant_src": "\"\"\"\nWrite a function to find the product of first even and odd number of a given list.\nassert mul_even_odd([1,3,5,7,4,1,6,8])==4\n\"\"\"\n\ndef mul_even_odd(list1):\n    first_even = next((el for el in list1 if el % 2 == 0), -1)\n    first_odd = next((el for el in list1 if el % 2 != 0), -0)\n    return first_even * first_odd",
+     "input": "([-12, -4, -2, 6, 12],)",
+     "expected_canonical": "12",
+     "mutant_output": "0"
+    },
+    {
+     "mutation": "const:-1@node29",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n def mul_even_odd(list1):\n-    first_even = next((el for el in list1 if el%2==0),-1)\n-    first_odd = next((el for el in list1 if el%2!=0),-1)\n-    return (first_even*first_odd)\n+    first_even = next((el for el in list1 if el % 2 == 0), -0)\n+    first_odd = next((el for el in list1 if el % 2 != 0), -1)\n+    return first_even * first_odd",
+     "mutant_src": "\"\"\"\nWrite a function to find the product of first even and odd number of a given list.\nassert mul_even_odd([1,3,5,7,4,1,6,8])==4\n\"\"\"\n\ndef mul_even_odd(list1):\n    first_even = next((el for el in list1 if el % 2 == 0), -0)\n    first_odd = next((el for el in list1 if el % 2 != 0), -1)\n    return first_even * first_odd",
+     "input": "([-1, 7, 9, 21, 9, 9],)",
+     "expected_canonical": "1",
+     "mutant_output": "0"
+    },
+    {
+     "mutation": "const:1@node34",
+     "diff": "--- canonical\n+++ mutant\n@@ -6,4 +6,4 @@\n def mul_even_odd(list1):\n-    first_even = next((el for el in list1 if el%2==0),-1)\n-    first_odd = next((el for el in list1 if el%2!=0),-1)\n-    return (first_even*first_odd)\n+    first_even = next((el for el in list1 if el % 2 == 0), -1)\n+    first_odd = next((el for el in list1 if el % 2 != 0), -2)\n+    return first_even * first_odd",
+     "mutant_src": "\"\"\"\nWrite a function to find the product of first even and odd number of a given list.\nassert mul_even_odd([1,3,5,7,4,1,6,8])==4\n\"\"\"\n\ndef mul_even_odd(list1):\n    first_even = next((el for el in list1 if el % 2 == 0), -1)\n    first_odd = next((el for el in list1 if el % 2 != 0), -2)\n    return first_even * first_odd",
+     "input": "([-12, -4, -2, 6, 12],)",
+     "expected_canonical": "12",
+     "mutant_output": "24"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/785",
+   "entry": "tuple_str_int",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/786",
+   "entry": "right_insertion",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/787",
+   "entry": "text_match_three",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/788",
+   "entry": "new_tuple",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/790",
+   "entry": "even_position",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/791",
+   "entry": "remove_nested",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/792",
+   "entry": "count_list",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/793",
+   "entry": "last",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/794",
+   "entry": "text_starta_endb",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/796",
+   "entry": "return_sum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/797",
+   "entry": "sum_in_range",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/798",
+   "entry": "_sum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/799",
+   "entry": "left_rotate",
+   "mutants_tried": 3,
+   "survivors": 3,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node10",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,4 +5,4 @@\n \n-def left_rotate(n,d):   \n-    INT_BITS = 32\n-    return (n << d)|(n >> (INT_BITS - d))  \n+def left_rotate(n, d):\n+    INT_BITS = 31\n+    return n << d | n >> INT_BITS - d",
+     "mutant_src": "\"\"\"\nWrite a function to that rotate left bits by d bits a given number. We assume that the number is 32 bit.\nassert left_rotate(16,2) == 64\n\"\"\"\n\ndef left_rotate(n, d):\n    INT_BITS = 31\n    return n << d | n >> INT_BITS - d",
+     "input": "(4, 31)",
+     "expected_canonical": "8589934594",
+     "mutant_output": "8589934596"
+    },
+    {
+     "mutation": "bin:Add@node21",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,4 +5,4 @@\n \n-def left_rotate(n,d):   \n+def left_rotate(n, d):\n     INT_BITS = 32\n-    return (n << d)|(n >> (INT_BITS - d))  \n+    return n << d | n >> INT_BITS + d",
+     "mutant_src": "\"\"\"\nWrite a function to that rotate left bits by d bits a given number. We assume that the number is 32 bit.\nassert left_rotate(16,2) == 64\n\"\"\"\n\ndef left_rotate(n, d):\n    INT_BITS = 32\n    return n << d | n >> INT_BITS + d",
+     "input": "(4, 31)",
+     "expected_canonical": "8589934594",
+     "mutant_output": "8589934592"
+    },
+    {
+     "mutation": "const:1@node10",
+     "diff": "--- canonical\n+++ mutant\n@@ -5,4 +5,4 @@\n \n-def left_rotate(n,d):   \n-    INT_BITS = 32\n-    return (n << d)|(n >> (INT_BITS - d))  \n+def left_rotate(n, d):\n+    INT_BITS = 33\n+    return n << d | n >> INT_BITS - d",
+     "mutant_src": "\"\"\"\nWrite a function to that rotate left bits by d bits a given number. We assume that the number is 32 bit.\nassert left_rotate(16,2) == 64\n\"\"\"\n\ndef left_rotate(n, d):\n    INT_BITS = 33\n    return n << d | n >> INT_BITS - d",
+     "input": "(4, 31)",
+     "expected_canonical": "8589934594",
+     "mutant_output": "8589934593"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/800",
+   "entry": "remove_all_spaces",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/801",
+   "entry": "test_three_equal",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/803",
+   "entry": "is_perfect_square",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/804",
+   "entry": "is_product_even",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/805",
+   "entry": "max_sum_list",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/806",
+   "entry": "max_run_uppercase",
+   "mutants_tried": 13,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/807",
+   "entry": "first_odd",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/808",
+   "entry": "check_K",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "MbppPlus/809",
+   "entry": "check_smaller",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  }
+ ]
+}

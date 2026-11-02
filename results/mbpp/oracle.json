@@ -1,0 +1,2005 @@
+[
+ {
+  "task_id": "MBPP/11",
+  "oracle": "Mbpp/11",
+  "per_witness": [
+   {
+    "mutation": "const:1@node43",
+    "oracle_disagrees": true,
+    "oracle_input": "['a', 'a']",
+    "oracle_expected": "''",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node43",
+    "oracle_disagrees": true,
+    "oracle_input": "['xx', 'x']",
+    "oracle_expected": "''",
+    "mutant_helper_output": "'x'"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/20",
+  "oracle": "Mbpp/20",
+  "per_witness": [
+   {
+    "mutation": "cmp:NotEq@node43",
+    "oracle_disagrees": true,
+    "oracle_input": "[123456789]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "cmp:NotEq@node12",
+    "oracle_disagrees": true,
+    "oracle_input": "[123456789]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:-1@node56",
+    "oracle_disagrees": true,
+    "oracle_input": "[123456789]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "timeout"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/66",
+  "oracle": "Mbpp/66",
+  "per_witness": [
+   {
+    "mutation": "const:1@node21",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "cmp:Gt@node16",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/68",
+  "oracle": "Mbpp/68",
+  "per_witness": [
+   {
+    "mutation": "const:1@node66",
+    "oracle_disagrees": true,
+    "oracle_input": "[[43.01465662466188, -69.38224302373561, -10.481407073259263]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/70",
+  "oracle": "Mbpp/70",
+  "per_witness": [
+   {
+    "mutation": "const:1@node49",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[4, 5]]]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/72",
+  "oracle": "Mbpp/72",
+  "per_witness": [
+   {
+    "mutation": "bin:FloorDiv@node9",
+    "oracle_disagrees": true,
+    "oracle_input": "[990]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/83",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/92",
+  "oracle": "Mbpp/92",
+  "per_witness": [
+   {
+    "mutation": "const:1@node25",
+    "oracle_disagrees": true,
+    "oracle_input": "[82]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/93",
+  "oracle": "Mbpp/93",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node20",
+    "oracle_disagrees": true,
+    "oracle_input": "[4, -2]",
+    "oracle_expected": "0.0625",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node20",
+    "oracle_disagrees": true,
+    "oracle_input": "[4, -2]",
+    "oracle_expected": "0.0625",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node19",
+    "oracle_disagrees": true,
+    "oracle_input": "[4, -2]",
+    "oracle_expected": "0.0625",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/103",
+  "oracle": "Mbpp/103",
+  "per_witness": [
+   {
+    "mutation": "bool:And@node8",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/113",
+  "oracle": "Mbpp/113",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node15",
+    "oracle_disagrees": true,
+    "oracle_input": "['']",
+    "oracle_expected": "None",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/125",
+  "oracle": "Mbpp/125",
+  "per_witness": [
+   {
+    "mutation": "const:1@node12",
+    "oracle_disagrees": true,
+    "oracle_input": "['0000000011111111']",
+    "oracle_expected": "8",
+    "mutant_helper_output": "9"
+   },
+   {
+    "mutation": "const:-1@node12",
+    "oracle_disagrees": true,
+    "oracle_input": "['0000000011111111']",
+    "oracle_expected": "8",
+    "mutant_helper_output": "7"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/128",
+  "oracle": "Mbpp/128",
+  "per_witness": [
+   {
+    "mutation": "cmp:GtE@node24",
+    "oracle_disagrees": true,
+    "oracle_input": "[0, 'abc  def  ghi  jklm  nopqrs   tuvwxyz']",
+    "oracle_expected": "['abc', 'def', 'ghi', 'jklm', 'nopqrs', 'tuvwxyz']",
+    "mutant_helper_output": "['abc', '', 'def', '', 'ghi', '', 'jklm', '', 'nopqrs', '', '', 'tuvwxyz']"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/129",
+  "oracle": "Mbpp/129",
+  "per_witness": [
+   {
+    "mutation": "const:1@node77",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5]]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node77",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5]]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/133",
+  "oracle": "Mbpp/133",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node27",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-1, -2, -3, -4, -5]]",
+    "oracle_expected": "-15",
+    "mutant_helper_output": "-14"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/145",
+  "oracle": "Mbpp/145",
+  "per_witness": [
+   {
+    "mutation": "const:1@node25",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1]]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node25",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-5, -3, -2, -1]]",
+    "oracle_expected": "4",
+    "mutant_helper_output": "2"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/160",
+  "oracle": "Mbpp/160",
+  "per_witness": [
+   {
+    "mutation": "bin:FloorDiv@node16",
+    "oracle_disagrees": true,
+    "oracle_input": "[25, 123, 7]",
+    "oracle_expected": "None",
+    "mutant_helper_output": "(79, -16)"
+   },
+   {
+    "mutation": "bin:FloorDiv@node46",
+    "oracle_disagrees": true,
+    "oracle_input": "[7, 11, 123]",
+    "oracle_expected": "(5, 8)",
+    "mutant_helper_output": "(14, 2)"
+   },
+   {
+    "mutation": "cmp:Lt@node11",
+    "oracle_disagrees": true,
+    "oracle_input": "[25, 123, 500]",
+    "oracle_expected": "(20, 0)",
+    "mutant_helper_output": "None"
+   },
+   {
+    "mutation": "const:1@node10",
+    "oracle_disagrees": true,
+    "oracle_input": "[100, 50, 4000]",
+    "oracle_expected": "(0, 80)",
+    "mutant_helper_output": "(1, 78)"
+   },
+   {
+    "mutation": "const:1@node34",
+    "oracle_disagrees": true,
+    "oracle_input": "[7, 11, 123]",
+    "oracle_expected": "(5, 8)",
+    "mutant_helper_output": "(16, 1)"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/164",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/167",
+  "oracle": "Mbpp/167",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node47",
+    "oracle_disagrees": true,
+    "oracle_input": "[1]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "2"
+   },
+   {
+    "mutation": "const:1@node47",
+    "oracle_disagrees": true,
+    "oracle_input": "[1]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "2"
+   },
+   {
+    "mutation": "bin:Add@node43",
+    "oracle_disagrees": true,
+    "oracle_input": "[2]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "4"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/223",
+  "oracle": "Mbpp/223",
+  "per_witness": [
+   {
+    "mutation": "const:1@node87",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 1, 0]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node73",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 1, 0]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node61",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 0, 1]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node52",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 0, 1]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node168",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 1, 0]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "cmp:Lt@node39",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 1, 0]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "bin:Sub@node62",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 1, 0]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node87",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 1, 0]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "bin:Add@node64",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 1, 0]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node52",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 1, 0]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "bin:Add@node32",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 0, 1]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node57",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 0, 1]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/227",
+  "oracle": "Mbpp/227",
+  "per_witness": [
+   {
+    "mutation": "cmp:GtE@node13",
+    "oracle_disagrees": true,
+    "oracle_input": "[1000000, 2000000, 3000000]",
+    "oracle_expected": "1000000",
+    "mutant_helper_output": "3000000"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/228",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/229",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/239",
+  "oracle": "Mbpp/239",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node58",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node58",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/245",
+  "oracle": "Mbpp/245",
+  "per_witness": [
+   {
+    "mutation": "cmp:GtE@node109",
+    "oracle_disagrees": true,
+    "oracle_input": "[[10, 9, 8, 7, 6, 5, 4, 4, 3, 2, 1]]",
+    "oracle_expected": "55",
+    "mutant_helper_output": "59"
+   },
+   {
+    "mutation": "cmp:GtE@node100",
+    "oracle_disagrees": true,
+    "oracle_input": "[[10, 7, 10, 5, 4, 4, 3, 1, 6]]",
+    "oracle_expected": "30",
+    "mutant_helper_output": "33"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/246",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/247",
+  "oracle": "Mbpp/247",
+  "per_witness": [
+   {
+    "mutation": "const:1@node214",
+    "oracle_disagrees": true,
+    "oracle_input": "['AAAAAAA']",
+    "oracle_expected": "7",
+    "mutant_helper_output": "5"
+   },
+   {
+    "mutation": "const:1@node117",
+    "oracle_disagrees": true,
+    "oracle_input": "['AAAAAAA']",
+    "oracle_expected": "7",
+    "mutant_helper_output": "6"
+   },
+   {
+    "mutation": "const:1@node66",
+    "oracle_disagrees": true,
+    "oracle_input": "['AAAAAAA']",
+    "oracle_expected": "7",
+    "mutant_helper_output": "6"
+   },
+   {
+    "mutation": "const:1@node70",
+    "oracle_disagrees": true,
+    "oracle_input": "['AAAAAAA']",
+    "oracle_expected": "7",
+    "mutant_helper_output": "6"
+   },
+   {
+    "mutation": "const:1@node93",
+    "oracle_disagrees": true,
+    "oracle_input": "['CCCCCCCCCCCC']",
+    "oracle_expected": "12",
+    "mutant_helper_output": "13"
+   },
+   {
+    "mutation": "const:-1@node93",
+    "oracle_disagrees": true,
+    "oracle_input": "['CCCCCCCCCCCC']",
+    "oracle_expected": "12",
+    "mutant_helper_output": "11"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/264",
+  "oracle": "Mbpp/264",
+  "per_witness": [
+   {
+    "mutation": "const:1@node22",
+    "oracle_disagrees": true,
+    "oracle_input": "[3]",
+    "oracle_expected": "25",
+    "mutant_helper_output": "31.5"
+   },
+   {
+    "mutation": "bin:FloorDiv@node24",
+    "oracle_disagrees": true,
+    "oracle_input": "[True]",
+    "oracle_expected": "10.5",
+    "mutant_helper_output": "0.0"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/280",
+  "oracle": "Mbpp/280",
+  "per_witness": [
+   {
+    "mutation": "cmp:LtE@node19",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 10]",
+    "oracle_expected": "(False, -1)",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/283",
+  "oracle": "Mbpp/283",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node34",
+    "oracle_disagrees": true,
+    "oracle_input": "[9876543212]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/286",
+  "oracle": "Mbpp/286",
+  "per_witness": [
+   {
+    "mutation": "const:1@node22",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node13",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, -2, 10, 4, -7, 3], 6, 5]",
+    "oracle_expected": "69",
+    "mutant_helper_output": "68"
+   },
+   {
+    "mutation": "const:-1@node22",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/291",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/300",
+  "oracle": "Mbpp/300",
+  "per_witness": [
+   {
+    "mutation": "const:1@node32",
+    "oracle_disagrees": true,
+    "oracle_input": "[1000000]",
+    "oracle_expected": "inf",
+    "mutant_helper_output": "nan"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/306",
+  "oracle": "Mbpp/306",
+  "per_witness": [
+   {
+    "mutation": "bin:Add@node212",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 5]",
+    "oracle_expected": "11",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "cmp:GtE@node26",
+    "oracle_disagrees": true,
+    "oracle_input": "[[4, 2, 4, 1, 3, 6], 6, 1, 2]",
+    "oracle_expected": "6",
+    "mutant_helper_output": "8"
+   },
+   {
+    "mutation": "const:-1@node244",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 5]",
+    "oracle_expected": "11",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node230",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 5]",
+    "oracle_expected": "11",
+    "mutant_helper_output": "8"
+   },
+   {
+    "mutation": "const:-1@node118",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 3]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node118",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 3]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "bin:Add@node194",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 5]",
+    "oracle_expected": "11",
+    "mutant_helper_output": "8"
+   },
+   {
+    "mutation": "const:-1@node230",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 5]",
+    "oracle_expected": "11",
+    "mutant_helper_output": "8"
+   },
+   {
+    "mutation": "const:1@node244",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 5]",
+    "oracle_expected": "11",
+    "mutant_helper_output": "0"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/311",
+  "oracle": "Mbpp/311",
+  "per_witness": [
+   {
+    "mutation": "bin:Sub@node42",
+    "oracle_disagrees": true,
+    "oracle_input": "[8]",
+    "oracle_expected": "12",
+    "mutant_helper_output": "8"
+   },
+   {
+    "mutation": "const:1@node61",
+    "oracle_disagrees": true,
+    "oracle_input": "[True]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "1"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/392",
+  "oracle": "Mbpp/392",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node23",
+    "oracle_disagrees": true,
+    "oracle_input": "[False]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "-1"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/397",
+  "oracle": "Mbpp/397",
+  "per_witness": [
+   {
+    "mutation": "cmp:Lt@node29",
+    "oracle_disagrees": true,
+    "oracle_input": "[-10, -20, -30]",
+    "oracle_expected": "-20",
+    "mutant_helper_output": "-30"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/406",
+  "oracle": "Mbpp/406",
+  "per_witness": [
+   {
+    "mutation": "const:1@node59",
+    "oracle_disagrees": true,
+    "oracle_input": "[2]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node51",
+    "oracle_disagrees": true,
+    "oracle_input": "[-10]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/407",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/408",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/415",
+  "oracle": "Mbpp/415",
+  "per_witness": [
+   {
+    "mutation": "cmp:LtE@node12",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1000000, 2000000, 3000000, 4000000, 4000000]]",
+    "oracle_expected": "(3000000, 4000000)",
+    "mutant_helper_output": "(4000000, 4000000)"
+   },
+   {
+    "mutation": "cmp:GtE@node58",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-5, -10, -20, -30, -1, 0, 1, 2, 3, 4, 5, 10, 20, 30]]",
+    "oracle_expected": "(-20, -30)",
+    "mutant_helper_output": "(20, 30)"
+   },
+   {
+    "mutation": "const:1@node39",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1000000, -1000000, 999999, -999999, 888888, -888888, 777777, -777777]]",
+    "oracle_expected": "(1000000, 999999)",
+    "mutant_helper_output": "(-1000000, -999999)"
+   },
+   {
+    "mutation": "const:1@node27",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1000000, 2000000, 3000000, 4000000, 4000000]]",
+    "oracle_expected": "(3000000, 4000000)",
+    "mutant_helper_output": "(4000000, 4000000)"
+   },
+   {
+    "mutation": "const:-1@node35",
+    "oracle_disagrees": true,
+    "oracle_input": "[[999999999, 888888888, -777777777, 666666666, -555555555]]",
+    "oracle_expected": "(999999999, 888888888)",
+    "mutant_helper_output": "(999999999, 999999999)"
+   },
+   {
+    "mutation": "const:1@node35",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1000000, 2000000, 3000000, 4000000, 4000000]]",
+    "oracle_expected": "(3000000, 4000000)",
+    "mutant_helper_output": "(4000000, 4000000)"
+   },
+   {
+    "mutation": "const:1@node31",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1000000, -1000000, 999999, -999999, 888888, -888888, 777777, -777777]]",
+    "oracle_expected": "(1000000, 999999)",
+    "mutant_helper_output": "(-1000000, -1000000)"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/433",
+  "oracle": "Mbpp/433",
+  "per_witness": [
+   {
+    "mutation": "const:1@node22",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 10]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "cmp:GtE@node8",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 10]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/436",
+  "oracle": "Mbpp/436",
+  "per_witness": [
+   {
+    "mutation": "cmp:LtE@node17",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, -2, 0, -5, 7, -8, 10, 12, 0, -15, 18]]",
+    "oracle_expected": "[-2, -5, -8, -15]",
+    "mutant_helper_output": "[-2, 0, -5, -8, 0, -15]"
+   },
+   {
+    "mutation": "const:1@node22",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, -2, 0, -5, 7, -8, 10, 12, 0, -15, 18]]",
+    "oracle_expected": "[-2, -5, -8, -15]",
+    "mutant_helper_output": "[-2, 0, -5, -8, 0, -15]"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/438",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/448",
+  "oracle": "Mbpp/448",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node44",
+    "oracle_disagrees": true,
+    "oracle_input": "[True]",
+    "oracle_expected": "3",
+    "mutant_helper_output": "5"
+   },
+   {
+    "mutation": "const:1@node45",
+    "oracle_disagrees": true,
+    "oracle_input": "[True]",
+    "oracle_expected": "3",
+    "mutant_helper_output": "4"
+   },
+   {
+    "mutation": "const:1@node44",
+    "oracle_disagrees": true,
+    "oracle_input": "[True]",
+    "oracle_expected": "3",
+    "mutant_helper_output": "5"
+   },
+   {
+    "mutation": "const:-1@node40",
+    "oracle_disagrees": true,
+    "oracle_input": "[False]",
+    "oracle_expected": "3",
+    "mutant_helper_output": "5"
+   },
+   {
+    "mutation": "const:-1@node45",
+    "oracle_disagrees": true,
+    "oracle_input": "[True]",
+    "oracle_expected": "3",
+    "mutant_helper_output": "2"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/453",
+  "oracle": "Mbpp/453",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node56",
+    "oracle_disagrees": true,
+    "oracle_input": "[101]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "102"
+   },
+   {
+    "mutation": "const:1@node28",
+    "oracle_disagrees": true,
+    "oracle_input": "[101]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "1"
+   },
+   {
+    "mutation": "const:1@node56",
+    "oracle_disagrees": true,
+    "oracle_input": "[998]",
+    "oracle_expected": "1000",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:-1@node28",
+    "oracle_disagrees": true,
+    "oracle_input": "[101]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "-1"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/455",
+  "oracle": "Mbpp/455",
+  "per_witness": [
+   {
+    "mutation": "const:1@node32",
+    "oracle_disagrees": true,
+    "oracle_input": "[9]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node23",
+    "oracle_disagrees": true,
+    "oracle_input": "[3]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:-1@node20",
+    "oracle_disagrees": true,
+    "oracle_input": "[1]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:1@node29",
+    "oracle_disagrees": true,
+    "oracle_input": "[7]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:-1@node32",
+    "oracle_disagrees": true,
+    "oracle_input": "[8]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/463",
+  "oracle": "Mbpp/463",
+  "per_witness": [
+   {
+    "mutation": "const:1@node58",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node133",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-2, -2, 4, -6, 8, 10, -12, -16, 8]]",
+    "oracle_expected": "5898240",
+    "mutant_helper_output": "92160"
+   },
+   {
+    "mutation": "const:-1@node96",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-5, -10, -2, -8, 5, -1, -4, -5, -8]]",
+    "oracle_expected": "640000",
+    "mutant_helper_output": "4000"
+   },
+   {
+    "mutation": "cmp:Lt@node40",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-2, 4, -6, 8, 10, -12, 14, -16]]",
+    "oracle_expected": "10321920",
+    "mutant_helper_output": "8"
+   },
+   {
+    "mutation": "const:1@node133",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-5, -2, -8, -9, -6, -4, -3]]",
+    "oracle_expected": "17280",
+    "mutant_helper_output": "20736"
+   },
+   {
+    "mutation": "bin:FloorDiv@node91",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-2, 4, -6, 8, 10, -12, 14, -16]]",
+    "oracle_expected": "10321920",
+    "mutant_helper_output": "6592"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/468",
+  "oracle": "Mbpp/468",
+  "per_witness": [
+   {
+    "mutation": "cmp:GtE@node55",
+    "oracle_disagrees": true,
+    "oracle_input": "[[3, -5, 2, 6, -1, 4, -3]]",
+    "oracle_expected": "20",
+    "mutant_helper_output": "12"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/479",
+  "oracle": "Mbpp/479",
+  "per_witness": [
+   {
+    "mutation": "cmp:Gt@node6",
+    "oracle_disagrees": true,
+    "oracle_input": "[10000000000000000]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "10"
+   },
+   {
+    "mutation": "const:1@node11",
+    "oracle_disagrees": true,
+    "oracle_input": "[10000000000000000]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "10"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/559",
+  "oracle": "Mbpp/559",
+  "per_witness": [
+   {
+    "mutation": "const:1@node10",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 0]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "1"
+   },
+   {
+    "mutation": "const:1@node22",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1000, 900, 800, 700, 600, -1000, -900, -800, -700, -600], 10]",
+    "oracle_expected": "4000",
+    "mutant_helper_output": "3000"
+   },
+   {
+    "mutation": "const:-1@node22",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 0]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node12",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1000, 900, 800, 700, 600, -1000, -900, -800, -700, -600], 10]",
+    "oracle_expected": "4000",
+    "mutant_helper_output": "3999"
+   },
+   {
+    "mutation": "const:1@node12",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1000, 900, 800, 700, 600, -1000, -900, -800, -700, -600], 10]",
+    "oracle_expected": "4000",
+    "mutant_helper_output": "4001"
+   },
+   {
+    "mutation": "const:-1@node10",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], 0]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "-1"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/567",
+  "oracle": "Mbpp/567",
+  "per_witness": [
+   {
+    "mutation": "cmp:Lt@node14",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 4, 4, 6, 8, 10, 10, 12, 12]]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/576",
+  "oracle": "Mbpp/576",
+  "per_witness": [
+   {
+    "mutation": "const:1@node18",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], []]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/577",
+  "oracle": "Mbpp/577",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node28",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "cmp:Lt@node12",
+    "oracle_disagrees": true,
+    "oracle_input": "[2]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node28",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node18",
+    "oracle_disagrees": true,
+    "oracle_input": "[1.5869584267664152]",
+    "oracle_expected": "1.5869584267664152",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node18",
+    "oracle_disagrees": true,
+    "oracle_input": "[2.5]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "2.5"
+   },
+   {
+    "mutation": "const:-1@node27",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/589",
+  "oracle": "Mbpp/589",
+  "per_witness": [
+   {
+    "mutation": "const:1@node34",
+    "oracle_disagrees": true,
+    "oracle_input": "[1, 1000000]",
+    "oracle_expected": "[1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400, 441, 484, 529, 576, 625, 676, 729, 784, 841, 900, 961, 1024, 1089, 1156, 1225, 1296, 1369, 1444, 1521, 1600, 16",
+    "mutant_helper_output": "timeout"
+   },
+   {
+    "mutation": "const:-1@node23",
+    "oracle_disagrees": true,
+    "oracle_input": "[1, 1000000]",
+    "oracle_expected": "[1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400, 441, 484, 529, 576, 625, 676, 729, 784, 841, 900, 961, 1024, 1089, 1156, 1225, 1296, 1369, 1444, 1521, 1600, 16",
+    "mutant_helper_output": "timeout"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/594",
+  "oracle": "Mbpp/594",
+  "per_witness": [
+   {
+    "mutation": "const:1@node58",
+    "oracle_disagrees": true,
+    "oracle_input": "[[2, 5, 3, 6, 1, 4, 9, 8, 7]]",
+    "oracle_expected": "-3",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node27",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node27",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node52",
+    "oracle_disagrees": true,
+    "oracle_input": "[[2, 5, 3, 6, 1, 4, 9, 8, 7]]",
+    "oracle_expected": "-3",
+    "mutant_helper_output": "0"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/597",
+  "oracle": "Mbpp/597",
+  "per_witness": [
+   {
+    "mutation": "const:1@node82",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], [1, 2, 3], 2]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node82",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], [1, 2, 3], 2]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "cmp:LtE@node56",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3, 1], [], 3]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "3"
+   },
+   {
+    "mutation": "const:-1@node74",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3], [], 1]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node74",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3], [], 3]",
+    "oracle_expected": "3",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "cmp:Gt@node31",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3], [], 1]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "cmp:Gt@node35",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], [1, 2, 3], 2]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "0"
+   },
+   {
+    "mutation": "const:1@node71",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3], [], 1]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node85",
+    "oracle_disagrees": true,
+    "oracle_input": "[[], [1, 2, 3], 2]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "3"
+   },
+   {
+    "mutation": "const:-1@node71",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3], [], 1]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "3"
+   },
+   {
+    "mutation": "cmp:LtE@node55",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3], [], 1]",
+    "oracle_expected": "1",
+    "mutant_helper_output": "err"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/602",
+  "oracle": "Mbpp/602",
+  "per_witness": [
+   {
+    "mutation": "bin:Sub@node33",
+    "oracle_disagrees": true,
+    "oracle_input": "['ABCaBC']",
+    "oracle_expected": "'B'",
+    "mutant_helper_output": "None"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/605",
+  "oracle": "Mbpp/605",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node29",
+    "oracle_disagrees": true,
+    "oracle_input": "[9999999966]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:-1@node10",
+    "oracle_disagrees": true,
+    "oracle_input": "[0]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "None"
+   },
+   {
+    "mutation": "bin:FloorDiv@node27",
+    "oracle_disagrees": true,
+    "oracle_input": "[9999999966]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "bin:Mult@node19",
+    "oracle_disagrees": true,
+    "oracle_input": "[1]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "None"
+   },
+   {
+    "mutation": "const:-1@node26",
+    "oracle_disagrees": true,
+    "oracle_input": "[1]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "None"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/617",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/620",
+  "oracle": "Mbpp/620",
+  "per_witness": [
+   {
+    "mutation": "const:1@node55",
+    "oracle_disagrees": true,
+    "oracle_input": "[[11, 22, 44, 33, 44, 55, 66, 77, 88, 99, 110, 22, 44]]",
+    "oracle_expected": "7",
+    "mutant_helper_output": "6"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/622",
+  "oracle": "Mbpp/622",
+  "per_witness": [
+   {
+    "mutation": "const:1@node32",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node101",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2], [3, 4], 2]",
+    "oracle_expected": "2.5",
+    "mutant_helper_output": "3.0"
+   },
+   {
+    "mutation": "const:-1@node32",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node101",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1], [2], 1]",
+    "oracle_expected": "1.5",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:1@node35",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1], [2], 0]",
+    "oracle_expected": "0.5",
+    "mutant_helper_output": "0.0"
+   },
+   {
+    "mutation": "cmp:Lt@node48",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node35",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1], [2], 0]",
+    "oracle_expected": "0.5",
+    "mutant_helper_output": "1.0"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/627",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/638",
+  "oracle": "Mbpp/638",
+  "per_witness": [
+   {
+    "mutation": "const:1@node27",
+    "oracle_disagrees": true,
+    "oracle_input": "[500, 0]",
+    "oracle_expected": "-18",
+    "mutant_helper_output": "-17"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/639",
+  "oracle": "Mbpp/639",
+  "per_witness": [
+   {
+    "mutation": "const:1@node46",
+    "oracle_disagrees": true,
+    "oracle_input": "[['OOscar', 'Oscar', '$uegene', 'D@ve!', '%lice', '^ob', 'Oscar']]",
+    "oracle_expected": "15",
+    "mutant_helper_output": "21"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/721",
+  "oracle": "Mbpp/721",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node167",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]",
+    "oracle_expected": "-0.4",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "bin:Add@node219",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[0, 0, 0], [0, 0, 1], [0, 0, -1]]]",
+    "oracle_expected": "0.0",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:-1@node53",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]",
+    "oracle_expected": "-0.4",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:1@node53",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[0, 0, 0], [0, 0, 1], [0, 0, -1]]]",
+    "oracle_expected": "0.0",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:1@node167",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]",
+    "oracle_expected": "-0.4",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:-1@node163",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]",
+    "oracle_expected": "-0.4",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:-1@node120",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]",
+    "oracle_expected": "-0.4",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "bin:Add@node124",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]",
+    "oracle_expected": "-0.4",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:1@node47",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]",
+    "oracle_expected": "-0.4",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:-1@node233",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[0, 0, 0], [0, 0, 1], [0, 0, -1]]]",
+    "oracle_expected": "0.0",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:1@node169",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[0, 0, 0], [0, 0, 1], [0, 0, -1]]]",
+    "oracle_expected": "0.0",
+    "mutant_helper_output": "0.2"
+   },
+   {
+    "mutation": "const:-1@node93",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]",
+    "oracle_expected": "-0.4",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:1@node120",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[-1, 0, 0], [-1, 0, 0], [0, 0, -1]]]",
+    "oracle_expected": "-0.4",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "bin:Sub@node50",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[0, 1, 0], [0, 0, -1], [0, 0, -1]]]",
+    "oracle_expected": "0.0",
+    "mutant_helper_output": "-0.2"
+   },
+   {
+    "mutation": "const:1@node233",
+    "oracle_disagrees": true,
+    "oracle_input": "[[[0, 0, 0], [0, 0, 1], [0, 0, -1]]]",
+    "oracle_expected": "0.0",
+    "mutant_helper_output": "-0.2"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/722",
+  "oracle": "Mbpp/722",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node40",
+    "oracle_disagrees": true,
+    "oracle_input": "[{'Alice': [5.6, 60], 'Bob': [6.1, 70], 'Charlie': [5.9, 65], 'Dave': [5.11, 72]}, 5.8, 67]",
+    "oracle_expected": "{'Bob': [6.1, 70]}",
+    "mutant_helper_output": "{'Bob': [6.1, 70], 'Dave': [5.11, 72]}"
+   },
+   {
+    "mutation": "const:1@node40",
+    "oracle_disagrees": true,
+    "oracle_input": "[{'Alice': [5.6, 60], 'Bob': [6.1, 70], 'Charlie': [5.9, 65], 'Dave': [5.11, 72]}, 5.8, 67]",
+    "oracle_expected": "{'Bob': [6.1, 70]}",
+    "mutant_helper_output": "{'Bob': [6.1, 70], 'Dave': [5.11, 72]}"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/733",
+  "oracle": "Mbpp/733",
+  "per_witness": [
+   {
+    "mutation": "bin:Add@node76",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 6, 6], 5]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "timeout"
+   },
+   {
+    "mutation": "const:-1@node46",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node40",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5], 5]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "-1"
+   },
+   {
+    "mutation": "const:1@node20",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5], 5]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "-1"
+   },
+   {
+    "mutation": "const:1@node25",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "bin:Add@node21",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5], 5]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node93",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node93",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5, 6, 6], 5]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "-1"
+   },
+   {
+    "mutation": "cmp:Lt@node13",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5], 5]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "-1"
+   },
+   {
+    "mutation": "const:-1@node25",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node40",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node20",
+    "oracle_disagrees": true,
+    "oracle_input": "[[5], 5]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "-1"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/741",
+  "oracle": "Mbpp/741",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node34",
+    "oracle_disagrees": true,
+    "oracle_input": "['ms']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node18",
+    "oracle_disagrees": true,
+    "oracle_input": "['ms']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node34",
+    "oracle_disagrees": true,
+    "oracle_input": "['ms']",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/745",
+  "oracle": "Mbpp/745",
+  "per_witness": [
+   {
+    "mutation": "const:1@node23",
+    "oracle_disagrees": true,
+    "oracle_input": "[599, 998]",
+    "oracle_expected": "[612, 624, 636, 648, 666, 672, 728, 735, 777, 784, 816, 824, 848, 864, 888, 936]",
+    "mutant_helper_output": "[612, 624, 636, 648, 666, 672, 728, 735, 777, 784, 816, 824, 848, 864, 888, 936, 999]"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/746",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/747",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/751",
+  "oracle": "Mbpp/751",
+  "per_witness": [
+   {
+    "mutation": "bool:Or@node32",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 3, 4, 3]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node123",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-80, 19, 31, 4, 18, 5, 7]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "cmp:Lt@node54",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "cmp:Lt@node27",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node93",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 5, 12, 13, 14, 16, 17, 18, 19]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node128",
+    "oracle_disagrees": true,
+    "oracle_input": "[[8, 3, 9, 6, 7, 5, 1]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "cmp:NotEq@node31",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 3, 4, 3]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:-1@node41",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 3, 4, 3]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "err"
+   },
+   {
+    "mutation": "const:-1@node113",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 5, 12, 13, 14, 16, 17, 18, 19]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:-1@node123",
+    "oracle_disagrees": true,
+    "oracle_input": "[[3, 4, 5, 6, 7, 8, 9, 6, 5]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "bin:Sub@node69",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node38",
+    "oracle_disagrees": true,
+    "oracle_input": "[[8, 3, 9, 6, 7, 5, 1]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/755",
+  "oracle": "Mbpp/755",
+  "per_witness": [
+   {
+    "mutation": "cmp:LtE@node10",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "None"
+   },
+   {
+    "mutation": "const:1@node19",
+    "oracle_disagrees": true,
+    "oracle_input": "[[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]]",
+    "oracle_expected": "2",
+    "mutant_helper_output": "None"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/762",
+  "oracle": "Mbpp/762",
+  "per_witness": [
+   {
+    "mutation": "const:1@node19",
+    "oracle_disagrees": true,
+    "oracle_input": "[9]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:-1@node22",
+    "oracle_disagrees": true,
+    "oracle_input": "[10]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:-1@node19",
+    "oracle_disagrees": true,
+    "oracle_input": "[9]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:-1@node13",
+    "oracle_disagrees": true,
+    "oracle_input": "[3]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   },
+   {
+    "mutation": "const:1@node13",
+    "oracle_disagrees": true,
+    "oracle_input": "[4]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/763",
+  "oracle": "Mbpp/763",
+  "per_witness": [
+   {
+    "mutation": "const:1@node21",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node35",
+    "oracle_disagrees": true,
+    "oracle_input": "[[15, 12, 20, 30, 8, 4, 19, 37, 22, 28, 11, 37], 12]",
+    "oracle_expected": "0",
+    "mutant_helper_output": "1"
+   },
+   {
+    "mutation": "const:1@node23",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node23",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node21",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/765",
+  "oracle": "Mbpp/765",
+  "per_witness": [
+   {
+    "mutation": "const:1@node35",
+    "oracle_disagrees": true,
+    "oracle_input": "[5]",
+    "oracle_expected": "9",
+    "mutant_helper_output": "8"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/776",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/781",
+  "oracle": "Mbpp/781",
+  "per_witness": [
+   {
+    "mutation": "const:1@node67",
+    "oracle_disagrees": true,
+    "oracle_input": "[3]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   },
+   {
+    "mutation": "const:-1@node67",
+    "oracle_disagrees": true,
+    "oracle_input": "[3]",
+    "oracle_expected": "True",
+    "mutant_helper_output": "False"
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/783",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/784",
+  "oracle": "Mbpp/784",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node52",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-10, -5, 0, 5, 10]]",
+    "oracle_expected": "50",
+    "mutant_helper_output": "100"
+   },
+   {
+    "mutation": "const:-1@node27",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node58",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-10, -5, 0, 5, 10]]",
+    "oracle_expected": "50",
+    "mutant_helper_output": "100"
+   },
+   {
+    "mutation": "bin:FloorDiv@node11",
+    "oracle_disagrees": true,
+    "oracle_input": "[[-10, -5, 0, 5, 10]]",
+    "oracle_expected": "50",
+    "mutant_helper_output": "2"
+   },
+   {
+    "mutation": "const:1@node27",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/793",
+  "oracle": "timeout"
+ },
+ {
+  "task_id": "MBPP/799",
+  "oracle": "Mbpp/799",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node8",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:1@node8",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "bin:Add@node19",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/802",
+  "oracle": "no matching EvalPlus task",
+  "per_witness": []
+ },
+ {
+  "task_id": "MBPP/807",
+  "oracle": "Mbpp/807",
+  "per_witness": [
+   {
+    "mutation": "const:1@node18",
+    "oracle_disagrees": false
+   },
+   {
+    "mutation": "const:-1@node18",
+    "oracle_disagrees": false
+   }
+  ]
+ },
+ {
+  "task_id": "MBPP/809",
+  "oracle": "Mbpp/809",
+  "per_witness": [
+   {
+    "mutation": "cmp:GtE@node10",
+    "oracle_disagrees": true,
+    "oracle_input": "[[100, 200, 300], [100, 200, 299]]",
+    "oracle_expected": "False",
+    "mutant_helper_output": "True"
+   }
+  ]
+ }
+]

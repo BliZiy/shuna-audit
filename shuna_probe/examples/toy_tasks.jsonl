@@ -1,0 +1,4 @@
+{"id": "toy/add", "entry_point": "add", "reference": "def add(a, b):\n    return a + b\n", "test_style": "check", "test": "def check(candidate):\n    assert candidate(1, 2) == 3\n    assert candidate(-1, 1) == 0\n"}
+{"id": "toy/rev", "entry_point": "rev", "reference": "def rev(s):\n    return s[::-1]\n", "test_style": "asserts", "test": "assert rev('abc') == 'cba'\nassert rev('') == ''\n"}
+{"id": "toy/mean", "entry_point": "mean", "reference": "def mean(xs):\n    return sum(xs) / len(xs)\n", "test_style": "io", "inputs": [[[1, 2, 3]], [[0.5, 0.25]], [[10]]], "atol": 1e-09}
+{"id": "toy/pairs", "entry_point": "pairs", "reference": "def pairs(xs):\n    return [(x, x * x) for x in xs]\n", "test_style": "io", "inputs": [[[1, 2]], [[]], [[3]]]}

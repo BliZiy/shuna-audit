@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shuna-probe"
+version = "1.0.0"
+description = "Offline grader-gameability probe for unit-test code benchmarks (exploit stubs vs. 4 grader designs, incl. type-strict G4)"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+shuna-probe = "shuna_probe.cli:main"
+
+[tool.setuptools]
+packages = ["shuna_probe"]

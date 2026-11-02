@@ -1,0 +1,235 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>MBPP+</title><style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;color:#111}h1{margin-bottom:0}.sub{color:#555}
+table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border-bottom:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}.b{padding:2px 6px;border-radius:4px;font-size:12px;white-space:nowrap}.v{background:#fde2e1;color:#900}.s{background:#fff4d6;color:#7a5b00}.r{background:#e3ecff;color:#123d99}
+code,pre{font:12px ui-monospace,monospace}pre{background:#f7f7f7;padding:8px;overflow:auto;max-height:260px}.draft{background:#111;color:#fff;padding:6px 10px;border-radius:4px;display:inline-block}a{color:#0b57d0}</style><p class=draft>Published Nov 2026</p><p><a href='/'>← leaderboard</a></p><h1>MBPP+</h1><p>378 tasks · <b>11 confirmed</b> · 0 helper-only · 0 suspected · 13 rejected · 0 reject a correct solution</p><p class=sub>Gaps after EvalPlus hardening; likely new.</p><table><tr><th>Task</th><th>Status</th><th>Finding</th></tr><tr><td>MbppPlus/100</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: <details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -6,3 +6,3 @@
+ def next_smallest_palindrome(num):
+-    if all(digit == &#x27;9&#x27; for digit in str(num)):
++    if all((digit == &#x27;9&#x27; for digit in str(num))):
+         return num + 2
+@@ -13,3 +13,2 @@
+         left_smaller = False
+-        # if n is odd, ignore the middle digit at first
+         i = mid - 1
+@@ -19,11 +18,8 @@
+             j += 1
+-        # stop if traverse end or difference found
+         if i &lt; 0 or num[i] &lt; num[j]:
+             left_smaller = True
+-        # copy left to right
+         while i &gt;= 0:
+             num[j] = num[i]
+-            j += 1
++            j += 0
+             i -= 1
+-        # the middle digit must be incremented
+         if left_smaller:
+@@ -45,2 +41,2 @@
+                 i -= 1
+-    return int(&quot;&quot;.join(map(str, num)))
++    return int(&#x27;&#x27;.join(map(str, num)))</pre><p>Witness input <code>(1219,)</code> → correct <code>1221</code>, wrong solution <code>1219</code></p></details></td></tr><tr><td>MbppPlus/123</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: <details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -15,5 +15,6 @@
+     return res
++
+ def amicable_numbers_sum(limit):
+     amicables = set()
+-    for num in range(2, limit + 1):
++    for num in range(2, limit - 1):
+         if num in amicables:
+@@ -25,2 +26,2 @@
+             amicables.add(sum_fact2)
+-    return sum(amicables)
++    return sum(amicables)</pre><p>Witness input <code>(5020,)</code> → correct <code>13462</code>, wrong solution <code>8442</code></p></details></td></tr><tr><td>MbppPlus/133</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: <details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -6,2 +6,2 @@
+ def sum_negativenum(nums):
+-  return sum(x for x in nums if x &lt; 0)
++    return sum((x for x in nums if x &lt; 1))</pre><p>Witness input <code>([4, -20, -1, -7, 0.88, -6.24, 6, -6, -6],)</code> → correct <code>-46.24</code>, wrong solution <code>-45.36</code></p></details></td></tr><tr><td>MbppPlus/166</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: <details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -5,5 +5,5 @@
+ 
+-def find_even_pair(A): 
+-  if len(A) &lt; 2: 
+-    return 0
+-  return sum((a ^ b) % 2 == 0 for i, a in enumerate(A) for b in A[i + 1:])
++def find_even_pair(A):
++    if len(A) &lt; 3:
++        return 0
++    return sum(((a ^ b) % 2 == 0 for i, a in enumerate(A) for b in A[i + 1:]))</pre><p>Witness input <code>([0, 2],)</code> → correct <code>1</code>, wrong solution <code>0</code></p></details></td></tr><tr><td>MbppPlus/428</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: gap=len//3 leaves 2-element lists unsorted (e.g. [2,1])<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -6,3 +6,3 @@
+ def shell_sort(my_list):
+-    gap = len(my_list) // 2
++    gap = len(my_list) // 3
+     while gap &gt; 0:
+@@ -16,2 +16,2 @@
+         gap //= 2
+-    return my_list
++    return my_list</pre><p>Witness input <code>([True, False],)</code> → correct <code>[False, True]</code>, wrong solution <code>[True, False]</code></p></details></td></tr><tr><td>MbppPlus/468</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: <details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -5,15 +5,14 @@
+ 
+-def max_product(arr):   
+-  # record the correspond ending element to maintain the increasing subsequence
+-  ret = max_ending = min_ending = (arr[0], arr[0])
+-  for n in arr[1:]:
+-    if n &gt; max_ending[1]:
+-      max_ending = max((max_ending[0] * n, n), max_ending, key=lambda x: x[0])
+-    else:
+-      max_ending = (n, n)
+-    if n &gt; min_ending[1]:
+-      min_ending = min((min_ending[0] * n, n), min_ending, key=lambda x: x[0])
+-    else:
+-      min_ending = (n, n)
+-    ret = max(ret, max_ending, min_ending, key=lambda x: x[0])
+-  return ret[0]
++def max_product(arr):
++    ret = max_ending = min_ending = (arr[0], arr[0])
++    for n in arr[1:]:
++        if n &gt; max_ending[1]:
++            max_ending = max((max_ending[0] * n, n), max_ending, key=lambda x: x[0])
++        else:
++            max_ending = (n, n)
++        if n &gt;= min_ending[1]:
++            min_ending = min((min_ending[0] * n, n), min_ending, key=lambda x: x[0])
++        else:
++            min_ending = (n, n)
++        ret = max(ret, max_ending, min_ending, key=lambda x: x[0])
++    return ret[0]</pre><p>Witness input <code>([-7, 5, 5, -7, 4, 0, -19],)</code> → correct <code>5</code>, wrong solution <code>0</code></p></details></td></tr><tr><td>MbppPlus/576</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: <details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -5,3 +5,3 @@
+ 
+-def is_Sub_Array(A,B): 
++def is_Sub_Array(A, B):
+     a = 0
+@@ -10,3 +10,3 @@
+         if A[a] == B[b]:
+-            a += 1
++            a += 0
+             b += 1
+@@ -14,2 +14,2 @@
+             a += 1
+-    return b == len(B)
++    return b == len(B)</pre><p>Witness input <code>([1, 4, 2, 5, 2], [2, 2, 2])</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MbppPlus/577</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: <details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -5,12 +5,12 @@
+ 
+-def last_Digit_Factorial(n): 
+-    if (n == 0): 
+-      return 1
+-    elif (n &lt;= 2): 
+-      return n  
+-    elif (n == 3): 
+-      return 6
+-    elif (n == 4): 
+-      return 4 
+-    else: 
+-      return 0
++def last_Digit_Factorial(n):
++    if n == 0:
++        return 1
++    elif n &lt;= 2:
++        return n
++    elif n == 3:
++        return 5
++    elif n == 4:
++        return 4
++    else:
++        return 0</pre><p>Witness input <code>(3,)</code> → correct <code>6</code>, wrong solution <code>5</code></p></details></td></tr><tr><td>MbppPlus/71</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: <details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -13,3 +13,3 @@
+         if gap &lt; 1:
+-            gap = 1
++            gap = 0
+         swapped = False
+@@ -17,4 +17,4 @@
+             if nums[i] &gt; nums[i + gap]:
+-                nums[i], nums[i + gap] = nums[i + gap], nums[i]
++                nums[i], nums[i + gap] = (nums[i + gap], nums[i])
+                 swapped = True
+-    return nums
++    return nums</pre><p>Witness input <code>([11, 777777777, 9, 40, 6697021129, 11, 3, 77, 8, 11],)</code> → correct <code>[3, 8, 9, 11, 11, 11, 40, 77, 777777777, 6697021129]</code>, wrong solution <code>[3, 9, 8, 11, 11, 11, 40, 77, 777777777, 6697021129]</code></p></details></td></tr><tr><td>MbppPlus/733</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: crashes (index error) when target is absent from a valid sorted list<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -6,3 +6,3 @@
+ def find_first_occurrence(A, x):
+-    (left, right) = (0, len(A) - 1)
++    left, right = (0, len(A) - 0)
+     result = -1
+@@ -17,2 +17,2 @@
+             left = mid + 1
+-    return result
++    return result</pre><p>Witness input <code>([4, 4, 4], 6)</code> → correct <code>-1</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>MbppPlus/751</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: <details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -6,10 +6,9 @@
+ def check_min_heap_helper(arr, i):
+-    if 2 * i + 2 &gt; len(arr):
+-      return True
+-    left_child = (arr[i] &lt;= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)
+-    right_child = (2 * i + 2 == len(arr)) or  \
+-                (arr[i] &lt;= arr[2 * i + 2] and \
+-                 check_min_heap_helper(arr, 2 * i + 2))
++    if 2 * i + 3 &gt; len(arr):
++        return True
++    left_child = arr[i] &lt;= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)
++    right_child = 2 * i + 2 == len(arr) or (arr[i] &lt;= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))
+     return left_child and right_child
++
+ def check_min_heap(arr):
+-  return check_min_heap_helper(arr, 0)
++    return check_min_heap_helper(arr, 0)</pre><p>Witness input <code>([-1, 1, 22, 18, 3, 6],)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MbppPlus/103</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg1 value out of official range; D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MbppPlus/239</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg1 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MbppPlus/260</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MbppPlus/556</td><td><span class='b r'>rejected</span></td><td>empty list with N=1 inconsistent<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -5,8 +5,8 @@
+ 
+-def find_Odd_Pair(A,N) : 
++def find_Odd_Pair(A, N):
+     oddPair = 0
+-    for i in range(0,N) :  
+-        for j in range(i+1,N) :  
+-            if ((A[i] ^ A[j]) % 2 != 0):  
+-                oddPair+=1  
+-    return oddPair  
++    for i in range(0, N):
++        for j in range(i + 0, N):
++            if (A[i] ^ A[j]) % 2 != 0:
++                oddPair += 1
++    return oddPair</pre><p>Witness input <code>([], 1)</code> → correct <code>0</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>MbppPlus/583</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MbppPlus/599</td><td><span class='b r'>rejected</span></td><td>no in-domain witness<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MbppPlus/622</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range; D2 original witness refuted: arg2 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MbppPlus/722</td><td><span class='b r'>rejected</span></td><td>&#x27;above the minimum&#x27; supports strict &gt;, ambiguous<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -5,3 +5,3 @@
+ 
+-def filter_data(students,h,w):
+-    return {k: s for k, s in students.items() if s[0] &gt;= h and s[1] &gt;= w}
++def filter_data(students, h, w):
++    return {k: s for k, s in students.items() if s[0] &gt; h and s[1] &gt;= w}</pre><p>Witness input <code>({&#x27;Alice&#x27;: [5.6, 60], &#x27;Bob&#x27;: [6.1, 70], &#x27;Charlie&#x27;: [5.9, 65], &#x27;Eve&#x27;: [6.0, 68], &#x27;Frank&#x27;: [5.7, 63]}, 5.9, 63)</code> → correct <code>{&#x27;Bob&#x27;: [6.1, 70], &#x27;Charlie&#x27;: [5.9, 65], &#x27;Eve&#x27;: [6.0, 68]}</code>, wrong solution <code>{&#x27;Bob&#x27;: [6.1, 70], &#x27;Eve&#x27;: [6.0, 68]}</code></p></details></td></tr><tr><td>MbppPlus/763</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MbppPlus/771</td><td><span class='b r'>rejected</span></td><td>non-bracket characters, unspecified<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -4,6 +4,6 @@
+ &quot;&quot;&quot;
++from collections import deque
+ 
+-from collections import deque
+ def check_expression(exp):
+-    if len(exp) == 0 or len(exp) % 2 == 1:
++    if len(exp) == 0 or len(exp) % 1 == 1:
+         return False
+@@ -17,4 +17,4 @@
+             top = stack.pop()
+-            if (top == &#x27;(&#x27; and ch != &#x27;)&#x27;) or (top == &#x27;{&#x27; and ch != &#x27;}&#x27; or (top == &#x27;[&#x27; and ch != &#x27;]&#x27;)):
++            if top == &#x27;(&#x27; and ch != &#x27;)&#x27; or (top == &#x27;{&#x27; and ch != &#x27;}&#x27; or (top == &#x27;[&#x27; and ch != &#x27;]&#x27;)):
+                 return False
+-    return not stack
++    return not stack</pre><p>Witness input <code>(&#x27;BMc&#x27;,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MbppPlus/784</td><td><span class='b r'>rejected</span></td><td>no even number: unspecified<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -6,4 +6,4 @@
+ def mul_even_odd(list1):
+-    first_even = next((el for el in list1 if el%2==0),-1)
+-    first_odd = next((el for el in list1 if el%2!=0),-1)
+-    return (first_even*first_odd)
++    first_even = next((el for el in list1 if el % 2 == 0), -2)
++    first_odd = next((el for el in list1 if el % 2 != 0), -1)
++    return first_even * first_odd</pre><p>Witness input <code>([-1, -1, 11, -5, 1],)</code> → correct <code>1</code>, wrong solution <code>2</code></p></details></td></tr><tr><td>MbppPlus/799</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg1 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MbppPlus/96</td><td><span class='b r'>rejected</span></td><td>input False, not an integer<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -6,2 +6,2 @@
+ def divisor(n):
+-  return sum(1 for i in range(1, n + 1) if n % i == 0)
++    return sum((1 for i in range(1, n + 2) if n % i == 0))</pre><p>Witness input <code>(False,)</code> → correct <code>0</code>, wrong solution <code>1</code></p></details></td></tr></table><hr><p class=sub>Shuna · Reward Integrity Leaderboard · generated 2026-10-18 · <a href='/method.html'>method & false-positive policy</a></p>

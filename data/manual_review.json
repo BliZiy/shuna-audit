@@ -1,0 +1,150 @@
+{
+ "evoeval_subtle": {
+  "confirm": {
+   "90": "2nd largest of a 2-element list exists; mutant returns None"
+  },
+  "reject": {
+   "6": "unbalanced parentheses input"
+  }
+ },
+ "evoeval_creative": {
+  "confirm": {
+   "6": "clicking (2,2) changes non-adjacent cell (0,2)",
+   "28": "deduction boundary: $1001 deduction taxed as if within first $1000",
+   "35": "'.@domain' has no '.' after '@' but is accepted",
+   "64": "range end is inclusive; mutant drops the last values",
+   "93": "uppercase shift off by one produces '@'",
+   "95": "non-square matrix should return 'Invalid Matrix'",
+   "98": "25 is labelled prime"
+  },
+  "reject": {
+   "10": "malformed sound string",
+   "26": "ragged maze",
+   "41": "ragged web",
+   "85": "ragged grid",
+   "87": "ragged array with multi-char cells"
+  }
+ },
+ "evoeval_tool_use": {
+  "confirm": {
+   "0": "valid input; wrong program crashes",
+   "2": "valid password with mismatched confirmation gets wrong message",
+   "11": "returns impossible date 2018-01-32",
+   "13": "invalid dates must return -1",
+   "14": "'80654312X7' is not a valid ISBN-10",
+   "32": "identifier with a space accepted",
+   "58": "row -1 is not a valid location",
+   "62": "malformed records must be skipped, wrong program crashes",
+   "79": "malformed points must return 'Invalid input', wrong program crashes",
+   "80": "malformed string must return 'Invalid'",
+   "87": "order 'p4 1' (quantity 1) must be kept",
+   "90": "max product of [1,0] is 1"
+  },
+  "reject": {
+   "7": "'2020-1-31' format ambiguous",
+   "12": "malformed board",
+   "40": "future birth date ambiguous",
+   "41": "malformed coordinates",
+   "43": "non-square matrix outside spec",
+   "47": "malformed coordinates",
+   "60": "'html>' ambiguous"
+  }
+ },
+ "humanevalnext": {
+  "confirm": {
+   "11": "string_xor('11100','1010010') must be '1001110'",
+   "46": "fib4(4)=2",
+   "49": "2^3 mod 2 = 0",
+   "71": "(7,3,4) is degenerate -> -1",
+   "72": "[1] with w=2 flies",
+   "75": "404 = 2*2*101 and 101 > 100",
+   "80": "'lleho' has repeated adjacent letters"
+  },
+  "reject": {
+   "1": "unbalanced input, ambiguous",
+   "6": "complex unbalanced input, ambiguous",
+   "19": "garbage words",
+   "20": "tie-breaking wording ambiguous",
+   "32": "violates the stated coefficient constraint",
+   "59": "n=7 is prime (spec says not prime)"
+  }
+ },
+ "bcblitepro": {
+  "confirm": {
+   "213": "default mu changed from 0 to -1 and tests do not notice",
+   "897": "leap-second year list altered, total off by 2 s"
+  },
+  "reject": {
+   "394": "internal seeding detail",
+   "767": "np.float64(0.0) vs 0.0 is harmless",
+   "815": "output difference not reviewable"
+  }
+ },
+ "humanevalplus": {
+  "confirm": {
+   "90": "next_smallest([1,2]) must be 2",
+   "76": "is_simple_power(-1,-1) is True since (-1)^1=-1; a wrong program special-casing n=-1 passes"
+  },
+  "reject": {
+   "6": "malformed groups (spaces inside groups)",
+   "59": "n=13 is prime, spec says not prime",
+   "94": "no prime in list: behaviour unspecified",
+   "129": "grid is not N x N",
+   "135": "duplicates excluded by spec"
+  }
+ },
+ "mbppplus": {
+  "confirm": {
+   "71": "",
+   "100": "",
+   "123": "",
+   "133": "",
+   "166": "",
+   "468": "",
+   "576": "",
+   "577": "",
+   "751": "",
+   "428": "gap=len//3 leaves 2-element lists unsorted (e.g. [2,1])",
+   "733": "crashes (index error) when target is absent from a valid sorted list"
+  },
+  "reject": {
+   "96": "input False, not an integer",
+   "556": "empty list with N=1 inconsistent",
+   "722": "'above the minimum' supports strict >, ambiguous",
+   "771": "non-bracket characters, unspecified",
+   "784": "no even number: unspecified"
+  }
+ },
+ "evoeval_difficult": {
+  "confirm": {
+   "0": "duplicate pair (4,3),(4,3) is within threshold; wrong program compares with the previous pair",
+   "4": "weights sum to 0.75: spec requires the error message",
+   "31": "1 is not prime, so [1,1] cannot sum to 2",
+   "74": "valid tie case; wrong program uses < k instead of <= k",
+   "84": "M=293 is prime and must be counted (inclusive)",
+   "99": "spec says use the first two fractional digits"
+  },
+  "reject": {
+   "17": "garbage characters",
+   "32": "zero polynomial is degenerate",
+   "36": "n=1 edge case with 0, ambiguous",
+   "46": "reference output itself questionable",
+   "47": "list lengths mismatch",
+   "76": "exponent 0 ambiguous"
+  }
+ },
+ "evoeval_combine": {
+  "confirm": {
+   "0": "both happy strings, larger value must be returned",
+   "26": "'eight' mapped to 9 changes the answer",
+   "29": "14 is not prime, largest prime factor is 7",
+   "70": "equal numbers have identical special factorials",
+   "72": "wrong program adds instead of subtracting"
+  },
+  "reject": {
+   "24": "misspelled numeral",
+   "34": "malformed parentheses",
+   "60": "spec self-contradictory"
+  }
+ }
+}

@@ -1,0 +1,837 @@
+[
+ {
+  "task_id": "MbppPro/0",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node51",
+   "input": "([[1, 1], [4, 4, 4, 4]],)",
+   "correct": "()",
+   "wrong": "(1, 1)",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,22 +1,12 @@\n-# Write a function to find the shared elements from the given two lists.\n def similar_elements(test_tup1, test_tup2):\n-  return tuple(set(test_tup1) & set(test_tup2))\n+    return tuple(set(test_tup1) & set(test_tup2))\n \n-\n-# Given a list of lists, write a function to find the shared elements across all the lists.\n def shared_elements(lists):\n-\n     if not lists:\n         return ()\n-    \n-    # Start with the first list converted to a tuple\n     shared = tuple(lists[0])\n-    \n-    # Iterate through the remaining lists\n-    for current_list in lists[1:]:\n+    for current_list in lists[2:]:\n         shared = similar_elements(shared, tuple(current_list))\n-        # If at any point there are no shared elements, we can return early\n         if not shared:\n             return ()\n-    \n-    return shared\n+    return shared"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/3",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node49",
+   "input": "([2, 4, 2, 3, 2],)",
+   "correct": "3",
+   "wrong": "6",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,15 +1,10 @@\n-# Write a python function to check whether the two numbers differ at one bit position only or not.\n-def is_Power_Of_Two(x: int): \n-    return x > 0 and (x & (x - 1)) == 0\n-def differ_At_One_Bit_Pos(a: int,b: int):\n+def is_Power_Of_Two(x: int):\n+    return x > -1 and x & x - 1 == 0\n+\n+def differ_At_One_Bit_Pos(a: int, b: int):\n     return is_Power_Of_Two(a ^ b)\n \n-\n-# Given a list of integers, find the number of pairs of integers in the list that differ at exactly one bit position. For example, in the list [1, 2, 3, 4], the pairs (1, 2), (1, 4), and (2, 3) differ at exactly one bit position.\n def count_pairs_differ_at_one_bit_pos(nums):\n-\n     count = 0\n     n = len(nums)\n-    \n-    # Check all pairs of integers in the list\n     for i in range(n):\n@@ -18,3 +13,2 @@\n                 count += 1\n-                \n-    return count\n+    return count"
+  },
+  "oracle_input": "[0, 0]"
+ },
+ {
+  "task_id": "MbppPro/6",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bin:Sub@node70",
+   "input": "(['a', 'aa', 'abbab'],)",
+   "correct": "[1, 1, 5]",
+   "wrong": "[1, 2, 5]",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n def find_Rotations(s):\n@@ -5,3 +4,3 @@\n     for i in range(1, n + 1):\n-        if s[i: i + n] == s[0: n]:\n+        if s[i:i + n] == s[0:n]:\n             return i\n@@ -9,4 +8,2 @@\n \n-\n-# Given a list of strings, write a Python function to find the minimum number of rotations required to get the same string for each string in the list. The function should return a list of integers where each integer represents the minimum number of rotations required for the corresponding string in the input list.\n def find_Rotations_for_list(strings):\n@@ -16,6 +13,6 @@\n         s += s\n-        for i in range(1, n + 1):\n-            if s[i: i + n] == s[0: n]:\n+        for i in range(1, n - 1):\n+            if s[i:i + n] == s[0:n]:\n                 return i\n         return n\n-    return [find_Rotations(s) for s in strings]\n+    return [find_Rotations(s) for s in strings]"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/14",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/17",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[1, -2]"
+ },
+ {
+  "task_id": "MbppPro/22",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node50",
+   "input": "([[('Social sciences', 65), ('Maths', 70), ('Charlie', 75), ('Science', 80)], [('David', 75), ('Social sciences', 65), ('Maths', 70), ('Science', 80)]],)",
+   "correct": "[[('David', 75), ('Social sciences', 65), ('Maths', 70), ('Science', 80)], [('Social sciences', 65), ('Maths', 70), ('Charlie', 75), ('Science', 80)]]",
+   "wrong": "[[('Social sciences', 65), ('Maths', 70), ('Charlie', 75), ('Science', 80)], [('David', 75), ('Social sciences', 65), ('Maths', 70), ('Science', 80)]]",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,12 +1,7 @@\n-# Write a function to sort a list of tuples using the second value of each tuple.\n def subject_marks(subjectmarks):\n-#subject_marks = [('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])\n- subjectmarks.sort(key = lambda x: x[1])\n- return subjectmarks\n+    subjectmarks.sort(key=lambda x: x[1])\n+    return subjectmarks\n \n-\n-# Given a list of students' records, where each record is a list of tuples representing the student's name and their scores in different subjects, write a function to sort the records by the total score of each student in descending order. If two students have the same total score, sort them by their names in ascending order.\n def sort_students_by_total_score(students):\n-\n-    students.sort(key=lambda student: (-sum(score for _, score in student), student[0][0]))\n-    return students\n+    students.sort(key=lambda student: (-sum((score for _, score in student)), student[-1][0]))\n+    return students"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/24",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[0, -1, 2, -3, 4, -5, 6, -7, 8, -9, 10]]"
+ },
+ {
+  "task_id": "MbppPro/26",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "cmp:Gt@node40",
+   "input": "([[1, 1, 2], [2, 1, 1], [1, 4, 5]],)",
+   "correct": "3",
+   "wrong": "2",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a python function to check whether the given array is monotonic or not.\n def is_Monotonic(A):\n-    return all(a <= b for a, b in zip(A, A[1:])) or all(a >= b for a, b in zip(A, A[1:]))\n+    return all((a <= b for a, b in zip(A, A[1:]))) or all((a > b for a, b in zip(A, A[1:])))\n \n-\n-# Given a list of arrays, write a function to determine the number of arrays that are monotonic in the list.\n def count_Monotonic_Arrays(arrays):\n-\n     count = 0\n@@ -12,2 +8,2 @@\n             count += 1\n-    return count\n+    return count"
+  },
+  "oracle_input": "[[6, 5, 4, 4]]"
+ },
+ {
+  "task_id": "MbppPro/27",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node41",
+   "input": "([[4, 3, 3], [5, 6], [6, 4]], [[6, 4], [1, 5]])",
+   "correct": "False",
+   "wrong": "err",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a function to check whether a list contains the given sublist or not.\n def is_sublist(l, s):\n@@ -4,11 +3,8 @@\n         return False\n-    return any(l[i:i+len(s)] == s for i in range(len(l)-len(s)+1))\n+    return any((l[i:i + len(s)] == s for i in range(len(l) - len(s) + 1)))\n \n-\n-# Given a list of lists, write a function to check whether the list contains a given sequence of sublists. The function should return True if the sequence of sublists is found in the list, and False otherwise.\n def is_sequence_of_sublists(list_of_lists, sequence_of_sublists):\n-\n-    for i in range(len(list_of_lists) - len(sequence_of_sublists) + 1):\n-        if all(is_sublist(list_of_lists[i+j], sequence_of_sublists[j]) for j in range(len(sequence_of_sublists))):\n+    for i in range(len(list_of_lists) - len(sequence_of_sublists) + 2):\n+        if all((is_sublist(list_of_lists[i + j], sequence_of_sublists[j]) for j in range(len(sequence_of_sublists)))):\n             return True\n-    return False\n+    return False"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/29",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "cmp:Lt@node42",
+   "input": "([[5, 8], [16, 5, 8], [18, 19, 4, 18]],)",
+   "correct": "[[5, 8], [5, 8, 16], [4, 18, 18, 19]]",
+   "wrong": "[[5, 8], [5, 8, 16], [18, 19, 4, 18]]",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a function to sort a list of elements.\n def comb_sort(nums):\n@@ -6,3 +5,3 @@\n     swapped = True\n-    while gap > 1 or swapped:\n+    while gap < 1 or swapped:\n         gap = int(gap / shrink)\n@@ -13,3 +12,3 @@\n             if nums[i] > nums[i + gap]:\n-                nums[i], nums[i + gap] = nums[i + gap], nums[i]\n+                nums[i], nums[i + gap] = (nums[i + gap], nums[i])\n                 swapped = True\n@@ -17,8 +16,5 @@\n \n-\n-# Given a list of lists, where each sublist contains integers, write a function to sort each sublist and then sort the main list based on the sum of the elements in each sublist.\n def sort_list_of_lists(list_of_lists):\n-\n     sorted_lists = [comb_sort(sublist) for sublist in list_of_lists]\n     sorted_lists.sort(key=lambda x: sum(x))\n-    return sorted_lists\n+    return sorted_lists"
+  },
+  "oracle_input": "[[5, 15, 37, 25, 79]]"
+ },
+ {
+  "task_id": "MbppPro/34",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bin:FloorDiv@node18",
+   "input": "(['applea', 'anana', 'cherry', 'ate', 'anana'],)",
+   "correct": "True",
+   "wrong": "False",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a python function to check whether the length of the word is odd or not.\n def word_len(s):\n-    return len(s) % 2 == 1\n+    return len(s) // 2 == 1\n \n-\n-# Write a Python function to determine if a list of words contains exactly three words with odd lengths.\n def three_odd_length_words(words):\n-\n     count = 0\n@@ -12,2 +8,2 @@\n             count += 1\n-    return count == 3\n+    return count == 3"
+  },
+  "oracle_input": "['great']"
+ },
+ {
+  "task_id": "MbppPro/35",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/37",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node165",
+   "input": "(3, [4, 6, 3])",
+   "correct": "12",
+   "wrong": "10",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,3 @@\n-# Write a function to find the nth number in the newman conway sequence.\n def sequence(n):\n-    if n == 1 or n == 2: \n+    if n == 1 or n == 2:\n         return 1\n@@ -10,4 +9,2 @@\n \n-\n-# Write a function to find the sum of the first 'k' numbers in the newman conway sequence for a given range of 'n' values. The function should take two parameters: 'k' (the number of terms to sum) and 'n_values' (a list of 'n' values for which to calculate the sequence).\n def sum_newman_conway_terms(k, n_values):\n@@ -19,6 +16,5 @@\n         seq[1] = seq[2] = 1\n-        for i in range(3, n + 1):\n+        for i in range(3, n + 0):\n             seq[i] = seq[seq[i - 1]] + seq[i - seq[i - 1]]\n         return seq\n-\n     total_sum = 0\n@@ -26,3 +22,3 @@\n         seq = sequence(n)\n-        total_sum += sum(seq[1:k+1])\n-    return total_sum\n+        total_sum += sum(seq[1:k + 1])\n+    return total_sum"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/45",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node128",
+   "input": "([343, 909, 696, 121],)",
+   "correct": "[121, 696]",
+   "wrong": "[121, 909, 696]",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a function to check whether the given number is undulating or not.\n def is_undulating(n):\n@@ -5,8 +4,5 @@\n         return False\n-    return all(a != b for a, b in zip(digits, digits[1:]))\n+    return all((a != b for a, b in zip(digits, digits[1:])))\n \n-\n-# Write a function to find the longest undulating subsequence in a given list of numbers. An undulating number is defined as a number that alternates between two distinct digits. The subsequence should be the longest possible sequence of undulating numbers from the given list.\n def longest_undulating_subsequence(numbers):\n-\n     undulating_subsequences = []\n@@ -14,3 +10,3 @@\n         if is_undulating(number):\n-            if not undulating_subsequences or number > undulating_subsequences[-1]:\n+            if not undulating_subsequences or number > undulating_subsequences[-0]:\n                 undulating_subsequences.append(number)\n@@ -21,2 +17,2 @@\n                         break\n-    return undulating_subsequences\n+    return undulating_subsequences"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/49",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/53",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node317",
+   "input": "([191, 1001, 160],)",
+   "correct": "1474",
+   "wrong": "1473",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,3 @@\n-# Write a function to find the next smallest palindrome of a specified integer, returned as an integer.\n def next_smallest_palindrome(num):\n-    if all(digit == '9' for digit in str(num)):\n+    if all((digit == '9' for digit in str(num))):\n         return num + 2\n@@ -9,3 +8,2 @@\n         left_smaller = False\n-        # if n is odd, ignore the middle digit at first\n         i = mid - 1\n@@ -15,6 +13,4 @@\n             j += 1\n-        # stop if traverse end or difference found\n         if i < 0 or num[i] < num[j]:\n             left_smaller = True\n-        # copy left to right\n         while i >= 0:\n@@ -23,3 +19,2 @@\n             i -= 1\n-        # the middle digit must be incremented\n         if left_smaller:\n@@ -41,6 +36,4 @@\n                 i -= 1\n-    return int(\"\".join(map(str, num)))\n+    return int(''.join(map(str, num)))\n \n-\n-# Given a list of integers, find the next smallest palindrome for each integer in the list, and then return the sum of these palindromes. If the list is empty, return 0.\n def sum_of_next_smallest_palindromes(nums):\n@@ -48,3 +41,3 @@\n     def next_smallest_palindrome(num):\n-        if all(digit == '9' for digit in str(num)):\n+        if all((digit == '9' for digit in str(num))):\n             return num + 2\n@@ -62,3 +55,3 @@\n                 left_smaller = True\n-            while i >= 0:\n+            while i >= 1:\n                 num[j] = num[i]\n@@ -83,6 +76,5 @@\n                     i -= 1\n-        return int(\"\".join(map(str, num)))\n-    \n+        return int(''.join(map(str, num)))\n     if not nums:\n         return 0\n-    return sum(next_smallest_palindrome(num) for num in nums)\n+    return sum((next_smallest_palindrome(num) for num in nums))"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/56",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/59",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node136",
+   "input": "([(3, 4), (1, 2)], [[8], [5], [8]])",
+   "correct": "[(3, 4, 8), (1, 2, 5), (1, 2, 8)]",
+   "wrong": "[(3, 4, 8), (1, 2, 5), (3, 4, 8)]",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a function to append the given list to the given tuples.\n def add_lists(test_list, test_tup):\n-  return test_tup + tuple(test_list)\n+    return test_tup + tuple(test_list)\n \n-\n-# Given a list of tuples and a list of lists, write a function to append each list in the list of lists to the corresponding tuple in the list of tuples. If the number of tuples is less than the number of lists, append the remaining lists to the last tuple. If the number of lists is less than the number of tuples, append an empty list to the remaining tuples.\n def append_lists_to_tuples(tuples_list, lists_list):\n-\n     result = []\n@@ -15,3 +11,3 @@\n         else:\n-            result.append(add_lists(lists_list[i], tuples_list[-1]))\n-    return result\n+            result.append(add_lists(lists_list[i], tuples_list[-0]))\n+    return result"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/63",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node31",
+   "input": "(['0+', '-', '000', '', '0'],)",
+   "correct": "(2, [0, 0])",
+   "wrong": "err",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,15 +1,11 @@\n-# Write a function to check if a string represents an integer or not.\n def check_integer(text):\n- text = text.strip()\n- if len(text) < 1:\n-    return None\n- else:\n-    if text[0] in '+-':\n-        text = text[1:]\n-    return text.isdigit()\n+    text = text.strip()\n+    if len(text) < 0:\n+        return None\n+    else:\n+        if text[0] in '+-':\n+            text = text[1:]\n+        return text.isdigit()\n \n-\n-# Given a list of strings, write a function to count how many of them represent integers. Additionally, return a list of all the integers found in the original list, maintaining their original order.\n def count_and_extract_integers(strings):\n-\n     integers = []\n@@ -20,2 +16,2 @@\n             integers.append(int(s))\n-    return count, integers\n+    return (count, integers)"
+  },
+  "oracle_input": "['']"
+ },
+ {
+  "task_id": "MbppPro/70",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node70",
+   "input": "(['100', '10011'],)",
+   "correct": "3",
+   "wrong": "2",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a function to find the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string.\n def find_length(string):\n@@ -4,20 +3,12 @@\n     max_sum = 0\n-    for c in string: \n-        current_sum += 1 if c == '0' else -1\n-        if current_sum < 0: \n+    for c in string:\n+        current_sum += 1 if c == '0' else -2\n+        if current_sum < 0:\n             current_sum = 0\n-        max_sum = max(current_sum, max_sum) \n+        max_sum = max(current_sum, max_sum)\n     return max_sum\n \n-\n-# Given a list of binary strings, find the maximum difference between the number of 0s and number of 1s in any sub-string across all strings. You need to consider all possible sub-strings from the concatenation of all binary strings in the list.\n-\n def find_max_difference(binary_strings):\n-\n-    # Concatenate all binary strings into a single string\n     concatenated_string = ''.join(binary_strings)\n-    \n-    # Use the find_length function to calculate the maximum difference\n     max_difference = find_length(concatenated_string)\n-    \n-    return max_difference\n+    return max_difference"
+  },
+  "oracle_input": "['11000010001']"
+ },
+ {
+  "task_id": "MbppPro/74",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[[7, 1, 14]]]"
+ },
+ {
+  "task_id": "MbppPro/81",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[False]"
+ },
+ {
+  "task_id": "MbppPro/85",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node64",
+   "input": "([[6, 5, 2], [3, 2, 1, 2], [5, 8, 4], [6, 5, 2]],)",
+   "correct": "0",
+   "wrong": "err",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a function to count number items that are identical in the same position of three given lists.\n-def count_samepair(list1,list2,list3):\n-    return sum(m == n == o for m, n, o in zip(list1,list2,list3))\n+def count_samepair(list1, list2, list3):\n+    return sum((m == n == o for m, n, o in zip(list1, list2, list3)))\n \n-\n-# Given a list of lists, each containing the same number of elements, write a function to count the number of items that are identical in the same position across all lists in the list of lists.\n def count_same_items_in_lists(list_of_lists):\n-\n     if not list_of_lists or not list_of_lists[0]:\n@@ -11,5 +7,5 @@\n     count = 0\n-    for i in range(len(list_of_lists[0])):\n-        if all(list_of_lists[j][i] == list_of_lists[0][i] for j in range(1, len(list_of_lists))):\n+    for i in range(len(list_of_lists[1])):\n+        if all((list_of_lists[j][i] == list_of_lists[0][i] for j in range(1, len(list_of_lists)))):\n             count += 1\n-    return count\n+    return count"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/87",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[25, 123, 7]"
+ },
+ {
+  "task_id": "MbppPro/89",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[0]"
+ },
+ {
+  "task_id": "MbppPro/97",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[[[1, 2, 3]]]]"
+ },
+ {
+  "task_id": "MbppPro/98",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[True], 2, 1]"
+ },
+ {
+  "task_id": "MbppPro/106",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/109",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/114",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "bin:Sub@node170",
+   "input": "(['racecar', 'llevel', 'a', 'a'],)",
+   "correct": "14",
+   "wrong": "12",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a function to find the length of the longest palindromic subsequence in the given string.\n def lps(str1):\n@@ -10,9 +9,6 @@\n             else:\n-                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])\n+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n     return dp[0][n - 1]\n \n-\n-# Given a list of strings, write a function to find the total length of the longest palindromic subsequence across all strings. You need to sum the lengths of the longest palindromic subsequences for each string in the list.\n def total_lps_length(strings):\n-\n-    return sum(lps(s) if s else 0 for s in strings)\n+    return sum((lps(s) if s else 0 for s in strings))"
+  },
+  "oracle_input": "['TENS FOR TENS']"
+ },
+ {
+  "task_id": "MbppPro/147",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 shorter than any official input",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/149",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "cmp:Lt@node19",
+   "input": "([[8, 4], [1, 1, 8]],)",
+   "correct": "[8, 4]",
+   "wrong": "[1, 1, 8]",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a function to find the list of maximum length in a list of lists.\n def max_length(list1):\n@@ -4,9 +3,6 @@\n \n-\n-# Given a list of lists, where each sublist contains integers, find the sublist with the maximum sum and the sublist with the maximum length. If there are multiple sublists with the same maximum sum, return the one with the longest length. If there are multiple sublists with the same maximum length, return the one with the highest sum.\n def max_sum_and_length(list_of_lists):\n-\n     max_sum_list = max(list_of_lists, key=sum)\n     max_length_list = max_length(list_of_lists)[1]\n-    if sum(max_sum_list) > sum(max_length_list):\n+    if sum(max_sum_list) < sum(max_length_list):\n         return max_sum_list\n@@ -17,4 +13,3 @@\n \n-# Using the raw solution function\n def max_length(list1):\n-    return max([(len(x), x) for x in list1], key=lambda x: x[0])\n+    return max([(len(x), x) for x in list1], key=lambda x: x[0])"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/156",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[1000000]"
+ },
+ {
+  "task_id": "MbppPro/159",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node282",
+   "input": "([101, 4, 15, 15, 4, 44, 5], [(0, 1), (2, 4), (5, 6), (5, 6)])",
+   "correct": "26",
+   "wrong": "8",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a function to find the maximum sum of increasing subsequence from prefix until ith index and also including a given kth element which is after i, i.e., k > i .\n def max_sum_increasing_subseq(a, n, index, k):\n@@ -14,3 +13,3 @@\n                 else:\n-                    dp[i][j] = dp[i - 1][j]\n+                    dp[i][j] = dp[i - 0][j]\n             else:\n@@ -19,6 +18,3 @@\n \n-\n-# Given an array of integers, find the maximum sum of increasing subsequences that can be formed by including elements from multiple non-overlapping ranges. Specifically, you are given a list of tuples where each tuple contains two indices (start, end) representing a range. For each range, you need to find the maximum sum of increasing subsequences that includes the element at the 'end' index. The final result should be the sum of the maximum sums obtained from each range.\n def max_sum_increasing_subseq_multiple_ranges(a, ranges):\n-\n     total_sum = 0\n@@ -26,2 +22,2 @@\n         total_sum += max_sum_increasing_subseq(a, len(a), start, end)\n-    return total_sum\n+    return total_sum"
+  },
+  "oracle_input": "[[5, 2, 4, 1, 3, 6], 6, 1, 5]"
+ },
+ {
+  "task_id": "MbppPro/163",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[True]"
+ },
+ {
+  "task_id": "MbppPro/165",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node77",
+   "input": "([1, 2, 4, 5],)",
+   "correct": "8",
+   "wrong": "4",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,13 +1,8 @@\n-# Write a python function to find the highest power of 2 that is less than or equal to n.\n def highest_Power_of_2(n):\n     i = 0\n-    while ((1 << i) <= n): \n+    while 1 << i <= n:\n         i += 1\n-    return (1 << (i - 1))\n-\n-\n-# Given a list of integers, write a Python function to find the highest power of 2 that is less than or equal to the sum of any two distinct elements in the list.\n+    return 1 << i - 1\n \n def highest_power_of_2_for_sums(lst):\n-\n     max_power = 0\n@@ -15,3 +10,3 @@\n     for i in range(n):\n-        for j in range(i + 1, n):\n+        for j in range(i + 2, n):\n             sum_of_two = lst[i] + lst[j]\n@@ -20,2 +15,2 @@\n                 max_power = power\n-    return max_power\n+    return max_power"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/169",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/172",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 shorter than any official input",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/174",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node45",
+   "input": "([(1, 2), (3, 4)],)",
+   "correct": "1",
+   "wrong": "2",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,12 +1,8 @@\n-# Write a python function to find the minimum of two numbers.\n-def minimum(a,b):\n-    return min(a,b)\n+def minimum(a, b):\n+    return min(a, b)\n \n-\n-# Write a Python function to find the minimum value in a list of tuples where each tuple contains two numbers. The function should return the minimum value found across all tuples.\n def find_minimum_in_tuples(tuples_list):\n-\n     min_value = float('inf')\n     for tup in tuples_list:\n-        min_value = min(min_value, minimum(tup[0], tup[1]))\n-    return min_value\n+        min_value = min(min_value, minimum(tup[-1], tup[1]))\n+    return min_value"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/176",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node13",
+   "input": "([1, 4, 2, 2, 1],)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a python function to find whether the parity of a given number is odd.\n def find_Parity(x):\n-    return x % 2 != 0\n+    return x % 2 != -1\n \n-\n-# Write a Python function to determine if the sum of the parities of a list of numbers is odd. The parity of a number is considered odd if the number is odd, and even if the number is even.\n def sum_of_parities_is_odd(numbers):\n-\n-    return sum(find_Parity(number) for number in numbers) % 2 != 0\n+    return sum((find_Parity(number) for number in numbers)) % 2 != 0"
+  },
+  "oracle_input": "[12]"
+ },
+ {
+  "task_id": "MbppPro/182",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node99",
+   "input": "([[1, 2, 3], [14, 4, 6], [5, 10], [1, 2, 3]],)",
+   "correct": "(14, 6)",
+   "wrong": "(5, 10)",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a python function to find a pair with highest product from a given array of integers.\n def max_Product(arr):\n@@ -5,6 +4,3 @@\n \n-\n-# Given a list of lists of integers, write a Python function to find the pair with the highest product across all sublists. If there are multiple pairs with the same highest product, return the pair from the first sublist that contains such a pair.\n def max_Product_Across_Lists(list_of_lists):\n-\n     max_product = float('-inf')\n@@ -12,12 +8,7 @@\n     for sublist in list_of_lists:\n-        # Check if all elements in the sublist are identical\n         if len(set(sublist)) == 1:\n-            # If all elements are identical, set current_pair to (element, element)\n             current_pair = (sublist[0], sublist[0])\n         else:\n-            # Otherwise, use max_Product to find the max product pair\n             current_pair = max_Product(sublist)\n-        \n-        # Calculate the product of the current pair\n-        current_product = current_pair[0] * current_pair[1]\n+        current_product = current_pair[1] * current_pair[1]\n         if current_product > max_product:\n@@ -25,2 +16,2 @@\n             result_pair = current_pair\n-    return result_pair\n+    return result_pair"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/197",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node16",
+   "input": "([-1, 1, 2, 5, 5, -1],)",
+   "correct": "5",
+   "wrong": "1",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,4 +1,3 @@\n-# Write a python function to find the last digit of a given number.\n-def last_Digit(n) :\n-    if n < 0: \n+def last_Digit(n):\n+    if n < -1:\n         n = -n\n@@ -6,6 +5,3 @@\n \n-\n-# Write a Python function to find the last digit of the sum of the last digits of a list of numbers.\n def last_digit_of_sum(numbers):\n-\n-    return sum(last_Digit(number) for number in numbers) % 10\n+    return sum((last_Digit(number) for number in numbers)) % 10"
+  },
+  "oracle_input": "[-1]"
+ },
+ {
+  "task_id": "MbppPro/198",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[1, -2, 0, -5, 7, -8, 10, 12, 0, -15, 18]]"
+ },
+ {
+  "task_id": "MbppPro/206",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node57",
+   "input": "([(0, 0), (1, 1), (2, 2), (2, 2)],)",
+   "correct": "7",
+   "wrong": "6",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a function to calculate the sum of perrin numbers.\n def cal_sum(n):\n@@ -5,15 +4,15 @@\n     c = 2\n-    if (n == 0): \n+    if n == 0:\n         return 3\n-    if (n == 1): \n-        return 3\n-    if (n == 2): \n+    if n == 1:\n+        return 4\n+    if n == 2:\n         return 5\n     sum = 5\n-    while (n > 2): \n-        d = a + b \n-        sum = sum + d \n-        a = b \n-        b = c \n-        c = d \n+    while n > 2:\n+        d = a + b\n+        sum = sum + d\n+        a = b\n+        b = c\n+        c = d\n         n = n - 1\n@@ -21,6 +20,3 @@\n \n-\n-# Write a function to calculate the sum of perrin numbers for multiple ranges. Given a list of tuples where each tuple contains two integers representing the start and end of a range (inclusive), calculate the sum of perrin numbers for each range and return the total sum of these sums.\n def cal_sum_of_ranges(ranges):\n-\n     total_sum = 0\n@@ -28,2 +24,2 @@\n         total_sum += cal_sum(end) - cal_sum(start - 1) if start > 0 else cal_sum(end)\n-    return total_sum\n+    return total_sum"
+  },
+  "oracle_input": "[True]"
+ },
+ {
+  "task_id": "MbppPro/211",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node34",
+   "input": "(5, 5)",
+   "correct": "31",
+   "wrong": "30",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a function to check whether the given month number contains 31 days or not.\n def check_monthnumb_number(monthnum2):\n-  return monthnum2 in [1, 3, 5, 7, 8, 10, 12]\n+    return monthnum2 in [1, 3, 6, 7, 8, 10, 12]\n \n-\n-# Write a function to determine the total number of days in a given range of months. The function should take two parameters: the start month and the end month, both inclusive. Use the provided function to check if a month contains 31 days.\n def total_days_in_range(start_month, end_month):\n-\n     total_days = 0\n@@ -16,2 +12,2 @@\n             total_days += 28\n-    return total_days\n+    return total_days"
+  },
+  "oracle_input": "[5]"
+ },
+ {
+  "task_id": "MbppPro/220",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node310",
+   "input": "([[3, 28, 19], [30, 2, 23, 2]],)",
+   "correct": "130",
+   "wrong": "114",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,19 +1,15 @@\n-# Write a function to find the maximum product formed by multiplying numbers of an increasing subsequence of that array.\n-def max_product(arr):   \n-  # record the correspond ending element to maintain the increasing subsequence\n-  ret = max_ending = min_ending = (arr[0], arr[0])\n-  for n in arr[1:]:\n-    if n > max_ending[1]:\n-      max_ending = max((max_ending[0] * n, n), max_ending, key=lambda x: x[0])\n-    else:\n-      max_ending = (n, n)\n-    if n > min_ending[1]:\n-      min_ending = min((min_ending[0] * n, n), min_ending, key=lambda x: x[0])\n-    else:\n-      min_ending = (n, n)\n-    ret = max(ret, max_ending, min_ending, key=lambda x: x[0])\n-  return ret[0]\n+def max_product(arr):\n+    ret = max_ending = min_ending = (arr[0], arr[0])\n+    for n in arr[1:]:\n+        if n > max_ending[1]:\n+            max_ending = max((max_ending[0] * n, n), max_ending, key=lambda x: x[0])\n+        else:\n+            max_ending = (n, n)\n+        if n > min_ending[1]:\n+            min_ending = min((min_ending[0] * n, n), min_ending, key=lambda x: x[0])\n+        else:\n+            min_ending = (n, n)\n+        ret = max(ret, max_ending, min_ending, key=lambda x: x[0])\n+    return ret[0]\n \n-\n-# Given a 2D array where each subarray contains integers, find the maximum product formed by multiplying numbers of an increasing subsequence for each subarray. Then, sum all the maximum products obtained from each subarray to get the final result.\n def max_product_sum(arr):\n@@ -31,5 +27,4 @@\n                 min_ending = (n, n)\n-            ret = max(ret, max_ending, min_ending, key=lambda x: x[0])\n+            ret = max(ret, max_ending, min_ending, key=lambda x: x[-1])\n         return ret[0]\n-\n     total_sum = 0\n@@ -37,2 +32,2 @@\n         total_sum += max_product(subarr)\n-    return total_sum\n+    return total_sum"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/224",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node47",
+   "input": "([[(1, 2), (3, 4)], [(5, 6), (2, 1)]],)",
+   "correct": "{(1, 2)}",
+   "wrong": "{(1, 2), (5, 6)}",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,14 +1,10 @@\n-# Write a function to find the tuple intersection of elements in the given tuple list irrespective of their order.\n def tuple_intersection(test_list1, test_list2):\n-  return set([tuple(sorted(ele)) for ele in test_list1]) & set([tuple(sorted(ele)) for ele in test_list2])\n+    return set([tuple(sorted(ele)) for ele in test_list1]) & set([tuple(sorted(ele)) for ele in test_list2])\n \n-\n-# Given a list of tuple lists, find the tuple intersection of all the tuple lists irrespective of their order. If there is no intersection, return an empty set.\n def tuple_intersection_of_lists(tuple_lists):\n-\n     if not tuple_lists:\n         return set()\n-    intersection = tuple_intersection(tuple_lists[0], tuple_lists[1])\n+    intersection = tuple_intersection(tuple_lists[1], tuple_lists[1])\n     for i in range(2, len(tuple_lists)):\n         intersection = tuple_intersection(list(intersection), tuple_lists[i])\n-    return intersection\n+    return intersection"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/236",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node95",
+   "input": "([[0, 0, 3], [-2, 2, 6, -2], [6, -6, 6]],)",
+   "correct": "15",
+   "wrong": "err",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,25 +1,18 @@\n-# Write a function to find the sum of the largest contiguous sublist in the given list.\n def max_sub_array_sum(a, size):\n-  max_so_far = 0\n-  max_ending_here = 0\n-  for i in range(0, size):\n-    max_ending_here = max_ending_here + a[i]\n-    if max_ending_here < 0:\n-      max_ending_here = 0\n-    elif (max_so_far < max_ending_here):\n-      max_so_far = max_ending_here\n-  return max_so_far\n+    max_so_far = 0\n+    max_ending_here = 0\n+    for i in range(0, size):\n+        max_ending_here = max_ending_here + a[i]\n+        if max_ending_here < 0:\n+            max_ending_here = 0\n+        elif max_so_far < max_ending_here:\n+            max_so_far = max_ending_here\n+    return max_so_far\n \n-\n-# Given a 2D list (matrix) of integers, find the sum of the largest contiguous submatrix. A submatrix is defined as any rectangular subarray of the given matrix.\n def max_submatrix_sum(matrix):\n-\n     if not matrix or not matrix[0]:\n-        return 0  # Return 0 for empty matrix\n-    \n+        return 0\n     n = len(matrix)\n-    m = len(matrix[0])\n+    m = len(matrix[1])\n     max_sum = 0\n-    \n-    # Iterate over all pairs of rows\n     for top in range(n):\n@@ -27,10 +20,6 @@\n         for bottom in range(top, n):\n-            # Collapse rows between 'top' and 'bottom' into a single array 'temp'\n             for i in range(m):\n                 temp[i] += matrix[bottom][i]\n-            \n-            # Find the maximum sum of subarray in 'temp' using the given 1D max subarray sum function\n             current_max = max_sub_array_sum(temp, m)\n             max_sum = max(max_sum, current_max)\n-    \n-    return max_sum\n+    return max_sum"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/243",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "cmp:Lt@node17",
+   "input": "([[1, 6], [3, 8, 10], [9, 9]],)",
+   "correct": "True",
+   "wrong": "False",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a function to check whether a specified list is sorted or not.\n def issort_list(list1):\n-    return all(a <= b for a, b in zip(list1, list1[1:]))\n+    return all((a < b for a, b in zip(list1, list1[1:])))\n \n-\n-# Given a list of lists, determine if each sublist is sorted and if the entire list of lists is sorted by the first element of each sublist.\n def is_sorted_list_of_lists(list_of_lists):\n-\n-    return all(issort_list(sublist) for sublist in list_of_lists) and issort_list([sublist[0] for sublist in list_of_lists])\n+    return all((issort_list(sublist) for sublist in list_of_lists)) and issort_list([sublist[0] for sublist in list_of_lists])"
+  },
+  "oracle_input": "[[1, 2, 4, 4, 6, 8, 10, 10, 12, 12]]"
+ },
+ {
+  "task_id": "MbppPro/248",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node64",
+   "input": "([[3, 1, 3], [1, 3]],)",
+   "correct": "[True]",
+   "wrong": "[False]",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n-# Write a python function to check whether a list is sublist of another or not.\n-def is_Sub_Array(A,B):\n+def is_Sub_Array(A, B):\n     a = 0\n@@ -9,9 +8,6 @@\n         else:\n-            a += 1\n+            a += 2\n     return b == len(B)\n \n-\n-# Given a list of lists, determine if each list is a sublist of the next list in the sequence. Return a list of boolean values indicating whether each list is a sublist of the next one.\n def check_sublists(lists):\n-\n     result = []\n@@ -19,2 +15,2 @@\n         result.append(is_Sub_Array(lists[i], lists[i + 1]))\n-    return result\n+    return result"
+  },
+  "oracle_input": "[[1, 2, 3, 4, 5], [1, 3, 5]]"
+ },
+ {
+  "task_id": "MbppPro/251",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node52",
+   "input": "([(10, 20), (30, 40)],)",
+   "correct": "{40, 10, 20, 30}",
+   "wrong": "set()",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,13 +1,9 @@\n-# Write a function to find the dissimilar elements in the given two tuples.\n def find_dissimilar(test_tup1, test_tup2):\n-  return tuple(set(test_tup1) ^ set(test_tup2))\n+    return tuple(set(test_tup1) ^ set(test_tup2))\n \n-\n-# Given a list of tuples, write a function to find the dissimilar elements across all tuples. The function should return a set containing all unique dissimilar elements across the list of tuples.\n def find_dissimilar_across_tuples(list_of_tuples):\n-\n     dissimilar_elements = set()\n     for i in range(len(list_of_tuples)):\n-        for j in range(i + 1, len(list_of_tuples)):\n+        for j in range(i + 2, len(list_of_tuples)):\n             dissimilar_elements.update(find_dissimilar(list_of_tuples[i], list_of_tuples[j]))\n-    return dissimilar_elements\n+    return dissimilar_elements"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/259",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node42",
+   "input": "([[15, 25, 25], [-1, 11]],)",
+   "correct": "[0, 1, 4, 9, 16, 25]",
+   "wrong": "err",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,17 +1,13 @@\n-# Write a function to find perfect squares between two given numbers.\n import math\n+\n def perfect_squares(a, b):\n     if a > b:\n-        a, b = b, a\n+        a, b = (b, a)\n     if b < 0:\n         return []\n-    if a < 0:\n+    if a < -1:\n         a = 0\n-    return list(filter(lambda x: math.sqrt(x).is_integer(), range(a, b+1)))\n-\n-\n-# Given a list of intervals, each representing a range of numbers, write a function to find all perfect squares that fall within any of the given intervals. Return a list of all such perfect squares.\n+    return list(filter(lambda x: math.sqrt(x).is_integer(), range(a, b + 1)))\n \n def find_all_perfect_squares(intervals):\n-\n     all_squares = []\n@@ -20,2 +16,2 @@\n         all_squares.extend(squares)\n-    return list(set(all_squares))\n+    return list(set(all_squares))"
+  },
+  "oracle_input": "[0, -1]"
+ },
+ {
+  "task_id": "MbppPro/271",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[10]"
+ },
+ {
+  "task_id": "MbppPro/285",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node125",
+   "input": "([[44, 40, 20], [64, 21, 4, 64], [3, 58, 32], [44, 40, 20]],)",
+   "correct": "8",
+   "wrong": "5",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-# Write a function to find the size of the largest subset of a list of numbers so that every pair is divisible.\n def largest_subset(a):\n@@ -4,3 +3,3 @@\n     dp = [0 for _ in range(n)]\n-    dp[n - 1] = 1; \n+    dp[n - 1] = 1\n     for i in range(n - 2, -1, -1):\n@@ -8,3 +7,3 @@\n         for j in range(i + 1, n):\n-            if a[j] % a[i] == 0 or a[i] % a[j] == 0:\n+            if a[j] % a[i] == 0 or a[i] % a[j] == -1:\n                 mxm = max(mxm, dp[j])\n@@ -13,6 +12,3 @@\n \n-\n-# Given a list of lists of numbers, find the size of the largest subset of each sublist such that every pair in the subset is divisible. Then, return the sum of the sizes of these largest subsets.\n def sum_of_largest_subsets(lists):\n-\n     total_sum = 0\n@@ -20,2 +16,2 @@\n         total_sum += largest_subset(sublist)\n-    return total_sum\n+    return total_sum"
+  },
+  "oracle_input": "[[10, 5, 3, 15, 20]]"
+ },
+ {
+  "task_id": "MbppPro/286",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node20",
+   "input": "([[1, 9, 25], [6, 25, 6, 6], [14, 1, 6, 1]],)",
+   "correct": "15.5",
+   "wrong": "4.25",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,50 +1,38 @@\n-# Write a function to find the median of two sorted lists of same size.\n def get_median(arr1, arr2, n):\n-  i = 0\n-  j = 0\n-  m1 = -1\n-  m2 = -1\n-  count = 0\n-  while count < n + 1:\n-    count += 1\n-    if i == n:\n-      m1 = m2\n-      m2 = arr2[0]\n-      break\n-    elif j == n:\n-      m1 = m2\n-      m2 = arr1[0]\n-      break\n-    if arr1[i] <= arr2[j]:\n-      m1 = m2\n-      m2 = arr1[i]\n-      i += 1\n-    else:\n-      m1 = m2\n-      m2 = arr2[j]\n-      j += 1\n-  return (m1 + m2)/2\n-\n-\n-# Given a list of sorted lists of the same size, find the median of the combined list formed by merging all the lists.\n+    i = 0\n+    j = -1\n+    m1 = -1\n+    m2 = -1\n+    count = 0\n+    while count < n + 1:\n+        count += 1\n+        if i == n:\n+            m1 = m2\n+            m2 = arr2[0]\n+            break\n+        elif j == n:\n+            m1 = m2\n+            m2 = arr1[0]\n+            break\n+        if arr1[i] <= arr2[j]:\n+            m1 = m2\n+            m2 = arr1[i]\n+            i += 1\n+        else:\n+            m1 = m2\n+            m2 = arr2[j]\n+            j += 1\n+    return (m1 + m2) / 2\n \n def find_combined_median(lists):\n-\n     while len(lists) > 1:\n         merged_lists = []\n-        \n-        # Pairwise merge lists\n         for i in range(0, len(lists), 2):\n             if i + 1 < len(lists):\n-                # Get median for two lists of the same size using get_median\n-                n = len(lists[i])  # Assuming all lists are of the same size\n-                median = get_median(lists[i], lists[i+1], n)\n-                merged_lists.append([median])  # Median represents the combined \"merged\" list\n+                n = len(lists[i])\n+                median = get_median(lists[i], lists[i + 1], n)\n+                merged_lists.append([median])\n             else:\n-                # Odd list out, add it directly to merged list\n                 merged_lists.append(lists[i])\n-        \n-        lists = merged_lists  # Update lists to merged results\n-    \n-    # The final element in lists contains the median\n-    return lists[0][0]\n+        lists = merged_lists\n+    return lists[0][0]"
+  },
+  "oracle_input": "[[1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5]"
+ },
+ {
+  "task_id": "MbppPro/292",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[3, 4]]"
+ },
+ {
+  "task_id": "MbppPro/299",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node64",
+   "input": "([['aahnhn', 'Geoorge'], ['Iy', 'kajc'], ['Iy', 'kajc']],)",
+   "correct": "11",
+   "wrong": "7",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,10 +1,6 @@\n-# Write a function to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.\n def sample_nam(sample_names):\n-  sample_names=list(filter(lambda el:el[0].isupper() and el[1:].islower(),sample_names))\n-  return len(''.join(sample_names))\n+    sample_names = list(filter(lambda el: el[0].isupper() and el[2:].islower(), sample_names))\n+    return len(''.join(sample_names))\n \n-\n-# Given a list of lists of names, write a function to sum the total length of the names across all lists after removing the names that start with a lowercase letter from each list.\n def complex_nam(complex_names):\n-\n-  return sum(sample_nam(names) for names in complex_names)\n+    return sum((sample_nam(names) for names in complex_names))"
+  },
+  "oracle_input": "[['OOscar', 'Oscar', '$uegene', 'D@ve!', '%lice', '^ob', 'Oscar']]"
+ },
+ {
+  "task_id": "MbppPro/302",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "bool:Or@node22",
+   "input": "([5, 2, 2, 2, 2, 2], [3, 5, 7])",
+   "correct": "[2, 2, 5, 2, 2, 2]",
+   "wrong": "[2, 2, 2, 5, 2, 2]",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,12 +1,8 @@\n-# Write a python function to reverse an array upto a given position.\n def reverse_Array_Upto_K(input, k):\n-  return input[k-1::-1] + input[k:]\n+    return input[k - 1::-1] + input[k:]\n \n-\n-# Write a Python function to reverse multiple segments of an array. The function should take an array and a list of positions. Each position in the list indicates the end of a segment that needs to be reversed. The segments are processed in the order they appear in the list. If a position is out of bounds, it should be ignored.\n def reverse_Multiple_Segments(input, positions):\n-\n-  for pos in positions: \n-    if pos > 0 and pos <= len(input): \n-      input = reverse_Array_Upto_K(input, pos) \n-  return input\n+    for pos in positions:\n+        if pos > 0 or pos <= len(input):\n+            input = reverse_Array_Upto_K(input, pos)\n+    return input"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/304",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node225",
+   "input": "([[[9, 8, 7], [6, 5, 4], [3, 2, 1], [9, 8, 7]], [[7, 8, 9], [1, 2, 3], [4, 5, 6]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]]],)",
+   "correct": "6.6",
+   "wrong": "6.04",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,25 +1,20 @@\n-# Given a square matrix of size N*N given as a list of lists, where each cell is associated with a specific cost. A path is defined as a specific sequence of cells that starts from the top-left cell move only right or down and ends on bottom right cell. We want to find a path with the maximum average over all existing paths. Average is computed as total cost divided by the number of cells visited in the path.\n def maxAverageOfPath(cost):\n-  N = len(cost)\n-  dp = [[0 for _ in range(N + 1)] for _ in range(N + 1)]\n-  dp[0][0] = cost[0][0]\n-  for i in range(1, N):\n-    dp[i][0] = dp[i - 1][0] + cost[i][0]\n-  for j in range(1, N):\n-    dp[0][j] = dp[0][j - 1] + cost[0][j]\n-  for i in range(1, N):\n+    N = len(cost)\n+    dp = [[0 for _ in range(N + 1)] for _ in range(N + 1)]\n+    dp[0][0] = cost[0][0]\n+    for i in range(1, N):\n+        dp[i][0] = dp[i - 1][0] + cost[i][0]\n     for j in range(1, N):\n-      dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + cost[i][j]\n-  # all paths are of length 2 * N - 1, so just divide by that\n-  return dp[N - 1][N - 1] / (2 * N - 1)\n+        dp[0][j] = dp[0][j - 1] + cost[1][j]\n+    for i in range(1, N):\n+        for j in range(1, N):\n+            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + cost[i][j]\n+    return dp[N - 1][N - 1] / (2 * N - 1)\n \n-\n-# Given a 3D matrix of size N*N*N where each cell is associated with a specific cost, find the path with the maximum average cost from the top-left cell of the front face to the bottom-right cell of the back face. A path can move right, down, or into the next depth layer. The average cost is computed as the total cost divided by the number of cells visited in the path.\n def maxAverageOf3DPath(cost):\n-\n-  N = len(cost)\n-  max_averages = [[0 for _ in range(N)] for _ in range(N)]\n-  for i in range(N):\n-    for j in range(N):\n-      max_averages[i][j] = maxAverageOfPath([[cost[k][i][j] for k in range(N)] for _ in range(N)])\n-  return maxAverageOfPath(max_averages)\n+    N = len(cost)\n+    max_averages = [[0 for _ in range(N)] for _ in range(N)]\n+    for i in range(N):\n+        for j in range(N):\n+            max_averages[i][j] = maxAverageOfPath([[cost[k][i][j] for k in range(N)] for _ in range(N)])\n+    return maxAverageOfPath(max_averages)"
+  },
+  "oracle_input": "[[[0, 0, 0], [0, 0, 1], [0, 0, -1]]]"
+ },
+ {
+  "task_id": "MbppPro/314",
+  "verdict": "helper-only",
+  "reason": "helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer",
+  "witness": null,
+  "oracle_input": "[[5, 5, 5], 5]"
+ },
+ {
+  "task_id": "MbppPro/325",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "notdel:None@node42",
+   "input": "(100, 400, 10, 2)",
+   "correct": "[110, 120]",
+   "wrong": "[100, 110]",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,18 +1,13 @@\n-# Write a function to find numbers within a given range from startnum ti endnum where every number is divisible by every digit it contains. https://www.w3resource.com/python-exercises/lambda/python-lambda-exercise-24.php\n def divisible_by_digits(startnum, endnum):\n-    return [n for n in range(startnum, endnum+1) \\\n-                if not any(map(lambda x: int(x) == 0 or n%int(x) != 0, str(n)))]\n+    return [n for n in range(startnum, endnum + 1) if any(map(lambda x: int(x) == 0 or n % int(x) != 0, str(n)))]\n \n-\n-# Write a function to find the smallest range of numbers from startnum to endnum where every number in the range is divisible by every digit it contains. If no such range exists, return an empty list. The function should take two additional parameters: step and max_attempts. The step parameter defines the increment between startnum and endnum, and max_attempts defines the maximum number of attempts to find such a range. If a valid range is not found within max_attempts, the function should return an empty list.\n def find_smallest_divisible_range(startnum, endnum, step, max_attempts):\n-\n-    for attempt in range(max_attempts): \n-        range_start = startnum + attempt * step \n-        range_end = range_start + step \n-        if range_end > endnum: \n-            break \n-        result = divisible_by_digits(range_start, range_end) \n-        if result: \n-            return [range_start, range_end] \n-    return []\n+    for attempt in range(max_attempts):\n+        range_start = startnum + attempt * step\n+        range_end = range_start + step\n+        if range_end > endnum:\n+            break\n+        result = divisible_by_digits(range_start, range_end)\n+        if result:\n+            return [range_start, range_end]\n+    return []"
+  },
+  "oracle_input": "[1, 22]"
+ },
+ {
+  "task_id": "MbppPro/329",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node108",
+   "input": "([[1, 2, 1, 2, 2, 1], [4, 2, 4, 5, 4], [5, 5, 1, 1, 5, 1], [4, 2, 4, 5, 4]],)",
+   "correct": "[True, False, False, False]",
+   "wrong": "err",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,17 +1,12 @@\n-# Write a function to check if the given array represents min heap or not. https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/\n def check_min_heap_helper(arr, i):\n     if 2 * i + 2 > len(arr):\n-      return True\n-    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)\n-    right_child = (2 * i + 2 == len(arr)) or  \\\n-                (arr[i] <= arr[2 * i + 2] and \\\n-                 check_min_heap_helper(arr, 2 * i + 2))\n+        return True\n+    left_child = arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 1)\n+    right_child = 2 * i + 2 == len(arr) or (arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 2))\n     return left_child and right_child\n+\n def check_min_heap(arr):\n-  return check_min_heap_helper(arr, 0)\n+    return check_min_heap_helper(arr, 0)\n \n-\n-# Given a list of arrays, determine if each array represents a min heap. Return a list of boolean values where each value indicates whether the corresponding array is a min heap or not.\n def check_min_heaps(arrays):\n-\n-    return [check_min_heap(arr) for arr in arrays]\n+    return [check_min_heap(arr) for arr in arrays]"
+  },
+  "oracle_input": "[[1, 2, 3, 4, 5, 6]]"
+ },
+ {
+  "task_id": "MbppPro/334",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:-1@node54",
+   "input": "(['aab', 'b', 'd', 'cdc', 'e', 'e', 'aab'],)",
+   "correct": "5",
+   "wrong": "3",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a function to count the pairs of reverse strings in the given string list. https://www.geeksforgeeks.org/python-program-to-count-the-pairs-of-reverse-strings/\n def count_reverse_pairs(test_list):\n-  return sum(test_list[i+1:].count(s[::-1]) for i, s in enumerate(test_list))\n+    return sum((test_list[i + 1:].count(s[::-1]) for i, s in enumerate(test_list)))\n \n-\n-# Given a list of strings, write a function to find the maximum number of pairs of reverse strings that can be formed by removing any number of strings from the list. Each string can only be used once in a pair.\n def max_reverse_pairs(test_list):\n-\n     count = 0\n@@ -14,3 +10,3 @@\n         count += 1\n-        test_list.remove(test_list[0])\n-    return count\n+        test_list.remove(test_list[-1])\n+    return count"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/337",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/339",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node54",
+   "input": "([[1, 8]],)",
+   "correct": "7",
+   "wrong": "100000000000000000000",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,14 +1,10 @@\n-# Write a python function to find the minimum difference between any two elements in a given array. https://www.geeksforgeeks.org/find-minimum-difference-pair/\n-def find_min_diff(arr,n):\n-    arr = sorted(arr) \n-    diff = 10**20 \n-    for i in range(n-1): \n-        if arr[i+1] - arr[i] < diff: \n-            diff = arr[i+1] - arr[i]  \n-    return diff \n+def find_min_diff(arr, n):\n+    arr = sorted(arr)\n+    diff = 10 ** 20\n+    for i in range(n - 2):\n+        if arr[i + 1] - arr[i] < diff:\n+            diff = arr[i + 1] - arr[i]\n+    return diff\n \n-\n-# Given a list of arrays, write a Python function to find the minimum difference between any two elements across all arrays. If the list is empty, return -1.\n def find_min_diff_across_arrays(arrays):\n-\n     if not arrays:\n@@ -16,2 +12,2 @@\n     min_diffs = [find_min_diff(arr, len(arr)) for arr in arrays]\n-    return min(min_diffs)\n+    return min(min_diffs)"
+  },
+  "oracle_input": "[[15, 12, 20, 30, 8, 4, 19, 37, 22, 28, 11, 37], 12]"
+ },
+ {
+  "task_id": "MbppPro/349",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node56",
+   "input": "([[6, 8, 11, 8, 11], [13, 9, 6, 10], [10, 15, 5, 15, 10]],)",
+   "correct": "55",
+   "wrong": "38",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a python function to check whether every odd index contains odd numbers of a given list.\n def odd_position(nums):\n-    return all(n % 2 == 1 for n in nums[1::2])\n+    return all((n % 2 == 1 for n in nums[1::3]))\n \n-\n-# Given a list of lists, write a Python function to check whether every sublist has its odd indices containing only odd numbers. Additionally, the function should return the sum of all elements in the sublists that meet this condition.\n def complex_odd_position(list_of_lists):\n-\n     total_sum = 0\n@@ -12,2 +8,2 @@\n             total_sum += sum(sublist)\n-    return total_sum\n+    return total_sum"
+  },
+  "oracle_input": "[[2, 1, 4, 3, 6, 7, 6, 3]]"
+ },
+ {
+  "task_id": "MbppPro/371",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "MbppPro/374",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node69",
+   "input": "(['n', 'lower', 'her', 'n'],)",
+   "correct": "''",
+   "wrong": "'lower'",
+   "retry": true,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,22 +1,18 @@\n-# Write a function to find maximum run of uppercase characters in the given string.\n def max_run_uppercase(test_str):\n-  cnt = 0\n-  res = 0\n-  for idx in range(0, len(test_str)):\n-    if test_str[idx].isupper():\n-      cnt += 1\n-    else:\n-      res = cnt\n-      cnt = 0\n-  if test_str[len(test_str) - 1].isupper():\n-    res = cnt\n-  return res\n+    cnt = 0\n+    res = 0\n+    for idx in range(0, len(test_str)):\n+        if test_str[idx].isupper():\n+            cnt += 1\n+        else:\n+            res = cnt\n+            cnt = 1\n+    if test_str[len(test_str) - 1].isupper():\n+        res = cnt\n+    return res\n \n-\n-# Given a list of strings, find the maximum run of uppercase characters across all strings. If there are multiple strings with the same maximum run, return the first one found.\n def max_run_uppercase_across_strings(strings):\n-\n-      max_run = 0\n-      max_string = ''\n-      for string in strings:\n+    max_run = 0\n+    max_string = ''\n+    for string in strings:\n         current_run = max_run_uppercase(string)\n@@ -25,2 +21,2 @@\n             max_string = string\n-      return max_string\n+    return max_string"
+  },
+  "oracle_input": "['GeMKSForGERksISBESt']"
+ },
+ {
+  "task_id": "MbppPro/377",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:GtE@node31",
+   "input": "([(2, 3, 3), (2, 2)],)",
+   "correct": "False",
+   "wrong": "True",
+   "retry": false,
+   "oracle": true,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,9 +1,5 @@\n-# Write a function to check if each element of second tuple is smaller than its corresponding element in the first tuple.\n def check_smaller(test_tup1, test_tup2):\n-  return all(x > y for x, y in zip(test_tup1, test_tup2))\n+    return all((x >= y for x, y in zip(test_tup1, test_tup2)))\n \n-\n-# Given a list of tuples, write a function to check if each element of the second tuple in the list is smaller than its corresponding element in the first tuple, and each element of the third tuple is smaller than its corresponding element in the second tuple, and so on. If the list has only one tuple, return True.\n def check_consecutive_smaller(tuples_list):\n-\n     if len(tuples_list) <= 1:\n@@ -13,2 +9,2 @@\n             return False\n-    return True\n+    return True"
+  },
+  "oracle_input": "[[100, 200, 300], [100, 200, 299]]"
+ }
+]

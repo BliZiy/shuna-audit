@@ -1,0 +1,331 @@
+[
+ {
+  "task_id": "BCBLitePro/213",
+  "oracle": "BigCodeBench/213",
+  "reference_on_original_tests": "('ok', (5, 5))",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node65",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node192",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:-1@node171",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node69",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node111",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   }
+  ]
+ },
+ {
+  "task_id": "BCBLitePro/325",
+  "oracle": "BigCodeBench/325",
+  "reference_on_original_tests": "('ok', (5, 5))",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node35",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node35",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   }
+  ]
+ },
+ {
+  "task_id": "BCBLitePro/394",
+  "oracle": "BigCodeBench/394",
+  "reference_on_original_tests": "('ok', (5, 5))",
+  "per_witness": [
+   {
+    "mutation": "bin:FloorDiv@node158",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:-1@node27",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node27",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   }
+  ]
+ },
+ {
+  "task_id": "BCBLitePro/699",
+  "oracle": "BigCodeBench/699",
+  "reference_on_original_tests": "('ok', (5, 5))",
+  "per_witness": [
+   {
+    "mutation": "cmp:Lt@node261",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:-1@node283",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node135",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "bool:Or@node228",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "cmp:NotEq@node260",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "cmp:GtE@node227",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:-1@node135",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "bin:Sub@node268",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "cmp:GtE@node261",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node283",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   }
+  ]
+ },
+ {
+  "task_id": "BCBLitePro/767",
+  "oracle": "BigCodeBench/767",
+  "reference_on_original_tests": "('ok', (5, 5))",
+  "per_witness": [
+   {
+    "mutation": "const:1@node159",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:-1@node77",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node156",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   }
+  ]
+ },
+ {
+  "task_id": "BCBLitePro/816",
+  "oracle": "BigCodeBench/816",
+  "reference_on_original_tests": "('ok', (5, 5))",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node41",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node41",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   }
+  ]
+ },
+ {
+  "task_id": "BCBLitePro/815",
+  "oracle": "BigCodeBench/815",
+  "reference_on_original_tests": "('err', 'ModuleNotFoundError')",
+  "per_witness": [
+   {
+    "mutation": "const:-1@node131",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   },
+   {
+    "mutation": "const:1@node134",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   },
+   {
+    "mutation": "const:-1@node178",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   },
+   {
+    "mutation": "const:-1@node107",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   },
+   {
+    "mutation": "const:1@node107",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   },
+   {
+    "mutation": "const:1@node131",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   },
+   {
+    "mutation": "const:1@node186",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   },
+   {
+    "mutation": "const:1@node178",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   },
+   {
+    "mutation": "const:-1@node186",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   },
+   {
+    "mutation": "const:-1@node134",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('err', 'ModuleNotFoundError')"
+   }
+  ]
+ },
+ {
+  "task_id": "BCBLitePro/897",
+  "oracle": "BigCodeBench/897",
+  "reference_on_original_tests": "('ok', (5, 5))",
+  "per_witness": [
+   {
+    "mutation": "cmp:Gt@node97",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:-1@node128",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "const:1@node122",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   },
+   {
+    "mutation": "cmp:LtE@node97",
+    "oracle_disagrees": false,
+    "oracle_input": null,
+    "oracle_expected": "pass",
+    "mutant_helper_output": "('ok', (5, 5))"
+   }
+  ]
+ }
+]

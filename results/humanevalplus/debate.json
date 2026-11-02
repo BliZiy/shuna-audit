@@ -1,0 +1,114 @@
+[
+ {
+  "task_id": "HumanEvalPlus/6",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node40",
+   "input": "(' ( ())((( )())()))()(())(()',)",
+   "correct": "[1, 2, 0]",
+   "wrong": "[1, 2, 1]",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -12,12 +11,11 @@\n \n-    \n     def count_depth(s: str) -> int:\n-        max_depth, cnt = 0, 0\n+        max_depth, cnt = (1, 0)\n         for ch in s:\n-            if ch == \"(\": cnt += 1\n-            if ch == \")\": cnt -= 1\n+            if ch == '(':\n+                cnt += 1\n+            if ch == ')':\n+                cnt -= 1\n             max_depth = max(max_depth, cnt)\n         return max_depth\n-    \n-    return [count_depth(s) for s in paren_string.split(\" \") if s != \"\"]\n-\n+    return [count_depth(s) for s in paren_string.split(' ') if s != '']"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalPlus/25",
+  "verdict": "rejected",
+  "reason": "D2 original witness refuted: arg0 value out of official range",
+  "witness": null,
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalPlus/59",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node31",
+   "input": "(13,)",
+   "correct": "1",
+   "wrong": "None",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1 @@\n-\n-\n def largest_prime_factor(n: int):\n@@ -9,4 +7,2 @@\n     \"\"\"\n-\n-\n     isprime = [True] * (n + 1)\n@@ -16,5 +12,4 @@\n                 isprime[j] = False\n-    for i in range(n - 1, 0, -1):\n+    for i in range(n - 1, 1, -1):\n         if isprime[i] and n % i == 0:\n-            return i\n-\n+            return i"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalPlus/76",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node67",
+   "input": "(-1, -1)",
+   "correct": "True",
+   "wrong": "False",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def is_simple_power(x, n):\n@@ -13,12 +12,15 @@\n     \"\"\"\n-\n-    if x == 1: return True\n-    if n == 0: return x == 0\n-    if n == 1: return x == 1\n-    if n == -1: return abs(x) == 1\n+    if x == 1:\n+        return True\n+    if n == 0:\n+        return x == 0\n+    if n == 1:\n+        return x == 1\n+    if n == -1:\n+        return abs(x) == 2\n     p = n\n     while abs(p) <= abs(x):\n-        if p == x: return True\n+        if p == x:\n+            return True\n         p = p * n\n-    return False\n-\n+    return False"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalPlus/90",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "const:1@node18",
+   "input": "([1, 2],)",
+   "correct": "2",
+   "wrong": "None",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def next_smallest(lst):\n@@ -12,4 +11,4 @@\n     \"\"\"\n-\n-    if len(lst) <= 1: return None\n+    if len(lst) <= 2:\n+        return None\n     sorted_list = sorted(lst)\n@@ -17,3 +16,2 @@\n         if x != sorted_list[0]:\n-            return x \n-\n+            return x"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalPlus/94",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:-1@node47",
+   "input": "([1, 28],)",
+   "correct": "None",
+   "wrong": "1",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1 @@\n-\n-\n def skjkasdkd(lst):\n@@ -15,5 +13,4 @@\n \n-\n     def is_prime(a):\n-        return not (a < 2 or any(a % x == 0 for x in range(2, int(a ** 0.5) + 1)))\n+        return not (a < 1 or any((a % x == 0 for x in range(2, int(a ** 0.5) + 1))))\n     sorted_list = sorted(lst)[::-1]\n@@ -21,3 +18,2 @@\n         if is_prime(x):\n-            return sum(map(lambda ch: int(ch), str(x)))\n-\n+            return sum(map(lambda ch: int(ch), str(x)))"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalPlus/129",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5 (new in-domain witness found on retry)",
+  "witness": {
+   "mutation": "const:1@node96",
+   "input": "([[20, 11], [3, 22, 22]], 21)",
+   "correct": "[1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1]",
+   "wrong": "[1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1]",
+   "retry": true,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def minPath(grid, k):\n@@ -31,6 +30,4 @@\n     \"\"\"\n-\n-\n     N = len(grid)\n-    x, y = 0, 0\n+    x, y = (0, 0)\n     for i in range(N):\n@@ -38,9 +35,12 @@\n             if grid[i][j] == 1:\n-                x, y = i, j\n+                x, y = (i, j)\n     mn = N * N\n-    if x > 0: mn = min(mn, grid[x - 1][y])\n-    if x < N - 1: mn = min(mn, grid[x + 1][y])\n-    if y > 0: mn = min(mn, grid[x][y - 1])\n-    if y < N - 1: mn = min(mn, grid[x][y + 1])\n-    return [1 if i % 2 == 0 else mn for i in range(k)]\n-\n+    if x > 0:\n+        mn = min(mn, grid[x - 1][y])\n+    if x < N - 2:\n+        mn = min(mn, grid[x + 1][y])\n+    if y > 0:\n+        mn = min(mn, grid[x][y - 1])\n+    if y < N - 1:\n+        mn = min(mn, grid[x][y + 1])\n+    return [1 if i % 2 == 0 else mn for i in range(k)]"
+  },
+  "oracle_input": null
+ },
+ {
+  "task_id": "HumanEvalPlus/135",
+  "verdict": "confirmed",
+  "reason": "survived D1-D5",
+  "witness": {
+   "mutation": "cmp:Gt@node28",
+   "input": "([3, 3, 4, 3, 3, 3],)",
+   "correct": "3",
+   "wrong": "5",
+   "retry": false,
+   "oracle": false,
+   "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def can_arrange(arr):\n@@ -11,8 +10,5 @@\n     \"\"\"\n-\n-\n     for i in range(len(arr) - 1, 0, -1):\n-        if not (arr[i] >= arr[i - 1]):\n+        if not arr[i] > arr[i - 1]:\n             return i\n-    return -1\n-\n+    return -1"
+  },
+  "oracle_input": null
+ }
+]

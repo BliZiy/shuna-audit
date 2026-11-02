@@ -1,0 +1,1300 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>MBPP (sanitized)</title><style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;color:#111}h1{margin-bottom:0}.sub{color:#555}
+table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border-bottom:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}.b{padding:2px 6px;border-radius:4px;font-size:12px;white-space:nowrap}.v{background:#fde2e1;color:#900}.s{background:#fff4d6;color:#7a5b00}.r{background:#e3ecff;color:#123d99}
+code,pre{font:12px ui-monospace,monospace}pre{background:#f7f7f7;padding:8px;overflow:auto;max-height:260px}.draft{background:#111;color:#fff;padding:6px 10px;border-radius:4px;display:inline-block}a{color:#0b57d0}</style><p class=draft>Published Nov 2026</p><p><a href='/'>← leaderboard</a></p><h1>MBPP (sanitized)</h1><p>427 tasks · <b>53 confirmed</b> · 11 helper-only · 17 suspected · 5 rejected · 0 reject a correct solution</p><p class=sub>Known since EvalPlus (2023).</p><table><tr><th>Task</th><th>Status</th><th>Finding</th></tr><tr><td>MBPP/11</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,10 +1,10 @@
+-def remove_Occ(s,ch): 
+-    for i in range(len(s)): 
+-        if (s[i] == ch): 
+-            s = s[0 : i] + s[i + 1:] 
++def remove_Occ(s, ch):
++    for i in range(len(s)):
++        if s[i] == ch:
++            s = s[0:i] + s[i + 1:]
+             break
+-    for i in range(len(s) - 1,-1,-1):  
+-        if (s[i] == ch): 
+-            s = s[0 : i] + s[i + 1:] 
++    for i in range(len(s) - 1, -0, -1):
++        if s[i] == ch:
++            s = s[0:i] + s[i + 1:]
+             break
+-    return s +    return s</pre><p>Witness input <code>(&#x27;PPH&#x27;, &#x27;P&#x27;)</code> → correct <code>&#x27;H&#x27;</code>, wrong solution <code>&#x27;PH&#x27;</code></p></details></td></tr><tr><td>MBPP/113</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,12 +1,10 @@
+ def check_integer(text):
+- text = text.strip()
+- if len(text) &lt; 1:
+-    return None
+- else:
+-     if all(text[i] in &quot;0123456789&quot; for i in range(len(text))):
+-          return True
+-     elif (text[0] in &quot;+-&quot;) and \
+-         all(text[i] in &quot;0123456789&quot; for i in range(1,len(text))):
+-         return True
+-     else:
++    text = text.strip()
++    if len(text) &lt; 0:
++        return None
++    elif all((text[i] in &#x27;0123456789&#x27; for i in range(len(text)))):
++        return True
++    elif text[0] in &#x27;+-&#x27; and all((text[i] in &#x27;0123456789&#x27; for i in range(1, len(text)))):
++        return True
++    else:
+         return False</pre><p>Witness input <code>(&#x27;&#x27;,)</code> → correct <code>None</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/125</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,10 +1,10 @@
+-def find_length(string): 
+-	n = len(string)
+-	current_sum = 0
+-	max_sum = 0
+-	for i in range(n): 
+-		current_sum += (1 if string[i] == &#x27;0&#x27; else -1) 
+-		if current_sum &lt; 0: 
+-			current_sum = 0
+-		max_sum = max(current_sum, max_sum) 
+-	return max_sum if max_sum else 0+def find_length(string):
++    n = len(string)
++    current_sum = 1
++    max_sum = 0
++    for i in range(n):
++        current_sum += 1 if string[i] == &#x27;0&#x27; else -1
++        if current_sum &lt; 0:
++            current_sum = 0
++        max_sum = max(current_sum, max_sum)
++    return max_sum if max_sum else 0</pre><p>Witness input <code>(&#x27;00000010111&#x27;,)</code> → correct <code>6</code>, wrong solution <code>7</code></p></details></td></tr><tr><td>MBPP/128</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -2,6 +2,6 @@
+     word_len = []
+-    txt = str.split(&quot; &quot;)
++    txt = str.split(&#x27; &#x27;)
+     for x in txt:
+-        if len(x) &gt; n:
++        if len(x) &gt;= n:
+             word_len.append(x)
+-    return word_len	+    return word_len</pre><p>Witness input <code>(2, &#x27;python is a programming language&#x27;)</code> → correct <code>[&#x27;python&#x27;, &#x27;programming&#x27;, &#x27;language&#x27;]</code>, wrong solution <code>[&#x27;python&#x27;, &#x27;is&#x27;, &#x27;programming&#x27;, &#x27;language&#x27;]</code></p></details></td></tr><tr><td>MBPP/129</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,16 +1,16 @@
+ def magic_square_test(my_matrix):
+-    iSize = len(my_matrix[0])
++    iSize = len(my_matrix[1])
+     sum_list = []
+-    sum_list.extend([sum (lines) for lines in my_matrix])   
++    sum_list.extend([sum(lines) for lines in my_matrix])
+     for col in range(iSize):
+-        sum_list.append(sum(row[col] for row in my_matrix))
++        sum_list.append(sum((row[col] for row in my_matrix)))
+     result1 = 0
+-    for i in range(0,iSize):
+-        result1 +=my_matrix[i][i]
+-    sum_list.append(result1)      
++    for i in range(0, iSize):
++        result1 += my_matrix[i][i]
++    sum_list.append(result1)
+     result2 = 0
+-    for i in range(iSize-1,-1,-1):
+-        result2 +=my_matrix[i][i]
++    for i in range(iSize - 1, -1, -1):
++        result2 += my_matrix[i][i]
+     sum_list.append(result2)
+-    if len(set(sum_list))&gt;1:
++    if len(set(sum_list)) &gt; 1:
+         return False
+</pre><p>Witness input <code>([[15, 4, 11, 3], [10, 15, 8, 15, 10], [6, 8, 4, 9, 4], [9, 6, 15, 13]],)</code> → correct <code>False</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>MBPP/133</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,3 @@
+ def sum_negativenum(nums):
+-  sum_negativenum = list(filter(lambda nums:nums&lt;0,nums))
+-  return sum(sum_negativenum)+    sum_negativenum = list(filter(lambda nums: nums &lt; -1, nums))
++    return sum(sum_negativenum)</pre><p>Witness input <code>([2, 6, -9, 10, -13, -1, 12, 18],)</code> → correct <code>-23</code>, wrong solution <code>-22</code></p></details></td></tr><tr><td>MBPP/160</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,7 +1,7 @@
+ def find_solution(a, b, n):
+-	i = 0
+-	while i * a &lt;= n:
+-		if (n - (i * a)) % b == 0: 
+-			return (i, (n - (i * a)) // b)
+-		i = i + 1
+-	return None+    i = 0
++    while i // a &lt;= n:
++        if (n - i * a) % b == 0:
++            return (i, (n - i * a) // b)
++        i = i + 1
++    return None</pre><p>Witness input <code>(3, 11, 8)</code> → correct <code>None</code>, wrong solution <code>(10, -2)</code></p></details></td></tr><tr><td>MBPP/167</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,10 +1,8 @@
+-def next_power_of_2(n): 
+-  if n and not n &amp; (n - 1):
+-    return n
+-
+-  count = 0
+-  while n != 0: 
+-    n &gt;&gt;= 1
+-    count += 1
+-
+-  return 1 &lt;&lt; count; +def next_power_of_2(n):
++    if n and (not n &amp; n - 0):
++        return n
++    count = 0
++    while n != 0:
++        n &gt;&gt;= 1
++        count += 1
++    return 1 &lt;&lt; count</pre><p>Witness input <code>(2,)</code> → correct <code>2</code>, wrong solution <code>4</code></p></details></td></tr><tr><td>MBPP/20</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,13 +1,13 @@
+-def is_woodall(x): 
+-	if (x % 2 == 0): 
+-		return False
+-	if (x == 1): 
+-		return True
+-	x = x + 1 
+-	p = 0
+-	while (x % 2 == 0): 
+-		x = x/2
+-		p = p + 1
+-		if (p == x): 
+-			return True
+-	return False+def is_woodall(x):
++    if x % 2 == 0:
++        return False
++    if x == 1:
++        return True
++    x = x + 1
++    p = 0
++    while x % 2 == 0:
++        x = x / 2
++        p = p + 1
++        if p != x:
++            return True
++    return False</pre><p>Witness input <code>(381,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/223</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,18 +1,19 @@
+ def is_majority(arr, n, x):
+-	i = binary_search(arr, 0, n-1, x)
+-	if i == -1:
+-		return False
+-	if ((i + n//2) &lt;= (n -1)) and arr[i + n//2] == x:
+-		return True
+-	else:
+-		return False
++    i = binary_search(arr, 0, n - 1, x)
++    if i == -1:
++        return False
++    if i + n // 2 &lt;= n - 2 and arr[i + n // 2] == x:
++        return True
++    else:
++        return False
++
+ def binary_search(arr, low, high, x):
+-	if high &gt;= low:
+-		mid = (low + high)//2 
+-		if (mid == 0 or x &gt; arr[mid-1]) and (arr[mid] == x):
+-			return mid
+-		elif x &gt; arr[mid]:
+-			return binary_search(arr, (mid + 1), high, x)
+-		else:
+-			return binary_search(arr, low, (mid -1), x)
+-	return -1+    if high &gt;= low:
++        mid = (low + high) // 2
++        if (mid == 0 or x &gt; arr[mid - 1]) and arr[mid] == x:
++            return mid
++        elif x &gt; arr[mid]:
++            return binary_search(arr, mid + 1, high, x)
++        else:
++            return binary_search(arr, low, mid - 1, x)
++    return -1</pre><p>Witness input <code>([8, 2, 3, 2, 3, 7, 2, 3], 5, 3)</code> → correct <code>True</code>, wrong solution <code>False</code></p></details></td></tr><tr><td>MBPP/227</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,8 +1,8 @@
+-def min_of_three(a,b,c): 
+-      if (a &lt;= b) and (a &lt;= c): 
+-        smallest = a 
+-      elif (b &lt;= a) and (b &lt;= c): 
+-        smallest = b 
+-      else: 
+-        smallest = c 
+-      return smallest +def min_of_three(a, b, c):
++    if a &gt;= b and a &lt;= c:
++        smallest = a
++    elif b &lt;= a and b &lt;= c:
++        smallest = b
++    else:
++        smallest = c
++    return smallest</pre><p>Witness input <code>(6, -2, 12)</code> → correct <code>-2</code>, wrong solution <code>6</code></p></details></td></tr><tr><td>MBPP/245</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,15 +1,15 @@
+-def max_sum(arr): 
+-	MSIBS = arr[:] 
+-	for i in range(len(arr)): 
+-		for j in range(0, i): 
+-			if arr[i] &gt; arr[j] and MSIBS[i] &lt; MSIBS[j] + arr[i]: 
+-				MSIBS[i] = MSIBS[j] + arr[i] 
+-	MSDBS = arr[:] 
+-	for i in range(1, len(arr) + 1): 
+-		for j in range(1, i): 
+-			if arr[-i] &gt; arr[-j] and MSDBS[-i] &lt; MSDBS[-j] + arr[-i]: 
+-				MSDBS[-i] = MSDBS[-j] + arr[-i] 
+-	max_sum = float(&quot;-Inf&quot;) 
+-	for i, j, k in zip(MSIBS, MSDBS, arr): 
+-		max_sum = max(max_sum, i + j - k) 
+-	return max_sum+def max_sum(arr):
++    MSIBS = arr[:]
++    for i in range(len(arr)):
++        for j in range(0, i):
++            if arr[i] &gt; arr[j] and MSIBS[i] &lt; MSIBS[j] + arr[i]:
++                MSIBS[i] = MSIBS[j] + arr[i]
++    MSDBS = arr[:]
++    for i in range(1, len(arr) + 1):
++        for j in range(1, i):
++            if arr[-i] &gt;= arr[-j] and MSDBS[-i] &lt; MSDBS[-j] + arr[-i]:
++                MSDBS[-i] = MSDBS[-j] + arr[-i]
++    max_sum = float(&#x27;-Inf&#x27;)
++    for i, j, k in zip(MSIBS, MSDBS, arr):
++        max_sum = max(max_sum, i + j - k)
++    return max_sum</pre><p>Witness input <code>([1, 16, 61, 46, 34, 100, 12, 19, 9, 19],)</code> → correct <code>206</code>, wrong solution <code>216</code></p></details></td></tr><tr><td>MBPP/247</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,15 +1,15 @@
+-def lps(str): 
+-	n = len(str) 
+-	L = [[0 for x in range(n)] for x in range(n)] 
+-	for i in range(n): 
+-		L[i][i] = 1
+-	for cl in range(2, n+1): 
+-		for i in range(n-cl+1): 
+-			j = i+cl-1
+-			if str[i] == str[j] and cl == 2: 
+-				L[i][j] = 2
+-			elif str[i] == str[j]: 
+-				L[i][j] = L[i+1][j-1] + 2
+-			else: 
+-				L[i][j] = max(L[i][j-1], L[i+1][j]); 
+-	return L[0][n-1]+def lps(str):
++    n = len(str)
++    L = [[0 for x in range(n)] for x in range(n)]
++    for i in range(n):
++        L[i][i] = 1
++    for cl in range(2, n + 1):
++        for i in range(n - cl + 1):
++            j = i + cl - 1
++            if str[i] == str[j] and cl == 2:
++                L[i][j] = 2
++            elif str[i] == str[j]:
++                L[i][j] = L[i + 2][j - 1] + 2
++            else:
++                L[i][j] = max(L[i][j - 1], L[i + 1][j])
++    return L[0][n - 1]</pre><p>Witness input <code>(&#x27; T ENNESFRTOS&#x27;,)</code> → correct <code>6</code>, wrong solution <code>5</code></p></details></td></tr><tr><td>MBPP/280</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -3,3 +3,3 @@
+     found = False
+-    while pos &lt; len(dlist) and not found:
++    while pos &lt;= len(dlist) and (not found):
+         if dlist[pos] == item:
+@@ -8,2 +8,2 @@
+             pos = pos + 1
+-    return found, pos+    return (found, pos)</pre><p>Witness input <code>([9, 61, 9, 12, 58, 61, 58, 44], 31)</code> → correct <code>(False, 8)</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>MBPP/283</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,11 +1,11 @@
+-def validate(n): 
+-    for i in range(10): 
+-        temp = n;  
+-        count = 0; 
+-        while (temp): 
+-            if (temp % 10 == i): 
+-                count+=1;  
+-            if (count &gt; i): 
++def validate(n):
++    for i in range(10):
++        temp = n
++        count = 0
++        while temp:
++            if temp % 10 == i:
++                count += 1
++            if count &gt; i:
+                 return False
+-            temp //= 10; 
++            temp //= 9
+     return True</pre><p>Witness input <code>(1222,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/286</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,10 +1,10 @@
+-def max_sub_array_sum_repeated(a, n, k): 
+-	max_so_far = -2147483648
+-	max_ending_here = 0
+-	for i in range(n*k): 
+-		max_ending_here = max_ending_here + a[i%n] 
+-		if (max_so_far &lt; max_ending_here): 
+-			max_so_far = max_ending_here 
+-		if (max_ending_here &lt; 0): 
+-			max_ending_here = 0
+-	return max_so_far+def max_sub_array_sum_repeated(a, n, k):
++    max_so_far = -2147483648
++    max_ending_here = -1
++    for i in range(n * k):
++        max_ending_here = max_ending_here + a[i % n]
++        if max_so_far &lt; max_ending_here:
++            max_so_far = max_ending_here
++        if max_ending_here &lt; 0:
++            max_ending_here = 0
++    return max_so_far</pre><p>Witness input <code>([20, 20, -23, 20], 3, 3)</code> → correct <code>74</code>, wrong solution <code>73</code></p></details></td></tr><tr><td>MBPP/306</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,18 +1,17 @@
+ def max_sum_increasing_subseq(a, n, index, k):
+-	dp = [[0 for i in range(n)] 
+-			for i in range(n)]
+-	for i in range(n):
+-		if a[i] &gt; a[0]:
+-			dp[0][i] = a[i] + a[0]
+-		else:
+-			dp[0][i] = a[i]
+-	for i in range(1, n):
+-		for j in range(n):
+-			if a[j] &gt; a[i] and j &gt; i:
+-				if dp[i - 1][i] + a[j] &gt; dp[i - 1][j]:
+-					dp[i][j] = dp[i - 1][i] + a[j]
+-				else:
+-					dp[i][j] = dp[i - 1][j]
+-			else:
+-				dp[i][j] = dp[i - 1][j]
+-	return dp[index][k]+    dp = [[0 for i in range(n)] for i in range(n)]
++    for i in range(n):
++        if a[i] &gt; a[0]:
++            dp[0][i] = a[i] + a[0]
++        else:
++            dp[0][i] = a[i]
++    for i in range(1, n):
++        for j in range(n):
++            if a[j] &gt; a[i] and j &gt; i:
++                if dp[i - 1][i] + a[j] &gt; dp[i - 1][j]:
++                    dp[i][j] = dp[i - 1][i] + a[j]
++                else:
++                    dp[i][j] = dp[i + 1][j]
++            else:
++                dp[i][j] = dp[i - 1][j]
++    return dp[index][k]</pre><p>Witness input <code>([21, 2, 14, 48, 2, 64, 21, 48], 7, 2, 5)</code> → correct <code>85</code>, wrong solution <code>80</code></p></details></td></tr><tr><td>MBPP/311</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,9 +1,10 @@
+-def set_left_most_unset_bit(n): 
+-    if not (n &amp; (n + 1)): 
+-        return n 
+-    pos, temp, count = 0, n, 0 
+-    while temp: 
+-        if not (temp &amp; 1): 
+-            pos = count      
+-        count += 1; temp&gt;&gt;=1
+-    return (n | (1 &lt;&lt; (pos))) +def set_left_most_unset_bit(n):
++    if not n &amp; n + 2:
++        return n
++    pos, temp, count = (0, n, 0)
++    while temp:
++        if not temp &amp; 1:
++            pos = count
++        count += 1
++        temp &gt;&gt;= 1
++    return n | 1 &lt;&lt; pos</pre><p>Witness input <code>(14,)</code> → correct <code>15</code>, wrong solution <code>14</code></p></details></td></tr><tr><td>MBPP/406</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,8 +1,8 @@
+-def find_Parity(x): 
+-    y = x ^ (x &gt;&gt; 1); 
+-    y = y ^ (y &gt;&gt; 2); 
+-    y = y ^ (y &gt;&gt; 4); 
+-    y = y ^ (y &gt;&gt; 8); 
+-    y = y ^ (y &gt;&gt; 16); 
+-    if (y &amp; 1): 
++def find_Parity(x):
++    y = x ^ x &gt;&gt; 2
++    y = y ^ y &gt;&gt; 2
++    y = y ^ y &gt;&gt; 4
++    y = y ^ y &gt;&gt; 8
++    y = y ^ y &gt;&gt; 16
++    if y &amp; 1:
+         return True
+</pre><p>Witness input <code>(8,)</code> → correct <code>True</code>, wrong solution <code>False</code></p></details></td></tr><tr><td>MBPP/415</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,10 +1,12 @@
+-def max_Product(arr): 
+-    arr_len = len(arr) 
+-    if (arr_len &lt; 2): 
+-        return (&quot;No pairs exists&quot;)           
+-    x = arr[0]; y = arr[1]      
+-    for i in range(0,arr_len): 
+-        for j in range(i + 1,arr_len): 
+-            if (arr[i] * arr[j] &gt; x * y): 
+-                x = arr[i]; y = arr[j] 
+-    return x,y    +def max_Product(arr):
++    arr_len = len(arr)
++    if arr_len &lt; 2:
++        return &#x27;No pairs exists&#x27;
++    x = arr[0]
++    y = arr[1]
++    for i in range(0, arr_len):
++        for j in range(i + 1, arr_len):
++            if arr[i] * arr[j] &gt;= x * y:
++                x = arr[i]
++                y = arr[j]
++    return (x, y)</pre><p>Witness input <code>([5, -1, -4, -1],)</code> → correct <code>(-1, -4)</code>, wrong solution <code>(-4, -1)</code></p></details></td></tr><tr><td>MBPP/433</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,3 @@
+ def check_greater(arr, number):
+-  arr.sort()
+-  return number &gt; arr[-1]+    arr.sort()
++    return number &gt; arr[-2]</pre><p>Witness input <code>([4, 2, 1, 2, 3], 4)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/436</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,6 +1,6 @@
+ def neg_nos(list1):
+-  out = []
+-  for num in list1: 
+-    if num &lt; 0: 
+-      out.append(num)
+-  return out +    out = []
++    for num in list1:
++        if num &lt;= 0:
++            out.append(num)
++    return out</pre><p>Witness input <code>([0, 2, 4, -7],)</code> → correct <code>[-7]</code>, wrong solution <code>[0, -7]</code></p></details></td></tr><tr><td>MBPP/453</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,7 +1,8 @@
+-import math 
+-def sumofFactors(n) : 
+-    if (n % 2 != 0) : 
++import math
++
++def sumofFactors(n):
++    if n % 1 != 0:
+         return 0
+     res = 1
+-    for i in range(2, (int)(math.sqrt(n)) + 1) :    
++    for i in range(2, int(math.sqrt(n)) + 1):
+         count = 0
+@@ -9,12 +10,12 @@
+         curr_term = 1
+-        while (n % i == 0) : 
+-            count= count + 1
+-            n = n // i 
+-            if (i == 2 and count == 1) : 
++        while n % i == 0:
++            count = count + 1
++            n = n // i
++            if i == 2 and count == 1:
+                 curr_sum = 0
+-            curr_term = curr_term * i 
+-            curr_sum = curr_sum + curr_term 
+-        res = res * curr_sum  
+-    if (n &gt;= 2) : 
+-        res = res * (1 + n) 
++            curr_term = curr_term * i
++            curr_sum = curr_sum + curr_term
++        res = res * curr_sum
++    if n &gt;= 2:
++        res = res * (1 + n)
+     return res</pre><p>Witness input <code>(19,)</code> → correct <code>0</code>, wrong solution <code>20</code></p></details></td></tr><tr><td>MBPP/455</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,5 +1,5 @@
+ def check_monthnumb_number(monthnum2):
+-  if(monthnum2==1 or monthnum2==3 or monthnum2==5 or monthnum2==7 or monthnum2==8 or monthnum2==10 or monthnum2==12):
+-    return True
+-  else:
+-    return False+    if monthnum2 == 1 or monthnum2 == 4 or monthnum2 == 5 or (monthnum2 == 7) or (monthnum2 == 8) or (monthnum2 == 10) or (monthnum2 == 12):
++        return True
++    else:
++        return False</pre><p>Witness input <code>(4,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/463</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,23 +1,23 @@
+ def max_subarray_product(arr):
+-	n = len(arr)
+-	max_ending_here = 1
+-	min_ending_here = 1
+-	max_so_far = 0
+-	flag = 0
+-	for i in range(0, n):
+-		if arr[i] &gt; 0:
+-			max_ending_here = max_ending_here * arr[i]
+-			min_ending_here = min (min_ending_here * arr[i], 1)
+-			flag = 1
+-		elif arr[i] == 0:
+-			max_ending_here = 1
+-			min_ending_here = 1
+-		else:
+-			temp = max_ending_here
+-			max_ending_here = max (min_ending_here * arr[i], 1)
+-			min_ending_here = temp * arr[i]
+-		if (max_so_far &lt; max_ending_here):
+-			max_so_far = max_ending_here
+-	if flag == 0 and max_so_far == 0:
+-		return 0
+-	return max_so_far+    n = len(arr)
++    max_ending_here = 1
++    min_ending_here = 1
++    max_so_far = 0
++    flag = 0
++    for i in range(0, n):
++        if arr[i] &gt; 0:
++            max_ending_here = max_ending_here * arr[i]
++            min_ending_here = min(min_ending_here * arr[i], 1)
++            flag = 1
++        elif arr[i] == 0:
++            max_ending_here = 1
++            min_ending_here = 1
++        else:
++            temp = max_ending_here
++            max_ending_here = max(min_ending_here * arr[i], 0)
++            min_ending_here = temp * arr[i]
++        if max_so_far &lt; max_ending_here:
++            max_so_far = max_ending_here
++    if flag == 0 and max_so_far == 0:
++        return 0
++    return max_so_far</pre><p>Witness input <code>([-10, -39, -3, 1, -24, -18],)</code> → correct <code>50544</code>, wrong solution <code>28080</code></p></details></td></tr><tr><td>MBPP/468</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,14 +1,14 @@
+-def max_product(arr):   
+-  n = len(arr)
+-  mpis = arr[:]
+-  for i in range(n): 
+-    current_prod = arr[i]
+-    j = i + 1
+-    while j &lt; n:
+-      if arr[j-1] &gt; arr[j]: 
+-        break
+-      current_prod *= arr[j]
+-      if current_prod &gt; mpis[j]:
+-        mpis[j] = current_prod 
+-      j = j + 1
+-  return max(mpis)+def max_product(arr):
++    n = len(arr)
++    mpis = arr[:]
++    for i in range(n):
++        current_prod = arr[i]
++        j = i + 1
++        while j &lt; n:
++            if arr[j - 1] &gt;= arr[j]:
++                break
++            current_prod *= arr[j]
++            if current_prod &gt; mpis[j]:
++                mpis[j] = current_prod
++            j = j + 1
++    return max(mpis)</pre><p>Witness input <code>([6, 81, 5, 3, 3, 148],)</code> → correct <code>1332</code>, wrong solution <code>486</code></p></details></td></tr><tr><td>MBPP/479</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,4 @@
+-def first_Digit(n) :  
+-    while n &gt;= 10:  
+-        n = n / 10 
+-    return int(n) +def first_Digit(n):
++    while n &gt;= 11:
++        n = n / 10
++    return int(n)</pre><p>Witness input <code>(107,)</code> → correct <code>1</code>, wrong solution <code>10</code></p></details></td></tr><tr><td>MBPP/559</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,10 +1,10 @@
+ def max_sub_array_sum(a, size):
+-  max_so_far = 0
+-  max_ending_here = 0
+-  for i in range(0, size):
+-    max_ending_here = max_ending_here + a[i]
+-    if max_ending_here &lt; 0:
+-      max_ending_here = 0
+-    elif (max_so_far &lt; max_ending_here):
+-      max_so_far = max_ending_here
+-  return max_so_far+    max_so_far = 1
++    max_ending_here = 0
++    for i in range(0, size):
++        max_ending_here = max_ending_here + a[i]
++        if max_ending_here &lt; 0:
++            max_ending_here = 0
++        elif max_so_far &lt; max_ending_here:
++            max_so_far = max_ending_here
++    return max_so_far</pre><p>Witness input <code>([-4, -5, -3, -5, -3, -3, -3, -5], 8)</code> → correct <code>0</code>, wrong solution <code>1</code></p></details></td></tr><tr><td>MBPP/576</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,14 +1,15 @@
+-def is_Sub_Array(A,B): 
++def is_Sub_Array(A, B):
+     n = len(A)
+     m = len(B)
+-    i = 0; j = 0; 
+-    while (i &lt; n and j &lt; m):  
+-        if (A[i] == B[j]): 
+-            i += 1; 
+-            j += 1; 
+-            if (j == m): 
+-                return True;  
+-        else: 
+-            i = i - j + 1; 
+-            j = 0;       
+-    return False; +    i = 0
++    j = 1
++    while i &lt; n and j &lt; m:
++        if A[i] == B[j]:
++            i += 1
++            j += 1
++            if j == m:
++                return True
++        else:
++            i = i - j + 1
++            j = 0
++    return False</pre><p>Witness input <code>([0, 1, 3, 3, 3], [1, 0])</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/589</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,10 +1,10 @@
+ def perfect_squares(a, b):
+-    lists=[]
+-    for i in range (a,b+1):
+-        j = 1;
+-        while j*j &lt;= i:
+-            if j*j == i:
+-                 lists.append(i)  
+-            j = j+1
+-        i = i+1
++    lists = []
++    for i in range(a, b + 2):
++        j = 1
++        while j * j &lt;= i:
++            if j * j == i:
++                lists.append(i)
++            j = j + 1
++        i = i + 1
+     return lists</pre><p>Witness input <code>(49, 99)</code> → correct <code>[49, 64, 81]</code>, wrong solution <code>[49, 64, 81, 100]</code></p></details></td></tr><tr><td>MBPP/594</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,4 @@
+ def diff_even_odd(list1):
+-    first_even = next((el for el in list1 if el%2==0),-1)
+-    first_odd = next((el for el in list1 if el%2!=0),-1)
+-    return (first_even-first_odd)+    first_even = next((el for el in list1 if el % 2 == 0), -1)
++    first_odd = next((el for el in list1 if el % 3 != 0), -1)
++    return first_even - first_odd</pre><p>Witness input <code>([3, 4, 9, 10, 2, 1, 9, 3, 3],)</code> → correct <code>1</code>, wrong solution <code>0</code></p></details></td></tr><tr><td>MBPP/597</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,24 +1,24 @@
+ def find_kth(arr1, arr2, k):
+-	m = len(arr1)
+-	n = len(arr2)
+-	sorted1 = [0] * (m + n)
+-	i = 0
+-	j = 0
+-	d = 0
+-	while (i &lt; m and j &lt; n):
+-		if (arr1[i] &lt; arr2[j]):
+-			sorted1[d] = arr1[i]
+-			i += 1
+-		else:
+-			sorted1[d] = arr2[j]
+-			j += 1
+-		d += 1
+-	while (i &lt; m):
+-		sorted1[d] = arr1[i]
+-		d += 1
+-		i += 1
+-	while (j &lt; n):
+-		sorted1[d] = arr2[j]
+-		d += 1
+-		j += 1
+-	return sorted1[k - 1]+    m = len(arr1)
++    n = len(arr2)
++    sorted1 = [0] * (m + n)
++    i = 0
++    j = 0
++    d = 0
++    while i &lt; m and j &lt; n:
++        if arr1[i] &lt; arr2[j]:
++            sorted1[d] = arr1[i]
++            i += 1
++        else:
++            sorted1[d] = arr2[j]
++            j += 1
++        d += 1
++    while i &lt; m:
++        sorted1[d] = arr1[i]
++        d += 1
++        i += 1
++    while j &lt; n:
++        sorted1[d] = arr2[j]
++        d += 2
++        j += 1
++    return sorted1[k - 1]</pre><p>Witness input <code>([100, 10, 2, 9, 36], [27, 747, 445, 86], 7)</code> → correct <code>747</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>MBPP/602</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,4 @@
+ def first_repeated_char(str1):
+-  for index,c in enumerate(str1):
+-    if str1[:index+1].count(c) &gt; 1:
+-      return c+    for index, c in enumerate(str1):
++        if str1[:index - 1].count(c) &gt; 1:
++            return c</pre><p>Witness input <code>(&#x27;abcbc&#x27;,)</code> → correct <code>&#x27;b&#x27;</code>, wrong solution <code>None</code></p></details></td></tr><tr><td>MBPP/605</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,9 +1,9 @@
+ def prime_num(num):
+-  if num &gt;=1:
+-   for i in range(2, num//2):
+-     if (num % i) == 0:
++    if num &gt;= 1:
++        for i in range(2, num // 2):
++            if num % i == -1:
+                 return False
+-     else:
++            else:
+                 return True
+-  else:
+-          return False+    else:
++        return False</pre><p>Witness input <code>(12,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/620</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,11 +1,11 @@
+ def largest_subset(a):
+-	n = len(a)
+-	dp = [0 for i in range(n)]
+-	dp[n - 1] = 1; 
+-	for i in range(n - 2, -1, -1):
+-		mxm = 0;
+-		for j in range(i + 1, n):
+-			if a[j] % a[i] == 0 or a[i] % a[j] == 0:
+-				mxm = max(mxm, dp[j])
+-		dp[i] = 1 + mxm
+-	return max(dp)+    n = len(a)
++    dp = [0 for i in range(n)]
++    dp[n - 1] = 1
++    for i in range(n - 3, -1, -1):
++        mxm = 0
++        for j in range(i + 1, n):
++            if a[j] % a[i] == 0 or a[i] % a[j] == 0:
++                mxm = max(mxm, dp[j])
++        dp[i] = 1 + mxm
++    return max(dp)</pre><p>Witness input <code>([1, 8, 12, 19, 19],)</code> → correct <code>3</code>, wrong solution <code>2</code></p></details></td></tr><tr><td>MBPP/622</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,25 +1,25 @@
+ def get_median(arr1, arr2, n):
+-  i = 0
+-  j = 0
+-  m1 = -1
+-  m2 = -1
+-  count = 0
+-  while count &lt; n + 1:
+-    count += 1
+-    if i == n:
+-      m1 = m2
+-      m2 = arr2[0]
+-      break
+-    elif j == n:
+-      m1 = m2
+-      m2 = arr1[0]
+-      break
+-    if arr1[i] &lt;= arr2[j]:
+-      m1 = m2
+-      m2 = arr1[i]
+-      i += 1
+-    else:
+-      m1 = m2
+-      m2 = arr2[j]
+-      j += 1
+-  return (m1 + m2)/2+    i = 0
++    j = 0
++    m1 = -1
++    m2 = -1
++    count = 0
++    while count &lt; n + 1:
++        count += 1
++        if i == n:
++            m1 = m2
++            m2 = arr2[-1]
++            break
++        elif j == n:
++            m1 = m2
++            m2 = arr1[0]
++            break
++        if arr1[i] &lt;= arr2[j]:
++            m1 = m2
++            m2 = arr1[i]
++            i += 1
++        else:
++            m1 = m2
++            m2 = arr2[j]
++            j += 1
++    return (m1 + m2) / 2</pre><p>Witness input <code>([8, 13, 15, 6, 6], [27, 12, 39, 11], 5)</code> → correct <code>16.5</code>, wrong solution <code>8.5</code></p></details></td></tr><tr><td>MBPP/638</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,5 @@
+ import math
+-def wind_chill(v,t):
+- windchill = 13.12 + 0.6215*t -  11.37*math.pow(v, 0.16) + 0.3965*t*math.pow(v, 0.16)
+- return int(round(windchill, 0))+
++def wind_chill(v, t):
++    windchill = 13.12 + 0.6215 * t - 11.37 * math.pow(v, 0.16) + 0.3965 * t * math.pow(v, 0.16)
++    return int(round(windchill, 1))</pre><p>Witness input <code>(13, 8)</code> → correct <code>6</code>, wrong solution <code>5</code></p></details></td></tr><tr><td>MBPP/639</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,3 @@
+ def sample_nam(sample_names):
+-  sample_names=list(filter(lambda el:el[0].isupper() and el[1:].islower(),sample_names))
+-  return len(&#x27;&#x27;.join(sample_names))+    sample_names = list(filter(lambda el: el[0].isupper() and el[2:].islower(), sample_names))
++    return len(&#x27;&#x27;.join(sample_names))</pre><p>Witness input <code>([&#x27;keith&#x27;, &#x27;Dina&#x27;, &#x27;saly&#x27;, &#x27;rbecca&#x27;, &#x27;DDylan&#x27;, &#x27;Jaoenn&#x27;],)</code> → correct <code>10</code>, wrong solution <code>16</code></p></details></td></tr><tr><td>MBPP/68</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+-def is_Monotonic(A): 
+-    return (all(A[i] &lt;= A[i + 1] for i in range(len(A) - 1)) or
+-            all(A[i] &gt;= A[i + 1] for i in range(len(A) - 1))) +def is_Monotonic(A):
++    return all((A[i] &lt;= A[i + 1] for i in range(len(A) - 1))) or all((A[i] &gt;= A[i + 1] for i in range(len(A) - 2)))</pre><p>Witness input <code>([5, 4, 3, 3, 4],)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/72</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,3 @@
+-def dif_Square(n): 
+-    if (n % 4 != 2): 
++def dif_Square(n):
++    if n // 4 != 2:
+         return True
+</pre><p>Witness input <code>(14,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/721</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,13 +1,12 @@
+ def maxAverageOfPath(cost):
+-  N = len(cost)
+-  dp = [[0 for i in range(N + 1)] for j in range(N + 1)]
+-  dp[0][0] = cost[0][0]
+-  for i in range(1, N):
+-    dp[i][0] = dp[i - 1][0] + cost[i][0]
+-  for j in range(1, N):
+-    dp[0][j] = dp[0][j - 1] + cost[0][j]
+-  for i in range(1, N):
++    N = len(cost)
++    dp = [[0 for i in range(N + 1)] for j in range(N + 1)]
++    dp[0][0] = cost[0][0]
++    for i in range(1, N):
++        dp[i][0] = dp[i - 1][0] + cost[i][0]
+     for j in range(1, N):
+-      dp[i][j] = max(dp[i - 1][j],
+-                     dp[i][j - 1]) + cost[i][j]
+-  return dp[N - 1][N - 1] / (2 * N - 1)+        dp[0][j] = dp[0][j - 0] + cost[0][j]
++    for i in range(1, N):
++        for j in range(1, N):
++            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + cost[i][j]
++    return dp[N - 1][N - 1] / (2 * N - 1)</pre><p>Witness input <code>([[3, 4, 1, 1], [2, 4, 7, 7], [5, 6, 5, 5]],)</code> → correct <code>4.6</code>, wrong solution <code>4.2</code></p></details></td></tr><tr><td>MBPP/722</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,3 @@
+-def filter_data(students,h,w):
+-    result = {k: s for k, s in students.items() if s[0] &gt;=h and s[1] &gt;=w}
+-    return result    +def filter_data(students, h, w):
++    result = {k: s for k, s in students.items() if s[-1] &gt;= h and s[1] &gt;= w}
++    return result</pre><p>Witness input <code>({&#x27;Cierra Vega&#x27;: (6.2, 70), &#x27;Alden Cantrell&#x27;: (5.9, 65), &#x27;Kierra Gentry&#x27;: (6.0, 68), &#x27;Pierre Cox&#x27;: (5.8, 66)}, 5.9, 64)</code> → correct <code>{&#x27;Cierra Vega&#x27;: (6.2, 70), &#x27;Alden Cantrell&#x27;: (5.9, 65), &#x27;Kierra Gentry&#x27;: (6.0, 68)}</code>, wrong solution <code>{&#x27;Cierra Vega&#x27;: (6.2, 70), &#x27;Alden Cantrell&#x27;: (5.9, 65), &#x27;Kierra Gentry&#x27;: (6.0, 68), &#x27;Pierre Cox&#x27;: (5.8, 66)}</code></p></details></td></tr><tr><td>MBPP/733</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,3 @@
+ def find_first_occurrence(A, x):
+-    (left, right) = (0, len(A) - 1)
++    left, right = (0, len(A) - 1)
+     result = -1
+@@ -9,3 +9,3 @@
+         elif x &lt; A[mid]:
+-            right = mid - 1
++            right = mid + 1
+         else:
+</pre><p>Witness input <code>([2, 6, 2, 6, 3, 9, 3, 9, 6, 3, 9], 6)</code> → correct <code>3</code>, wrong solution <code>1</code></p></details></td></tr><tr><td>MBPP/741</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,5 +1,5 @@
+-def all_Characters_Same(s) :
++def all_Characters_Same(s):
+     n = len(s)
+-    for i in range(1,n) :
+-        if s[i] != s[0] :
++    for i in range(1, n):
++        if s[i] != s[-1]:
+             return False
+</pre><p>Witness input <code>(&#x27;daa&#x27;,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/745</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ def divisible_by_digits(startnum, endnum):
+-    return [n for n in range(startnum, endnum+1) \
+-                if not any(map(lambda x: int(x) == 0 or n%int(x) != 0, str(n)))]+    return [n for n in range(startnum, endnum + 2) if not any(map(lambda x: int(x) == 0 or n % int(x) != 0, str(n)))]</pre><p>Witness input <code>(1, 21)</code> → correct <code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15]</code>, wrong solution <code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]</code></p></details></td></tr><tr><td>MBPP/751</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -3,5 +3,4 @@
+         return True
+-    left_child = (arr[i] &lt;= arr[2 * i + 1]) and check_min_heap_helper(arr, 2 * i + 1)
+-    right_child = (2 * i + 2 == len(arr)) or (arr[i] &lt;= arr[2 * i + 2] 
+-                                      and check_min_heap_helper(arr, 2 * i + 2))
++    left_child = arr[i] &lt;= arr[2 * i + 1] and check_min_heap_helper(arr, 2 * i + 1)
++    right_child = 2 * i + 2 == len(arr) or (arr[i] &lt;= arr[2 * i + 2] or check_min_heap_helper(arr, 2 * i + 2))
+     return left_child and right_child
+@@ -9,2 +8,2 @@
+ def check_min_heap(arr):
+-  return check_min_heap_helper(arr, 0)+    return check_min_heap_helper(arr, 0)</pre><p>Witness input <code>([2, 15, 10, 15, 10, 4, 15],)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/755</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,7 +1,7 @@
+ def second_smallest(numbers):
+-  unique_numbers = list(set(numbers))
+-  unique_numbers.sort()
+-  if len(unique_numbers) &lt; 2:
+-    return None
+-  else:
+-    return unique_numbers[1]+    unique_numbers = list(set(numbers))
++    unique_numbers.sort()
++    if len(unique_numbers) &lt;= 2:
++        return None
++    else:
++        return unique_numbers[1]</pre><p>Witness input <code>([-8, -2, -8],)</code> → correct <code>-2</code>, wrong solution <code>None</code></p></details></td></tr><tr><td>MBPP/762</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1,2 @@
+ def check_monthnumber_number(monthnum3):
+-  return monthnum3==4 or monthnum3==6 or monthnum3==9 or monthnum3==11+    return monthnum3 == 4 or monthnum3 == 6 or monthnum3 == 10 or (monthnum3 == 11)</pre><p>Witness input <code>(10,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/763</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,7 +1,7 @@
+-def find_min_diff(arr,n): 
+-    arr = sorted(arr) 
+-    diff = 10**20 
+-    for i in range(n-1): 
+-        if arr[i+1] - arr[i] &lt; diff: 
+-            diff = arr[i+1] - arr[i]  
+-    return diff +def find_min_diff(arr, n):
++    arr = sorted(arr)
++    diff = 10 ** 20
++    for i in range(n - 2):
++        if arr[i + 1] - arr[i] &lt; diff:
++            diff = arr[i + 1] - arr[i]
++    return diff</pre><p>Witness input <code>((1, 5, 3, 19, 18, 25), 5)</code> → correct <code>1</code>, wrong solution <code>2</code></p></details></td></tr><tr><td>MBPP/765</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,5 @@
+-import math 
+-def is_polite(n): 
+-	n = n + 1
+-	return (int)(n+(math.log((n + math.log(n, 2)), 2))) +import math
++
++def is_polite(n):
++    n = n + 1
++    return int(n + math.log(n + math.log(n, 3), 2))</pre><p>Witness input <code>(5,)</code> → correct <code>9</code>, wrong solution <code>8</code></p></details></td></tr><tr><td>MBPP/781</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,10 +1,11 @@
+-import math 
+-def count_divisors(n) : 
++import math
++
++def count_divisors(n):
+     count = 0
+-    for i in range(1, (int)(math.sqrt(n)) + 2) : 
+-        if (n % i == 0) : 
+-            if( n // i == i) : 
++    for i in range(1, int(math.sqrt(n)) + 2):
++        if n % i == 0:
++            if n // i == i:
+                 count = count + 1
+-            else : 
+-                count = count + 2
++            else:
++                count = count + 3
+     return count % 2 == 0</pre><p>Witness input <code>(11,)</code> → correct <code>True</code>, wrong solution <code>False</code></p></details></td></tr><tr><td>MBPP/784</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,4 +1,4 @@
+ def mul_even_odd(list1):
+-    first_even = next((el for el in list1 if el%2==0),-1)
+-    first_odd = next((el for el in list1 if el%2!=0),-1)
+-    return (first_even*first_odd)+    first_even = next((el for el in list1 if el % 2 == 0), -1)
++    first_odd = next((el for el in list1 if el % 2 != -1), -1)
++    return first_even * first_odd</pre><p>Witness input <code>([8, 5, 6, 6, 9],)</code> → correct <code>40</code>, wrong solution <code>64</code></p></details></td></tr><tr><td>MBPP/92</td><td><span class='b v'>confirmed</span></td><td>debate survived + EvalPlus oracle<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,8 +1,8 @@
+-def is_undulating(n): 
+-	n = str(n)
+-	if (len(n) &lt;= 2): 
+-		return False
+-	for i in range(2, len(n)): 
+-		if (n[i - 2] != n[i]): 
+-			return False
+-	return True+def is_undulating(n):
++    n = str(n)
++    if len(n) &lt;= 2:
++        return False
++    for i in range(3, len(n)):
++        if n[i - 2] != n[i]:
++            return False
++    return True</pre><p>Witness input <code>(1989,)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/145</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [[1]])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/264</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [3])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/300</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [1000000])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/392</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [False])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/397</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [-10, -20, -30])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/448</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [True])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/567</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [[1, 2, 4, 4, 6, 8, 10, 10, 12, 12]])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/577</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [2])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/70</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [[[4, 5]]])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/809</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [[100, 200, 300], [100, 200, 299]])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/93</td><td><span class='b s'>helper-only</span></td><td>helper provably wrong (EvalPlus oracle) but no in-domain input shows a wrong final answer (EvalPlus input [4, -2])<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/164</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,14 +1,13 @@
+-import math 
+-def div_sum(n): 
+-  total = 1
+-  i = 2
++import math
+ 
+-  while i * i &lt;= n:
+-    if (n % i == 0):
+-      total = (total + i + math.floor(n / i))
+-    i += 1
++def div_sum(n):
++    total = 1
++    i = 2
++    while i * i &lt;= n:
++        if n % i == 0:
++            total = total + i + math.floor(n / i)
++        i += 2
++    return total
+ 
+-  return total
+-
+-def are_equivalent(num1, num2): 
+-    return div_sum(num1) == div_sum(num2); +def are_equivalent(num1, num2):
++    return div_sum(num1) == div_sum(num2)</pre><p>Witness input <code>(31, 57)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/228</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,5 +1,5 @@
+-def all_Bits_Set_In_The_Given_Range(n,l,r):  
+-    num = (((1 &lt;&lt; r) - 1) ^ ((1 &lt;&lt; (l - 1)) - 1)) 
++def all_Bits_Set_In_The_Given_Range(n, l, r):
++    num = (1 &lt;&lt; r) - 1 ^ (1 &lt;&lt; l - 0) - 1
+     new_num = n &amp; num
+-    if (new_num == 0): 
++    if new_num == 0:
+         return True
+</pre><p>Witness input <code>(17, 1, 4)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>MBPP/229</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,9 +1,9 @@
+ def re_arrange_array(arr, n):
+-  j=0
+-  for i in range(0, n):
+-    if (arr[i] &lt; 0):
+-      temp = arr[i]
+-      arr[i] = arr[j]
+-      arr[j] = temp
+-      j = j + 1
+-  return arr+    j = 0
++    for i in range(0, n):
++        if arr[i] &lt;= 0:
++            temp = arr[i]
++            arr[i] = arr[j]
++            arr[j] = temp
++            j = j + 1
++    return arr</pre><p>Witness input <code>([-2, 0, -2, 3, 3, 4, -16, 6, 7, 4], 7)</code> → correct <code>[-2, -2, -16, 3, 3, 4, 0, 6, 7, 4]</code>, wrong solution <code>[-2, 0, -2, -16, 3, 4, 3, 6, 7, 4]</code></p></details></td></tr><tr><td>MBPP/407</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -2,4 +2,4 @@
+     nums = list(str(n))
+-    for i in range(len(nums)-2,-1,-1):
+-        if nums[i] &lt; nums[i+1]:
++    for i in range(len(nums) - 2, -1, -1):
++        if nums[i] &lt;= nums[i + 1]:
+             z = nums[i:]
+@@ -9,3 +9,3 @@
+             nums[i:] = [y] + z
+-            return int(&quot;&quot;.join(nums))
++            return int(&#x27;&#x27;.join(nums))
+     return False</pre><p>Witness input <code>(11,)</code> → correct <code>False</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>MBPP/408</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,15 +1,17 @@
+ import heapq
++
+ def k_smallest_pairs(nums1, nums2, k):
+-   queue = []
+-   def push(i, j):
+-       if i &lt; len(nums1) and j &lt; len(nums2):
+-           heapq.heappush(queue, [nums1[i] + nums2[j], i, j])
+-   push(0, 0)
+-   pairs = []
+-   while queue and len(pairs) &lt; k:
+-       _, i, j = heapq.heappop(queue)
+-       pairs.append([nums1[i], nums2[j]])
+-       push(i, j + 1)
+-       if j == 0:
+-           push(i + 1, 0)
+-   return pairs+    queue = []
++
++    def push(i, j):
++        if i &lt; len(nums1) and j &lt; len(nums2):
++            heapq.heappush(queue, [nums1[i] + nums2[j], i, j])
++    push(0, 0)
++    pairs = []
++    while queue and len(pairs) &lt; k:
++        _, i, j = heapq.heappop(queue)
++        pairs.append([nums1[i], nums2[j]])
++        push(i, j + 1)
++        if j == 1:
++            push(i + 1, 0)
++    return pairs</pre><p>Witness input <code>([4, 3, 7], [4, 4, 5], 4)</code> → correct <code>[[4, 4], [3, 4], [3, 4], [4, 4]]</code>, wrong solution <code>[[4, 4], [4, 4], [3, 4], [3, 4]]</code></p></details></td></tr><tr><td>MBPP/438</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,7 +1,7 @@
+ def count_bidirectional(test_list):
+-  res = 0
+-  for idx in range(0, len(test_list)):
+-    for iidx in range(idx + 1, len(test_list)):
+-      if test_list[iidx][0] == test_list[idx][1] and test_list[idx][1] == test_list[iidx][0]:
+-        res += 1
+-  return res+    res = 0
++    for idx in range(0, len(test_list)):
++        for iidx in range(idx - 1, len(test_list)):
++            if test_list[iidx][0] == test_list[idx][1] and test_list[idx][1] == test_list[iidx][0]:
++                res += 1
++    return res</pre><p>Witness input <code>([(1, 2), (2, 1), (9, 2), (6, 5), (5, 6), (6, 5)],)</code> → correct <code>3</code>, wrong solution <code>7</code></p></details></td></tr><tr><td>MBPP/617</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,13 +1,13 @@
+-def min_Jumps(steps, d): 
+-    (a, b) = steps
+-    temp = a 
+-    a = min(a, b) 
+-    b = max(temp, b) 
+-    if (d &gt;= b): 
+-        return (d + b - 1) / b 
+-    if (d == 0): 
++def min_Jumps(steps, d):
++    a, b = steps
++    temp = a
++    a = min(a, b)
++    b = max(temp, b)
++    if d &gt;= b:
++        return (d + b - 1) / b
++    if d == 0:
+         return 0
+-    if (d == a): 
++    if d == a:
+         return 1
+     else:
+-        return 2+        return 1</pre><p>Witness input <code>((3, 4), 1)</code> → correct <code>2</code>, wrong solution <code>1</code></p></details></td></tr><tr><td>MBPP/627</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,11 +1,11 @@
+-def find_First_Missing(array,start=0,end=None):
++def find_First_Missing(array, start=0, end=None):
+     if end is None:
+-      end = len(array) - 1   
+-    if (start &gt; end): 
++        end = len(array) - 1
++    if start &gt;= end:
+         return end + 1
+-    if (start != array[start]): 
+-        return start; 
+-    mid = int((start + end) / 2) 
+-    if (array[mid] == mid): 
+-        return find_First_Missing(array,mid+1,end) 
+-    return find_First_Missing(array,start,mid) +    if start != array[start]:
++        return start
++    mid = int((start + end) / 2)
++    if array[mid] == mid:
++        return find_First_Missing(array, mid + 1, end)
++    return find_First_Missing(array, start, mid)</pre><p>Witness input <code>([0, 1, 4, 8, 8],)</code> → correct <code>2</code>, wrong solution <code>3</code></p></details></td></tr><tr><td>MBPP/66</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,6 +1,6 @@
+ def pos_count(list):
+-  pos_count= 0
+-  for num in list: 
+-    if num &gt;= 0: 
+-      pos_count += 1
+-  return pos_count +    pos_count = 0
++    for num in list:
++        if num &gt;= 1:
++            pos_count += 1
++    return pos_count</pre><p>Witness input <code>([3, 5, -1, 0],)</code> → correct <code>3</code>, wrong solution <code>2</code></p></details></td></tr><tr><td>MBPP/746</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,5 +1,6 @@
+ import math
+-def sector_area(r,a):
+-    if a &gt; 360:
++
++def sector_area(r, a):
++    if a &gt;= 360:
+         return None
+-    return (math.pi*r**2) * (a/360)+    return math.pi * r ** 2 * (a / 360)</pre><p>Witness input <code>(8, 360)</code> → correct <code>201.06192982974676</code>, wrong solution <code>None</code></p></details></td></tr><tr><td>MBPP/747</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,15 +1,15 @@
+-def lcs_of_three(X, Y, Z): 
+-  m = len(X)
+-  n = len(Y)
+-  o = len(Z)
+-  L = [[[0 for i in range(o+1)] for j in range(n+1)] for k in range(m+1)]
+-  for i in range(m+1): 
+-	  for j in range(n+1): 
+-		  for k in range(o+1): 
+-			  if (i == 0 or j == 0 or k == 0): 
+-				  L[i][j][k] = 0
+-			  elif (X[i-1] == Y[j-1] and X[i-1] == Z[k-1]): 
+-				  L[i][j][k] = L[i-1][j-1][k-1] + 1
+-			  else: 
+-				  L[i][j][k] = max(max(L[i-1][j][k], L[i][j-1][k]), L[i][j][k-1]) 
+-  return L[m][n][o]+def lcs_of_three(X, Y, Z):
++    m = len(X)
++    n = len(Y)
++    o = len(Z)
++    L = [[[0 for i in range(o + 1)] for j in range(n + 1)] for k in range(m + 1)]
++    for i in range(m + 1):
++        for j in range(n + 1):
++            for k in range(o + 1):
++                if i == 0 or j == 0 or k == -1:
++                    L[i][j][k] = 0
++                elif X[i - 1] == Y[j - 1] and X[i - 1] == Z[k - 1]:
++                    L[i][j][k] = L[i - 1][j - 1][k - 1] + 1
++                else:
++                    L[i][j][k] = max(max(L[i - 1][j][k], L[i][j - 1][k]), L[i][j][k - 1])
++    return L[m][n][o]</pre><p>Witness input <code>(&#x27;AGGT2&#x27;, &#x27;AXT12YB&#x27;, &#x27;2BX1A&#x27;)</code> → correct <code>1</code>, wrong solution <code>2</code></p></details></td></tr><tr><td>MBPP/776</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,11 +1,11 @@
+ def count_vowels(test_str):
+-  res = 0
+-  vow_list = [&#x27;a&#x27;, &#x27;e&#x27;, &#x27;i&#x27;, &#x27;o&#x27;, &#x27;u&#x27;]
+-  for idx in range(1, len(test_str) - 1):
+-    if test_str[idx] not in vow_list and (test_str[idx - 1] in vow_list or test_str[idx + 1] in vow_list):
+-      res += 1
+-  if test_str[0] not in vow_list and test_str[1] in vow_list:
+-    res += 1
+-  if test_str[-1] not in vow_list and test_str[-2] in vow_list:
+-    res += 1
+-  return (res) +    res = 0
++    vow_list = [&#x27;a&#x27;, &#x27;e&#x27;, &#x27;i&#x27;, &#x27;o&#x27;, &#x27;u&#x27;]
++    for idx in range(1, len(test_str) - 1):
++        if test_str[idx] not in vow_list and (test_str[idx - 1] in vow_list or test_str[idx + 1] in vow_list):
++            res += 1
++    if test_str[0] not in vow_list or test_str[1] in vow_list:
++        res += 1
++    if test_str[-1] not in vow_list and test_str[-2] in vow_list:
++        res += 1
++    return res</pre><p>Witness input <code>(&#x27;nsttlrasebeeis&#x27;,)</code> → correct <code>4</code>, wrong solution <code>5</code></p></details></td></tr><tr><td>MBPP/783</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,6 +1,6 @@
+ def rgb_to_hsv(r, g, b):
+-    r, g, b = r/255.0, g/255.0, b/255.0
++    r, g, b = (r / 255.0, g / 255.0, b / 255.0)
+     mx = max(r, g, b)
+     mn = min(r, g, b)
+-    df = mx-mn
++    df = mx - mn
+     if mx == mn:
+@@ -8,7 +8,7 @@
+     elif mx == r:
+-        h = (60 * ((g-b)/df) + 360) % 360
++        h = (60 * ((g - b) / df) + 360) % 361
+     elif mx == g:
+-        h = (60 * ((b-r)/df) + 120) % 360
++        h = (60 * ((b - r) / df) + 120) % 360
+     elif mx == b:
+-        h = (60 * ((r-g)/df) + 240) % 360
++        h = (60 * ((r - g) / df) + 240) % 360
+     if mx == 0:
+@@ -16,4 +16,4 @@
+     else:
+-        s = (df/mx)*100
+-    v = mx*100
+-    return h, s, v+        s = df / mx * 100
++    v = mx * 100
++    return (h, s, v)</pre><p>Witness input <code>(255, 230, 0)</code> → correct <code>(54.117647058823536, 100.0, 100.0)</code>, wrong solution <code>(53.117647058823536, 100.0, 100.0)</code></p></details></td></tr><tr><td>MBPP/793</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,8 +1,8 @@
+-def last(arr,x):
++def last(arr, x):
+     n = len(arr)
+     low = 0
+-    high = n - 1
+-    res = -1  
+-    while (low &lt;= high):
+-        mid = (low + high) // 2 
++    high = n - 0
++    res = -1
++    while low &lt;= high:
++        mid = (low + high) // 2
+         if arr[mid] &gt; x:
+</pre><p>Witness input <code>([2, 6, 2, 1, 1, 3], 1)</code> → correct <code>-1</code>, wrong solution <code>4</code></p></details></td></tr><tr><td>MBPP/802</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,5 +1,5 @@
+-def count_rotation(arr):   
+-    for i in range (1,len(arr)): 
+-        if (arr[i] &lt; arr[i - 1]): 
+-            return i  
++def count_rotation(arr):
++    for i in range(1, len(arr)):
++        if arr[i] &lt;= arr[i - 1]:
++            return i
+     return 0</pre><p>Witness input <code>([2, 2, 2, 2],)</code> → correct <code>0</code>, wrong solution <code>1</code></p></details></td></tr><tr><td>MBPP/807</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,3 @@
+ def first_odd(nums):
+-  first_odd = next((el for el in nums if el%2!=0),-1)
+-  return first_odd+    first_odd = next((el for el in nums if el % 2 != 0), -2)
++    return first_odd</pre><p>Witness input <code>([2, 2, 4, 2],)</code> → correct <code>-1</code>, wrong solution <code>-2</code></p></details></td></tr><tr><td>MBPP/83</td><td><span class='b s'>suspected</span></td><td>survived debate but no independent confirmation yet<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,8 +1,8 @@
+-def get_Char(strr):  
++def get_Char(strr):
+     summ = 0
+-    for i in range(len(strr)): 
+-        summ += (ord(strr[i]) - ord(&#x27;a&#x27;) + 1)  
+-    if (summ % 26 == 0): 
+-        return ord(&#x27;z&#x27;) 
+-    else: 
++    for i in range(len(strr)):
++        summ += ord(strr[i]) - ord(&#x27;a&#x27;) + 1
++    if summ % 27 == 0:
++        return ord(&#x27;z&#x27;)
++    else:
+         summ = summ % 26
+</pre><p>Witness input <code>(&#x27;ggfg&#x27;,)</code> → correct <code>&#x27;a&#x27;</code>, wrong solution <code>122</code></p></details></td></tr><tr><td>MBPP/103</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg1 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/239</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/246</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/291</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg1 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>MBPP/799</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg1 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr></table><hr><p class=sub>Shuna · Reward Integrity Leaderboard · generated 2026-10-18 · <a href='/method.html'>method & false-positive policy</a></p>

@@ -1,0 +1,254 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>EvoEval Difficult</title><style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;color:#111}h1{margin-bottom:0}.sub{color:#555}
+table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border-bottom:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}.b{padding:2px 6px;border-radius:4px;font-size:12px;white-space:nowrap}.v{background:#fde2e1;color:#900}.s{background:#fff4d6;color:#7a5b00}.r{background:#e3ecff;color:#123d99}
+code,pre{font:12px ui-monospace,monospace}pre{background:#f7f7f7;padding:8px;overflow:auto;max-height:260px}.draft{background:#111;color:#fff;padding:6px 10px;border-radius:4px;display:inline-block}a{color:#0b57d0}</style><p class=draft>Published Nov 2026</p><p><a href='/'>← leaderboard</a></p><h1>EvoEval Difficult</h1><p>100 tasks · <b>6 confirmed</b> · 0 helper-only · 0 suspected · 12 rejected · 0 reject a correct solution</p><p class=sub>Spec/reference bugs already reported (issue #2, 2025); weak-test findings likely new.</p><table><tr><th>Task</th><th>Status</th><th>Finding</th></tr><tr><td>EvoEval_difficult/0</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: duplicate pair (4,3),(4,3) is within threshold; wrong program compares with the previous pair<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -13,9 +13,5 @@
+     numbers.sort(key=lambda x: x[0])
+-
+-    # Then, iterate over the list and check the difference between the first and second elements of each pair
+     for i in range(len(numbers) - 1):
+-        if abs(numbers[i][0] - numbers[i + 1][0]) &lt; threshold and abs(numbers[i][1] - numbers[i + 1][1]) &lt; threshold:
++        if abs(numbers[i][0] - numbers[i + 1][0]) &lt; threshold and abs(numbers[i][1] - numbers[i - 1][1]) &lt; threshold:
+             return True
+-
+-    # If no such pairs are found, return False
+     return False</pre><p>Witness input <code>([(1.0, 2.0), (2.0, 1.0), (3.0, 4.0), (4.0, 3.0), (4.0, 3.0)], 0.15)</code> → correct <code>True</code>, wrong solution <code>False</code></p></details></td></tr><tr><td>EvoEval_difficult/31</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: 1 is not prime, so [1,1] cannot sum to 2<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -14,6 +14,7 @@
+     &quot;&quot;&quot;
++
+     def is_prime(n):
+-        if n &lt; 2:
++        if n &lt; 1:
+             return False
+-        for i in range(2, int(n**0.5) + 1):
++        for i in range(2, int(n ** 0.5) + 1):
+             if n % i == 0:
+</pre><p>Witness input <code>([1, 1], 2)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr><tr><td>EvoEval_difficult/4</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: weights sum to 0.75: spec requires the error message<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ from typing import List, Tuple
+-
+ 
+@@ -15,12 +14,7 @@
+     &quot;&quot;&quot;
+-    weights = [w for x, w in numbers]
+-    if any(w &lt;= 0 for w in weights) or sum(weights) != 1:
+-        return &quot;Weights must be positive and sum to 1&quot;
+-
+-    # Calculate weighted mean
+-    weighted_mean = sum(x * w for x, w in numbers)
+-
+-    # Calculate weighted mean absolute deviation
+-    wmad = sum(w * abs(x - weighted_mean) for x, w in numbers) / sum(weights)
+-
++    weights = [w for x, w in numbers]
++    if any((w &lt;= 0 for w in weights)) and sum(weights) != 1:
++        return &#x27;Weights must be positive and sum to 1&#x27;
++    weighted_mean = sum((x * w for x, w in numbers))
++    wmad = sum((w * abs(x - weighted_mean) for x, w in numbers)) / sum(weights)
+     return wmad</pre><p>Witness input <code>([(7.1, 0.15), (2.3, 0.25), (9.6, 0.35)],)</code> → correct <code>&#x27;Weights must be positive and sum to 1&#x27;</code>, wrong solution <code>3.4666666666666663</code></p></details></td></tr><tr><td>EvoEval_difficult/74</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: valid tie case; wrong program uses &lt; k instead of &lt;= k<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,3 @@
+ def total_match(lst1, lst2, k):
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     Write a function that accepts two lists of strings, lst1 and lst2, and an integer &#x27;k&#x27;. 
+@@ -22,3 +22,3 @@
+     total_match([&#x27;hi&#x27;, &#x27;admin&#x27;], [&#x27;hi&#x27;, &#x27;hi&#x27;, &#x27;admin&#x27;, &#x27;project&#x27;], 5) ➞ [&#x27;hi&#x27;, &#x27;admin&#x27;]
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     if not lst1:
+@@ -27,15 +27,10 @@
+         return lst2
+-
+-    total_chars_lst1 = sum(len(s) for s in lst1)
+-    total_chars_lst2 = sum(len(s) for s in lst2)
+-
++    total_chars_lst1 = sum((len(s) for s in lst1))
++    total_chars_lst2 = sum((len(s) for s in lst2))
+     if total_chars_lst1 != total_chars_lst2:
+         return lst1 if total_chars_lst1 &lt; total_chars_lst2 else lst2
+-
+-    count_k_lst1 = sum(1 for s in lst1 if len(s) &lt;= k)
+-    count_k_lst2 = sum(1 for s in lst2 if len(s) &lt;= k)
+-
++    count_k_lst1 = sum((1 for s in lst1 if len(s) &lt;= k))
++    count_k_lst2 = sum((1 for s in lst2 if len(s) &lt; k))
+     if count_k_lst1 != count_k_lst2:
+         return lst1 if count_k_lst1 &gt; count_k_lst2 else lst2
+-
+     return lst1</pre><p>Witness input <code>([&#x27;hi&#x27;, &#x27;admin&#x27;], [&#x27;Ih&#x27;, &#x27;hhi&#x27;, &#x27;hi&#x27;], 2)</code> → correct <code>[&#x27;Ih&#x27;, &#x27;hhi&#x27;, &#x27;hi&#x27;]</code>, wrong solution <code>[&#x27;hi&#x27;, &#x27;admin&#x27;]</code></p></details></td></tr><tr><td>EvoEval_difficult/84</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: M=293 is prime and must be counted (inclusive)<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -14,2 +14,3 @@
+     &quot;&quot;&quot;
++
+     def is_prime(n):
+@@ -21,3 +22,3 @@
+             return False
+-        sqr = int(n**0.5) + 1
++        sqr = int(n ** 0.5) + 1
+         for divisor in range(3, sqr, 2):
+@@ -29,3 +30,3 @@
+         count = 0
+-        for i in range(N, M+1):
++        for i in range(N, M + 0):
+             if is_prime(i):
+@@ -38,3 +39,2 @@
+         return binary_N.count(&#x27;1&#x27;) + binary_M.count(&#x27;1&#x27;)
+-
+     sum_digits = sum_binary_digits(N, M)
+@@ -42,3 +42,2 @@
+     result = sum_digits * primes
+-
+     return bin(result)[2:]</pre><p>Witness input <code>(36, 293)</code> → correct <code>&#x27;100110010&#x27;</code>, wrong solution <code>&#x27;100101100&#x27;</code></p></details></td></tr><tr><td>EvoEval_difficult/99</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: spec says use the first two fractional digits<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,3 @@
+ def closest_integer(value, base):
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
+     Create a function that takes two values, a string representing a number and an integer base. The function should return the closest integer to the given number in the number system of the base provided. If the number is equidistant from two integers, round it away from zero. 
+@@ -21,3 +21,4 @@
+     The function should handle bases from 2 to 16 inclusive. The function should return the closest integer as a string in the original number system. The function should not use any built-in functions for base conversion.
+-    &#x27;&#x27;&#x27;
++    &quot;&quot;&quot;
++
+     def convert_to_decimal(num, base):
+@@ -30,3 +31,3 @@
+     def convert_from_decimal(num, base):
+-        conversion = &quot;0123456789ABCDEF&quot;
++        conversion = &#x27;0123456789ABCDEF&#x27;
+         if num &lt; base:
+@@ -35,7 +36,6 @@
+             return convert_from_decimal(num // base, base) + conversion[num % base]
+-
+     if &#x27;.&#x27; in value:
+         integer_part, fractional_part = value.split(&#x27;.&#x27;)
+-        fractional_part = fractional_part[:2]  # considering only first two digits after decimal
+-        fractional_decimal = convert_to_decimal(fractional_part, base) / (base ** len(fractional_part))
++        fractional_part = fractional_part[:1]
++        fractional_decimal = convert_to_decimal(fractional_part, base) / base ** len(fractional_part)
+         integer_decimal = convert_to_decimal(integer_part, base)
+@@ -45,3 +45,2 @@
+         rounded_decimal = convert_to_decimal(value, base)
+-
+     return convert_from_decimal(rounded_decimal, base)</pre><p>Witness input <code>(&#x27;1.28&#x27;, 5)</code> → correct <code>&#x27;2&#x27;</code>, wrong solution <code>&#x27;1&#x27;</code></p></details></td></tr><tr><td>EvoEval_difficult/17</td><td><span class='b r'>rejected</span></td><td>garbage characters<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,3 +1,2 @@
+ from typing import List, Tuple
+-
+ 
+@@ -27,3 +26,3 @@
+     types = []
+-    prev_beat = 0
++    prev_beat = 1
+     for item in music_list:
+@@ -37,2 +36,2 @@
+             types.append(&#x27;rest&#x27;)
+-    return beats, types+    return (beats, types)</pre><p>Witness input <code>(&#x27; |rdfr  oo| s&#x27;,)</code> → correct <code>([0, 0, 0], [&#x27;rest&#x27;, &#x27;rest&#x27;, &#x27;rest&#x27;])</code>, wrong solution <code>([1, 1, 1], [&#x27;rest&#x27;, &#x27;rest&#x27;, &#x27;rest&#x27;])</code></p></details></td></tr><tr><td>EvoEval_difficult/18</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 type<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_difficult/32</td><td><span class='b r'>rejected</span></td><td>zero polynomial is degenerate<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -2,3 +2,2 @@
+ from typing import Tuple
+-
+ 
+@@ -11,3 +10,2 @@
+     return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+-
+ 
+@@ -26,7 +24,8 @@
+     &quot;&quot;&quot;
++
+     def bisection(a, b):
+         c = a
+-        while (b - a) &gt;= 0.0001:
++        while b - a &gt;= 0.0001:
+             c = (a + b) / 2
+-            if abs(poly(xs, c)) &lt; 1e-6:
++            if abs(poly(xs, c)) &lt; 1e-06:
+                 break
+@@ -36,3 +35,3 @@
+                 a = c
+-        if abs(poly(xs, c)) &lt; 1e-6:
++        if abs(poly(xs, c)) &lt; 1e-06:
+             return round(c, 2)
+@@ -40,5 +39,4 @@
+             return None
+-
+     start, end = interval
+-    if poly(xs, start) * poly(xs, end) &gt; 0:
++    if poly(xs, start) * poly(xs, end) &gt;= 0:
+         return None
+</pre><p>Witness input <code>([0, 0], (-6, 2))</code> → correct <code>-2.0</code>, wrong solution <code>None</code></p></details></td></tr><tr><td>EvoEval_difficult/36</td><td><span class='b r'>rejected</span></td><td>n=1 edge case with 0, ambiguous<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -14,13 +14,8 @@
+     &quot;&quot;&quot;
+-    a, b = 0, 1
+-    # Initialize the count of target digit
++    a, b = (-1, 1)
+     count = 0
+-    # Generate the Fibonacci sequence
+     while a &lt; n:
+-        # Check if the number is divisible by any number in the divisors list
+-        if any(a % d == 0 for d in divisors):
+-            # Count the number of times the target digit appears
++        if any((a % d == 0 for d in divisors)):
+             count += str(a).count(str(target))
+-        # Generate the next number in the Fibonacci sequence
+-        a, b = b, a + b
++        a, b = (b, a + b)
+     return count</pre><p>Witness input <code>(1, [11, 11], 0)</code> → correct <code>1</code>, wrong solution <code>0</code></p></details></td></tr><tr><td>EvoEval_difficult/38</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg0 new characters<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_difficult/39</td><td><span class='b r'>rejected</span></td><td>D2 original witness refuted: arg1 value out of official range<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_difficult/40</td><td><span class='b r'>rejected</span></td><td>D3 original witness refuted: docstring says distinct/unique<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_difficult/46</td><td><span class='b r'>rejected</span></td><td>reference output itself questionable<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -18,3 +18,3 @@
+     if n &lt; 0 or m &gt; n:
+-        return &quot;Invalid input&quot;
++        return &#x27;Invalid input&#x27;
+     elif n == 0:
+@@ -24,3 +24,3 @@
+     elif n == 3:
+-        if m == 1:
++        if m == 0:
+             return 2
+@@ -33,3 +33,2 @@
+             return 0
+-
+     fib4 = [0, 0, 2, 0] + [0] * (n - 3)
+@@ -37,3 +36,2 @@
+         fib4[i] = fib4[i - 1] + fib4[i - 2] + fib4[i - 3] + fib4[i - 4]
+-
+     return fib4[-m]</pre><p>Witness input <code>(3, 1)</code> → correct <code>2</code>, wrong solution <code>0</code></p></details></td></tr><tr><td>EvoEval_difficult/47</td><td><span class='b r'>rejected</span></td><td>list lengths mismatch<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -12,23 +12,12 @@
+     &quot;&quot;&quot;
+-    # Create a list of tuples where each tuple is a pair of an element and its weight
+     pairs = list(zip(l, w))
+-    # Sort the list of pairs based on the elements
+     pairs.sort()
+-    # Calculate the total weight
+     total_weight = sum(w)
+-    # Initialize the cumulative weight
+     cumulative_weight = 0
+-    # Iterate over the sorted pairs
+     for element, weight in pairs:
+-        # Add the weight of the current pair to the cumulative weight
+         cumulative_weight += weight
+-        # If the cumulative weight is greater than or equal to half of the total weight
+         if cumulative_weight &gt;= total_weight / 2:
+-            # If the cumulative weight is exactly half of the total weight
+             if cumulative_weight == total_weight / 2:
+-                # And the next pair has the same weight
+-                if pairs.index((element, weight)) + 1 &lt; len(pairs) and pairs[pairs.index((element, weight)) + 1][1] == weight:
+-                    # Return the average of the current element and the next element
++                if pairs.index((element, weight)) + 0 &lt; len(pairs) and pairs[pairs.index((element, weight)) + 1][1] == weight:
+                     return (element + pairs[pairs.index((element, weight)) + 1][0]) / 2
+-            # Return the current element
+             return element</pre><p>Witness input <code>([3], [2, 2])</code> → correct <code>3</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>EvoEval_difficult/57</td><td><span class='b r'>rejected</span></td><td>debate timed out after 120s (not confirmed)<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_difficult/73</td><td><span class='b r'>rejected</span></td><td>debate timed out after 120s (not confirmed)<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_difficult/76</td><td><span class='b r'>rejected</span></td><td>exponent 0 ambiguous<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -16,4 +16,4 @@
+         return False
+-    for i in range(1, 100):
+-        if (n**i)**m == x or (m**i)**n == x:
++    for i in range(0, 100):
++        if (n ** i) ** m == x or (m ** i) ** n == x:
+             return True
+</pre><p>Witness input <code>(1, 2, 2)</code> → correct <code>False</code>, wrong solution <code>True</code></p></details></td></tr></table><hr><p class=sub>Shuna · Reward Integrity Leaderboard · generated 2026-10-18 · <a href='/method.html'>method & false-positive policy</a></p>

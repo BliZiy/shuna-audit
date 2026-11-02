@@ -1,0 +1,172 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>EvoEval Combine</title><style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;color:#111}h1{margin-bottom:0}.sub{color:#555}
+table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border-bottom:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}.b{padding:2px 6px;border-radius:4px;font-size:12px;white-space:nowrap}.v{background:#fde2e1;color:#900}.s{background:#fff4d6;color:#7a5b00}.r{background:#e3ecff;color:#123d99}
+code,pre{font:12px ui-monospace,monospace}pre{background:#f7f7f7;padding:8px;overflow:auto;max-height:260px}.draft{background:#111;color:#fff;padding:6px 10px;border-radius:4px;display:inline-block}a{color:#0b57d0}</style><p class=draft>Published Nov 2026</p><p><a href='/'>← leaderboard</a></p><h1>EvoEval Combine</h1><p>100 tasks · <b>5 confirmed</b> · 0 helper-only · 0 suspected · 8 rejected · 0 reject a correct solution</p><p class=sub>Spec/reference bugs already reported (issue #2, 2025); weak-test findings likely new.</p><table><tr><th>Task</th><th>Status</th><th>Finding</th></tr><tr><td>EvoEval_combine/0</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: both happy strings, larger value must be returned<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -23,12 +23,10 @@
+         for i in range(len(s) - 2):
+-            if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:
++            if s[i] == s[i - 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:
+                 return False
+         return True
+-
+     a_happy = is_happy(a)
+     b_happy = is_happy(b)
+-
+-    if not a_happy and not b_happy:
++    if not a_happy and (not b_happy):
+         return None
+-    elif a_happy and not b_happy:
++    elif a_happy and (not b_happy):
+         return a
+@@ -44,2 +42,2 @@
+         else:
+-            return None
++            return None</pre><p>Witness input <code>(&#x27;8.9071&#x27;, &#x27;2890.12&#x27;)</code> → correct <code>&#x27;2890.12&#x27;</code>, wrong solution <code>&#x27;8.9071&#x27;</code></p></details></td></tr><tr><td>EvoEval_combine/26</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: &#x27;eight&#x27; mapped to 9 changes the answer<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ from typing import List, Tuple
+@@ -41,15 +40,3 @@
+     &quot;&quot;&quot;
+-
+-    numeral_to_number = {
+-        &#x27;zero&#x27;: 0,
+-        &#x27;one&#x27;: 1,
+-        &#x27;two&#x27;: 2,
+-        &#x27;three&#x27;: 3,
+-        &#x27;four&#x27;: 4,
+-        &#x27;five&#x27;: 5,
+-        &#x27;six&#x27;: 6,
+-        &#x27;seven&#x27;: 7,
+-        &#x27;eight&#x27;: 8,
+-        &#x27;nine&#x27;: 9
+-    }
++    numeral_to_number = {&#x27;zero&#x27;: 0, &#x27;one&#x27;: 1, &#x27;two&#x27;: 2, &#x27;three&#x27;: 3, &#x27;four&#x27;: 4, &#x27;five&#x27;: 5, &#x27;six&#x27;: 6, &#x27;seven&#x27;: 7, &#x27;eight&#x27;: 9, &#x27;nine&#x27;: 9}
+     number_to_numeral = {v: k for k, v in numeral_to_number.items()}
+@@ -69,3 +56,2 @@
+     else:
+-        return ()
+-
++        return ()</pre><p>Witness input <code>([&#x27;nine eight seven&#x27;],)</code> → correct <code>(&#x27;eight&#x27;, 1)</code>, wrong solution <code>()</code></p></details></td></tr><tr><td>EvoEval_combine/29</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: 14 is not prime, largest prime factor is 7<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -12,3 +12,3 @@
+             return False
+-        for i in range(2, int(num**0.5) + 1):
++        for i in range(3, int(num ** 0.5) + 1):
+             if num % i == 0:
+@@ -16,3 +16,2 @@
+         return True
+-
+     if n == 1:
+@@ -28,3 +27,2 @@
+                 n //= i
+-        return n
+-    +        return n</pre><p>Witness input <code>(14, 62, 44)</code> → correct <code>7</code>, wrong solution <code>62</code></p></details></td></tr><tr><td>EvoEval_combine/70</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: equal numbers have identical special factorials<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,5 +1,3 @@
+-
+ from typing import List, Tuple
+ import math
+-
+ 
+@@ -21,15 +19,6 @@
+     def special_factorial(n: int) -&gt; int:
+-        return math.prod(math.factorial(i) for i in range(1, n + 1))
+-    # Calculate the special factorials for all numbers
++        return math.prod((math.factorial(i) for i in range(1, n + 1)))
+     special_factorials = {n: special_factorial(n) for n in numbers}
+-    
+-    # Sort the numbers by their special factorials
+     sorted_numbers = sorted(numbers, key=special_factorials.get)
+-    
+-    # Find the pair with the smallest difference
+-    closest_pair = min(
+-        ((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)),
+-        key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[0]]
+-    )
+-    
+-    return closest_pair
++    closest_pair = min(((sorted_numbers[i], sorted_numbers[i + 1]) for i in range(len(sorted_numbers) - 1)), key=lambda pair: special_factorials[pair[1]] - special_factorials[pair[1]])
++    return closest_pair</pre><p>Witness input <code>([1, 80, 80],)</code> → correct <code>(80, 80)</code>, wrong solution <code>(1, 80)</code></p></details></td></tr><tr><td>EvoEval_combine/72</td><td><span class='b v'>confirmed</span></td><td>debate survived + manual review: wrong program adds instead of subtracting<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ from typing import List
+@@ -16,3 +15,2 @@
+     &quot;&quot;&quot;
+-    # Calculate special factorial for each number
+     special_factorials = []
+@@ -23,9 +21,6 @@
+         special_factorials.append(special_fact)
+-
+-    # Check if any two factorials are closer than threshold
+     for i in range(len(special_factorials)):
+-        for j in range(i+1, len(special_factorials)):
+-            if abs(special_factorials[i] - special_factorials[j]) &lt; threshold:
++        for j in range(i + 1, len(special_factorials)):
++            if abs(special_factorials[i] + special_factorials[j]) &lt; threshold:
+                 return True
+-
+-    return False
++    return False</pre><p>Witness input <code>([26, 20, 26], 10000)</code> → correct <code>True</code>, wrong solution <code>False</code></p></details></td></tr><tr><td>EvoEval_combine/17</td><td><span class='b r'>rejected</span></td><td>debate timed out after 120s (not confirmed)<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_combine/24</td><td><span class='b r'>rejected</span></td><td>misspelled numeral<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -21,16 +21,9 @@
+     &quot;&quot;&quot;
+-
+     num_dict = {&#x27;zero&#x27;: 0, &#x27;one&#x27;: 1, &#x27;two&#x27;: 2, &#x27;three&#x27;: 3, &#x27;four&#x27;: 4, &#x27;five&#x27;: 5, &#x27;six&#x27;: 6, &#x27;seven&#x27;: 7, &#x27;eight&#x27;: 8, &#x27;nine&#x27;: 9}
+     num_list = numbers.split()
+-    
+-    # Check if the string is happy
+-    s = numbers.replace(&quot; &quot;, &quot;&quot;)
++    s = numbers.replace(&#x27; &#x27;, &#x27;&#x27;)
+     for i in range(len(s) - 2):
+-        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:
++        if s[i] == s[i + 1] or s[i] == s[i - 2] or s[i + 1] == s[i + 2]:
+             return &#x27;Not a happy string&#x27;
+-    
+-    # If the string is happy, sort the numbers
+     num_list.sort(key=lambda x: num_dict[x])
+-    
+-    return &#x27; &#x27;.join(num_list)
+-
++    return &#x27; &#x27;.join(num_list)</pre><p>Witness input <code>(&#x27;five two eigtht&#x27;,)</code> → correct <code>&#x27;Not a happy string&#x27;</code>, wrong solution <code>err</code></p></details></td></tr><tr><td>EvoEval_combine/34</td><td><span class='b r'>rejected</span></td><td>malformed parentheses<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -19,8 +19,10 @@
+         return []
+-    
++
+     def count_depth(s: str) -&gt; int:
+-        max_depth, cnt = 0, 0
++        max_depth, cnt = (1, 0)
+         for ch in s:
+-            if ch == &quot;(&quot;: cnt += 1
+-            if ch == &quot;)&quot;: cnt -= 1
++            if ch == &#x27;(&#x27;:
++                cnt += 1
++            if ch == &#x27;)&#x27;:
++                cnt -= 1
+             max_depth = max(max_depth, cnt)
+@@ -34,5 +36,4 @@
+     for dep in depths:
+-        md5_hash = hashlib.md5(dep.encode(&quot;utf-8&quot;)).hexdigest()
++        md5_hash = hashlib.md5(dep.encode(&#x27;utf-8&#x27;)).hexdigest()
+         result.append(md5_hash)
+-    
+     return result</pre><p>Witness input <code>(&#x27;)(&#x27;,)</code> → correct <code>[&#x27;cfcd208495d565ef66e7dff9f98764da&#x27;]</code>, wrong solution <code>[&#x27;c4ca4238a0b923820dcc509a6f75849b&#x27;]</code></p></details></td></tr><tr><td>EvoEval_combine/5</td><td><span class='b r'>rejected</span></td><td>D3 original witness refuted: docstring says sorted<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_combine/58</td><td><span class='b r'>rejected</span></td><td>debate timed out after 120s (not confirmed)<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_combine/60</td><td><span class='b r'>rejected</span></td><td>spec self-contradictory<details><summary>evidence</summary><pre>--- canonical
++++ mutant
+@@ -1,2 +1 @@
+-
+ def smallest_even_triple(arr, n):
+@@ -26,3 +25,3 @@
+     &quot;&quot;&quot;
+-    a = [i * i - i + 1 for i in range(1, n + 1)]
++    a = [i * i - i + 1 for i in range(1, n + 0)]
+     smallest_triple = None
+@@ -37,4 +36,3 @@
+     arr.append(a[smallest_triple[0]])
+-    smallest_even = min((val, idx) for idx, val in enumerate(arr) if val % 2 == 0)
+-    return [smallest_even[0], smallest_even[1]]
+-
++    smallest_even = min(((val, idx) for idx, val in enumerate(arr) if val % 2 == 0))
++    return [smallest_even[0], smallest_even[1]]</pre><p>Witness input <code>([1, 6, 7], 4)</code> → correct <code>[6, 1]</code>, wrong solution <code>[]</code></p></details></td></tr><tr><td>EvoEval_combine/66</td><td><span class='b r'>rejected</span></td><td>no in-domain witness<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr><tr><td>EvoEval_combine/69</td><td><span class='b r'>rejected</span></td><td>D3 original witness refuted: docstring says sorted<details><summary>evidence</summary><pre></pre><p>Witness input <code></code> → correct <code></code>, wrong solution <code></code></p></details></td></tr></table><hr><p class=sub>Shuna · Reward Integrity Leaderboard · generated 2026-10-18 · <a href='/method.html'>method & false-positive policy</a></p>

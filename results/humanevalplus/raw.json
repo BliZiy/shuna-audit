@@ -1,0 +1,1643 @@
+{
+ "benchmark": "humanevalplus",
+ "n_tasks": 164,
+ "seed": 1337,
+ "results": [
+  {
+   "task_id": "HumanEvalPlus/0",
+   "entry": "has_close_elements",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/1",
+   "entry": "separate_paren_groups",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/2",
+   "entry": "truncate_number",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/3",
+   "entry": "below_zero",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/4",
+   "entry": "mean_absolute_deviation",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/5",
+   "entry": "intersperse",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/6",
+   "entry": "parse_nested_parens",
+   "mutants_tried": 11,
+   "survivors": 2,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node40",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -12,12 +11,11 @@\n \n-    \n     def count_depth(s: str) -> int:\n-        max_depth, cnt = 0, 0\n+        max_depth, cnt = (1, 0)\n         for ch in s:\n-            if ch == \"(\": cnt += 1\n-            if ch == \")\": cnt -= 1\n+            if ch == '(':\n+                cnt += 1\n+            if ch == ')':\n+                cnt -= 1\n             max_depth = max(max_depth, cnt)\n         return max_depth\n-    \n-    return [count_depth(s) for s in paren_string.split(\" \") if s != \"\"]\n-\n+    return [count_depth(s) for s in paren_string.split(' ') if s != '']",
+     "mutant_src": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n\n    def count_depth(s: str) -> int:\n        max_depth, cnt = (1, 0)\n        for ch in s:\n            if ch == '(':\n                cnt += 1\n            if ch == ')':\n                cnt -= 1\n            max_depth = max(max_depth, cnt)\n        return max_depth\n    return [count_depth(s) for s in paren_string.split(' ') if s != '']",
+     "input": "(' ( ())((( )())()))()(())(()',)",
+     "expected_canonical": "[1, 2, 0]",
+     "mutant_output": "[1, 2, 1]"
+    },
+    {
+     "mutation": "const:-1@node40",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -12,12 +11,11 @@\n \n-    \n     def count_depth(s: str) -> int:\n-        max_depth, cnt = 0, 0\n+        max_depth, cnt = (-1, 0)\n         for ch in s:\n-            if ch == \"(\": cnt += 1\n-            if ch == \")\": cnt -= 1\n+            if ch == '(':\n+                cnt += 1\n+            if ch == ')':\n+                cnt -= 1\n             max_depth = max(max_depth, cnt)\n         return max_depth\n-    \n-    return [count_depth(s) for s in paren_string.split(\" \") if s != \"\"]\n-\n+    return [count_depth(s) for s in paren_string.split(' ') if s != '']",
+     "mutant_src": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n\n    def count_depth(s: str) -> int:\n        max_depth, cnt = (-1, 0)\n        for ch in s:\n            if ch == '(':\n                cnt += 1\n            if ch == ')':\n                cnt -= 1\n            max_depth = max(max_depth, cnt)\n        return max_depth\n    return [count_depth(s) for s in paren_string.split(' ') if s != '']",
+     "input": "('((()())() )))))()) (((((() ',)",
+     "expected_canonical": "[3, 0, 6]",
+     "mutant_output": "[3, -1, 6]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/7",
+   "entry": "filter_by_substring",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/8",
+   "entry": "sum_product",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/9",
+   "entry": "rolling_max",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/10",
+   "entry": "make_palindrome",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/11",
+   "entry": "string_xor",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/12",
+   "entry": "longest",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/13",
+   "entry": "greatest_common_divisor",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/14",
+   "entry": "all_prefixes",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/15",
+   "entry": "string_sequence",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/16",
+   "entry": "count_distinct_characters",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/17",
+   "entry": "parse_music",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/18",
+   "entry": "how_many_times",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/19",
+   "entry": "sort_numbers",
+   "mutants_tried": 21,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/20",
+   "entry": "find_closest_elements",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/21",
+   "entry": "rescale_to_unit",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/22",
+   "entry": "filter_integers",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/23",
+   "entry": "strlen",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/24",
+   "entry": "largest_divisor",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/25",
+   "entry": "factorize",
+   "mutants_tried": 17,
+   "survivors": 4,
+   "equivalent_or_unknown": 3,
+   "witnesses": [
+    {
+     "mutation": "const:1@node66",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1,2 @@\n from typing import List\n-\n \n@@ -14,3 +13,2 @@\n     \"\"\"\n-\n     import math\n@@ -18,3 +16,3 @@\n     i = 2\n-    while i <= int(math.sqrt(n) + 1):\n+    while i <= int(math.sqrt(n) + 2):\n         if n % i == 0:\n@@ -24,6 +22,4 @@\n             i += 1\n-\n     if n > 1:\n         fact.append(n)\n-    return fact\n-\n+    return fact",
+     "mutant_src": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n    import math\n    fact = []\n    i = 2\n    while i <= int(math.sqrt(n) + 2):\n        if n % i == 0:\n            fact.append(i)\n            n //= i\n        else:\n            i += 1\n    if n > 1:\n        fact.append(n)\n    return fact",
+     "input": "(0,)",
+     "expected_canonical": "[]",
+     "mutant_output": "timeout"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/26",
+   "entry": "remove_duplicates",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/27",
+   "entry": "flip_case",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/28",
+   "entry": "concatenate",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/29",
+   "entry": "filter_by_prefix",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/30",
+   "entry": "get_positive",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/31",
+   "entry": "is_prime",
+   "mutants_tried": 21,
+   "survivors": 5,
+   "equivalent_or_unknown": 5,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/32",
+   "entry": "find_zero",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/33",
+   "entry": "sort_third",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/34",
+   "entry": "unique",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/35",
+   "entry": "max_element",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/36",
+   "entry": "fizz_buzz",
+   "mutants_tried": 16,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/37",
+   "entry": "sort_even",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/38",
+   "entry": "decode_cyclic",
+   "mutants_tried": 46,
+   "survivors": 26,
+   "equivalent_or_unknown": 26,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/39",
+   "entry": "prime_fib",
+   "mutants_tried": 67,
+   "survivors": 19,
+   "equivalent_or_unknown": 19,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/40",
+   "entry": "triples_sum_to_zero",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/41",
+   "entry": "car_race_collision",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/42",
+   "entry": "incr_list",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/43",
+   "entry": "pairs_sum_to_zero",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/44",
+   "entry": "change_base",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/45",
+   "entry": "triangle_area",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/46",
+   "entry": "fib4",
+   "mutants_tried": 36,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/47",
+   "entry": "median",
+   "mutants_tried": 21,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/48",
+   "entry": "is_palindrome",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/49",
+   "entry": "modp",
+   "mutants_tried": 20,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/50",
+   "entry": "decode_shift",
+   "mutants_tried": 19,
+   "survivors": 9,
+   "equivalent_or_unknown": 9,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/51",
+   "entry": "remove_vowels",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/52",
+   "entry": "below_threshold",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/53",
+   "entry": "add",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/54",
+   "entry": "same_chars",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/55",
+   "entry": "fib",
+   "mutants_tried": 21,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/56",
+   "entry": "correct_bracketing",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/57",
+   "entry": "monotonic",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/58",
+   "entry": "common",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/59",
+   "entry": "largest_prime_factor",
+   "mutants_tried": 22,
+   "survivors": 6,
+   "equivalent_or_unknown": 5,
+   "witnesses": [
+    {
+     "mutation": "const:1@node31",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1 @@\n-\n-\n def largest_prime_factor(n: int):\n@@ -9,4 +7,2 @@\n     \"\"\"\n-\n-\n     isprime = [True] * (n + 1)\n@@ -16,5 +12,4 @@\n                 isprime[j] = False\n-    for i in range(n - 1, 0, -1):\n+    for i in range(n - 1, 1, -1):\n         if isprime[i] and n % i == 0:\n-            return i\n-\n+            return i",
+     "mutant_src": "def largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n    isprime = [True] * (n + 1)\n    for i in range(2, n + 1):\n        if isprime[i]:\n            for j in range(i + i, n, i):\n                isprime[j] = False\n    for i in range(n - 1, 1, -1):\n        if isprime[i] and n % i == 0:\n            return i",
+     "input": "(13,)",
+     "expected_canonical": "1",
+     "mutant_output": "None"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/60",
+   "entry": "sum_to_n",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/61",
+   "entry": "correct_bracketing",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/62",
+   "entry": "derivative",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/63",
+   "entry": "fibfib",
+   "mutants_tried": 27,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/64",
+   "entry": "vowels_count",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/65",
+   "entry": "circular_shift",
+   "mutants_tried": 10,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/66",
+   "entry": "digitSum",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/67",
+   "entry": "fruit_distribution",
+   "mutants_tried": 12,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/68",
+   "entry": "pluck",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/69",
+   "entry": "search",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/70",
+   "entry": "strange_sort_list",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/71",
+   "entry": "triangle_area",
+   "mutants_tried": 24,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/72",
+   "entry": "will_it_fly",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/73",
+   "entry": "smallest_change",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/74",
+   "entry": "total_match",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/75",
+   "entry": "is_multiply_prime",
+   "mutants_tried": 34,
+   "survivors": 11,
+   "equivalent_or_unknown": 11,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/76",
+   "entry": "is_simple_power",
+   "mutants_tried": 25,
+   "survivors": 4,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node67",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def is_simple_power(x, n):\n@@ -13,12 +12,15 @@\n     \"\"\"\n-\n-    if x == 1: return True\n-    if n == 0: return x == 0\n-    if n == 1: return x == 1\n-    if n == -1: return abs(x) == 1\n+    if x == 1:\n+        return True\n+    if n == 0:\n+        return x == 0\n+    if n == 1:\n+        return x == 1\n+    if n == -1:\n+        return abs(x) == 2\n     p = n\n     while abs(p) <= abs(x):\n-        if p == x: return True\n+        if p == x:\n+            return True\n         p = p * n\n-    return False\n-\n+    return False",
+     "mutant_src": "def is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n    if x == 1:\n        return True\n    if n == 0:\n        return x == 0\n    if n == 1:\n        return x == 1\n    if n == -1:\n        return abs(x) == 2\n    p = n\n    while abs(p) <= abs(x):\n        if p == x:\n            return True\n        p = p * n\n    return False",
+     "input": "(-1, -1)",
+     "expected_canonical": "True",
+     "mutant_output": "False"
+    },
+    {
+     "mutation": "const:-1@node67",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def is_simple_power(x, n):\n@@ -13,12 +12,15 @@\n     \"\"\"\n-\n-    if x == 1: return True\n-    if n == 0: return x == 0\n-    if n == 1: return x == 1\n-    if n == -1: return abs(x) == 1\n+    if x == 1:\n+        return True\n+    if n == 0:\n+        return x == 0\n+    if n == 1:\n+        return x == 1\n+    if n == -1:\n+        return abs(x) == 0\n     p = n\n     while abs(p) <= abs(x):\n-        if p == x: return True\n+        if p == x:\n+            return True\n         p = p * n\n-    return False\n-\n+    return False",
+     "mutant_src": "def is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n    if x == 1:\n        return True\n    if n == 0:\n        return x == 0\n    if n == 1:\n        return x == 1\n    if n == -1:\n        return abs(x) == 0\n    p = n\n    while abs(p) <= abs(x):\n        if p == x:\n            return True\n        p = p * n\n    return False",
+     "input": "(-1, -1)",
+     "expected_canonical": "True",
+     "mutant_output": "False"
+    },
+    {
+     "mutation": "const:-1@node64",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def is_simple_power(x, n):\n@@ -13,12 +12,15 @@\n     \"\"\"\n-\n-    if x == 1: return True\n-    if n == 0: return x == 0\n-    if n == 1: return x == 1\n-    if n == -1: return abs(x) == 1\n+    if x == 1:\n+        return True\n+    if n == 0:\n+        return x == 0\n+    if n == 1:\n+        return x == 1\n+    if n == -0:\n+        return abs(x) == 1\n     p = n\n     while abs(p) <= abs(x):\n-        if p == x: return True\n+        if p == x:\n+            return True\n         p = p * n\n-    return False\n-\n+    return False",
+     "mutant_src": "def is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n    if x == 1:\n        return True\n    if n == 0:\n        return x == 0\n    if n == 1:\n        return x == 1\n    if n == -0:\n        return abs(x) == 1\n    p = n\n    while abs(p) <= abs(x):\n        if p == x:\n            return True\n        p = p * n\n    return False",
+     "input": "(3, -1)",
+     "expected_canonical": "False",
+     "mutant_output": "timeout"
+    },
+    {
+     "mutation": "cmp:NotEq@node43",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def is_simple_power(x, n):\n@@ -13,12 +12,15 @@\n     \"\"\"\n-\n-    if x == 1: return True\n-    if n == 0: return x == 0\n-    if n == 1: return x == 1\n-    if n == -1: return abs(x) == 1\n+    if x == 1:\n+        return True\n+    if n == 0:\n+        return x == 0\n+    if n == 1:\n+        return x == 1\n+    if n == -1:\n+        return abs(x) != 1\n     p = n\n     while abs(p) <= abs(x):\n-        if p == x: return True\n+        if p == x:\n+            return True\n         p = p * n\n-    return False\n-\n+    return False",
+     "mutant_src": "def is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n    if x == 1:\n        return True\n    if n == 0:\n        return x == 0\n    if n == 1:\n        return x == 1\n    if n == -1:\n        return abs(x) != 1\n    p = n\n    while abs(p) <= abs(x):\n        if p == x:\n            return True\n        p = p * n\n    return False",
+     "input": "(3, -1)",
+     "expected_canonical": "False",
+     "mutant_output": "True"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/77",
+   "entry": "iscube",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/78",
+   "entry": "hex_key",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/79",
+   "entry": "decimal_to_binary",
+   "mutants_tried": 4,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/80",
+   "entry": "is_happy",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/81",
+   "entry": "numerical_letter_grade",
+   "mutants_tried": 23,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/82",
+   "entry": "prime_length",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/83",
+   "entry": "starts_one_ends",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/84",
+   "entry": "solve",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/85",
+   "entry": "add",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/86",
+   "entry": "anti_shuffle",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/87",
+   "entry": "get_row",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/88",
+   "entry": "sort_array",
+   "mutants_tried": 12,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/89",
+   "entry": "encrypt",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/90",
+   "entry": "next_smallest",
+   "mutants_tried": 7,
+   "survivors": 3,
+   "equivalent_or_unknown": 2,
+   "witnesses": [
+    {
+     "mutation": "const:1@node18",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def next_smallest(lst):\n@@ -12,4 +11,4 @@\n     \"\"\"\n-\n-    if len(lst) <= 1: return None\n+    if len(lst) <= 2:\n+        return None\n     sorted_list = sorted(lst)\n@@ -17,3 +16,2 @@\n         if x != sorted_list[0]:\n-            return x \n-\n+            return x",
+     "mutant_src": "def next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n    if len(lst) <= 2:\n        return None\n    sorted_list = sorted(lst)\n    for x in sorted_list:\n        if x != sorted_list[0]:\n            return x",
+     "input": "([1, 2],)",
+     "expected_canonical": "2",
+     "mutant_output": "None"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/91",
+   "entry": "is_bored",
+   "mutants_tried": 0,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/92",
+   "entry": "any_int",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/93",
+   "entry": "encode",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/94",
+   "entry": "skjkasdkd",
+   "mutants_tried": 17,
+   "survivors": 4,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:-1@node47",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1 @@\n-\n-\n def skjkasdkd(lst):\n@@ -15,5 +13,4 @@\n \n-\n     def is_prime(a):\n-        return not (a < 2 or any(a % x == 0 for x in range(2, int(a ** 0.5) + 1)))\n+        return not (a < 1 or any((a % x == 0 for x in range(2, int(a ** 0.5) + 1))))\n     sorted_list = sorted(lst)[::-1]\n@@ -21,3 +18,2 @@\n         if is_prime(x):\n-            return sum(map(lambda ch: int(ch), str(x)))\n-\n+            return sum(map(lambda ch: int(ch), str(x)))",
+     "mutant_src": "def skjkasdkd(lst):\n    \"\"\"You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n    Examples:\n    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10\n    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25\n    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13\n    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11\n    For lst = [0,81,12,3,1,21] the output should be 3\n    For lst = [0,8,1,2,1,7] the output should be 7\n    \"\"\"\n\n    def is_prime(a):\n        return not (a < 1 or any((a % x == 0 for x in range(2, int(a ** 0.5) + 1))))\n    sorted_list = sorted(lst)[::-1]\n    for x in sorted_list:\n        if is_prime(x):\n            return sum(map(lambda ch: int(ch), str(x)))",
+     "input": "([10, -1, -6, 1, 9],)",
+     "expected_canonical": "None",
+     "mutant_output": "1"
+    },
+    {
+     "mutation": "const:1@node87",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1 @@\n-\n-\n def skjkasdkd(lst):\n@@ -15,5 +13,4 @@\n \n-\n     def is_prime(a):\n-        return not (a < 2 or any(a % x == 0 for x in range(2, int(a ** 0.5) + 1)))\n+        return not (a < 2 or any((a % x == 0 for x in range(2, int(a ** 0.5) + 2))))\n     sorted_list = sorted(lst)[::-1]\n@@ -21,3 +18,2 @@\n         if is_prime(x):\n-            return sum(map(lambda ch: int(ch), str(x)))\n-\n+            return sum(map(lambda ch: int(ch), str(x)))",
+     "mutant_src": "def skjkasdkd(lst):\n    \"\"\"You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n    Examples:\n    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10\n    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25\n    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13\n    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11\n    For lst = [0,81,12,3,1,21] the output should be 3\n    For lst = [0,8,1,2,1,7] the output should be 7\n    \"\"\"\n\n    def is_prime(a):\n        return not (a < 2 or any((a % x == 0 for x in range(2, int(a ** 0.5) + 2))))\n    sorted_list = sorted(lst)[::-1]\n    for x in sorted_list:\n        if is_prime(x):\n            return sum(map(lambda ch: int(ch), str(x)))",
+     "input": "([-2, 81, 10, 1, 2, 21],)",
+     "expected_canonical": "2",
+     "mutant_output": "None"
+    },
+    {
+     "mutation": "cmp:LtE@node35",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1 @@\n-\n-\n def skjkasdkd(lst):\n@@ -15,5 +13,4 @@\n \n-\n     def is_prime(a):\n-        return not (a < 2 or any(a % x == 0 for x in range(2, int(a ** 0.5) + 1)))\n+        return not (a <= 2 or any((a % x == 0 for x in range(2, int(a ** 0.5) + 1))))\n     sorted_list = sorted(lst)[::-1]\n@@ -21,3 +18,2 @@\n         if is_prime(x):\n-            return sum(map(lambda ch: int(ch), str(x)))\n-\n+            return sum(map(lambda ch: int(ch), str(x)))",
+     "mutant_src": "def skjkasdkd(lst):\n    \"\"\"You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n    Examples:\n    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10\n    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25\n    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13\n    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11\n    For lst = [0,81,12,3,1,21] the output should be 3\n    For lst = [0,8,1,2,1,7] the output should be 7\n    \"\"\"\n\n    def is_prime(a):\n        return not (a <= 2 or any((a % x == 0 for x in range(2, int(a ** 0.5) + 1))))\n    sorted_list = sorted(lst)[::-1]\n    for x in sorted_list:\n        if is_prime(x):\n            return sum(map(lambda ch: int(ch), str(x)))",
+     "input": "([-2, 81, 10, 1, 2, 21],)",
+     "expected_canonical": "2",
+     "mutant_output": "None"
+    },
+    {
+     "mutation": "const:1@node47",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,3 +1 @@\n-\n-\n def skjkasdkd(lst):\n@@ -15,5 +13,4 @@\n \n-\n     def is_prime(a):\n-        return not (a < 2 or any(a % x == 0 for x in range(2, int(a ** 0.5) + 1)))\n+        return not (a < 3 or any((a % x == 0 for x in range(2, int(a ** 0.5) + 1))))\n     sorted_list = sorted(lst)[::-1]\n@@ -21,3 +18,2 @@\n         if is_prime(x):\n-            return sum(map(lambda ch: int(ch), str(x)))\n-\n+            return sum(map(lambda ch: int(ch), str(x)))",
+     "mutant_src": "def skjkasdkd(lst):\n    \"\"\"You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n    Examples:\n    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10\n    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25\n    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13\n    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11\n    For lst = [0,81,12,3,1,21] the output should be 3\n    For lst = [0,8,1,2,1,7] the output should be 7\n    \"\"\"\n\n    def is_prime(a):\n        return not (a < 3 or any((a % x == 0 for x in range(2, int(a ** 0.5) + 1))))\n    sorted_list = sorted(lst)[::-1]\n    for x in sorted_list:\n        if is_prime(x):\n            return sum(map(lambda ch: int(ch), str(x)))",
+     "input": "([-2, 81, 10, 1, 2, 21],)",
+     "expected_canonical": "2",
+     "mutant_output": "None"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/95",
+   "entry": "check_dict_case",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/96",
+   "entry": "count_up_to",
+   "mutants_tried": 7,
+   "survivors": 3,
+   "equivalent_or_unknown": 3,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/97",
+   "entry": "multiply",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/98",
+   "entry": "count_upper",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/99",
+   "entry": "closest_integer",
+   "mutants_tried": 12,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/100",
+   "entry": "make_a_pile",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/101",
+   "entry": "words_string",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/102",
+   "entry": "choose_num",
+   "mutants_tried": 22,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/103",
+   "entry": "rounded_avg",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/104",
+   "entry": "unique_digits",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/105",
+   "entry": "by_length",
+   "mutants_tried": 34,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/106",
+   "entry": "f",
+   "mutants_tried": 44,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/107",
+   "entry": "even_odd_palindrome",
+   "mutants_tried": 22,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/108",
+   "entry": "count_nums",
+   "mutants_tried": 17,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/109",
+   "entry": "move_one_ball",
+   "mutants_tried": 5,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/110",
+   "entry": "exchange",
+   "mutants_tried": 14,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/111",
+   "entry": "histogram",
+   "mutants_tried": 7,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/112",
+   "entry": "reverse_delete",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/113",
+   "entry": "odd_count",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/114",
+   "entry": "minSubArraySum",
+   "mutants_tried": 14,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/115",
+   "entry": "max_fill",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/116",
+   "entry": "sort_array",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/117",
+   "entry": "select_words",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/118",
+   "entry": "get_closest_vowel",
+   "mutants_tried": 16,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/119",
+   "entry": "match_parens",
+   "mutants_tried": 27,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/120",
+   "entry": "maximum",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/121",
+   "entry": "solution",
+   "mutants_tried": 13,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/122",
+   "entry": "add_elements",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/123",
+   "entry": "get_odd_collatz",
+   "mutants_tried": 26,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/124",
+   "entry": "valid_date",
+   "mutants_tried": 65,
+   "survivors": 18,
+   "equivalent_or_unknown": 18,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/125",
+   "entry": "split_words",
+   "mutants_tried": 12,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/126",
+   "entry": "is_sorted",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/127",
+   "entry": "intersection",
+   "mutants_tried": 28,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/128",
+   "entry": "prod_signs",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/129",
+   "entry": "minPath",
+   "mutants_tried": 46,
+   "survivors": 5,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "const:1@node96",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def minPath(grid, k):\n@@ -31,6 +30,4 @@\n     \"\"\"\n-\n-\n     N = len(grid)\n-    x, y = 0, 0\n+    x, y = (0, 0)\n     for i in range(N):\n@@ -38,9 +35,12 @@\n             if grid[i][j] == 1:\n-                x, y = i, j\n+                x, y = (i, j)\n     mn = N * N\n-    if x > 0: mn = min(mn, grid[x - 1][y])\n-    if x < N - 1: mn = min(mn, grid[x + 1][y])\n-    if y > 0: mn = min(mn, grid[x][y - 1])\n-    if y < N - 1: mn = min(mn, grid[x][y + 1])\n-    return [1 if i % 2 == 0 else mn for i in range(k)]\n-\n+    if x > 0:\n+        mn = min(mn, grid[x - 1][y])\n+    if x < N - 2:\n+        mn = min(mn, grid[x + 1][y])\n+    if y > 0:\n+        mn = min(mn, grid[x][y - 1])\n+    if y < N - 1:\n+        mn = min(mn, grid[x][y + 1])\n+    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "mutant_src": "def minPath(grid, k):\n    \"\"\"\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k, \n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n    You have to find the minimum path of length k in the grid. You can start\n    from any cell, and in each step you can move to any of the neighbor cells,\n    in other words, you can go to cells which share an edge with you current\n    cell.\n    Please note that a path of length k means visiting exactly k cells (not\n    necessarily distinct).\n    You CANNOT go off the grid.\n    A path A (of length k) is considered less than a path B (of length k) if\n    after making the ordered lists of the values on the cells that A and B go\n    through (let's call them lst_A and lst_B), lst_A is lexicographically less\n    than lst_B, in other words, there exist an integer index i (1 <= i <= k)\n    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have\n    lst_A[j] = lst_B[j].\n    It is guaranteed that the answer is unique.\n    Return an ordered list of the values on the cells that the minimum path go through.\n\n    Examples:\n\n        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3\n        Output: [1, 2, 1]\n\n        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"\n    N = len(grid)\n    x, y = (0, 0)\n    for i in range(N):\n        for j in range(N):\n            if grid[i][j] == 1:\n                x, y = (i, j)\n    mn = N * N\n    if x > 0:\n        mn = min(mn, grid[x - 1][y])\n    if x < N - 2:\n        mn = min(mn, grid[x + 1][y])\n    if y > 0:\n        mn = min(mn, grid[x][y - 1])\n    if y < N - 1:\n        mn = min(mn, grid[x][y + 1])\n    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "input": "([[4, 6], [-11, 3, 4, -11]], 3)",
+     "expected_canonical": "[1, -11, 1]",
+     "mutant_output": "[1, 4, 1]"
+    },
+    {
+     "mutation": "const:1@node41",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def minPath(grid, k):\n@@ -31,6 +30,4 @@\n     \"\"\"\n-\n-\n     N = len(grid)\n-    x, y = 0, 0\n+    x, y = (0, 1)\n     for i in range(N):\n@@ -38,9 +35,12 @@\n             if grid[i][j] == 1:\n-                x, y = i, j\n+                x, y = (i, j)\n     mn = N * N\n-    if x > 0: mn = min(mn, grid[x - 1][y])\n-    if x < N - 1: mn = min(mn, grid[x + 1][y])\n-    if y > 0: mn = min(mn, grid[x][y - 1])\n-    if y < N - 1: mn = min(mn, grid[x][y + 1])\n-    return [1 if i % 2 == 0 else mn for i in range(k)]\n-\n+    if x > 0:\n+        mn = min(mn, grid[x - 1][y])\n+    if x < N - 1:\n+        mn = min(mn, grid[x + 1][y])\n+    if y > 0:\n+        mn = min(mn, grid[x][y - 1])\n+    if y < N - 1:\n+        mn = min(mn, grid[x][y + 1])\n+    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "mutant_src": "def minPath(grid, k):\n    \"\"\"\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k, \n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n    You have to find the minimum path of length k in the grid. You can start\n    from any cell, and in each step you can move to any of the neighbor cells,\n    in other words, you can go to cells which share an edge with you current\n    cell.\n    Please note that a path of length k means visiting exactly k cells (not\n    necessarily distinct).\n    You CANNOT go off the grid.\n    A path A (of length k) is considered less than a path B (of length k) if\n    after making the ordered lists of the values on the cells that A and B go\n    through (let's call them lst_A and lst_B), lst_A is lexicographically less\n    than lst_B, in other words, there exist an integer index i (1 <= i <= k)\n    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have\n    lst_A[j] = lst_B[j].\n    It is guaranteed that the answer is unique.\n    Return an ordered list of the values on the cells that the minimum path go through.\n\n    Examples:\n\n        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3\n        Output: [1, 2, 1]\n\n        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"\n    N = len(grid)\n    x, y = (0, 1)\n    for i in range(N):\n        for j in range(N):\n            if grid[i][j] == 1:\n                x, y = (i, j)\n    mn = N * N\n    if x > 0:\n        mn = min(mn, grid[x - 1][y])\n    if x < N - 1:\n        mn = min(mn, grid[x + 1][y])\n    if y > 0:\n        mn = min(mn, grid[x][y - 1])\n    if y < N - 1:\n        mn = min(mn, grid[x][y + 1])\n    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "input": "([[2, 4, 4], [5, 6, 6], [9, 9, 5, 9]], 5)",
+     "expected_canonical": "[1, 4, 1, 4, 1]",
+     "mutant_output": "[1, 2, 1, 2, 1]"
+    },
+    {
+     "mutation": "const:1@node40",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def minPath(grid, k):\n@@ -31,6 +30,4 @@\n     \"\"\"\n-\n-\n     N = len(grid)\n-    x, y = 0, 0\n+    x, y = (1, 0)\n     for i in range(N):\n@@ -38,9 +35,12 @@\n             if grid[i][j] == 1:\n-                x, y = i, j\n+                x, y = (i, j)\n     mn = N * N\n-    if x > 0: mn = min(mn, grid[x - 1][y])\n-    if x < N - 1: mn = min(mn, grid[x + 1][y])\n-    if y > 0: mn = min(mn, grid[x][y - 1])\n-    if y < N - 1: mn = min(mn, grid[x][y + 1])\n-    return [1 if i % 2 == 0 else mn for i in range(k)]\n-\n+    if x > 0:\n+        mn = min(mn, grid[x - 1][y])\n+    if x < N - 1:\n+        mn = min(mn, grid[x + 1][y])\n+    if y > 0:\n+        mn = min(mn, grid[x][y - 1])\n+    if y < N - 1:\n+        mn = min(mn, grid[x][y + 1])\n+    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "mutant_src": "def minPath(grid, k):\n    \"\"\"\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k, \n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n    You have to find the minimum path of length k in the grid. You can start\n    from any cell, and in each step you can move to any of the neighbor cells,\n    in other words, you can go to cells which share an edge with you current\n    cell.\n    Please note that a path of length k means visiting exactly k cells (not\n    necessarily distinct).\n    You CANNOT go off the grid.\n    A path A (of length k) is considered less than a path B (of length k) if\n    after making the ordered lists of the values on the cells that A and B go\n    through (let's call them lst_A and lst_B), lst_A is lexicographically less\n    than lst_B, in other words, there exist an integer index i (1 <= i <= k)\n    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have\n    lst_A[j] = lst_B[j].\n    It is guaranteed that the answer is unique.\n    Return an ordered list of the values on the cells that the minimum path go through.\n\n    Examples:\n\n        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3\n        Output: [1, 2, 1]\n\n        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"\n    N = len(grid)\n    x, y = (1, 0)\n    for i in range(N):\n        for j in range(N):\n            if grid[i][j] == 1:\n                x, y = (i, j)\n    mn = N * N\n    if x > 0:\n        mn = min(mn, grid[x - 1][y])\n    if x < N - 1:\n        mn = min(mn, grid[x + 1][y])\n    if y > 0:\n        mn = min(mn, grid[x][y - 1])\n    if y < N - 1:\n        mn = min(mn, grid[x][y + 1])\n    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "input": "([[2, 4, 4], [5, 6, 6], [9, 9, 5, 9]], 5)",
+     "expected_canonical": "[1, 4, 1, 4, 1]",
+     "mutant_output": "[1, 2, 1, 2, 1]"
+    },
+    {
+     "mutation": "const:-1@node41",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def minPath(grid, k):\n@@ -31,6 +30,4 @@\n     \"\"\"\n-\n-\n     N = len(grid)\n-    x, y = 0, 0\n+    x, y = (0, -1)\n     for i in range(N):\n@@ -38,9 +35,12 @@\n             if grid[i][j] == 1:\n-                x, y = i, j\n+                x, y = (i, j)\n     mn = N * N\n-    if x > 0: mn = min(mn, grid[x - 1][y])\n-    if x < N - 1: mn = min(mn, grid[x + 1][y])\n-    if y > 0: mn = min(mn, grid[x][y - 1])\n-    if y < N - 1: mn = min(mn, grid[x][y + 1])\n-    return [1 if i % 2 == 0 else mn for i in range(k)]\n-\n+    if x > 0:\n+        mn = min(mn, grid[x - 1][y])\n+    if x < N - 1:\n+        mn = min(mn, grid[x + 1][y])\n+    if y > 0:\n+        mn = min(mn, grid[x][y - 1])\n+    if y < N - 1:\n+        mn = min(mn, grid[x][y + 1])\n+    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "mutant_src": "def minPath(grid, k):\n    \"\"\"\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k, \n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n    You have to find the minimum path of length k in the grid. You can start\n    from any cell, and in each step you can move to any of the neighbor cells,\n    in other words, you can go to cells which share an edge with you current\n    cell.\n    Please note that a path of length k means visiting exactly k cells (not\n    necessarily distinct).\n    You CANNOT go off the grid.\n    A path A (of length k) is considered less than a path B (of length k) if\n    after making the ordered lists of the values on the cells that A and B go\n    through (let's call them lst_A and lst_B), lst_A is lexicographically less\n    than lst_B, in other words, there exist an integer index i (1 <= i <= k)\n    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have\n    lst_A[j] = lst_B[j].\n    It is guaranteed that the answer is unique.\n    Return an ordered list of the values on the cells that the minimum path go through.\n\n    Examples:\n\n        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3\n        Output: [1, 2, 1]\n\n        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"\n    N = len(grid)\n    x, y = (0, -1)\n    for i in range(N):\n        for j in range(N):\n            if grid[i][j] == 1:\n                x, y = (i, j)\n    mn = N * N\n    if x > 0:\n        mn = min(mn, grid[x - 1][y])\n    if x < N - 1:\n        mn = min(mn, grid[x + 1][y])\n    if y > 0:\n        mn = min(mn, grid[x][y - 1])\n    if y < N - 1:\n        mn = min(mn, grid[x][y + 1])\n    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "input": "([[2, 4, 4], [5, 6, 6], [9, 9, 5, 9]], 5)",
+     "expected_canonical": "[1, 4, 1, 4, 1]",
+     "mutant_output": "[1, 2, 1, 2, 1]"
+    },
+    {
+     "mutation": "const:-1@node40",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def minPath(grid, k):\n@@ -31,6 +30,4 @@\n     \"\"\"\n-\n-\n     N = len(grid)\n-    x, y = 0, 0\n+    x, y = (-1, 0)\n     for i in range(N):\n@@ -38,9 +35,12 @@\n             if grid[i][j] == 1:\n-                x, y = i, j\n+                x, y = (i, j)\n     mn = N * N\n-    if x > 0: mn = min(mn, grid[x - 1][y])\n-    if x < N - 1: mn = min(mn, grid[x + 1][y])\n-    if y > 0: mn = min(mn, grid[x][y - 1])\n-    if y < N - 1: mn = min(mn, grid[x][y + 1])\n-    return [1 if i % 2 == 0 else mn for i in range(k)]\n-\n+    if x > 0:\n+        mn = min(mn, grid[x - 1][y])\n+    if x < N - 1:\n+        mn = min(mn, grid[x + 1][y])\n+    if y > 0:\n+        mn = min(mn, grid[x][y - 1])\n+    if y < N - 1:\n+        mn = min(mn, grid[x][y + 1])\n+    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "mutant_src": "def minPath(grid, k):\n    \"\"\"\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k, \n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n    You have to find the minimum path of length k in the grid. You can start\n    from any cell, and in each step you can move to any of the neighbor cells,\n    in other words, you can go to cells which share an edge with you current\n    cell.\n    Please note that a path of length k means visiting exactly k cells (not\n    necessarily distinct).\n    You CANNOT go off the grid.\n    A path A (of length k) is considered less than a path B (of length k) if\n    after making the ordered lists of the values on the cells that A and B go\n    through (let's call them lst_A and lst_B), lst_A is lexicographically less\n    than lst_B, in other words, there exist an integer index i (1 <= i <= k)\n    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have\n    lst_A[j] = lst_B[j].\n    It is guaranteed that the answer is unique.\n    Return an ordered list of the values on the cells that the minimum path go through.\n\n    Examples:\n\n        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3\n        Output: [1, 2, 1]\n\n        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"\n    N = len(grid)\n    x, y = (-1, 0)\n    for i in range(N):\n        for j in range(N):\n            if grid[i][j] == 1:\n                x, y = (i, j)\n    mn = N * N\n    if x > 0:\n        mn = min(mn, grid[x - 1][y])\n    if x < N - 1:\n        mn = min(mn, grid[x + 1][y])\n    if y > 0:\n        mn = min(mn, grid[x][y - 1])\n    if y < N - 1:\n        mn = min(mn, grid[x][y + 1])\n    return [1 if i % 2 == 0 else mn for i in range(k)]",
+     "input": "([[2, 4, 4], [5, 6, 6], [9, 9, 5, 9]], 5)",
+     "expected_canonical": "[1, 4, 1, 4, 1]",
+     "mutant_output": "[1, 2, 1, 2, 1]"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/130",
+   "entry": "tri",
+   "mutants_tried": 46,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/131",
+   "entry": "digits",
+   "mutants_tried": 11,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/132",
+   "entry": "is_nested",
+   "mutants_tried": 17,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/133",
+   "entry": "sum_squares",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/134",
+   "entry": "check_if_last_char_is_a_letter",
+   "mutants_tried": 12,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/135",
+   "entry": "can_arrange",
+   "mutants_tried": 15,
+   "survivors": 1,
+   "equivalent_or_unknown": 0,
+   "witnesses": [
+    {
+     "mutation": "cmp:Gt@node28",
+     "diff": "--- canonical\n+++ mutant\n@@ -1,2 +1 @@\n-\n def can_arrange(arr):\n@@ -11,8 +10,5 @@\n     \"\"\"\n-\n-\n     for i in range(len(arr) - 1, 0, -1):\n-        if not (arr[i] >= arr[i - 1]):\n+        if not arr[i] > arr[i - 1]:\n             return i\n-    return -1\n-\n+    return -1",
+     "mutant_src": "def can_arrange(arr):\n    \"\"\"Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n    Examples:\n    can_arrange([1,2,4,3,5]) = 3\n    can_arrange([1,2,3]) = -1\n    \"\"\"\n    for i in range(len(arr) - 1, 0, -1):\n        if not arr[i] > arr[i - 1]:\n            return i\n    return -1",
+     "input": "([3, 3, 4, 3, 3, 3],)",
+     "expected_canonical": "3",
+     "mutant_output": "5"
+    }
+   ],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/136",
+   "entry": "largest_smallest_integers",
+   "mutants_tried": 10,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/137",
+   "entry": "compare_one",
+   "mutants_tried": 3,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/138",
+   "entry": "is_equal_to_sum_even",
+   "mutants_tried": 11,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/139",
+   "entry": "special_factorial",
+   "mutants_tried": 9,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/140",
+   "entry": "fix_spaces",
+   "mutants_tried": 5,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/141",
+   "entry": "file_name_check",
+   "mutants_tried": 19,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/142",
+   "entry": "sum_squares",
+   "mutants_tried": 18,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/143",
+   "entry": "words_in_sentence",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/144",
+   "entry": "simplify",
+   "mutants_tried": 6,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/145",
+   "entry": "order_by_points",
+   "mutants_tried": 9,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/146",
+   "entry": "specialFilter",
+   "mutants_tried": 13,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/147",
+   "entry": "get_max_triples",
+   "mutants_tried": 47,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/148",
+   "entry": "bf",
+   "mutants_tried": 6,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/149",
+   "entry": "sorted_list_sum",
+   "mutants_tried": 14,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/150",
+   "entry": "x_or_y",
+   "mutants_tried": 15,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/151",
+   "entry": "double_the_difference",
+   "mutants_tried": 15,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/152",
+   "entry": "compare",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/153",
+   "entry": "Strongest_Extension",
+   "mutants_tried": 12,
+   "survivors": 4,
+   "equivalent_or_unknown": 4,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/154",
+   "entry": "cycpattern_check",
+   "mutants_tried": 5,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/155",
+   "entry": "even_odd_count",
+   "mutants_tried": 8,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/156",
+   "entry": "int_to_mini_roman",
+   "mutants_tried": 21,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/157",
+   "entry": "right_angle_triangle",
+   "mutants_tried": 25,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/158",
+   "entry": "find_max",
+   "mutants_tried": 9,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/159",
+   "entry": "eat",
+   "mutants_tried": 7,
+   "survivors": 1,
+   "equivalent_or_unknown": 1,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/160",
+   "entry": "do_algebra",
+   "mutants_tried": 3,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/161",
+   "entry": "solve",
+   "mutants_tried": 2,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/162",
+   "entry": "string_to_md5",
+   "mutants_tried": 1,
+   "survivors": 0,
+   "equivalent_or_unknown": 0,
+   "witnesses": [],
+   "canonical_passes": true
+  },
+  {
+   "task_id": "HumanEvalPlus/163",
+   "entry": "generate_integers",
+   "mutants_tried": 13,
+   "survivors": 2,
+   "equivalent_or_unknown": 2,
+   "witnesses": [],
+   "canonical_passes": true
+  }
+ ]
+}
